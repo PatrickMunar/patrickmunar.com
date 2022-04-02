@@ -76,7 +76,7 @@ body {
     /* right: 10vh; */
     left: 2rem;
     top: 0;
-    background-color: rgb(200, 0, 0);
+    background-color: rgb(185, 0, 0);
     box-sizing: border-box;
     overflow: hidden;
     z-index: 200;
@@ -100,10 +100,11 @@ body {
     /* text-shadow: 3px 3px 1px black; */
     font-weight: bold;
     color: white;
+    margin-bottom: 3.5rem;
 }
 
 .h3Div2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     /* font-style: italic; */
     /* margin-left: 3vw; */
     text-align: left;
@@ -148,6 +149,7 @@ body {
     /* border: 2px solid blue;  */
     z-index: 100000;
     padding: 2rem;
+    text-shadow: 4px 4px 3px black;
 
 }
 
@@ -169,7 +171,7 @@ body {
 
 @keyframes insertAnimationFromBelow {
     0% {
-        opacity: 0;
+        opacity: 1;
         transform: translateY(100vh);
     }
     40% {
@@ -183,7 +185,7 @@ body {
 
 @keyframes insertAnimationFromAbove {
     0% {
-        opacity: 0;
+        opacity: 1;
         transform: translateY(-100vh);
     }
     40% {
@@ -197,7 +199,7 @@ body {
 
 @keyframes stay {
     0% {
-        opacity: 0;
+        opacity: 1;
         transform: translateY(200vh);
     }
     40% {
@@ -242,7 +244,7 @@ body {
         opacity: 1;
     }
     100% {
-        opacity: 0;
+        opacity: 1;
         transform: translateY(100vh);
     }
 }
@@ -256,7 +258,7 @@ body {
         opacity: 1;
     }
     100% {
-        opacity: 0;
+        opacity: 1;
         transform: translateY(-100vh);
     }
 }
@@ -270,7 +272,7 @@ body {
         opacity: 1;
     }
     100% {
-        opacity: 0;
+        opacity: 1;
         transform: translateY(200vh);
     }
 }

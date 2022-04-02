@@ -18,10 +18,13 @@ let prevIndex = 0
 // h1, h3
 const textArray = [
     ['About Me',
-    'I believe that the best way to get to know me is through this little cube in space <b class="redText">- my room</b>'],
+    'I believe that the best way to get to know me is through this little cube in space <t class="redText">- my room.</t>',
+    "Look around and tap objects twice. Explore to your heart's content!"],
     ['Flag Football',
+    '',
     ''],
-    ['Hobbies',
+    ['Hobbies & Interests',
+    '',
     '']
 ]
 
@@ -46,11 +49,16 @@ const insertModal = (index) => {
         const h1Red = document.getElementById('h1Red')
         const h3Grey = document.getElementById('h3Grey')
         const h3Red = document.getElementById('h3Red')
+        const h3Grey2 = document.getElementById('h3Grey2')
+        const h3Red2 = document.getElementById('h3Red2')
     
         h1Grey.innerHTML = textArray[index][0]
         h1Red.innerHTML = textArray[index][0]
         h3Grey.innerHTML = textArray[index][1]
         h3Red.innerHTML = textArray[index][1]
+        h3Grey2.innerHTML = textArray[index][2]
+        h3Red2.innerHTML = textArray[index][2]
+
     
         infoModal.classList.add('display')
         contentGrey.classList.add('displayGrey')
