@@ -164,6 +164,7 @@ let botDrawer = new THREE.Group
 let staticStairsGroup = new THREE.Group
 let wallsandfloor = new THREE.Group
 let laptopGroup = new THREE.Group
+let screenGroup = new THREE.Group
 let mousepad = new THREE.Group
 let footballGroup = new THREE.Group
 let skateboardGroup = new THREE.Group
@@ -177,6 +178,7 @@ allObjects.add(botDrawer)
 allObjects.add(staticStairsGroup)
 allObjects.add(wallsandfloor)
 allObjects.add(laptopGroup)
+allObjects.add(screenGroup)
 allObjects.add(mousepad)
 allObjects.add(footballGroup)
 allObjects.add(skateboardGroup)
@@ -511,7 +513,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
-        laptopGroup.add(obj.scene)
+        screenGroup.add(obj.scene)
 
     }
 )
@@ -1030,7 +1032,7 @@ let isLaptopOn = false
     console.log(clickCounter)
     if (currentIntersect) {
         console.log('click')
-            if (currentIntersect.object == laptopGroup.children[0].children[0] || currentIntersect.object == laptopGroup.children[1].children[0] || currentIntersect.object == laptopGroup.children[2].children[0]) {
+            if (currentIntersect.object == laptopGroup.children[0].children[0] || currentIntersect.object == laptopGroup.children[1].children[0] || currentIntersect.object == screenGroup.children[0].children[0]) {
                 if (clickCounter%2 == 0) {
                     lightLaptop()
     
@@ -1120,7 +1122,7 @@ const botDrawerOut = () => {
 }
 
 const lightLaptop = () => {
-    laptopGroup.children[2].children[0].material.emissive = new THREE.Color(0x0000ff)
+    screenGroup.children[0].children[0].material.map = ''
     scene.add(rectAreaLight)
 
     scene.remove(ambientLight)
@@ -1129,9 +1131,9 @@ const lightLaptop = () => {
     scene.add(offPointLight)
     scene.background = new THREE.Color(0x000000)
     
-    laptopGroup.children[2].children[0].material.emissive.r = 1
-    laptopGroup.children[2].children[0].material.emissive.g = 1
-    laptopGroup.children[2].children[0].material.emissive.b = 1
+    screenGroup.children[0].children[0].material.emissive.r = 1
+    screenGroup.children[0].children[0].material.emissive.g = 1
+    screenGroup.children[0].children[0].material.emissive.b = 1
 
     allObjects.add(galaxy)
 
