@@ -21,11 +21,11 @@ const textArray = [
     'I believe that the best way to get to know me is through this little cube in space <t class="redText">- my room.</t>',
     "Look around and tap objects twice. Explore to your heart's content!"],
     ['Flag Football',
-    '',
-    ''],
+    '...',
+    '...'],
     ['Hobbies & Interests',
-    '',
-    '']
+    '...',
+    '...']
 ]
 
 
