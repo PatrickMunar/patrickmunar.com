@@ -106,6 +106,175 @@ closer.addEventListener('click', () => {
 
 // -------------------------------------------------------------------------------------------------
 
+const generateNewCanvas = () => {
+    // Canvas
+    const canvas = document.querySelector('canvas.miniWebGL')
+
+    // Scene
+    const scene = new THREE.Scene()
+    scene.background = new THREE.Color(0xB90000)
+
+    // Resize
+    const sizes = {
+        width: window.innerWidth*7.5/100*1.25,
+        height: window.innerHeight*0.95
+    }
+    
+    window.addEventListener('resize', () =>
+    {
+        // Update sizes
+        sizes.width = window.innerWidth*7.5/100*1.25
+        sizes.height = window.innerHeight*0.95
+    
+        // Update camera
+        camera.aspect = window.innerWidth*7.5/100*1.25 / window.innerHeight*0.95
+    
+        camera.updateProjectionMatrix()
+    
+        // Update renderer
+        renderer.setSize(sizes.width, sizes.height)
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    })
+
+    // Box
+    const boxGeometry = new THREE.BoxGeometry( 0.7, 0.7, 0.7 )
+    const boxEdges = new THREE.EdgesGeometry( boxGeometry )
+    const boxLine = new THREE.LineSegments( boxEdges, new THREE.LineBasicMaterial( {
+        color: 0x000000,
+        linewidth: 1
+    } ) )
+    boxLine.position.set(0,0.05,0)
+    scene.add( boxLine )
+
+    const coneGeometry = new THREE.BoxGeometry( 0.4, 0.4, 0.4 )
+    const coneEdges = new THREE.EdgesGeometry( coneGeometry )
+    const coneLine = new THREE.LineSegments( coneEdges, new THREE.LineBasicMaterial( {
+        color: 0x000000,
+        linewidth: 1
+    } ) )
+    scene.add( coneLine )
+    coneLine.position.set(-0.15, -3.5, -6)
+
+    const box4Geometry = new THREE.BoxGeometry( 0.4, 0.4, 0.4 )
+    const box4Edges = new THREE.EdgesGeometry( box4Geometry )
+    const box4Line = new THREE.LineSegments( box4Edges, new THREE.LineBasicMaterial( {
+        color: 0x000000,
+        linewidth: 1
+    } ) )
+    scene.add( box4Line )
+    box4Line.position.set(-0.5, -3.5, -15)
+
+    const sphereGeometry = new THREE.BoxGeometry( 0.7, 0.7, 0.7 )
+    const sphereEdges = new THREE.EdgesGeometry( sphereGeometry )
+    const sphereLine = new THREE.LineSegments( sphereEdges, new THREE.LineBasicMaterial( {
+        color: 0x000000,
+        linewidth: 1
+    } ) )
+    sphereLine.position.set(-0.4,4,-6)
+    scene.add( sphereLine )
+
+
+    // Base camera
+    const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100)
+    // camera.rotation.y = Math.PI
+    camera.position.set(0,0,5)
+    scene.add(camera)
+
+
+    // Axes Helper
+    // const axesHelper = new THREE.AxesHelper()
+    // scene.add(axesHelper)
+
+    /**
+     * Renderer
+     */
+    const renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        antialias: true
+    })
+    renderer.setSize(sizes.width, sizes.height)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    renderer.shadowMap.enabled = true
+    // renderer.shadowMap.type = THREE.PCFSoftShadowMap
+    renderer.outputEncoding = THREE.sRGBEncoding
+    renderer.toneMapping = THREE.CineonToneMapping
+
+        /**
+     * Animate
+     */
+    let prevTime = 0
+
+    const clock = new THREE.Clock()
+
+    const tick = () =>
+    {
+        const elapsedTime = clock.getElapsedTime()
+        let deltaTime = elapsedTime - prevTime
+
+        // Animation
+        boxLine.rotation.x += 0.003
+        boxLine.rotation.y += 0.002
+        boxLine.rotation.z += 0.001
+        boxLine.position.y = Math.sin(elapsedTime-2)*0.08
+
+        coneLine.rotation.x += 0.004
+        coneLine.rotation.y += 0.001
+        coneLine.rotation.z += 0.002
+        coneLine.position.y = Math.sin(elapsedTime)*0.03 - 3.5
+
+        box4Line.rotation.x += 0.005
+        box4Line.rotation.y += 0.002
+        box4Line.rotation.z += 0.003
+        box4Line.position.y = Math.sin(elapsedTime)*0.03 - 7.5
+
+
+        sphereLine.rotation.y += 0.003
+        sphereLine.rotation.x += 0.001
+        coneLine.rotation.z += 0.003
+        sphereLine.position.y = Math.sin(elapsedTime-4)*0.04 + 4
+
+
+        // Render
+        renderer.render(scene, camera)
+
+        // Call tick again on the next frame
+        window.requestAnimationFrame(tick)
+    }
+
+    tick()
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// -----------------------------------------------------------------
 /**
  * Base
  */
@@ -113,6 +282,10 @@ closer.addEventListener('click', () => {
 // const gui = new dat.GUI({
 //     width: 400
 // })
+const isNewCanvasOn = document.getElementById('newCanvas')
+if (isNewCanvasOn) {
+    generateNewCanvas()
+}
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -921,12 +1094,12 @@ galaxy.position.y = -1.10
 
 
 // Lighting
-const ambientLight = new THREE.AmbientLight(0xffffee, 0.1)
-const offAmbientLight = new THREE.AmbientLight(0xaaaaff, 0.4)
+const ambientLight = new THREE.AmbientLight(0xaa00ff, 0.1)
+const offAmbientLight = new THREE.AmbientLight(0xffffff, 0.2)
 scene.add(ambientLight)
 
 
-const pointLight = new THREE.PointLight(0xaa9977, 0.9)
+const pointLight = new THREE.PointLight(0x1100ff, 1)
 const offPointLight = new THREE.PointLight(0xaaaaff, 0.75)
 
 
