@@ -43,7 +43,7 @@ body {
 .miniWebGL {
     width: 7.5rem;
     height: 100%;
-    position: fixed;
+    position: absolute;
     outline: none;
     box-sizing: border-box;
 
@@ -220,6 +220,20 @@ body {
     }
 }
 
+@keyframes canvasStay {
+    0% {
+        opacity: 1;
+        transform: translateY(100vh);
+    }
+    40% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .displayGrey {
     animation: insertAnimationFromBelow 1s forwards;
 }
@@ -232,6 +246,10 @@ body {
     animation: stay 1s forwards;
 }
 
+.canvasStay {
+    animation: canvasStay 1s forwards;
+}
+
 .displayGreyx {
     animation: insertAnimationFromBelowx 0.5s forwards;
 }
@@ -242,6 +260,10 @@ body {
 
 .stayx {
     animation: stayx 0.5s forwards;
+}
+
+.canvasStayx {
+    animation: canvasStayx 0.5s forwards;
 }
 
 @keyframes insertAnimationFromBelowx {
@@ -283,5 +305,19 @@ body {
     100% {
         opacity: 1;
         transform: translateY(200vh);
+    }
+}
+
+@keyframes canvasStayx {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    40% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(100vh);
     }
 }

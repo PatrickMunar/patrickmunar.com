@@ -36,14 +36,15 @@ const insertModal = (index) => {
     const contentGrey = document.getElementById('contentGrey')
     const contentRed = document.getElementById('contentRed')
     const stay = document.getElementById('stay')
+    const newCanvas = document.getElementById('newCanvas')
 
     if (isModalOn == false) {
-
-        const stay = document.getElementById('stay')
     
         contentGrey.classList.remove('displayGreyx')
         contentRed.classList.remove('displayRedx')
         stay.classList.remove('stayx')
+        newCanvas.classList.remove('canvasStayx')
+        
     
         const h1Grey = document.getElementById('h1Grey')
         const h1Red = document.getElementById('h1Red')
@@ -64,6 +65,7 @@ const insertModal = (index) => {
         contentGrey.classList.add('displayGrey')
         contentRed.classList.add('displayRed')
         stay.classList.add('stay')
+        newCanvas.classList.add('canvasStay')
 
         prevIndex = index
         isModalOn = true
@@ -73,6 +75,7 @@ const insertModal = (index) => {
         contentGrey.classList.add('displayGreyx')
         contentRed.classList.add('displayRedx')
         stay.classList.add('stayx')
+        newCanvas.classList.add('canvasStayx')
 
         isModalOn = false
         setTimeout(function() {
@@ -89,16 +92,20 @@ closer.addEventListener('click', () => {
     const contentGreyx = document.getElementById('contentGrey')
     const contentRedx = document.getElementById('contentRed')
     const stayx = document.getElementById('stay')
+    const newCanvas = document.getElementById('newCanvas')
 
     // infoModalx.classList.remove('display')
     contentGreyx.classList.remove('displayGrey')
     contentRedx.classList.remove('displayRed')
     stayx.classList.remove('stay')
+    newCanvas.classList.remove('canvasStay')
+
 
     // infoModalx.classList.add('displayx')
     contentGreyx.classList.add('displayGreyx')
     contentRedx.classList.add('displayRedx')
     stayx.classList.add('stayx')
+    newCanvas.classList.add('canvasStayx')
 
     isModalOn = false
 
@@ -243,36 +250,6 @@ const generateNewCanvas = () => {
 
     tick()
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // -----------------------------------------------------------------
 /**
