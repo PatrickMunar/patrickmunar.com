@@ -18,7 +18,7 @@ let prevIndex = 0
 // h1, h3
 const textArray = [
     ['About Me',
-    'I believe that the best way to get to know me is through this little cube in space <t class="redText">- my room.</t>',
+    'I believe that the best way to get to know me is through this room',
     "Look around and tap objects twice. Explore to your heart's content!"],
     ['Flag Football',
     '...',
@@ -1164,12 +1164,12 @@ offPointLight.shadow.radius = 5
 scene.add(pointLight)
 
 const rectAreaLight = new THREE.RectAreaLight(0x2222ff, 1000, 0.3, 0.15)
-rectAreaLight.position.set(0.45,-1,-2.3)
+rectAreaLight.position.set(0.4,-1,-2.2)
 rectAreaLight.lookAt(new THREE.Vector3(-100,0,100))
 
 // Position Checker
 // const box = new THREE.Mesh(new THREE.BoxGeometry(0.3,0.3,0.3), new THREE.MeshNormalMaterial)
-// box.position.set(0.45,-1,-2.3)
+// box.position.set(0.35,-1,-2.2)
 // scene.add(box)
 
 /**
