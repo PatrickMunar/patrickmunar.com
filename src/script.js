@@ -338,7 +338,10 @@ let skateboardGroup = new THREE.Group
 let chessboardGroup = new THREE.Group
 let hookbase = new THREE.Group
 let sablayGroup = new THREE.Group
-
+let switchGroup = new THREE.Group
+let joyConGroup = new THREE.Group
+let switchDock = new THREE.Group
+let switchScreen = new THREE.Group
 
 allObjects.add(bottomBedframeGroup)
 allObjects.add(topBedframeGroup)
@@ -355,7 +358,10 @@ allObjects.add(skateboardGroup)
 allObjects.add(chessboardGroup)
 allObjects.add(hookbase)
 allObjects.add(sablayGroup)
-
+allObjects.add(switchGroup)
+allObjects.add(joyConGroup)
+allObjects.add(switchDock)
+allObjects.add(switchScreen)
 
 
 scene.add(allObjects)
@@ -364,6 +370,145 @@ allObjects.rotation.y = - Math.PI*0.25
 
 
 // GLTF Loader
+gltfLoader.load(
+    'SwitchDock.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        console.log(obj)
+        switchDock.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'BlackSwitchButtons.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        console.log(obj)
+        joyConGroup.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'BlueJoyCon.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        console.log(obj)
+        joyConGroup.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'RedJoyCon.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        console.log(obj)
+        joyConGroup.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
+
+gltfLoader.load(
+    'SwitchScreen.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        console.log(obj)
+        switchScreen.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
+
+gltfLoader.load(
+    'SwitchBlack.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        console.log(obj)
+        switchGroup.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
 
 gltfLoader.load(
     'Sablay.glb',
@@ -1317,9 +1462,21 @@ let isLaptopOn = false
                     // openLaptop()
                     // console.log('animate laptop')
                     // console.log('change screen texture')
-                    // flipBoard()
+                    // !!! sunflowers()
 
                     arrayIndex = 3
+                    insertModal(arrayIndex)
+                }
+                currentIntersect = null
+            }
+            else if (currentIntersect.object == switchGroup.children[0].children[0] || currentIntersect.object == switchScreen.children[0].children[0] || currentIntersect.object == joyConGroup.children[0].children[0] || currentIntersect.object == joyConGroup.children[1].children[0] || currentIntersect.object == joyConGroup.children[2].children[0] || currentIntersect.object == switchDock.children[0].children[0]) {
+                if (clickCounter%2 == 0) {
+                    // openLaptop()
+                    // console.log('animate laptop')
+                    // console.log('change screen texture')
+                    switchJump()
+
+                    arrayIndex = 2
                     insertModal(arrayIndex)
                 }
                 currentIntersect = null
@@ -1398,9 +1555,27 @@ const flipBoard = () => {
     // moveObjects()
 }
 
-// const resetCamera = () => {
-//     gsap.to(camera.position, {duration: 1, delay: 0, x: 9, y: 5, z: 9})
-// }
+const switchJump = () => {
+    gsap.to(joyConGroup.position, {ease: 'Power1.easeOut', duration: 1, delay: 0.5, y: 0.5})
+    gsap.to(joyConGroup.position, {ease: 'Power1.easeIn', duration: 0.75, delay: 1.5, y: 0})
+    gsap.to(switchGroup.position, {ease: 'Power1.easeOut', duration: 0.5, delay: 1, y: 0.5})
+    gsap.to(switchGroup.position, {ease: 'Power1.easeIn', duration: 0.75, delay: 1.5, y: 0})
+    gsap.to(switchScreen.position, {ease: 'Power1.easeOut', duration: 0.5, delay: 1, y: 0.5})
+    gsap.to(switchScreen.position, {ease: 'Power1.easeIn', duration: 0.75, delay: 1.5, y: 0})
+
+    setTimeout(() => {
+        switchScreen.children[0].children[0].material.emissive.r = 1
+        switchScreen.children[0].children[0].material.emissive.g = 1
+        switchScreen.children[0].children[0].material.emissive.b = 1
+    }, 1350)
+
+    setTimeout(() => {
+        switchScreen.children[0].children[0].material.emissive.r = 0
+        switchScreen.children[0].children[0].material.emissive.g = 0
+        switchScreen.children[0].children[0].material.emissive.b = 0
+    }, 2200)
+
+}
 
 
 // Object Positions
@@ -1463,7 +1638,7 @@ const tick = () =>
     //Raycaster 
     raycaster.setFromCamera(mouse, camera)
 
-    const testBox = [topBedframeGroup, topDrawer, midDrawer, botDrawer, laptopGroup, footballGroup, skateboardGroup, sablayGroup]
+    const testBox = [topBedframeGroup, topDrawer, midDrawer, botDrawer, laptopGroup, footballGroup, skateboardGroup, sablayGroup, switchGroup, joyConGroup, switchDock]
     const intersects = raycaster.intersectObjects(testBox)
 
     for (const object of testBox) {
