@@ -266,6 +266,10 @@ body {
     animation: canvasStayx 0.5s forwards;
 }
 
+.displayx {
+    display: none;
+}
+
 @keyframes insertAnimationFromBelowx {
     0% {
         opacity: 1;

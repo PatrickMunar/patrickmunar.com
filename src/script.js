@@ -47,7 +47,7 @@ const insertModal = (index) => {
         contentRed.classList.remove('displayRedx')
         stay.classList.remove('stayx')
         newCanvas.classList.remove('canvasStayx')
-        
+        infoModal.classList.remove('displayx')
     
         const h1Grey = document.getElementById('h1Grey')
         const h1Red = document.getElementById('h1Red')
@@ -92,6 +92,7 @@ const closer = document.getElementById('closer')
 closer.addEventListener('click', () => {
     // infoModal.classList.remove('display')
 
+    const infoModalx = document.getElementById('infoModal')
     const contentGreyx = document.getElementById('contentGrey')
     const contentRedx = document.getElementById('contentRed')
     const stayx = document.getElementById('stay')
@@ -110,7 +111,12 @@ closer.addEventListener('click', () => {
     stayx.classList.add('stayx')
     newCanvas.classList.add('canvasStayx')
 
+
     isModalOn = false
+
+    setTimeout(() => {
+        infoModalx.classList.add('displayx')
+    }, 500)
 
 })
 
