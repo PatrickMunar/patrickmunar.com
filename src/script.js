@@ -25,6 +25,9 @@ const textArray = [
     '...'],
     ['Hobbies & Interests',
     '...',
+    '...'],
+    ['Education',
+    '...',
     '...']
 ]
 
@@ -327,6 +330,9 @@ let mousepad = new THREE.Group
 let footballGroup = new THREE.Group
 let skateboardGroup = new THREE.Group
 let chessboardGroup = new THREE.Group
+let hookbase = new THREE.Group
+let sablayGroup = new THREE.Group
+
 
 allObjects.add(bottomBedframeGroup)
 allObjects.add(topBedframeGroup)
@@ -341,6 +347,10 @@ allObjects.add(mousepad)
 allObjects.add(footballGroup)
 allObjects.add(skateboardGroup)
 allObjects.add(chessboardGroup)
+allObjects.add(hookbase)
+allObjects.add(sablayGroup)
+
+
 
 scene.add(allObjects)
 allObjects.position.y = -3
@@ -348,6 +358,53 @@ allObjects.rotation.y = - Math.PI*0.25
 
 
 // GLTF Loader
+
+gltfLoader.load(
+    'Sablay.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        console.log(obj)
+        sablayGroup.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'HookBase.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        console.log(obj)
+        hookbase.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
 gltfLoader.load(
     'ChessBoard.glb',
     (obj) => {
@@ -1249,6 +1306,18 @@ let isLaptopOn = false
                 }
                 currentIntersect = null
             }
+            else if (currentIntersect.object == sablayGroup.children[0].children[0] || currentIntersect.object == sablayGroup.children[0].children[1] || currentIntersect.object == sablayGroup.children[0].children[2] || currentIntersect.object == sablayGroup.children[0].children[3] || currentIntersect.object == sablayGroup.children[0].children[4] || currentIntersect.object == sablayGroup.children[0].children[5] || currentIntersect.object == sablayGroup.children[0].children[6] || currentIntersect.object == sablayGroup.children[0].children[7] ) {
+                if (clickCounter%2 == 0) {
+                    // openLaptop()
+                    // console.log('animate laptop')
+                    // console.log('change screen texture')
+                    // flipBoard()
+
+                    arrayIndex = 3
+                    insertModal(arrayIndex)
+                }
+                currentIntersect = null
+            }
         }
     }
  })
@@ -1388,7 +1457,7 @@ const tick = () =>
     //Raycaster 
     raycaster.setFromCamera(mouse, camera)
 
-    const testBox = [topBedframeGroup, topDrawer, midDrawer, botDrawer, laptopGroup, footballGroup, skateboardGroup]
+    const testBox = [topBedframeGroup, topDrawer, midDrawer, botDrawer, laptopGroup, footballGroup, skateboardGroup, sablayGroup]
     const intersects = raycaster.intersectObjects(testBox)
 
     for (const object of testBox) {
