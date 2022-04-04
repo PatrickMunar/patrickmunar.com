@@ -17,7 +17,7 @@ let prevIndex = 0
 
 // h1, h3
 const textArray = [
-    ['About Me',
+    ['Hello',
     '...',
     "..."],
     ['Flag Football',
@@ -365,6 +365,12 @@ allObjects.add(switchDock)
 allObjects.add(switchScreen)
 allObjects.add(headphoneGroup)
 
+
+// Group Repositions
+// switchDock.rotation.y = - Math.PI*5/180
+// switchGroup.rotation.y = - Math.PI*5/180
+// switchScreen.rotation.y = - Math.PI*5/180
+// joyConGroup.rotation.y = - Math.PI*5/180
 
 
 scene.add(allObjects)
@@ -910,9 +916,9 @@ gltfLoader.load(
         // room.scene.traverse((child) => {
         //     child.material = bakedMaterial
         // })
-        obj.scene.traverse((child) => {
-            child.material = offLaptopMaterial
-        })
+        // obj.scene.traverse((child) => {
+        //     child.material = offLaptopMaterial
+        // })
 
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
@@ -1357,7 +1363,7 @@ offPointLight.shadow.normalBias = 0.05
 
 scene.add(pointLight)
 
-const rectAreaLight = new THREE.RectAreaLight(0x2222ff, 1000, 0.3, 0.15)
+const rectAreaLight = new THREE.RectAreaLight(0x2222ff, 1000, 0.15, 0.1)
 rectAreaLight.position.set(0.4,-1,-2.2)
 rectAreaLight.lookAt(new THREE.Vector3(-100,0,100))
 
@@ -1449,10 +1455,18 @@ let isLaptopOn = false
         console.log('click')
             if (currentIntersect.object == laptopGroup.children[0].children[0] || currentIntersect.object == laptopGroup.children[1].children[0] || currentIntersect.object == screenGroup.children[0].children[0]) {
                 if (clickCounter%2 == 0) {
-                    lightLaptop()
-    
-                    arrayIndex = 0
-                    insertModal(arrayIndex)
+                    if (isLaptopOn == false) {
+                        lightLaptop()
+
+                        setTimeout(() => {
+                            arrayIndex = 0
+                            insertModal(arrayIndex)
+                        }, 1000)
+                    }
+                    else {
+                        arrayIndex = 0
+                        insertModal(arrayIndex)
+                    }
                 }
                 currentIntersect = null
             }
@@ -1561,20 +1575,84 @@ const botDrawerOut = () => {
 }
 
 const lightLaptop = () => {
-    screenGroup.children[0].children[0].material.map = ''
+    
     scene.add(rectAreaLight)
 
-    scene.remove(ambientLight)
-    scene.add(offAmbientLight)
-    scene.remove(pointLight)
-    scene.add(offPointLight)
-    scene.background = new THREE.Color(0x000000)
+    // scene.remove(ambientLight)
+    // scene.add(offAmbientLight)
+    // scene.remove(pointLight)
+    // scene.add(offPointLight)
+    // scene.background = new THREE.Color(0x000000)
     
     screenGroup.children[0].children[0].material.emissive.r = 1
     screenGroup.children[0].children[0].material.emissive.g = 1
     screenGroup.children[0].children[0].material.emissive.b = 1
 
-    allObjects.add(galaxy)
+    // allObjects.add(galaxy)
+
+    setTimeout(() => {
+        scene.remove(rectAreaLight)
+
+        // scene.add(ambientLight)
+        // scene.remove(offAmbientLight)
+        // scene.add(pointLight)
+        // scene.remove(offPointLight)
+        // scene.background = new THREE.Color(0x000000)
+        
+        screenGroup.children[0].children[0].material.emissive.r = 0
+        screenGroup.children[0].children[0].material.emissive.g = 0
+        screenGroup.children[0].children[0].material.emissive.b = 0
+    
+        // allObjects.remove(galaxy) 
+    }, 450)
+
+    // setTimeout(() => {
+    //     scene.add(rectAreaLight)
+
+    //     scene.remove(ambientLight)
+    //     scene.add(offAmbientLight)
+    //     scene.remove(pointLight)
+    //     scene.add(offPointLight)
+    //     scene.background = new THREE.Color(0x000000)
+        
+    //     screenGroup.children[0].children[0].material.emissive.r = 1
+    //     screenGroup.children[0].children[0].material.emissive.g = 1
+    //     screenGroup.children[0].children[0].material.emissive.b = 1
+
+    //     allObjects.add(galaxy)
+    // }, 500)
+
+    // setTimeout(() => {
+    //     scene.remove(rectAreaLight)
+
+    //     scene.add(ambientLight)
+    //     scene.remove(offAmbientLight)
+    //     scene.add(pointLight)
+    //     scene.remove(offPointLight)
+    //     scene.background = new THREE.Color(0x000000)
+        
+    //     screenGroup.children[0].children[0].material.emissive.r = 0
+    //     screenGroup.children[0].children[0].material.emissive.g = 0
+    //     screenGroup.children[0].children[0].material.emissive.b = 0
+    
+    //     allObjects.remove(galaxy) 
+    // }, 700)
+
+    setTimeout(() => {
+        scene.add(rectAreaLight)
+
+        scene.remove(ambientLight)
+        scene.add(offAmbientLight)
+        scene.remove(pointLight)
+        scene.add(offPointLight)
+        scene.background = new THREE.Color(0x000000)
+        
+        screenGroup.children[0].children[0].material.emissive.r = 1
+        screenGroup.children[0].children[0].material.emissive.g = 1
+        screenGroup.children[0].children[0].material.emissive.b = 1
+
+        allObjects.add(galaxy)
+    }, 1000)
 
     isLaptopOn = true
 }
