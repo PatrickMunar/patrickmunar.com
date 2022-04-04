@@ -18,8 +18,8 @@ let prevIndex = 0
 // h1, h3
 const textArray = [
     ['About Me',
-    'I believe that the best way to get to know me is through this room',
-    "Look around and tap objects twice. Explore to your heart's content!"],
+    '...',
+    "..."],
     ['Flag Football',
     '...',
     '...'],
