@@ -211,7 +211,7 @@ const generateNewCanvas = () => {
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.shadowMap.enabled = true
-    // renderer.shadowMap.type = THREE.PCFSoftShadowMap
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap
     renderer.outputEncoding = THREE.sRGBEncoding
     renderer.toneMapping = THREE.CineonToneMapping
 
@@ -342,6 +342,7 @@ let switchGroup = new THREE.Group
 let joyConGroup = new THREE.Group
 let switchDock = new THREE.Group
 let switchScreen = new THREE.Group
+let headphoneGroup = new THREE.Group
 
 allObjects.add(bottomBedframeGroup)
 allObjects.add(topBedframeGroup)
@@ -362,6 +363,8 @@ allObjects.add(switchGroup)
 allObjects.add(joyConGroup)
 allObjects.add(switchDock)
 allObjects.add(switchScreen)
+allObjects.add(headphoneGroup)
+
 
 
 scene.add(allObjects)
@@ -370,6 +373,52 @@ allObjects.rotation.y = - Math.PI*0.25
 
 
 // GLTF Loader
+gltfLoader.load(
+    'HeadphoneFoam.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        console.log(obj)
+        headphoneGroup.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'HeadphoneBase.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        console.log(obj)
+        headphoneGroup.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
 gltfLoader.load(
     'SwitchDock.glb',
     (obj) => {
@@ -1293,18 +1342,18 @@ pointLight.castShadow = true
 pointLight.shadow.mapSize.x = 1024*4
 pointLight.shadow.mapSize.y = 1024*4
 pointLight.shadow.camera.near = 5
-pointLight.shadow.camera.far = 50
+pointLight.shadow.camera.far = 30
 pointLight.shadow.normalBias = 0.05
-pointLight.shadow.radius = 5
+// pointLight.shadow.radius = 5
 
 offPointLight.position.set(-12,12,12)
 offPointLight.castShadow = true
 offPointLight.shadow.mapSize.x = 1024*4
 offPointLight.shadow.mapSize.y = 1024*4
 offPointLight.shadow.camera.near = 5
-offPointLight.shadow.camera.far = 50
+offPointLight.shadow.camera.far = 30
 offPointLight.shadow.normalBias = 0.05
-offPointLight.shadow.radius = 5
+// offPointLight.shadow.radius = 5
 
 scene.add(pointLight)
 
@@ -1374,7 +1423,7 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 renderer.shadowMap.enabled = true
-// renderer.shadowMap.type = THREE.PCFSoftShadowMap
+renderer.shadowMap.type = THREE.PCFSoftShadowMap
 renderer.outputEncoding = THREE.sRGBEncoding
 renderer.toneMapping = THREE.CineonToneMapping
 
@@ -1557,11 +1606,11 @@ const flipBoard = () => {
 
 const switchJump = () => {
     gsap.to(joyConGroup.position, {ease: 'Power1.easeOut', duration: 1, delay: 0.5, y: 0.5})
-    gsap.to(joyConGroup.position, {ease: 'Power1.easeIn', duration: 0.75, delay: 1.5, y: 0})
+    gsap.to(joyConGroup.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 1.5, y: 0})
     gsap.to(switchGroup.position, {ease: 'Power1.easeOut', duration: 0.5, delay: 1, y: 0.5})
-    gsap.to(switchGroup.position, {ease: 'Power1.easeIn', duration: 0.75, delay: 1.5, y: 0})
+    gsap.to(switchGroup.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 1.5, y: 0})
     gsap.to(switchScreen.position, {ease: 'Power1.easeOut', duration: 0.5, delay: 1, y: 0.5})
-    gsap.to(switchScreen.position, {ease: 'Power1.easeIn', duration: 0.75, delay: 1.5, y: 0})
+    gsap.to(switchScreen.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 1.5, y: 0})
 
     setTimeout(() => {
         switchScreen.children[0].children[0].material.emissive.r = 1
@@ -1573,7 +1622,7 @@ const switchJump = () => {
         switchScreen.children[0].children[0].material.emissive.r = 0
         switchScreen.children[0].children[0].material.emissive.g = 0
         switchScreen.children[0].children[0].material.emissive.b = 0
-    }, 2200)
+    }, 1950)
 
 }
 
