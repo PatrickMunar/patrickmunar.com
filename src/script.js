@@ -20,13 +20,19 @@ const textArray = [
     ['Hello',
     '...',
     "..."],
-    ['Flag Football',
+    ['',
+    '...',
+    "..."],
+    ['Flag \n Football',
     '...',
     '...'],
     ['Hobbies & Interests',
     '...',
     '...'],
     ['Education',
+    '...',
+    '...'],
+    ["What's \n Playin'",
     '...',
     '...']
 ]
@@ -56,8 +62,8 @@ const insertModal = (index) => {
         const h3Grey2 = document.getElementById('h3Grey2')
         const h3Red2 = document.getElementById('h3Red2')
     
-        h1Grey.innerHTML = textArray[index][0]
-        h1Red.innerHTML = textArray[index][0]
+        h1Grey.innerText = textArray[index][0]
+        h1Red.innerText = textArray[index][0]
         h3Grey.innerHTML = textArray[index][1]
         h3Red.innerHTML = textArray[index][1]
         h3Grey2.innerHTML = textArray[index][2]
@@ -1464,7 +1470,7 @@ let isLaptopOn = false
                         }, 1000)
                     }
                     else {
-                        arrayIndex = 0
+                        arrayIndex = 1
                         insertModal(arrayIndex)
                     }
                 }
@@ -1503,7 +1509,7 @@ let isLaptopOn = false
     
                     floatFootball()
 
-                    arrayIndex = 1
+                    arrayIndex = 2
                     insertModal(arrayIndex)
                 }
                 currentIntersect = null
@@ -1515,7 +1521,7 @@ let isLaptopOn = false
                     // console.log('change screen texture')
                     flipBoard()
 
-                    arrayIndex = 2
+                    arrayIndex = 3
                     insertModal(arrayIndex)
                 }
                 currentIntersect = null
@@ -1527,7 +1533,7 @@ let isLaptopOn = false
                     // console.log('change screen texture')
                     // !!! sunflowers()
 
-                    arrayIndex = 3
+                    arrayIndex = 4
                     insertModal(arrayIndex)
                 }
                 currentIntersect = null
@@ -1539,7 +1545,19 @@ let isLaptopOn = false
                     // console.log('change screen texture')
                     switchJump()
 
-                    arrayIndex = 2
+                    arrayIndex = 3
+                    insertModal(arrayIndex)
+                }
+                currentIntersect = null
+            }
+            else if (currentIntersect.object == headphoneGroup.children[0].children[0] || currentIntersect.object == headphoneGroup.children[1].children[0]) {
+                if (clickCounter%2 == 0) {
+                    // openLaptop()
+                    // console.log('animate laptop')
+                    // console.log('change screen texture')
+                    // !!! notesPlaying()
+
+                    arrayIndex = 5
                     insertModal(arrayIndex)
                 }
                 currentIntersect = null
@@ -1547,6 +1565,8 @@ let isLaptopOn = false
         }
     }
  })
+
+//  console.log(headphoneGroup.children[1])
 
 // Raycaster
 const raycaster = new THREE.Raycaster()
@@ -1765,7 +1785,7 @@ const tick = () =>
     //Raycaster 
     raycaster.setFromCamera(mouse, camera)
 
-    const testBox = [topBedframeGroup, topDrawer, midDrawer, botDrawer, laptopGroup, footballGroup, skateboardGroup, sablayGroup, switchGroup, joyConGroup, switchDock]
+    const testBox = [topBedframeGroup, topDrawer, midDrawer, botDrawer, laptopGroup, footballGroup, skateboardGroup, sablayGroup, switchGroup, joyConGroup, switchDock, headphoneGroup]
     const intersects = raycaster.intersectObjects(testBox)
 
     for (const object of testBox) {
