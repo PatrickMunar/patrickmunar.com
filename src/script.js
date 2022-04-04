@@ -1453,6 +1453,7 @@ renderer.toneMapping = THREE.CineonToneMapping
 var clickCounter = 0
 
 let isLaptopOn = false
+let isLightLaptopDone = false
 
  window.addEventListener('click', () => {
     clickCounter += 1
@@ -1469,7 +1470,7 @@ let isLaptopOn = false
                             insertModal(arrayIndex)
                         }, 1000)
                     }
-                    else {
+                    else if (isLaptopOn == true && isLightLaptopDone == true) {
                         arrayIndex = 1
                         insertModal(arrayIndex)
                     }
@@ -1672,6 +1673,8 @@ const lightLaptop = () => {
         screenGroup.children[0].children[0].material.emissive.b = 1
 
         allObjects.add(galaxy)
+
+        isLightLaptopDone = true
     }, 1000)
 
     isLaptopOn = true
