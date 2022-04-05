@@ -216,7 +216,7 @@ const generateNewCanvas = () => {
     })
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-    renderer.shadowMap.enabled = true
+    // renderer.shadowMap.enabled = true
     renderer.shadowMap.type = THREE.PCFSoftShadowMap
     renderer.outputEncoding = THREE.sRGBEncoding
     renderer.toneMapping = THREE.CineonToneMapping
@@ -349,6 +349,8 @@ let joyConGroup = new THREE.Group
 let switchDock = new THREE.Group
 let switchScreen = new THREE.Group
 let headphoneGroup = new THREE.Group
+let DBGroup = new THREE.Group
+
 
 allObjects.add(bottomBedframeGroup)
 allObjects.add(topBedframeGroup)
@@ -370,9 +372,14 @@ allObjects.add(joyConGroup)
 allObjects.add(switchDock)
 allObjects.add(switchScreen)
 allObjects.add(headphoneGroup)
+allObjects.add(DBGroup)
+
 
 
 // Group Repositions
+DBGroup.position.set(-2.25,2.65,-2)
+DBGroup.rotation.y = Math.PI*45/180
+
 // switchDock.rotation.y = - Math.PI*5/180
 // switchGroup.rotation.y = - Math.PI*5/180
 // switchScreen.rotation.y = - Math.PI*5/180
@@ -385,6 +392,51 @@ allObjects.rotation.y = - Math.PI*0.25
 
 
 // GLTF Loader
+gltfLoader.load(
+    'DBSphere.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        console.log(obj)
+        DBGroup.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+gltfLoader.load(
+    'DBStar.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        console.log(obj)
+        DBGroup.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
 gltfLoader.load(
     'HeadphoneFoam.glb',
     (obj) => {
@@ -1672,7 +1724,7 @@ const lightLaptop = () => {
         screenGroup.children[0].children[0].material.emissive.g = 1
         screenGroup.children[0].children[0].material.emissive.b = 1
 
-        allObjects.add(galaxy)
+        // allObjects.add(galaxy)
 
         isAnimationDone = true
     }, 1000)
