@@ -15,6 +15,9 @@ let arrayIndex = 0
 let isModalOn = false
 let prevIndex = 0
 
+// Phase of the website
+let phase = 0
+
 // h1, h3
 const textArray = [
     ['Hello',
@@ -204,7 +207,7 @@ const generateNewCanvas = () => {
 
 
     // Axes Helper
-    // const axesHelper = new THREE.AxesHelper()
+    // const axesHelper = new THREE.AxesHelper(10)
     // scene.add(axesHelper)
 
     /**
@@ -216,7 +219,7 @@ const generateNewCanvas = () => {
     })
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-    // renderer.shadowMap.enabled = true
+    renderer.shadowMap.enabled = true
     renderer.shadowMap.type = THREE.PCFSoftShadowMap
     renderer.outputEncoding = THREE.sRGBEncoding
     renderer.toneMapping = THREE.CineonToneMapping
@@ -328,6 +331,21 @@ const fontLoader = new FontLoader()
 // const bakedMaterial = new THREE.MeshBasicMaterial({
 //     map: bakedTexture
 // })
+
+// Variables for Phase 0
+let P = new THREE.Group
+let A = new THREE.Group
+let T = new THREE.Group
+let R = new THREE.Group
+let I = new THREE.Group
+let C = new THREE.Group
+let K = new THREE.Group
+let nameGroup = new THREE.Group
+let leftNameWall = new THREE.Group
+let rightNameWall = new THREE.Group
+
+
+// Variables for Phase 1
 let allObjects = new THREE.Group
 let bottomBedframeGroup = new THREE.Group
 let topBedframeGroup = new THREE.Group
@@ -375,23 +393,238 @@ allObjects.add(headphoneGroup)
 allObjects.add(DBGroup)
 
 
+allObjects.position.set (0,-2,0)
+allObjects.rotation.y = - Math.PI/2
+scene.add(allObjects)
 
-// Group Repositions
+
+// Group Repositions for Phase 1
 DBGroup.position.set(-2.25,2.65,-2)
 DBGroup.rotation.y = Math.PI*45/180
 
-// switchDock.rotation.y = - Math.PI*5/180
-// switchGroup.rotation.y = - Math.PI*5/180
-// switchScreen.rotation.y = - Math.PI*5/180
-// joyConGroup.rotation.y = - Math.PI*5/180
 
 
-scene.add(allObjects)
-allObjects.position.y = -3
-allObjects.rotation.y = - Math.PI*0.25
 
 
-// GLTF Loader
+// GLTF Loader for Phase 0
+
+gltfLoader.load(
+    'LeftNameWall.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.025,0.025,0.025)
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        console.log(obj)
+        leftNameWall.add(obj.scene)
+        // obj.scene.castShadow = true
+        // obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'RightNameWall.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.025,0.025,0.025)
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        console.log(obj)
+        rightNameWall.add(obj.scene)
+        // obj.scene.castShadow = true
+        // obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'P.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.025,0.025,0.025)
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        console.log(obj)
+        P.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        // obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'A.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.025,0.025,0.025)
+
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        console.log(obj)
+        A.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        // obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'T.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.025,0.025,0.025)
+
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        console.log(obj)
+        T.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        // obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'R.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.025,0.025,0.025)
+
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        console.log(obj)
+        R.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        // obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'I.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.025,0.025,0.025)
+
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        console.log(obj)
+        I.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        // obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'C.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.025,0.025,0.025)
+
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        console.log(obj)
+        C.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        // obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'K.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.025,0.025,0.025)
+
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        console.log(obj)
+        K.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        // obj.scene.children[0].receiveShadow = true
+    }
+)
+
+
+
+
+// GLTF Loader for Phase 1
 gltfLoader.load(
     'DBSphere.glb',
     (obj) => {
@@ -414,6 +647,7 @@ gltfLoader.load(
         obj.scene.children[0].receiveShadow = true
     }
 )
+
 gltfLoader.load(
     'DBStar.glb',
     (obj) => {
@@ -1393,15 +1627,15 @@ galaxy.position.y = -1.10
 
 // Lighting
 const ambientLight = new THREE.AmbientLight(0xaa00ff, 0.1)
-const offAmbientLight = new THREE.AmbientLight(0xffffff, 0.2)
+const offAmbientLight = new THREE.AmbientLight(0xaaaaff, 0.6)
 scene.add(ambientLight)
 
 
 const pointLight = new THREE.PointLight(0x1100ff, 1)
-const offPointLight = new THREE.PointLight(0xaaaaff, 0.75)
+const offPointLight = new THREE.PointLight(0xaaaaff, 0.6)
 
 
-pointLight.position.set(-12,12,12)
+pointLight.position.set(-12,12,0)
 pointLight.castShadow = true
 pointLight.shadow.mapSize.x = 1024*4
 pointLight.shadow.mapSize.y = 1024*4
@@ -1410,7 +1644,7 @@ pointLight.shadow.camera.far = 30
 pointLight.shadow.normalBias = 0.05
 // pointLight.shadow.radius = 5
 
-offPointLight.position.set(-12,12,12)
+offPointLight.position.set(-12,12,0)
 offPointLight.castShadow = true
 offPointLight.shadow.mapSize.x = 1024*4
 offPointLight.shadow.mapSize.y = 1024*4
@@ -1422,12 +1656,12 @@ offPointLight.shadow.normalBias = 0.05
 scene.add(pointLight)
 
 const rectAreaLight = new THREE.RectAreaLight(0x2222ff, 1000, 0.15, 0.1)
-rectAreaLight.position.set(0.4,-1,-2.2)
-rectAreaLight.lookAt(new THREE.Vector3(-100,0,100))
+rectAreaLight.position.set(1.85,0,-1.3)
+rectAreaLight.lookAt(new THREE.Vector3(-100,0,0))
 
 // Position Checker
 // const box = new THREE.Mesh(new THREE.BoxGeometry(0.3,0.3,0.3), new THREE.MeshNormalMaterial)
-// box.position.set(0.35,-1,-2.2)
+// box.position.set(1.75,0,-1.3)
 // scene.add(box)
 
 /**
@@ -1465,12 +1699,13 @@ scene.add(camera)
 
 // Controls
 const controls = new OrbitControls(camera, canvas)
-controls.target.set( 0, 0, 0 );
+// controls.enabled = false
+
 controls.enableDamping = true
 
-controls.maxPolarAngle = Math.PI/2 
-controls.minAzimuthAngle = - Math.PI*45/180
-controls.maxAzimuthAngle = Math.PI*45/180
+controls.maxPolarAngle = Math.PI/2
+controls.minAzimuthAngle = - Math.PI*90/180
+controls.maxAzimuthAngle = Math.PI*0/180
 
 
 // Axes Helper
@@ -1507,122 +1742,285 @@ var clickCounter = 0
 let isLaptopOn = false
 let isAnimationDone = false
 
- window.addEventListener('click', () => {
-    clickCounter += 1
-    console.log(clickCounter)
-    if (currentIntersect) {
-        console.log('click')
-            if (currentIntersect.object == laptopGroup.children[0].children[0] || currentIntersect.object == laptopGroup.children[1].children[0] || currentIntersect.object == screenGroup.children[0].children[0]) {
-                if (clickCounter%2 == 0) {
-                    if (isLaptopOn == false) {
-                        lightLaptop()
+//  window.addEventListener('click', () => {
+//     clickCounter += 1
+//     console.log(clickCounter)
+//     if (currentIntersect) {
+//         console.log('click')
+//             if (currentIntersect.object == laptopGroup.children[0].children[0] || currentIntersect.object == laptopGroup.children[1].children[0] || currentIntersect.object == screenGroup.children[0].children[0]) {
+//                 if (clickCounter%2 == 0) {
+//                     if (isLaptopOn == false) {
+//                         lightLaptop()
 
-                        setTimeout(() => {
-                            arrayIndex = 0
-                            insertModal(arrayIndex)
-                        }, 1000)
-                    }
-                    else if (isLaptopOn == true && isAnimationDone == true) {
-                        arrayIndex = 1
-                        insertModal(arrayIndex)
-                    }
-                }
-                currentIntersect = null
-            }
-        if (isLaptopOn == true) {
-            if (currentIntersect.object == topBedframeGroup.children[0].children[0] || currentIntersect.object == topBedframeGroup.children[1].children[0] || currentIntersect.object == topBedframeGroup.children[2].children[0] || currentIntersect.object == topBedframeGroup.children[3].children[0]) {
-                if (clickCounter%2 == 0) {
-                    hoverTopBedframeGroup()
-                }
-                currentIntersect = null
-            }
-            else if (currentIntersect.object == topDrawer.children[0].children[0]) {
-                if (clickCounter%2 == 0) {
-                    topDrawerOut()
-                }
-                currentIntersect = null
-            }
-            else if (currentIntersect.object == midDrawer.children[0].children[0]) {
-                if (clickCounter%2 == 0) {
-                    midDrawerOut()
-                }
-                currentIntersect = null
-            }
-            else if (currentIntersect.object == botDrawer.children[0].children[0]) {
-                if (clickCounter%2 == 0) {
-                    botDrawerOut()
-                }
-                currentIntersect = null
-            }
-            else if (currentIntersect.object == footballGroup.children[0].children[0] || currentIntersect.object == footballGroup.children[1].children[0]) {
-                if (clickCounter%2 == 0) {
-                    // openLaptop()
-                    // console.log('animate laptop')
-                    // console.log('change screen texture')
+//                         setTimeout(() => {
+//                             arrayIndex = 0
+//                             insertModal(arrayIndex)
+//                         }, 1000)
+//                     }
+//                     else if (isLaptopOn == true && isAnimationDone == true) {
+//                         arrayIndex = 1
+//                         insertModal(arrayIndex)
+//                     }
+//                 }
+//                 currentIntersect = null
+//             }
+//         if (isLaptopOn == true) {
+//             if (currentIntersect.object == topBedframeGroup.children[0].children[0] || currentIntersect.object == topBedframeGroup.children[1].children[0] || currentIntersect.object == topBedframeGroup.children[2].children[0] || currentIntersect.object == topBedframeGroup.children[3].children[0]) {
+//                 if (clickCounter%2 == 0) {
+//                     hoverTopBedframeGroup()
+//                 }
+//                 currentIntersect = null
+//             }
+//             else if (currentIntersect.object == topDrawer.children[0].children[0]) {
+//                 if (clickCounter%2 == 0) {
+//                     topDrawerOut()
+//                 }
+//                 currentIntersect = null
+//             }
+//             else if (currentIntersect.object == midDrawer.children[0].children[0]) {
+//                 if (clickCounter%2 == 0) {
+//                     midDrawerOut()
+//                 }
+//                 currentIntersect = null
+//             }
+//             else if (currentIntersect.object == botDrawer.children[0].children[0]) {
+//                 if (clickCounter%2 == 0) {
+//                     botDrawerOut()
+//                 }
+//                 currentIntersect = null
+//             }
+//             else if (currentIntersect.object == footballGroup.children[0].children[0] || currentIntersect.object == footballGroup.children[1].children[0]) {
+//                 if (clickCounter%2 == 0) {
+//                     // openLaptop()
+//                     // console.log('animate laptop')
+//                     // console.log('change screen texture')
     
-                    floatFootball()
+//                     floatFootball()
 
-                    arrayIndex = 2
-                    insertModal(arrayIndex)
-                }
-                currentIntersect = null
-            }
-            else if (currentIntersect.object == skateboardGroup.children[0].children[0] || currentIntersect.object == skateboardGroup.children[1].children[0] || currentIntersect.object == skateboardGroup.children[2].children[0] ||currentIntersect.object == skateboardGroup.children[3].children[0]) {
-                if (clickCounter%2 == 0) {
-                    // openLaptop()
-                    // console.log('animate laptop')
-                    // console.log('change screen texture')
-                    flipBoard()
+//                     arrayIndex = 2
+//                     insertModal(arrayIndex)
+//                 }
+//                 currentIntersect = null
+//             }
+//             else if (currentIntersect.object == skateboardGroup.children[0].children[0] || currentIntersect.object == skateboardGroup.children[1].children[0] || currentIntersect.object == skateboardGroup.children[2].children[0] ||currentIntersect.object == skateboardGroup.children[3].children[0]) {
+//                 if (clickCounter%2 == 0) {
+//                     // openLaptop()
+//                     // console.log('animate laptop')
+//                     // console.log('change screen texture')
+//                     flipBoard()
 
-                    arrayIndex = 3
-                    insertModal(arrayIndex)
-                }
-                currentIntersect = null
-            }
-            else if (currentIntersect.object == sablayGroup.children[0].children[0] || currentIntersect.object == sablayGroup.children[0].children[1] || currentIntersect.object == sablayGroup.children[0].children[2] || currentIntersect.object == sablayGroup.children[0].children[3] || currentIntersect.object == sablayGroup.children[0].children[4] || currentIntersect.object == sablayGroup.children[0].children[5] || currentIntersect.object == sablayGroup.children[0].children[6] || currentIntersect.object == sablayGroup.children[0].children[7] ) {
-                if (clickCounter%2 == 0) {
-                    // openLaptop()
-                    // console.log('animate laptop')
-                    // console.log('change screen texture')
-                    // !!! sunflowers()
+//                     arrayIndex = 3
+//                     insertModal(arrayIndex)
+//                 }
+//                 currentIntersect = null
+//             }
+//             else if (currentIntersect.object == sablayGroup.children[0].children[0] || currentIntersect.object == sablayGroup.children[0].children[1] || currentIntersect.object == sablayGroup.children[0].children[2] || currentIntersect.object == sablayGroup.children[0].children[3] || currentIntersect.object == sablayGroup.children[0].children[4] || currentIntersect.object == sablayGroup.children[0].children[5] || currentIntersect.object == sablayGroup.children[0].children[6] || currentIntersect.object == sablayGroup.children[0].children[7] ) {
+//                 if (clickCounter%2 == 0) {
+//                     // openLaptop()
+//                     // console.log('animate laptop')
+//                     // console.log('change screen texture')
+//                     // !!! sunflowers()
 
-                    arrayIndex = 4
-                    insertModal(arrayIndex)
-                }
-                currentIntersect = null
-            }
-            else if (currentIntersect.object == switchGroup.children[0].children[0] || currentIntersect.object == switchScreen.children[0].children[0] || currentIntersect.object == joyConGroup.children[0].children[0] || currentIntersect.object == joyConGroup.children[1].children[0] || currentIntersect.object == joyConGroup.children[2].children[0] || currentIntersect.object == switchDock.children[0].children[0]) {
-                if (clickCounter%2 == 0) {
-                    // openLaptop()
-                    // console.log('animate laptop')
-                    // console.log('change screen texture')
-                    switchJump()
+//                     arrayIndex = 4
+//                     insertModal(arrayIndex)
+//                 }
+//                 currentIntersect = null
+//             }
+//             else if (currentIntersect.object == switchGroup.children[0].children[0] || currentIntersect.object == switchScreen.children[0].children[0] || currentIntersect.object == joyConGroup.children[0].children[0] || currentIntersect.object == joyConGroup.children[1].children[0] || currentIntersect.object == joyConGroup.children[2].children[0] || currentIntersect.object == switchDock.children[0].children[0]) {
+//                 if (clickCounter%2 == 0) {
+//                     // openLaptop()
+//                     // console.log('animate laptop')
+//                     // console.log('change screen texture')
+//                     switchJump()
 
-                    arrayIndex = 3
-                    insertModal(arrayIndex)
-                }
-                currentIntersect = null
-            }
-            else if (currentIntersect.object == headphoneGroup.children[0].children[0] || currentIntersect.object == headphoneGroup.children[1].children[0]) {
-                if (clickCounter%2 == 0) {
-                    // openLaptop()
-                    // console.log('animate laptop')
-                    // console.log('change screen texture')
-                    // !!! notesPlaying()
+//                     arrayIndex = 3
+//                     insertModal(arrayIndex)
+//                 }
+//                 currentIntersect = null
+//             }
+//             else if (currentIntersect.object == headphoneGroup.children[0].children[0] || currentIntersect.object == headphoneGroup.children[1].children[0]) {
+//                 if (clickCounter%2 == 0) {
+//                     // openLaptop()
+//                     // console.log('animate laptop')
+//                     // console.log('change screen texture')
+//                     // !!! notesPlaying()
 
-                    arrayIndex = 5
-                    insertModal(arrayIndex)
-                }
-                currentIntersect = null
-            }
-        }
-    }
- })
+//                     arrayIndex = 5
+//                     insertModal(arrayIndex)
+//                 }
+//                 currentIntersect = null
+//             }
+//         }
+//     }
+//  })
 
 //  console.log(headphoneGroup.children[1])
 
 // Raycaster
 const raycaster = new THREE.Raycaster()
+
+
+// Parallax Camera Group
+const cameraGroup = new THREE.Group
+cameraGroup.add(camera)
+scene.add(cameraGroup)
+
+
+// Object Positions
+
+footballGroup.position.set(1.9,2.8,-1.9)
+footballGroup.rotation.z = - Math.PI*40/180
+footballGroup.rotation.y = - Math.PI*60/180
+
+skateboardGroup.rotation.z = Math.PI
+skateboardGroup.position.y = 6.1*0.05
+skateboardGroup.position.z = 1.5
+skateboardGroup.position.x = 1.5
+
+
+// Mouse
+const cursor = {}
+cursor.x = 0
+cursor.y = 0
+
+window.addEventListener('mousemove', (event) =>
+{
+    cursor.x = event.clientX / sizes.width - 0.5
+    cursor.y = event.clientY / sizes.height - 0.5
+
+})
+
+/**
+ * Animate
+ */
+ let prevTime = 0
+ let isTopHalfFloating = false
+let currentIntersect = null
+
+
+let prevParallaxTime = 0
+let firstCurrentIntersect = null
+
+const clock = new THREE.Clock()
+
+const tick = () =>
+{
+    const elapsedTime = clock.getElapsedTime()
+    let deltaTime = elapsedTime - prevTime
+    // prevTime = elapsedTime
+    let parallaxTIme = elapsedTime - prevParallaxTime
+    prevParallaxTime = elapsedTime
+
+
+    // Phase 0 Animations
+    if (phase == 0) {
+        // Parallax
+        const parallaxX = cursor.x * 0.5
+        const parallaxY = - cursor.y * 0.5
+        cameraGroup.position.x += ( parallaxX - cameraGroup.position.x ) * 2 * parallaxTIme
+        cameraGroup.position.y += ( parallaxY - cameraGroup.position.y ) * 2 * parallaxTIme
+        cameraGroup.position.z += ( parallaxX - cameraGroup.position.z ) * 2 * parallaxTIme
+
+        // Arrow bobbles
+        P.position.z = - Math.sin(elapsedTime*2) * 0.05 - 105*0.025
+        K.position.z = Math.sin(elapsedTime*2) * 0.05 + 105*0.025
+    }
+
+
+
+    // Animations
+    if (topBedframeGroup.position.y == 4 && isTopHalfFloating == false) {
+        isTopHalfFloating = true
+        prevTime = elapsedTime
+        deltaTime = 0
+    } 
+
+    if (isTopHalfFloating == true) {
+        topBedframeGroup.position.y = Math.cos(deltaTime)*0.2 + 3.8
+    } 
+
+    //Raycaster 
+    raycaster.setFromCamera(mouse, camera)
+
+    // Phase 0 RayCasting
+    const firstTestBox = [P, A, T, R, I, C, K, rightNameWall]
+    const firstIntersects = raycaster.intersectObjects(firstTestBox)
+
+    for (const firstIntersect of firstIntersects) {
+        // console.log('hovering')  
+    }
+
+    if (firstIntersects.length) {
+        if (firstCurrentIntersect === null) {
+            firstCurrentIntersect = firstIntersects[0]
+            console.log(firstCurrentIntersect.object)
+
+        }
+    }
+    else {
+        if (firstCurrentIntersect) {
+            firstCurrentIntersect = null
+        }
+        firstCurrentIntersect = null
+        // console.log(currentIntersect)
+    }
+
+
+
+    // Phase 1 RayCasting
+    // if (phase == 1) {
+        const testBox = [topBedframeGroup, topDrawer, midDrawer, botDrawer, laptopGroup, footballGroup, skateboardGroup, sablayGroup, switchGroup, joyConGroup, switchDock, headphoneGroup]
+        const intersects = raycaster.intersectObjects(testBox)
+    
+        for (const object of testBox) {
+            // console.log('none')
+        }
+    
+        for (const intersect of intersects) {
+            // console.log('hovering')  
+        }
+    
+        if (intersects.length) {
+            if (currentIntersect === null) {
+                console.log(intersects)
+                currentIntersect = intersects[0]
+                // console.log(currentIntersect.object)
+                // console.log(topBedframeGroup)
+    
+            }
+        }
+        else {
+            if (currentIntersect) {
+                currentIntersect = null
+            }
+            currentIntersect = null
+            // console.log(currentIntersect)
+        }
+    // }
+    
+
+    // Update controls
+    if (controls.enabled == true) {
+        controls.update()
+    }
+
+
+    // Render
+    renderer.render(scene, camera)
+
+    // Call tick again on the next frame
+    window.requestAnimationFrame(tick)
+}
+
+tick()
+
+// Phase initialization
+
+
+    // var clickCounter = 0
+
+    // let isLaptopOn = false
+    // let isAnimationDone = false
 
 
 // GSAP Animations
@@ -1780,102 +2178,364 @@ const switchJump = () => {
 }
 
 
-// Object Positions
-
-footballGroup.position.set(1.9,2.8,-1.9)
-footballGroup.rotation.z = - Math.PI*40/180
-footballGroup.rotation.y = - Math.PI*60/180
-
-skateboardGroup.rotation.z = Math.PI
-skateboardGroup.position.y = 6.1*0.05
-skateboardGroup.position.z = 1.5
-skateboardGroup.position.x = 1.5
+if (phase == 0) {
 
 
+    controls.enabled = false
 
-// Mouse
-const mouseParallax = new THREE.Vector2()
+    camera.position.set(-5,5-30,5)
+    camera.lookAt(0,0-30,0)
 
-window.addEventListener('mousemove', (event) =>
-{
-    mouseParallax.x = event.clientX / sizes.width * 2 - 1
-    mouseParallax.y = - (event.clientY / sizes.height) * 2 + 1
+    scene.background = new THREE.Color(0x000000)
 
-})
+    P.position.set(-105*0.025, 0, -105*0.025)
+    A.position.set(-70*0.025, -0, -70*0.025)
+    T.position.set(-35*0.025, 0, -35*0.025)
+    R.position.set(0, 0, 0)
+    I.position.set(35*0.025, 0, 35*0.025)
+    C.position.set(70*0.025, 0, 70*0.025)
+    K.position.set(105*0.025, 0, 105*0.025)
 
-/**
- * Animate
- */
- let prevTime = 0
- let isTopHalfFloating = false
-let currentIntersect = null
-let elapsedTime
+    nameGroup.add(P)
+    nameGroup.add(A)
+    nameGroup.add(T)
+    nameGroup.add(R)
+    nameGroup.add(I)
+    nameGroup.add(C)
+    nameGroup.add(K)
 
-const clock = new THREE.Clock()
+    nameGroup.position.y = -1-30
+    leftNameWall.position.y = -1-30
+    rightNameWall.position.y = -1-30
 
-const tick = () =>
-{
-    const elapsedTime = clock.getElapsedTime()
-    let deltaTime = elapsedTime - prevTime
-    // prevTime = elapsedTime
+    scene.add(nameGroup)
+    scene.add(leftNameWall)
+    scene.add(rightNameWall)
 
-    // prevTime = elapsedTime
-    // console.log(topBedframeGroup.position.y)
+    const firstAmbientLight = new THREE.AmbientLight(0x000000, 1)
+    scene.add(firstAmbientLight)
 
-    galaxy.rotation.y = elapsedTime * 0.2
+    const leftDirectionalLight = new THREE.DirectionalLight(0xff0000, 0.3)
+    const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0.3)
+    scene.add(leftDirectionalLight)
+    scene.add(rightDirectionalLight)
 
+    leftDirectionalLight.position.set(-40,-30,0)
+    leftDirectionalLight.target.position.set(0,-30,0)
+    scene.add(leftDirectionalLight.target)
 
+    leftDirectionalLight.castShadow = true
+    leftDirectionalLight.shadow.mapSize.x = 1024*4
+    leftDirectionalLight.shadow.mapSize.y = 1024*4
+    leftDirectionalLight.shadow.camera.near = 5
+    leftDirectionalLight.shadow.camera.far = 60
+    leftDirectionalLight.shadow.normalBias = 0.05
 
-    // Animations
-    if (topBedframeGroup.position.y == 4 && isTopHalfFloating == false) {
-        isTopHalfFloating = true
-        prevTime = elapsedTime
-        deltaTime = 0
-    } 
+    rightDirectionalLight.position.set(0,-30,40)
+    rightDirectionalLight.target.position.set(0,-30,0)
+    scene.add(rightDirectionalLight.target)
 
-    if (isTopHalfFloating == true) {
-        topBedframeGroup.position.y = Math.cos(deltaTime)*0.2 + 3.8
-    } 
+    rightDirectionalLight.castShadow = true
+    rightDirectionalLight.shadow.mapSize.x = 1024*4
+    rightDirectionalLight.shadow.mapSize.y = 1024*4
+    rightDirectionalLight.shadow.camera.near = 5
+    rightDirectionalLight.shadow.camera.far = 60
+    rightDirectionalLight.shadow.normalBias = 0.05
+    
+    // const firstPointLight = new THREE.PointLight(0xffffff, 0.1)
+    // firstPointLight.position.set(-10,10,10)
+    // scene.add(firstPointLight)
 
-    //Raycaster 
-    raycaster.setFromCamera(mouse, camera)
+    // RayCast
 
-    const testBox = [topBedframeGroup, topDrawer, midDrawer, botDrawer, laptopGroup, footballGroup, skateboardGroup, sablayGroup, switchGroup, joyConGroup, switchDock, headphoneGroup]
-    const intersects = raycaster.intersectObjects(testBox)
-
-    for (const object of testBox) {
-        // console.log('none')
-    }
-
-    for (const intersect of intersects) {
-        // console.log('hovering')  
-    }
-
-    if (intersects.length) {
-        if (currentIntersect === null) {
-            console.log(intersects)
-            currentIntersect = intersects[0]
-            // console.log(currentIntersect.object)
-            // console.log(topBedframeGroup)
-
+    window.addEventListener('click', () => {
+        clickCounter += 1
+        // console.log(clickCounter)
+        if (phase == 0) {
+            if (firstCurrentIntersect) {
+                // console.log('click')
+                if (firstCurrentIntersect.object == P.children[0].children[0]) {
+                    if (clickCounter%2 == 0) {
+                        animateP()
+                    }
+                    firstCurrentIntersect = null
+                }
+                else if (firstCurrentIntersect.object == A.children[0].children[0]) {
+                    if (clickCounter%2 == 0) {
+                        animateA()
+                    }
+                    firstCurrentIntersect = null
+                }
+                else if (firstCurrentIntersect.object == T.children[0].children[0]) {
+                    if (clickCounter%2 == 0) {
+                        animateT()
+                    }
+                    firstCurrentIntersect = null
+                }
+                else if (firstCurrentIntersect.object == R.children[0].children[0]) {
+                    if (clickCounter%2 == 0) {
+                        animateR()
+                    }
+                    firstCurrentIntersect = null
+                }
+                else if (firstCurrentIntersect.object == I.children[0].children[0]) {
+                    if (clickCounter%2 == 0) {
+                        animateI()
+                    }
+                    firstCurrentIntersect = null
+                }
+                else if (firstCurrentIntersect.object == C.children[0].children[0]) {
+                    if (clickCounter%2 == 0) {
+                        animateC()
+                    }
+                    firstCurrentIntersect = null
+                }
+                else if (firstCurrentIntersect.object == K.children[0].children[0]) {
+                    if (clickCounter%2 == 0) {
+                        animateK()
+                    }
+                    firstCurrentIntersect = null
+                }
+                else if (firstCurrentIntersect.object == rightNameWall.children[0].children[0]) {
+                    if (clickCounter%2 == 0) {
+                        phaseChange(leftDirectionalLight, rightDirectionalLight)
+                    }
+                    firstCurrentIntersect = null
+                }
+            }
         }
-    }
-    else {
-        if (currentIntersect) {
-            currentIntersect = null
+
+
+        if (phase == 1) {
+            if (currentIntersect) {
+                console.log('click')
+                    if (currentIntersect.object == laptopGroup.children[0].children[0] || currentIntersect.object == laptopGroup.children[1].children[0] || currentIntersect.object == screenGroup.children[0].children[0]) {
+                        if (clickCounter%2 == 0) {
+                            if (isLaptopOn == false) {
+                                lightLaptop()
+        
+                                setTimeout(() => {
+                                    arrayIndex = 0
+                                    insertModal(arrayIndex)
+                                }, 1250)
+                            }
+                            else if (isLaptopOn == true && isAnimationDone == true) {
+                                arrayIndex = 1
+                                insertModal(arrayIndex)
+                            }
+                        }
+                        currentIntersect = null
+                    }
+                if (isLaptopOn == true) {
+                    if (currentIntersect.object == topBedframeGroup.children[0].children[0] || currentIntersect.object == topBedframeGroup.children[1].children[0] || currentIntersect.object == topBedframeGroup.children[2].children[0] || currentIntersect.object == topBedframeGroup.children[3].children[0]) {
+                        if (clickCounter%2 == 0) {
+                            hoverTopBedframeGroup()
+                        }
+                        currentIntersect = null
+                    }
+                    else if (currentIntersect.object == topDrawer.children[0].children[0]) {
+                        if (clickCounter%2 == 0) {
+                            topDrawerOut()
+                        }
+                        currentIntersect = null
+                    }
+                    else if (currentIntersect.object == midDrawer.children[0].children[0]) {
+                        if (clickCounter%2 == 0) {
+                            midDrawerOut()
+                        }
+                        currentIntersect = null
+                    }
+                    else if (currentIntersect.object == botDrawer.children[0].children[0]) {
+                        if (clickCounter%2 == 0) {
+                            botDrawerOut()
+                        }
+                        currentIntersect = null
+                    }
+                    else if (currentIntersect.object == footballGroup.children[0].children[0] || currentIntersect.object == footballGroup.children[1].children[0]) {
+                        if (clickCounter%2 == 0) {
+                            // openLaptop()
+                            // console.log('animate laptop')
+                            // console.log('change screen texture')
+            
+                            floatFootball()
+        
+                            arrayIndex = 2
+                            insertModal(arrayIndex)
+                        }
+                        currentIntersect = null
+                    }
+                    else if (currentIntersect.object == skateboardGroup.children[0].children[0] || currentIntersect.object == skateboardGroup.children[1].children[0] || currentIntersect.object == skateboardGroup.children[2].children[0] ||currentIntersect.object == skateboardGroup.children[3].children[0]) {
+                        if (clickCounter%2 == 0) {
+                            // openLaptop()
+                            // console.log('animate laptop')
+                            // console.log('change screen texture')
+                            flipBoard()
+        
+                            arrayIndex = 3
+                            insertModal(arrayIndex)
+                        }
+                        currentIntersect = null
+                    }
+                    else if (currentIntersect.object == sablayGroup.children[0].children[0] || currentIntersect.object == sablayGroup.children[0].children[1] || currentIntersect.object == sablayGroup.children[0].children[2] || currentIntersect.object == sablayGroup.children[0].children[3] || currentIntersect.object == sablayGroup.children[0].children[4] || currentIntersect.object == sablayGroup.children[0].children[5] || currentIntersect.object == sablayGroup.children[0].children[6] || currentIntersect.object == sablayGroup.children[0].children[7] ) {
+                        if (clickCounter%2 == 0) {
+                            // openLaptop()
+                            // console.log('animate laptop')
+                            // console.log('change screen texture')
+                            // !!! sunflowers()
+        
+                            arrayIndex = 4
+                            insertModal(arrayIndex)
+                        }
+                        currentIntersect = null
+                    }
+                    else if (currentIntersect.object == switchGroup.children[0].children[0] || currentIntersect.object == switchScreen.children[0].children[0] || currentIntersect.object == joyConGroup.children[0].children[0] || currentIntersect.object == joyConGroup.children[1].children[0] || currentIntersect.object == joyConGroup.children[2].children[0] || currentIntersect.object == switchDock.children[0].children[0]) {
+                        if (clickCounter%2 == 0) {
+                            // openLaptop()
+                            // console.log('animate laptop')
+                            // console.log('change screen texture')
+                            switchJump()
+        
+                            arrayIndex = 3
+                            insertModal(arrayIndex)
+                        }
+                        currentIntersect = null
+                    }
+                    else if (currentIntersect.object == headphoneGroup.children[0].children[0] || currentIntersect.object == headphoneGroup.children[1].children[0]) {
+                        if (clickCounter%2 == 0) {
+                            // openLaptop()
+                            // console.log('animate laptop')
+                            // console.log('change screen texture')
+                            // !!! notesPlaying()
+        
+                            arrayIndex = 5
+                            insertModal(arrayIndex)
+                        }
+                        currentIntersect = null
+                    }
+                }
+            }
         }
-        currentIntersect = null
-        // console.log(currentIntersect)
-    }
-
-    // Update controls
-    controls.update()
-
-    // Render
-    renderer.render(scene, camera)
-
-    // Call tick again on the next frame
-    window.requestAnimationFrame(tick)
+  
+    })
 }
 
-tick()
+// GSAP Animations for Phase 0
+let isPRotated = false
+let isARotated = false
+let isTRotated = false
+let isRRotated = false
+let isIRotated = false
+let isCRotated = false
+let isKRotated = false
+
+const animateP = () => {
+    gsap.set(P.rotation, {y: P.rotation.y})
+    if (isPRotated == false) {
+        gsap.to(P.rotation, {duration: 1, delay: 0.5, y: P.rotation.y + Math.PI*90/180})
+        isPRotated = true
+    }
+    else {
+        gsap.to(P.rotation, {duration: 1, delay: 0.5, y: P.rotation.y - Math.PI*90/180})
+        isPRotated = false
+    }
+}
+
+const animateA = () => {
+    gsap.set(A.rotation, {y: A.rotation.y})
+    if (isARotated == false) {
+        gsap.to(A.rotation, {duration: 1, delay: 0.5, y: A.rotation.y + Math.PI*90/180})
+        isARotated = true
+    }
+    else {
+        gsap.to(A.rotation, {duration: 1, delay: 0.5, y: A.rotation.y - Math.PI*90/180})
+        isARotated = false
+    }
+}
+
+const animateT = () => {
+    gsap.set(T.rotation, {y: T.rotation.y})
+    if (isTRotated == false) {
+        gsap.to(T.rotation, {duration: 1, delay: 0.5, y: T.rotation.y + Math.PI*90/180})
+        isTRotated = true
+    }
+    else {
+        gsap.to(T.rotation, {duration: 1, delay: 0.5, y: T.rotation.y - Math.PI*90/180})
+        isTRotated = false
+    }
+}
+
+const animateR = () => {
+    gsap.set(R.rotation, {y: R.rotation.y})
+    if (isRRotated == false) {
+        gsap.to(R.rotation, {duration: 1, delay: 0.5, y: R.rotation.y + Math.PI*90/180})
+        isRRotated = true
+    }
+    else {
+        gsap.to(R.rotation, {duration: 1, delay: 0.5, y: R.rotation.y - Math.PI*90/180})
+        isRRotated = false
+    }
+}
+
+const animateI = () => {
+    gsap.set(I.rotation, {y: I.rotation.y})
+    if (isIRotated == false) {
+        gsap.to(I.rotation, {duration: 1, delay: 0.5, y: I.rotation.y + Math.PI*90/180})
+        isIRotated = true
+    }
+    else {
+        gsap.to(I.rotation, {duration: 1, delay: 0.5, y: I.rotation.y - Math.PI*90/180})
+        isIRotated = false
+    }
+}
+
+const animateC = () => {
+    gsap.set(C.rotation, {y: C.rotation.y})
+    if (isCRotated == false) {
+        gsap.to(C.rotation, {duration: 1, delay: 0.5, y: C.rotation.y + Math.PI*90/180})
+        isCRotated = true
+    }
+    else {
+        gsap.to(C.rotation, {duration: 1, delay: 0.5, y: C.rotation.y - Math.PI*90/180})
+        isCRotated = false
+    }
+}
+
+const animateK = () => {
+    gsap.set(K.rotation, {y: K.rotation.y})
+    if (isKRotated == false) {
+        gsap.to(K.rotation, {duration: 1, delay: 0.5, y: K.rotation.y + Math.PI*90/180})
+        isKRotated = true
+    }
+    else {
+        gsap.to(K.rotation, {duration: 1, delay: 0.5, y: K.rotation.y - Math.PI*90/180})
+        isKRotated = false
+    }
+}
+
+
+
+
+const phaseChange = (left, right) => {
+
+    setTimeout(() => {
+        scene.remove(left)
+        scene.remove(right)
+
+        phase = 1
+
+        gsap.to(camera.position, {duration: 0.5, x: -5, y: -25, z: 5})
+        gsap.to(camera.position, {duration: 3, delay: 1, x: -9, y: 9, z: 9})
+      
+    
+        setTimeout(() => {
+       
+            scene.remove(nameGroup)
+            scene.remove(leftNameWall)
+            scene.remove(rightNameWall)
+            controls.target.set(0,0,0)
+            controls.enabled = true
+        }, 4200)
+    }, 200)
+   
+  
+}
