@@ -1917,11 +1917,11 @@ const tick = () =>
     if (phase == 0) {
         // Parallax
         if (isParallaxOn == true) {
-            // const parallaxX = cursor.x * 0.5
+            // // const parallaxX = cursor.x * 0.5
             const parallaxY = - cursor.y * 1
-            // cameraGroup.position.x += ( parallaxX - cameraGroup.position.x ) * 2 * parallaxTIme
+            // // cameraGroup.position.x += ( parallaxX - cameraGroup.position.x ) * 2 * parallaxTIme
             cameraGroup.position.y += ( parallaxY - cameraGroup.position.y ) * 2 * parallaxTIme
-            // cameraGroup.position.z += ( - parallaxX - cameraGroup.position.z ) * 2 * parallaxTIme
+            // // cameraGroup.position.z += ( - parallaxX - cameraGroup.position.z ) * 2 * parallaxTIme
         }
 
         // Arrow bobbles
@@ -2254,7 +2254,7 @@ if (phase == 0) {
         scene.add(leftDirectionalLight)
         scene.add(rightDirectionalLight)
         isParallaxOn = true
-    }, 2500)
+    }, 1000)
     
 
     leftDirectionalLight.position.set(0,30,40)
@@ -2338,7 +2338,7 @@ window.addEventListener('click', () => {
                 }
                 else if (firstCurrentIntersect.object == rightNameWall.children[0].children[0]) {
                     if (clickCounter%2 == 0) {
-                        phaseChange(leftDirectionalLight, rightDirectionalLight)
+                        spinRightWall()
                     }
                     firstCurrentIntersect = null
                 }
@@ -2602,11 +2602,21 @@ const spinLeftWall = () => {
     gsap.to(leftNameWall.rotation, {duration: 1, x: Math.PI*2})
 }
 
+const spinRightWall = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
+    gsap.set(rightNameWall.rotation, {x: 0, y: 0, z: 0})
+    gsap.to(rightNameWall.rotation, {duration: 1, z: Math.PI*2})
+}
 
 // Phase Change Sequence
-const phaseChange = (left, right) => {
+const phaseChange0to1 = (left, right) => {
 
     setTimeout(() => {
+
         scene.add(allObjects)
 
         controls.enabled = false
@@ -2615,6 +2625,7 @@ const phaseChange = (left, right) => {
         scene.remove(right)
 
         phase = 1
+        currentLink = 1
 
         gsap.to(camera.position, {duration: 2, delay: 0.5, x: 9, y: 9, z: 9})
     
@@ -2626,9 +2637,130 @@ const phaseChange = (left, right) => {
             controls.target.set(0,0,0)
             controls.enableRotate = true
             controls.enablePan = true
-            controls.enabled = true
+            controls.enabled = true    
+            controls.saveState()        
         }, 2500)
     }, 200)
-   
-  
 }
+
+// Phase Change Sequence
+const phaseChange1to0 = (left, right) => {
+    
+
+    setTimeout(() => {
+
+        screenGroup.children[0].children[0].material.emissive.r = 0
+        screenGroup.children[0].children[0].material.emissive.g = 0
+        screenGroup.children[0].children[0].material.emissive.b = 0
+        scene.remove(rectAreaLight)
+
+        controls.reset()
+
+        controls.enabled = false
+
+        
+
+        // Close Modal if there is a modal
+        if (isModalOn) {
+            const infoModalx = document.getElementById('infoModal')
+            const contentGreyx = document.getElementById('contentGrey')
+            const contentRedx = document.getElementById('contentRed')
+            const stayx = document.getElementById('stay')
+            const newCanvas = document.getElementById('newCanvas')
+
+            // infoModalx.classList.remove('display')
+            contentGreyx.classList.remove('displayGrey')
+            contentRedx.classList.remove('displayRed')
+            stayx.classList.remove('stay')
+            newCanvas.classList.remove('canvasStay')
+
+
+            // infoModalx.classList.add('displayx')
+            contentGreyx.classList.add('displayGreyx')
+            contentRedx.classList.add('displayRedx')
+            stayx.classList.add('stayx')
+            newCanvas.classList.add('canvasStayx')
+
+
+            isModalOn = false
+
+            setTimeout(() => {
+                infoModalx.classList.add('displayx')
+            }, 500)
+        }
+
+        isLaptopOn = false
+
+        scene.add(nameGroup)
+        scene.add(leftNameWallPosition)
+        scene.add(rightNameWallPosition)
+
+        scene.remove(offAmbientLight)
+        scene.remove(offPointLight)
+        scene.add(ambientLight)
+        scene.add(pointLight)
+
+        scene.remove(left)
+        scene.remove(right)
+
+        phase = 0
+        currentLink = 0
+
+        gsap.to(camera.position, {duration: 2, delay: 0.5, x: 5, y: 35, z: 5})
+    
+        setTimeout(() => {
+       
+            scene.remove(allObjects)
+            
+            controls.target.set(0,30,0)
+            controls.enableRotate = false
+            controls.enablePan = false
+            controls.enabled = true
+            controls.saveState()
+
+            scene.add(left)
+            scene.add(right)
+        }, 2500)
+    }, 200)
+}
+
+// Side Bar
+const sidebarLinkOne = document.getElementById('sidebarLinkOne')
+const sidebarLinkTwo = document.getElementById('sidebarLinkTwo')
+const sidebarLinkThree = document.getElementById('sidebarLinkThree')
+const sidebarCircleOne = document.getElementById('sidebarCircleOne')
+const sidebarCircleTwo = document.getElementById('sidebarCircleTwo')
+const sidebarCircleThree = document.getElementById('sidebarCircleThree')
+
+let currentLink = 0
+
+sidebarLinkOne.addEventListener('click', () => {
+    if (currentLink == 1) {
+        phaseChange1to0(leftDirectionalLight, rightDirectionalLight)
+    }
+
+    setTimeout(() => {
+        sidebarCircleOne.classList.add('current')
+        sidebarCircleTwo.classList.remove('current')
+        sidebarCircleThree.classList.remove('current')
+    }, 500)
+})
+sidebarLinkTwo.addEventListener('click', () => {
+    if (currentLink == 0) {
+        phaseChange0to1(leftDirectionalLight, rightDirectionalLight)
+    }
+
+    setTimeout(() => {
+        sidebarCircleOne.classList.remove('current')
+        sidebarCircleTwo.classList.add('current')
+        sidebarCircleThree.classList.remove('current')
+    }, 500)
+})
+sidebarLinkThree.addEventListener('click', () => {
+    setTimeout(() => {
+        sidebarCircleOne.classList.remove('current')
+        sidebarCircleTwo.classList.remove('current')
+        sidebarCircleThree.classList.add('current')
+    }, 500)
+})
+
