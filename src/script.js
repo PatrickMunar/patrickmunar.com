@@ -396,7 +396,6 @@ allObjects.add(DBGroup)
 
 allObjects.position.set (0,-2,0)
 // allObjects.rotation.y = - Math.PI*90/180
-scene.add(allObjects)
 
 
 // Group Repositions for Phase 1
@@ -1919,7 +1918,7 @@ const tick = () =>
         // Parallax
         if (isParallaxOn == true) {
             // const parallaxX = cursor.x * 0.5
-            const parallaxY = - cursor.y * 0.5
+            const parallaxY = - cursor.y * 1
             // cameraGroup.position.x += ( parallaxX - cameraGroup.position.x ) * 2 * parallaxTIme
             cameraGroup.position.y += ( parallaxY - cameraGroup.position.y ) * 2 * parallaxTIme
             // cameraGroup.position.z += ( - parallaxX - cameraGroup.position.z ) * 2 * parallaxTIme
@@ -2205,7 +2204,10 @@ const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0.3)
 if (phase == 0) {
 
 
-    controls.enabled = false
+    controls.enabled = true
+    controls.enablePan = false
+    controls.enableRotate = false
+    controls.target.set(0,30,0)
 
     camera.position.set(5,5+30,5)
     camera.lookAt(0,0+30,0)
@@ -2605,6 +2607,9 @@ const spinLeftWall = () => {
 const phaseChange = (left, right) => {
 
     setTimeout(() => {
+        scene.add(allObjects)
+
+        controls.enabled = false
 
         scene.remove(left)
         scene.remove(right)
@@ -2616,8 +2621,11 @@ const phaseChange = (left, right) => {
         setTimeout(() => {
        
             scene.remove(nameGroup)
-            scene.remove(leftNameWall)
-            scene.remove(rightNameWall)
+            scene.remove(leftNameWallPosition)
+            scene.remove(rightNameWallPosition)
+            controls.target.set(0,0,0)
+            controls.enableRotate = true
+            controls.enablePan = true
             controls.enabled = true
         }, 2500)
     }, 200)
