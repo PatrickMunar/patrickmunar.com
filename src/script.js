@@ -394,7 +394,7 @@ allObjects.add(DBGroup)
 
 
 allObjects.position.set (0,-2,0)
-allObjects.rotation.y = - Math.PI/2
+// allObjects.rotation.y = - Math.PI*90/180
 scene.add(allObjects)
 
 
@@ -1627,15 +1627,15 @@ galaxy.position.y = -1.10
 
 // Lighting
 const ambientLight = new THREE.AmbientLight(0xaa00ff, 0.1)
-const offAmbientLight = new THREE.AmbientLight(0xaaaaff, 0.6)
+const offAmbientLight = new THREE.AmbientLight(0xaaaaff, 0.3)
 scene.add(ambientLight)
 
 
 const pointLight = new THREE.PointLight(0x1100ff, 1)
-const offPointLight = new THREE.PointLight(0xaaaaff, 0.6)
+const offPointLight = new THREE.PointLight(0xaaaaff, 0.4)
 
 
-pointLight.position.set(-12,12,0)
+pointLight.position.set(0,12,12)
 pointLight.castShadow = true
 pointLight.shadow.mapSize.x = 1024*4
 pointLight.shadow.mapSize.y = 1024*4
@@ -1644,7 +1644,7 @@ pointLight.shadow.camera.far = 30
 pointLight.shadow.normalBias = 0.05
 // pointLight.shadow.radius = 5
 
-offPointLight.position.set(-12,12,0)
+offPointLight.position.set(0,12,12)
 offPointLight.castShadow = true
 offPointLight.shadow.mapSize.x = 1024*4
 offPointLight.shadow.mapSize.y = 1024*4
@@ -1655,13 +1655,13 @@ offPointLight.shadow.normalBias = 0.05
 
 scene.add(pointLight)
 
-const rectAreaLight = new THREE.RectAreaLight(0x2222ff, 1000, 0.15, 0.1)
-rectAreaLight.position.set(1.85,0,-1.3)
-rectAreaLight.lookAt(new THREE.Vector3(-100,0,0))
+const rectAreaLight = new THREE.RectAreaLight(0x2222ff, 2000, 0.15, 0.1)
+rectAreaLight.position.set(-1.25,0,-1.75)
+rectAreaLight.lookAt(new THREE.Vector3(0,0,100))
 
 // Position Checker
 // const box = new THREE.Mesh(new THREE.BoxGeometry(0.3,0.3,0.3), new THREE.MeshNormalMaterial)
-// box.position.set(1.75,0,-1.3)
+// box.position.set(-1.25,0,-1.75)
 // scene.add(box)
 
 /**
@@ -1693,7 +1693,7 @@ window.addEventListener('resize', () =>
 // Base camera
 const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100)
 // camera.rotation.y = Math.PI
-camera.position.set(0,5,12)
+// camera.position.set(0,5,12)
 
 scene.add(camera)
 
@@ -1704,8 +1704,8 @@ const controls = new OrbitControls(camera, canvas)
 controls.enableDamping = true
 
 controls.maxPolarAngle = Math.PI/2
-controls.minAzimuthAngle = - Math.PI*90/180
-controls.maxAzimuthAngle = Math.PI*0/180
+controls.minAzimuthAngle = Math.PI*0/180
+controls.maxAzimuthAngle = Math.PI*95/180
 
 
 // Axes Helper
@@ -2183,7 +2183,7 @@ if (phase == 0) {
 
     controls.enabled = false
 
-    camera.position.set(-5,5-30,5)
+    camera.position.set(5,5-30,5)
     camera.lookAt(0,0-30,0)
 
     scene.background = new THREE.Color(0x000000)
@@ -2208,6 +2208,10 @@ if (phase == 0) {
     leftNameWall.position.y = -1-30
     rightNameWall.position.y = -1-30
 
+    nameGroup.rotation.y = Math.PI*90/180
+    leftNameWall.rotation.y = Math.PI*90/180
+    rightNameWall.rotation.y = Math.PI*90/180
+
     scene.add(nameGroup)
     scene.add(leftNameWall)
     scene.add(rightNameWall)
@@ -2220,7 +2224,7 @@ if (phase == 0) {
     scene.add(leftDirectionalLight)
     scene.add(rightDirectionalLight)
 
-    leftDirectionalLight.position.set(-40,-30,0)
+    leftDirectionalLight.position.set(0,-30,40)
     leftDirectionalLight.target.position.set(0,-30,0)
     scene.add(leftDirectionalLight.target)
 
@@ -2231,7 +2235,7 @@ if (phase == 0) {
     leftDirectionalLight.shadow.camera.far = 60
     leftDirectionalLight.shadow.normalBias = 0.05
 
-    rightDirectionalLight.position.set(0,-30,40)
+    rightDirectionalLight.position.set(40,-30, 0)
     rightDirectionalLight.target.position.set(0,-30,0)
     scene.add(rightDirectionalLight.target)
 
@@ -2523,18 +2527,15 @@ const phaseChange = (left, right) => {
 
         phase = 1
 
-        gsap.to(camera.position, {duration: 0.5, x: -5, y: -25, z: 5})
-        gsap.to(camera.position, {duration: 2, delay: 1, x: -9, y: 9, z: 9})
-        gsap.to(allObjects.rotation, {duration: 1.5, delay: 1.5, y: Math.PI*2 - Math.PI/2})
+        gsap.to(camera.position, {duration: 2, delay: 0.5, x: 9, y: 9, z: 9})
     
         setTimeout(() => {
        
             scene.remove(nameGroup)
             scene.remove(leftNameWall)
             scene.remove(rightNameWall)
-            controls.target.set(0,0,0)
             controls.enabled = true
-        }, 2250)
+        }, 2500)
     }, 200)
    
   
