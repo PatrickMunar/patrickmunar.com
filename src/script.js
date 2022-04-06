@@ -342,8 +342,9 @@ let C = new THREE.Group
 let K = new THREE.Group
 let nameGroup = new THREE.Group
 let leftNameWall = new THREE.Group
+let leftNameWallPosition = new THREE.Group
 let rightNameWall = new THREE.Group
-
+let rightNameWallPosition = new THREE.Group
 
 // Variables for Phase 1
 let allObjects = new THREE.Group
@@ -1705,7 +1706,7 @@ controls.enableDamping = true
 
 controls.maxPolarAngle = Math.PI/2
 controls.minAzimuthAngle = Math.PI*0/180
-controls.maxAzimuthAngle = Math.PI*95/180
+controls.maxAzimuthAngle = Math.PI*90/180
 
 
 // Axes Helper
@@ -1917,11 +1918,11 @@ const tick = () =>
     if (phase == 0) {
         // Parallax
         if (isParallaxOn == true) {
-            const parallaxX = cursor.x * 0.5
+            // const parallaxX = cursor.x * 0.5
             const parallaxY = - cursor.y * 0.5
-            cameraGroup.position.x += ( parallaxX - cameraGroup.position.x ) * 2 * parallaxTIme
+            // cameraGroup.position.x += ( parallaxX - cameraGroup.position.x ) * 2 * parallaxTIme
             cameraGroup.position.y += ( parallaxY - cameraGroup.position.y ) * 2 * parallaxTIme
-            cameraGroup.position.z += ( - parallaxX - cameraGroup.position.z ) * 2 * parallaxTIme
+            // cameraGroup.position.z += ( - parallaxX - cameraGroup.position.z ) * 2 * parallaxTIme
         }
 
         // Arrow bobbles
@@ -1946,7 +1947,7 @@ const tick = () =>
     raycaster.setFromCamera(mouse, camera)
 
     // Phase 0 RayCasting
-    const firstTestBox = [P, A, T, R, I, C, K, rightNameWall]
+    const firstTestBox = [P, A, T, R, I, C, K, rightNameWall, leftNameWall]
     const firstIntersects = raycaster.intersectObjects(firstTestBox)
 
     for (const firstIntersect of firstIntersects) {
@@ -2208,16 +2209,21 @@ if (phase == 0) {
     nameGroup.add(K)
 
     nameGroup.position.y = -1+30
-    leftNameWall.position.y = -1+30
-    rightNameWall.position.y = -1+30
+    leftNameWallPosition.position.y = -1+30+ 15*0.025
+    leftNameWallPosition.position.x = - 5
+
+    rightNameWallPosition.position.y = -1+30+ 15*0.025
+    rightNameWallPosition.position.z = - 5
 
     nameGroup.rotation.y = Math.PI*90/180
-    leftNameWall.rotation.y = Math.PI*90/180
-    rightNameWall.rotation.y = Math.PI*90/180
+    leftNameWallPosition.rotation.y = Math.PI*90/180
+    rightNameWallPosition.rotation.y = Math.PI*90/180
 
     scene.add(nameGroup)
-    scene.add(leftNameWall)
-    scene.add(rightNameWall)
+    leftNameWallPosition.add(leftNameWall)
+    scene.add(leftNameWallPosition)
+    rightNameWallPosition.add(rightNameWall)
+    scene.add(rightNameWallPosition)
 
     const firstAmbientLight = new THREE.AmbientLight(0x000000, 1)
     scene.add(firstAmbientLight)
@@ -2311,6 +2317,12 @@ if (phase == 0) {
                 else if (firstCurrentIntersect.object == rightNameWall.children[0].children[0]) {
                     if (clickCounter%2 == 0) {
                         phaseChange(leftDirectionalLight, rightDirectionalLight)
+                    }
+                    firstCurrentIntersect = null
+                }
+                else if (firstCurrentIntersect.object == leftNameWall.children[0].children[0]) {
+                    if (clickCounter%2 == 0) {
+                        spinLeftWall()
                     }
                     firstCurrentIntersect = null
                 }
@@ -2524,9 +2536,13 @@ const animateK = () => {
     }
 }
 
+const spinLeftWall = () => {
+    gsap.set(leftNameWall.rotation, {x: 0, y: 0, z: 0})
+    gsap.to(leftNameWall.rotation, {duration: 1, x: Math.PI*2})
+}
 
 
-
+// Phase Change Sequence
 const phaseChange = (left, right) => {
 
     setTimeout(() => {
