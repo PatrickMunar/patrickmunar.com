@@ -2524,7 +2524,7 @@ const phaseChange = (left, right) => {
         phase = 1
 
         gsap.to(camera.position, {duration: 0.5, x: -5, y: -25, z: 5})
-        gsap.to(camera.position, {duration: 3, delay: 1, x: -9, y: 9, z: 9})
+        gsap.to(camera.position, {duration: 2, delay: 1, x: -9, y: 9, z: 9})
       
     
         setTimeout(() => {
@@ -2534,7 +2534,7 @@ const phaseChange = (left, right) => {
             scene.remove(rightNameWall)
             controls.target.set(0,0,0)
             controls.enabled = true
-        }, 4200)
+        }, 3200)
     }, 200)
    
   
