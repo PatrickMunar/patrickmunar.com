@@ -2030,26 +2030,56 @@ tick()
 // GSAP Animations
 
 const hoverTopBedframeGroup = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
+    
     gsap.to(topBedframeGroup.position, {duration: 1, delay: 0.5, y: 4})
     // moveObjects()
 }
 
 const topDrawerOut = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
+    
     gsap.to(topDrawer.position, {duration: 1, delay: 1, z: 13*0.05})
     gsap.to(topDrawer.position, {duration: 1, delay: 3, z: 0})
 }
 
 const midDrawerOut = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
+    
     gsap.to(midDrawer.position, {duration: 1, delay: 1, z: 13*0.05})
     gsap.to(midDrawer.position, {duration: 1, delay: 3, z: 0})
 }
 
 const botDrawerOut = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
+    
     gsap.to(botDrawer.position, {duration: 1, delay: 1, z: 13*0.05})
     gsap.to(botDrawer.position, {duration: 1, delay: 3, z: 0})
 }
 
 const lightLaptop = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
+    
     
     scene.add(rectAreaLight)
 
@@ -2081,38 +2111,6 @@ const lightLaptop = () => {
         // allObjects.remove(galaxy) 
     }, 450)
 
-    // setTimeout(() => {
-    //     scene.add(rectAreaLight)
-
-    //     scene.remove(ambientLight)
-    //     scene.add(offAmbientLight)
-    //     scene.remove(pointLight)
-    //     scene.add(offPointLight)
-    //     scene.background = new THREE.Color(0x000000)
-        
-    //     screenGroup.children[0].children[0].material.emissive.r = 1
-    //     screenGroup.children[0].children[0].material.emissive.g = 1
-    //     screenGroup.children[0].children[0].material.emissive.b = 1
-
-    //     allObjects.add(galaxy)
-    // }, 500)
-
-    // setTimeout(() => {
-    //     scene.remove(rectAreaLight)
-
-    //     scene.add(ambientLight)
-    //     scene.remove(offAmbientLight)
-    //     scene.add(pointLight)
-    //     scene.remove(offPointLight)
-    //     scene.background = new THREE.Color(0x000000)
-        
-    //     screenGroup.children[0].children[0].material.emissive.r = 0
-    //     screenGroup.children[0].children[0].material.emissive.g = 0
-    //     screenGroup.children[0].children[0].material.emissive.b = 0
-    
-    //     allObjects.remove(galaxy) 
-    // }, 700)
-
     setTimeout(() => {
         scene.add(rectAreaLight)
 
@@ -2135,6 +2133,12 @@ const lightLaptop = () => {
 }
 
 const floatFootball = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
+    
 
     gsap.set(footballGroup.rotation, {z: - Math.PI*40/180, x: 0})
     gsap.to(footballGroup.position, {ease: 'Power3.easeOut', duration: 0.75, delay: 0.5, y: 4})
@@ -2151,6 +2155,12 @@ const floatFootball = () => {
 }
 
 const flipBoard = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
+    
     gsap.set(skateboardGroup.rotation, {z: Math.PI, y: 0})
     gsap.to(skateboardGroup.position, {ease: 'Power1.easeOut', duration: 0.6, delay: 0.5, y: 1})
     gsap.to(skateboardGroup.rotation, {ease: 'Power0.easeNone', duration: 1, delay: 0.55, z: Math.PI*2 + Math.PI, y: Math.PI*2})
@@ -2160,6 +2170,12 @@ const flipBoard = () => {
 }
 
 const switchJump = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
+    
     gsap.to(joyConGroup.position, {ease: 'Power1.easeOut', duration: 1, delay: 0.5, y: 0.5})
     gsap.to(joyConGroup.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 1.5, y: 0})
     gsap.to(switchGroup.position, {ease: 'Power1.easeOut', duration: 0.5, delay: 1, y: 0.5})
@@ -2180,6 +2196,10 @@ const switchJump = () => {
     }, 1950)
 
 }
+
+// Global Light Phase 0
+const leftDirectionalLight = new THREE.DirectionalLight(0xff0000, 0.3)
+const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0.3)
 
 
 if (phase == 0) {
@@ -2228,9 +2248,6 @@ if (phase == 0) {
     const firstAmbientLight = new THREE.AmbientLight(0x000000, 1)
     scene.add(firstAmbientLight)
 
-    const leftDirectionalLight = new THREE.DirectionalLight(0xff0000, 0.3)
-    const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0.3)
-
     setTimeout(() => {
         scene.add(leftDirectionalLight)
         scene.add(rightDirectionalLight)
@@ -2263,10 +2280,13 @@ if (phase == 0) {
     // const firstPointLight = new THREE.PointLight(0xffffff, 0.1)
     // firstPointLight.position.set(-10,10,10)
     // scene.add(firstPointLight)
+}
 
-    // RayCast
+ // RayCasting
+let isAnimationPlaying = false
 
-    window.addEventListener('click', () => {
+window.addEventListener('click', () => {
+    if (isAnimationPlaying == false) {
         clickCounter += 1
         // console.log(clickCounter)
         if (phase == 0) {
@@ -2328,8 +2348,8 @@ if (phase == 0) {
                 }
             }
         }
-
-
+    
+    
         if (phase == 1) {
             if (currentIntersect) {
                 console.log('click')
@@ -2439,10 +2459,9 @@ if (phase == 0) {
                 }
             }
         }
-  
-    })
-}
-
+    }
+    
+})
 // GSAP Animations for Phase 0
 let isPRotated = false
 let isARotated = false
@@ -2453,90 +2472,130 @@ let isCRotated = false
 let isKRotated = false
 
 const animateP = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
     gsap.set(P.rotation, {y: P.rotation.y})
     if (isPRotated == false) {
-        gsap.to(P.rotation, {duration: 1, delay: 0.5, y: P.rotation.y + Math.PI*90/180})
+        gsap.to(P.rotation, {duration: 1, delay: 0, y: P.rotation.y + Math.PI*90/180})
         isPRotated = true
     }
     else {
-        gsap.to(P.rotation, {duration: 1, delay: 0.5, y: P.rotation.y - Math.PI*90/180})
+        gsap.to(P.rotation, {duration: 1, delay: 0, y: P.rotation.y - Math.PI*90/180})
         isPRotated = false
     }
 }
 
 const animateA = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
     gsap.set(A.rotation, {y: A.rotation.y})
     if (isARotated == false) {
-        gsap.to(A.rotation, {duration: 1, delay: 0.5, y: A.rotation.y + Math.PI*90/180})
+        gsap.to(A.rotation, {duration: 1, delay: 0, y: A.rotation.y + Math.PI*90/180})
         isARotated = true
     }
     else {
-        gsap.to(A.rotation, {duration: 1, delay: 0.5, y: A.rotation.y - Math.PI*90/180})
+        gsap.to(A.rotation, {duration: 1, delay: 0, y: A.rotation.y - Math.PI*90/180})
         isARotated = false
     }
 }
 
 const animateT = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
     gsap.set(T.rotation, {y: T.rotation.y})
     if (isTRotated == false) {
-        gsap.to(T.rotation, {duration: 1, delay: 0.5, y: T.rotation.y + Math.PI*90/180})
+        gsap.to(T.rotation, {duration: 1, delay: 0, y: T.rotation.y + Math.PI*90/180})
         isTRotated = true
     }
     else {
-        gsap.to(T.rotation, {duration: 1, delay: 0.5, y: T.rotation.y - Math.PI*90/180})
+        gsap.to(T.rotation, {duration: 1, delay: 0, y: T.rotation.y - Math.PI*90/180})
         isTRotated = false
     }
 }
 
 const animateR = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
     gsap.set(R.rotation, {y: R.rotation.y})
     if (isRRotated == false) {
-        gsap.to(R.rotation, {duration: 1, delay: 0.5, y: R.rotation.y + Math.PI*90/180})
+        gsap.to(R.rotation, {duration: 1, delay: 0, y: R.rotation.y + Math.PI*90/180})
         isRRotated = true
     }
     else {
-        gsap.to(R.rotation, {duration: 1, delay: 0.5, y: R.rotation.y - Math.PI*90/180})
+        gsap.to(R.rotation, {duration: 1, delay: 0, y: R.rotation.y - Math.PI*90/180})
         isRRotated = false
     }
 }
 
 const animateI = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
     gsap.set(I.rotation, {y: I.rotation.y})
     if (isIRotated == false) {
-        gsap.to(I.rotation, {duration: 1, delay: 0.5, y: I.rotation.y + Math.PI*90/180})
+        gsap.to(I.rotation, {duration: 1, delay: 0, y: I.rotation.y + Math.PI*90/180})
         isIRotated = true
     }
     else {
-        gsap.to(I.rotation, {duration: 1, delay: 0.5, y: I.rotation.y - Math.PI*90/180})
+        gsap.to(I.rotation, {duration: 1, delay: 0, y: I.rotation.y - Math.PI*90/180})
         isIRotated = false
     }
 }
 
 const animateC = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
     gsap.set(C.rotation, {y: C.rotation.y})
     if (isCRotated == false) {
-        gsap.to(C.rotation, {duration: 1, delay: 0.5, y: C.rotation.y + Math.PI*90/180})
+        gsap.to(C.rotation, {duration: 1, delay: 0, y: C.rotation.y + Math.PI*90/180})
         isCRotated = true
     }
     else {
-        gsap.to(C.rotation, {duration: 1, delay: 0.5, y: C.rotation.y - Math.PI*90/180})
+        gsap.to(C.rotation, {duration: 1, delay: 0, y: C.rotation.y - Math.PI*90/180})
         isCRotated = false
     }
 }
 
 const animateK = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
     gsap.set(K.rotation, {y: K.rotation.y})
     if (isKRotated == false) {
-        gsap.to(K.rotation, {duration: 1, delay: 0.5, y: K.rotation.y + Math.PI*90/180})
+        gsap.to(K.rotation, {duration: 1, delay: 0, y: K.rotation.y + Math.PI*90/180})
         isKRotated = true
     }
     else {
-        gsap.to(K.rotation, {duration: 1, delay: 0.5, y: K.rotation.y - Math.PI*90/180})
+        gsap.to(K.rotation, {duration: 1, delay: 0, y: K.rotation.y - Math.PI*90/180})
         isKRotated = false
     }
 }
 
 const spinLeftWall = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
     gsap.set(leftNameWall.rotation, {x: 0, y: 0, z: 0})
     gsap.to(leftNameWall.rotation, {duration: 1, x: Math.PI*2})
 }
