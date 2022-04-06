@@ -203,6 +203,7 @@ const generateNewCanvas = () => {
     const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100)
     // camera.rotation.y = Math.PI
     camera.position.set(0,0,5)
+  
     scene.add(camera)
 
 
@@ -1667,9 +1668,32 @@ rectAreaLight.lookAt(new THREE.Vector3(0,0,100))
 /**
  * Sizes
  */
+let zoomFactor = 1
+
 const sizes = {
     width: window.innerWidth,
     height: window.innerHeight
+}
+
+if(window.innerHeight > window.innerWidth){
+    if (window.innerWidth <= 320) {
+        zoomFactor = 5
+    }
+    else if (window.innerWidth > 320 && window.innerWidth <= 375) {
+        zoomFactor = 4.5
+    }
+    else if (window.innerWidth > 375 && window.innerWidth <= 425) {
+        zoomFactor = 4
+    }
+    else if (window.innerWidth > 425 && window.innerWidth <= 750) {
+        zoomFactor = 3
+    }
+    else if (window.innerWidth > 750 && window.innerWidth <= 950) {
+        zoomFactor = 2.5
+    }
+    else {
+        zoomFactor = 1
+    }
 }
 
 window.addEventListener('resize', () =>
@@ -1693,7 +1717,6 @@ window.addEventListener('resize', () =>
 // Base camera
 const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100)
 // camera.rotation.y = Math.PI
-// camera.position.set(0,5,12)
 
 scene.add(camera)
 
@@ -1918,7 +1941,7 @@ const tick = () =>
         // Parallax
         if (isParallaxOn == true) {
             // // const parallaxX = cursor.x * 0.5
-            const parallaxY = - cursor.y * 1
+            const parallaxY = - cursor.y * zoomFactor * zoomFactor
             // // cameraGroup.position.x += ( parallaxX - cameraGroup.position.x ) * 2 * parallaxTIme
             cameraGroup.position.y += ( parallaxY - cameraGroup.position.y ) * 2 * parallaxTIme
             // // cameraGroup.position.z += ( - parallaxX - cameraGroup.position.z ) * 2 * parallaxTIme
@@ -2201,6 +2224,7 @@ const leftDirectionalLight = new THREE.DirectionalLight(0xff0000, 0.3)
 const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0.3)
 
 
+
 if (phase == 0) {
 
 
@@ -2209,8 +2233,8 @@ if (phase == 0) {
     controls.enableRotate = false
     controls.target.set(0,30,0)
 
-    camera.position.set(5,5+30,5)
-    camera.lookAt(0,0+30,0)
+    camera.position.set(5*zoomFactor,35,5*zoomFactor)
+    camera.lookAt(0*zoomFactor,0+30,0*zoomFactor)
 
     scene.background = new THREE.Color(0x000000)
 
@@ -2627,7 +2651,7 @@ const phaseChange0to1 = (left, right) => {
         phase = 1
         currentLink = 1
 
-        gsap.to(camera.position, {duration: 2, delay: 0.5, x: 9, y: 9, z: 9})
+        gsap.to(camera.position, {duration: 2, delay: 0.5, x: 9*zoomFactor, y: 9, z: 9*zoomFactor})
     
         setTimeout(() => {
        
@@ -2706,7 +2730,7 @@ const phaseChange1to0 = (left, right) => {
         phase = 0
         currentLink = 0
 
-        gsap.to(camera.position, {duration: 2, delay: 0.5, x: 5, y: 35, z: 5})
+        gsap.to(camera.position, {duration: 2, delay: 0.5, x: 5*zoomFactor, y: 35, z: 5*zoomFactor})
     
         setTimeout(() => {
        
