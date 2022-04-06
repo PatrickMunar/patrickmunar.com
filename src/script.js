@@ -1900,6 +1900,7 @@ let currentIntersect = null
 
 let prevParallaxTime = 0
 let firstCurrentIntersect = null
+let isParallaxOn = false
 
 const clock = new THREE.Clock()
 
@@ -1915,11 +1916,13 @@ const tick = () =>
     // Phase 0 Animations
     if (phase == 0) {
         // Parallax
-        const parallaxX = cursor.x * 0.5
-        const parallaxY = - cursor.y * 0.5
-        cameraGroup.position.x += ( parallaxX - cameraGroup.position.x ) * 2 * parallaxTIme
-        cameraGroup.position.y += ( parallaxY - cameraGroup.position.y ) * 2 * parallaxTIme
-        cameraGroup.position.z += ( parallaxX - cameraGroup.position.z ) * 2 * parallaxTIme
+        if (isParallaxOn == true) {
+            const parallaxX = cursor.x * 0.5
+            const parallaxY = - cursor.y * 0.5
+            cameraGroup.position.x += ( parallaxX - cameraGroup.position.x ) * 2 * parallaxTIme
+            cameraGroup.position.y += ( parallaxY - cameraGroup.position.y ) * 2 * parallaxTIme
+            cameraGroup.position.z += ( - parallaxX - cameraGroup.position.z ) * 2 * parallaxTIme
+        }
 
         // Arrow bobbles
         P.position.z = - Math.sin(elapsedTime*2) * 0.05 - 105*0.025
@@ -2183,8 +2186,8 @@ if (phase == 0) {
 
     controls.enabled = false
 
-    camera.position.set(5,5-30,5)
-    camera.lookAt(0,0-30,0)
+    camera.position.set(5,5+30,5)
+    camera.lookAt(0,0+30,0)
 
     scene.background = new THREE.Color(0x000000)
 
@@ -2204,9 +2207,9 @@ if (phase == 0) {
     nameGroup.add(C)
     nameGroup.add(K)
 
-    nameGroup.position.y = -1-30
-    leftNameWall.position.y = -1-30
-    rightNameWall.position.y = -1-30
+    nameGroup.position.y = -1+30
+    leftNameWall.position.y = -1+30
+    rightNameWall.position.y = -1+30
 
     nameGroup.rotation.y = Math.PI*90/180
     leftNameWall.rotation.y = Math.PI*90/180
@@ -2221,11 +2224,16 @@ if (phase == 0) {
 
     const leftDirectionalLight = new THREE.DirectionalLight(0xff0000, 0.3)
     const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0.3)
-    scene.add(leftDirectionalLight)
-    scene.add(rightDirectionalLight)
 
-    leftDirectionalLight.position.set(0,-30,40)
-    leftDirectionalLight.target.position.set(0,-30,0)
+    setTimeout(() => {
+        scene.add(leftDirectionalLight)
+        scene.add(rightDirectionalLight)
+        isParallaxOn = true
+    }, 2500)
+    
+
+    leftDirectionalLight.position.set(0,30,40)
+    leftDirectionalLight.target.position.set(0,30,0)
     scene.add(leftDirectionalLight.target)
 
     leftDirectionalLight.castShadow = true
@@ -2235,8 +2243,8 @@ if (phase == 0) {
     leftDirectionalLight.shadow.camera.far = 60
     leftDirectionalLight.shadow.normalBias = 0.05
 
-    rightDirectionalLight.position.set(40,-30, 0)
-    rightDirectionalLight.target.position.set(0,-30,0)
+    rightDirectionalLight.position.set(40,30, 0)
+    rightDirectionalLight.target.position.set(0,30,0)
     scene.add(rightDirectionalLight.target)
 
     rightDirectionalLight.castShadow = true
@@ -2522,6 +2530,7 @@ const animateK = () => {
 const phaseChange = (left, right) => {
 
     setTimeout(() => {
+
         scene.remove(left)
         scene.remove(right)
 
