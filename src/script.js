@@ -1405,7 +1405,7 @@ gltfLoader.load(
 
         console.log(obj)
         wallsandfloor.add(obj.scene)
-        // obj.scene.castShadow = true
+        obj.scene.castShadow = true
         obj.scene.children[0].receiveShadow = true
     }
 )
@@ -2525,7 +2525,7 @@ const phaseChange = (left, right) => {
 
         gsap.to(camera.position, {duration: 0.5, x: -5, y: -25, z: 5})
         gsap.to(camera.position, {duration: 2, delay: 1, x: -9, y: 9, z: 9})
-      
+        gsap.to(allObjects.rotation, {duration: 1.5, delay: 1.5, y: Math.PI*2 - Math.PI/2})
     
         setTimeout(() => {
        
@@ -2534,7 +2534,7 @@ const phaseChange = (left, right) => {
             scene.remove(rightNameWall)
             controls.target.set(0,0,0)
             controls.enabled = true
-        }, 3200)
+        }, 2250)
     }, 200)
    
   
