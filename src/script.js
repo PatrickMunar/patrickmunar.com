@@ -2816,10 +2816,10 @@ sidebarLinkTwo.addEventListener('click', () => {
 sidebarLinkThree.addEventListener('click', () => {
   
     if (isLinkClickAllowed == true) {
-        isLinkClickAllowed = false
-        if (currentLink == 1) {
-            phaseChange1to2()
-        }
+        // isLinkClickAllowed = false
+        // if (currentLink == 1) {
+        //     phaseChange1to2()
+        // }
 
         setTimeout(() => {
             sidebarCircleOne.classList.remove('current')
