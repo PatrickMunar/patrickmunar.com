@@ -2218,8 +2218,32 @@ const switchJump = () => {
 }
 
 // Global Light Phase 0
-const leftDirectionalLight = new THREE.DirectionalLight(0xff0000, 0.8)
-const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0.8)
+const leftDirectionalLight = new THREE.DirectionalLight(0xff0000, 0.5)
+const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0.5)
+
+let currentColor = 1
+
+const directionalLightColors = [
+    ['0xff0000', '0xffffff'],
+    ['0xF95700', '0x00A4CC'],
+    ['0xD6ED17', '0x606060']
+]
+
+const colorChangeRight = () => {
+    leftDirectionalLight.color.setHex(directionalLightColors[currentColor][0])
+    rightDirectionalLight.color.setHex(directionalLightColors[currentColor][1])
+    if (currentColor < directionalLightColors.length - 1) {
+        currentColor += 1
+    }
+    else {
+        currentColor = 0
+    }
+}
+
+
+
+
+ 
 
 if (phase == 0) {
 
@@ -2249,13 +2273,14 @@ if (phase == 0) {
     nameGroup.add(C)
     nameGroup.add(K)
 
-    nameGroup.position.y = -1+30
+  
     leftNameWallPosition.position.y = -1+30+ 15*0.025
     leftNameWallPosition.position.x = - 5
 
     rightNameWallPosition.position.y = -1+30+ 15*0.025
     rightNameWallPosition.position.z = - 5
 
+    nameGroup.position.y = -1+30
     nameGroup.rotation.y = Math.PI*90/180
     leftNameWallPosition.rotation.y = Math.PI*90/180
     rightNameWallPosition.rotation.y = Math.PI*90/180
@@ -2269,7 +2294,7 @@ if (phase == 0) {
     scene.add(ambientLight)
     scene.add(pointLight)
 
-    const firstAmbientLight = new THREE.AmbientLight(0x110044, 0.1)
+    const firstAmbientLight = new THREE.AmbientLight(0x000000, 0.1)
     scene.add(firstAmbientLight)
 
     setTimeout(() => { 
@@ -2626,10 +2651,43 @@ const spinLeftWall = () => {
 
     gsap.set(leftNameWall.rotation, {x: 0, y: 0, z: 0})
     gsap.to(leftNameWall.rotation, {duration: 1, x: Math.PI*2})
+
+    if (isPRotated == true) {
+        gsap.to(P.rotation, {duration: 1, delay: 0, y: P.rotation.y - Math.PI*90/180})
+        isPRotated = false
+    }
+    if (isARotated == true) {
+        gsap.to(A.rotation, {duration: 1, delay: 0, y: A.rotation.y - Math.PI*90/180})
+        isARotated = false
+    }
+    if (isTRotated == true) {
+        gsap.to(T.rotation, {duration: 1, delay: 0, y: T.rotation.y - Math.PI*90/180})
+        isTRotated = false
+    }
+    if (isRRotated == true) {
+        gsap.to(R.rotation, {duration: 1, delay: 0, y: R.rotation.y - Math.PI*90/180})
+        isRRotated = false
+    }
+    if (isIRotated == true) {
+        gsap.to(I.rotation, {duration: 1, delay: 0, y: I.rotation.y - Math.PI*90/180})
+        isIRotated = false
+    }
+    if (isCRotated == true) {
+        gsap.to(C.rotation, {duration: 1, delay: 0, y: C.rotation.y - Math.PI*90/180})
+        isCRotated = false
+    }
+    if (isKRotated == true) {
+        gsap.to(K.rotation, {duration: 1, delay: 0, y: K.rotation.y - Math.PI*90/180})
+        isKRotated = false
+    }
 }
 
 const spinRightWall = () => {
     isAnimationPlaying = true
+    setTimeout(() => {
+        colorChangeRight()
+    }, 500)
+
     setTimeout(() => {
         isAnimationPlaying = false
     }, 1000)
