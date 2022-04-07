@@ -368,8 +368,8 @@ body {
 }
 
 .current {
-    width: 0.5rem;
-    height: 0.5rem;
+    width: 0.75rem;
+    height: 0.75rem;
     background-color: rgb(185, 0, 0);
     border-color: rgb(185, 0, 0);
 }

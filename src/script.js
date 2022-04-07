@@ -2904,8 +2904,8 @@ let currentLink = 0
 sidebarLinkOne.addEventListener('click', () => {
 
     if (isLinkClickAllowed == true) {
-        isLinkClickAllowed = false
         if (currentLink == 1) {
+            isLinkClickAllowed = false
             phaseChange1to0(leftDirectionalLight, rightDirectionalLight)
         }
     
@@ -2919,8 +2919,9 @@ sidebarLinkOne.addEventListener('click', () => {
 sidebarLinkTwo.addEventListener('click', () => {
 
     if (isLinkClickAllowed == true) {
-        isLinkClickAllowed = false
+   
         if (currentLink == 0) {
+            isLinkClickAllowed = false
             phaseChange0to1(leftDirectionalLight, rightDirectionalLight)
         }
     
@@ -2934,7 +2935,9 @@ sidebarLinkTwo.addEventListener('click', () => {
 sidebarLinkThree.addEventListener('click', () => {
   
     if (isLinkClickAllowed == true) {
-        // isLinkClickAllowed = false
+        isLinkClickAllowed = true
+        currentLink = currentLink
+        phase = phase
         // if (currentLink == 1) {
         //     phaseChange1to2()
         // }
