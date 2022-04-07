@@ -2248,7 +2248,8 @@ const directionalLightColors = [
     ['0xD6ED17', '0x606060'],
     ['0xff2B33', '0xD05A7F'],
     ['0x00539C', '0xEEA47F'],
-    ['0x5BfE51', '0xEA738D']
+    ['0x5BfE51', '0xEA738D'],
+    ['0xff321E', '0x2C88ff'],
 ]
 
 const colorChangeRight = () => {
@@ -2261,29 +2262,6 @@ const colorChangeRight = () => {
         currentColor = 0
     }
 } 
-
-// const lightIntensityUp = () => {
-//     setTimeout(() => {
-//         leftDirectionalLight.intensity += 0.1
-//         rightDirectionalLight.intensity += 0.1
-//         setTimeout(() => {
-//             leftDirectionalLight.intensity += 0.1
-//             rightDirectionalLight.intensity += 0.1
-//             setTimeout(() => {
-//                 leftDirectionalLight.intensity += 0.1
-//                 rightDirectionalLight.intensity += 0.1
-//                 setTimeout(() => {
-//                     leftDirectionalLight.intensity += 0.1
-//                     rightDirectionalLight.intensity += 0.1
-//                     setTimeout(() => {
-//                         leftDirectionalLight.intensity += 0.1
-//                         rightDirectionalLight.intensity += 0.1
-//                     }, 50)
-//                 }, 50)
-//             }, 50)
-//         }, 100)
-//     }, 100)
-// }
 
 if (phase == 0) {
     
@@ -2750,6 +2728,34 @@ const spinRightWall = () => {
 const phaseChange0to1 = (left, right) => {
 
     setTimeout(() => {
+        if (isPRotated == true) {
+            gsap.to(P.rotation, {duration: 1, delay: 0, y: P.rotation.y - Math.PI*90/180})
+            isPRotated = false
+        }
+        if (isARotated == true) {
+            gsap.to(A.rotation, {duration: 1, delay: 0, y: A.rotation.y - Math.PI*90/180})
+            isARotated = false
+        }
+        if (isTRotated == true) {
+            gsap.to(T.rotation, {duration: 1, delay: 0, y: T.rotation.y - Math.PI*90/180})
+            isTRotated = false
+        }
+        if (isRRotated == true) {
+            gsap.to(R.rotation, {duration: 1, delay: 0, y: R.rotation.y - Math.PI*90/180})
+            isRRotated = false
+        }
+        if (isIRotated == true) {
+            gsap.to(I.rotation, {duration: 1, delay: 0, y: I.rotation.y - Math.PI*90/180})
+            isIRotated = false
+        }
+        if (isCRotated == true) {
+            gsap.to(C.rotation, {duration: 1, delay: 0, y: C.rotation.y - Math.PI*90/180})
+            isCRotated = false
+        }
+        if (isKRotated == true) {
+            gsap.to(K.rotation, {duration: 1, delay: 0, y: K.rotation.y - Math.PI*90/180})
+            isKRotated = false
+        }
 
         scene.add(allObjects)
 
