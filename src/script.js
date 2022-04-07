@@ -1923,6 +1923,10 @@ let prevParallaxTime = 0
 let firstCurrentIntersect = null
 let isParallaxOn = false
 
+let lightUp = false
+let lightTime = 0
+let resetLightTime = false
+
 const clock = new THREE.Clock()
 
 const tick = () =>
@@ -2021,6 +2025,21 @@ const tick = () =>
             // console.log(currentIntersect)
         }
     // }
+
+    if (lightUp == true) {
+        console.log(leftDirectionalLight.intensity)
+        if (resetLightTime == true) {
+            lightTime = elapsedTime
+            resetLightTime = false
+        }
+        if (leftDirectionalLight.intensity < 0.6) {
+            leftDirectionalLight.intensity = (elapsedTime - lightTime) * 0.2
+            rightDirectionalLight.intensity = (elapsedTime - lightTime) * 0.2
+        }
+        else {
+            lightUp = false
+        }
+    }
     
 
     // Update controls
@@ -2218,8 +2237,8 @@ const switchJump = () => {
 }
 
 // Global Light Phase 0
-const leftDirectionalLight = new THREE.DirectionalLight(0xff0000, 0.5)
-const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0.5)
+const leftDirectionalLight = new THREE.DirectionalLight(0xff0000, 0)
+const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0)
 
 let currentColor = 1
 
@@ -2228,7 +2247,8 @@ const directionalLightColors = [
     ['0xF95700', '0x00A4CC'],
     ['0xD6ED17', '0x606060'],
     ['0xff2B33', '0xD05A7F'],
-    ['0xEEA47F', '0x00539C']
+    ['0x00539C', '0xEEA47F'],
+    ['0x5BfE51', '0xEA738D']
 ]
 
 const colorChangeRight = () => {
@@ -2240,14 +2260,39 @@ const colorChangeRight = () => {
     else {
         currentColor = 0
     }
-}
+} 
 
-
-
-
- 
+// const lightIntensityUp = () => {
+//     setTimeout(() => {
+//         leftDirectionalLight.intensity += 0.1
+//         rightDirectionalLight.intensity += 0.1
+//         setTimeout(() => {
+//             leftDirectionalLight.intensity += 0.1
+//             rightDirectionalLight.intensity += 0.1
+//             setTimeout(() => {
+//                 leftDirectionalLight.intensity += 0.1
+//                 rightDirectionalLight.intensity += 0.1
+//                 setTimeout(() => {
+//                     leftDirectionalLight.intensity += 0.1
+//                     rightDirectionalLight.intensity += 0.1
+//                     setTimeout(() => {
+//                         leftDirectionalLight.intensity += 0.1
+//                         rightDirectionalLight.intensity += 0.1
+//                     }, 50)
+//                 }, 50)
+//             }, 50)
+//         }, 100)
+//     }, 100)
+// }
 
 if (phase == 0) {
+    
+    scene.add(leftDirectionalLight)
+    scene.add(rightDirectionalLight)
+
+    scene.add(ambientLight)
+    scene.add(pointLight)
+
 
     controls.enabled = true
     controls.enablePan = false
@@ -2293,18 +2338,21 @@ if (phase == 0) {
     rightNameWallPosition.add(rightNameWall)
     scene.add(rightNameWallPosition)
 
-    scene.add(ambientLight)
-    scene.add(pointLight)
+    // scene.add(ambientLight)
+    // scene.add(pointLight)
 
     const firstAmbientLight = new THREE.AmbientLight(0x000000, 0.1)
     scene.add(firstAmbientLight)
 
+ 
+
     setTimeout(() => { 
         scene.remove(ambientLight)
         scene.remove(pointLight)
-
-        scene.add(leftDirectionalLight)
-        scene.add(rightDirectionalLight)
+        // scene.add(leftDirectionalLight)
+        // scene.add(rightDirectionalLight)
+        lightUp = true
+        resetLightTime = true
 
         isParallaxOn = true
     }, 1000)
@@ -2794,8 +2842,12 @@ const phaseChange1to0 = (left, right) => {
         scene.add(leftNameWallPosition)
         scene.add(rightNameWallPosition)
 
-        scene.remove(left)
-        scene.remove(right)
+        // scene.remove(left)
+        // scene.remove(right)
+        leftDirectionalLight.intensity = 0
+        rightDirectionalLight.intensity = 0
+        scene.add(left)
+        scene.add(right)
 
      
         currentLink = 0
@@ -2817,8 +2869,8 @@ const phaseChange1to0 = (left, right) => {
             scene.remove(ambientLight)
             scene.remove(pointLight)
 
-            scene.add(left)
-            scene.add(right)
+            lightUp = true
+            resetLightTime = true
 
             isLinkClickAllowed = true
         }, 2500)
