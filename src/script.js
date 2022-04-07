@@ -2226,7 +2226,9 @@ let currentColor = 1
 const directionalLightColors = [
     ['0xff0000', '0xffffff'],
     ['0xF95700', '0x00A4CC'],
-    ['0xD6ED17', '0x606060']
+    ['0xD6ED17', '0x606060'],
+    ['0xff2B33', '0xD05A7F'],
+    ['0xEEA47F', '0x00539C']
 ]
 
 const colorChangeRight = () => {
