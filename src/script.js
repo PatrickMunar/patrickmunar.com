@@ -15,14 +15,28 @@ let arrayIndex = 0
 let isModalOn = false
 let prevIndex = 0
 
+// Colors
+
+const directionalLightColors = [
+    ['0xff0000', '0xffffff', '#ff0000', '#ffffff'],
+    // ['0xF95700', '0x00A4CC', '#F95700', '#00A4CC'],
+    ['0xD6ED17', '0x606060', '#D6ED17', '#606060'],
+    ['0xff2B33', '0xD05A7F', '#ff2B33', '#D05A7F'],
+    ['0xF95700', '0x00539C', '#F95700', '#00539C'],
+    // ['0x5BfE51', '0xEA738D', '#5BfE51', '#EA738D'],
+    // ['0x2C88ff', '0xff321E', '#2C88ff', '#ff321E']
+]
+
+let currentColor = 0
+
 // Phase of the website
 let phase = 0
 
 // h1, h3
 const textArray = [
     ['Hello',
-    '...',
-    "..."],
+    'This is the introductory Page',
+    "blah blah blah blah"],
     ['',
     '...',
     "..."],
@@ -137,7 +151,7 @@ const generateNewCanvas = () => {
 
     // Scene
     const scene = new THREE.Scene()
-    scene.background = new THREE.Color(0xB90000)
+    scene.background = new THREE.Color(directionalLightColors[currentColor][2])
 
     // Resize
     const sizes = {
@@ -165,7 +179,7 @@ const generateNewCanvas = () => {
     const boxGeometry = new THREE.BoxGeometry( 0.7, 0.7, 0.7 )
     const boxEdges = new THREE.EdgesGeometry( boxGeometry )
     const boxLine = new THREE.LineSegments( boxEdges, new THREE.LineBasicMaterial( {
-        color: 0x000000,
+        color: directionalLightColors[currentColor][3],
         linewidth: 1
     } ) )
     boxLine.position.set(0,0.05,0)
@@ -174,7 +188,7 @@ const generateNewCanvas = () => {
     const coneGeometry = new THREE.BoxGeometry( 0.4, 0.4, 0.4 )
     const coneEdges = new THREE.EdgesGeometry( coneGeometry )
     const coneLine = new THREE.LineSegments( coneEdges, new THREE.LineBasicMaterial( {
-        color: 0x000000,
+        color: directionalLightColors[currentColor][3],
         linewidth: 1
     } ) )
     scene.add( coneLine )
@@ -183,7 +197,7 @@ const generateNewCanvas = () => {
     const box4Geometry = new THREE.BoxGeometry( 0.4, 0.4, 0.4 )
     const box4Edges = new THREE.EdgesGeometry( box4Geometry )
     const box4Line = new THREE.LineSegments( box4Edges, new THREE.LineBasicMaterial( {
-        color: 0x000000,
+        color: directionalLightColors[currentColor][3],
         linewidth: 1
     } ) )
     scene.add( box4Line )
@@ -192,7 +206,7 @@ const generateNewCanvas = () => {
     const sphereGeometry = new THREE.BoxGeometry( 0.7, 0.7, 0.7 )
     const sphereEdges = new THREE.EdgesGeometry( sphereGeometry )
     const sphereLine = new THREE.LineSegments( sphereEdges, new THREE.LineBasicMaterial( {
-        color: 0x000000,
+        color: directionalLightColors[currentColor][3],
         linewidth: 1
     } ) )
     sphereLine.position.set(-0.4,4,-6)
@@ -204,7 +218,23 @@ const generateNewCanvas = () => {
     // camera.rotation.y = Math.PI
     camera.position.set(0,0,5)
   
-    scene.add(camera)
+
+    // Mouse
+    const cursor = {}
+    cursor.x = 0
+    cursor.y = 0
+
+    window.addEventListener('mousemove', (event) =>
+    {
+        cursor.x = event.clientX / sizes.width - 0.5
+        cursor.y = event.clientY / sizes.height - 0.5
+
+    })
+
+    // Parallax Camera Group
+    const cameraGroup = new THREE.Group
+    cameraGroup.add(camera)
+    scene.add(cameraGroup)
 
 
     // Axes Helper
@@ -229,6 +259,7 @@ const generateNewCanvas = () => {
      * Animate
      */
     let prevTime = 0
+    let prevParallaxTime = 0
 
     const clock = new THREE.Clock()
 
@@ -236,6 +267,8 @@ const generateNewCanvas = () => {
     {
         const elapsedTime = clock.getElapsedTime()
         let deltaTime = elapsedTime - prevTime
+        let parallaxTIme = elapsedTime - prevParallaxTime
+        prevParallaxTime = elapsedTime
 
         // Animation
         boxLine.rotation.x += 0.003
@@ -259,6 +292,12 @@ const generateNewCanvas = () => {
         coneLine.rotation.z += 0.003
         sphereLine.position.y = Math.sin(elapsedTime-4)*0.04 + 4
 
+        // Parallax
+        const parallaxX = cursor.x * 0.5 * 0.075
+        const parallaxY = - cursor.y * 0.5
+        cameraGroup.position.x += ( parallaxX - cameraGroup.position.x ) * 2 * parallaxTIme
+        cameraGroup.position.y += ( parallaxY - cameraGroup.position.y ) * 2 * parallaxTIme
+        // // cameraGroup.position.z += ( - parallaxX - cameraGroup.position.z ) * 2 * parallaxTIme
 
         // Render
         renderer.render(scene, camera)
@@ -2251,27 +2290,34 @@ const switchJump = () => {
 const leftDirectionalLight = new THREE.DirectionalLight(0xff0000, 0)
 const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0)
 
-let currentColor = 1
 
-const directionalLightColors = [
-    ['0xff0000', '0xffffff'],
-    ['0xF95700', '0x00A4CC'],
-    ['0xD6ED17', '0x606060'],
-    ['0xff2B33', '0xD05A7F'],
-    ['0x00539C', '0xEEA47F'],
-    ['0x5BfE51', '0xEA738D'],
-    ['0xff321E', '0x2C88ff'],
-]
 
 const colorChangeRight = () => {
-    leftDirectionalLight.color.setHex(directionalLightColors[currentColor][0])
-    rightDirectionalLight.color.setHex(directionalLightColors[currentColor][1])
     if (currentColor < directionalLightColors.length - 1) {
         currentColor += 1
     }
     else {
         currentColor = 0
     }
+
+    document.styleSheets[3].cssRules[40].style.backgroundColor = directionalLightColors[currentColor][2]
+    document.styleSheets[3].cssRules[40].style.borderColor = directionalLightColors[currentColor][2]
+
+    document.styleSheets[3].cssRules[39].style.backgroundColor = directionalLightColors[currentColor][3]
+    document.styleSheets[3].cssRules[39].style.borderColor = directionalLightColors[currentColor][3]
+
+    // document.styleSheets[3].cssRules[14].style.color = directionalLightColors[currentColor][3]
+    // document.styleSheets[3].cssRules[15].style.color = directionalLightColors[currentColor][3]
+
+
+    document.styleSheets[3].cssRules[17].style.color = directionalLightColors[currentColor][2]
+
+
+    leftDirectionalLight.color.setHex(directionalLightColors[currentColor][0])
+    rightDirectionalLight.color.setHex(directionalLightColors[currentColor][1])  
+
+    // Strip
+    generateNewCanvas()
 } 
 
 console.log(leftDirectionalLight)
@@ -2291,6 +2337,7 @@ if (phase == 0) {
 
 
     controls.enabled = true
+    controls.enableZoom = false
     controls.enablePan = false
     controls.enableRotate = false
     controls.target.set(0,30,0)
@@ -2743,6 +2790,7 @@ const spinRightWall = () => {
 
 // Phase Change Sequence
 const phaseChange0to1 = (left, right) => {
+    clickCounter = 0
 
     setTimeout(() => {
         if (isPRotated == true) {
@@ -2796,10 +2844,9 @@ const phaseChange0to1 = (left, right) => {
             controls.target.set(0,0,0)
             controls.enableRotate = true
             controls.enablePan = true
+            controls.enableZoom = true
             controls.enabled = true    
             controls.saveState()   
-            
-     
 
             isLinkClickAllowed = true
         }, 2500)
@@ -2807,9 +2854,8 @@ const phaseChange0to1 = (left, right) => {
 }
 
 // Phase Change Sequence
-const phaseChange1to0 = (left, right) => {
-   
-    
+const phaseChange1to0 = (left, right) => { 
+    clickCounter = 0
 
     setTimeout(() => {
 
@@ -2884,6 +2930,7 @@ const phaseChange1to0 = (left, right) => {
             controls.target.set(0,30,0)
             controls.enableRotate = false
             controls.enablePan = false
+            controls.enableZoom = false
             controls.enabled = true
             controls.saveState()
 
@@ -2914,6 +2961,8 @@ const sidebarLinkThree = document.getElementById('sidebarLinkThree')
 const sidebarCircleOne = document.getElementById('sidebarCircleOne')
 const sidebarCircleTwo = document.getElementById('sidebarCircleTwo')
 const sidebarCircleThree = document.getElementById('sidebarCircleThree')
+
+// Clicking Links
 
 let currentLink = 0
 
@@ -2966,6 +3015,8 @@ sidebarLinkThree.addEventListener('click', () => {
     }
 })
 
+// Color Change
+    console.log(document.styleSheets[3])
 
 
 

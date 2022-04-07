@@ -46,8 +46,6 @@ body {
     position: absolute;
     outline: none;
     box-sizing: border-box;
-
-    /* border: 2px solid green; */
 }
 
 .infoModal {
@@ -96,30 +94,28 @@ body {
     font-size: 3.5rem;
     /* font-style: italic; */
     margin-bottom: 4rem;
-    font-weight: bold;
+    font-weight: bolder;
     
     /* text-shadow: 3px 3px 1px black; */
 }
 
 .h3Div {
-    font-size: 1.5rem;
+    font-size: 2rem;
     /* font-style: italic; */
     /* margin-left: 3vw; */
     text-align: right;
     /* text-shadow: 3px 3px 1px black; */
-    font-weight: bold;
-    color: white;
+    font-weight: bolder;
     margin-bottom: 3.5rem;
 }
 
 .h3Div2 {
-    font-size: 1.5rem;
+    font-size: 2rem;
     /* font-style: italic; */
     /* margin-left: 3vw; */
     text-align: left;
     /* text-shadow: 3px 3px 1px black; */
-    font-weight: bold;
-    color: white;
+    font-weight: bolder;
 }
 
 .redText {
@@ -134,8 +130,10 @@ body {
     right: 5rem;
     top: 5vh;
     background-color: #121617;
+    /* background-color: #eaeaea; */
+
     /* border-radius: 2rem 2rem 0rem 0rem; */
-    color: red;
+    color: white;
     box-sizing: border-box;
     /* display: none; */
     /* border: 2px solid blue;  */
@@ -151,14 +149,13 @@ body {
     top: 5vh;
     background-color: transparent;
     /* border-radius: 2rem 2rem 0rem 0rem; */
-    color: white;
+    color: black;
     /* text-shadow: 3px 3px 1px black; */
     box-sizing: border-box;
     /* display: none; */
     /* border: 2px solid blue;  */
     z-index: 100000;
     padding: 2rem;
-    text-shadow: 0.2rem 0.2rem 0.1rem black;
 
 }
 
@@ -172,7 +169,8 @@ body {
     right: 1vh;
     top: 1vh;
     cursor: pointer;
-    color: white;
+    color: rgb(185, 0, 0);
+    font-weight: bold;
 }
 
 .display {
