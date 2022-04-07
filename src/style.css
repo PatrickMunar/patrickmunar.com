@@ -82,7 +82,7 @@ body {
     /* right: 10vh; */
     left: 2rem;
     top: 0;
-    background-color: rgb(185, 0, 0);
+    background-color: #ff0000;
     box-sizing: border-box;
     overflow: hidden;
     z-index: 200;
@@ -169,7 +169,7 @@ body {
     right: 1vh;
     top: 1vh;
     cursor: pointer;
-    color: rgb(185, 0, 0);
+    color: #ff0000;
     font-weight: bold;
 }
 
