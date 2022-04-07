@@ -294,27 +294,39 @@ scene.background = new THREE.Color(0x000000)
 /**
  * Loaders
  */
+// Loading Manager
+const loadingManager = new THREE.LoadingManager(
+    // Loaded
+    () => {
+        console.log('loaded')
+    },
+    // Progress
+    () => {
+        console.log('progress')
+    }
+)
+
 // Texture loader
 const textureLoader = new THREE.TextureLoader()
 
-const offLaptopTexture = textureLoader.load(
-    'OffLaptop.jpg'
-)
+// const offLaptopTexture = textureLoader.load(
+//     'OffLaptop.jpg'
+// )
 
-const offLaptopMaterial = new THREE.MeshStandardMaterial({
-    map: offLaptopTexture
-})
+// const offLaptopMaterial = new THREE.MeshStandardMaterial({
+//     map: offLaptopTexture
+// })
 
-const whiteMaterial = new THREE.MeshStandardMaterial({
-    color: 'white'
-})
+// const whiteMaterial = new THREE.MeshStandardMaterial({
+//     color: 'white'
+// })
 
 // Draco loader
 const dracoLoader = new DRACOLoader()
 dracoLoader.setDecoderPath('draco/')
 
 // GLTF loader
-const gltfLoader = new GLTFLoader()
+const gltfLoader = new GLTFLoader(loadingManager)
 gltfLoader.setDRACOLoader(dracoLoader)
 
 // Font Loader
@@ -420,7 +432,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         leftNameWall.add(obj.scene)
         // obj.scene.castShadow = true
         // obj.scene.children[0].castShadow = true
@@ -443,7 +455,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         rightNameWall.add(obj.scene)
         // obj.scene.castShadow = true
         // obj.scene.children[0].castShadow = true
@@ -466,7 +478,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         P.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -490,7 +502,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         A.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -514,7 +526,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         T.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -538,7 +550,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         R.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -562,7 +574,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         I.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -586,7 +598,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         C.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -610,7 +622,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         K.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -637,7 +649,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         DBGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -660,7 +672,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         DBGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -683,7 +695,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         headphoneGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -706,7 +718,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         headphoneGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -729,7 +741,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         switchDock.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -752,7 +764,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         joyConGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -775,7 +787,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         joyConGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -798,7 +810,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         joyConGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -822,7 +834,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         switchScreen.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -846,7 +858,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         switchGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -869,7 +881,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         sablayGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -892,7 +904,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         hookbase.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -915,7 +927,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         chessboardGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -938,7 +950,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         chessboardGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -961,7 +973,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         chessboardGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -984,7 +996,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         chessboardGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1007,7 +1019,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         skateboardGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1030,7 +1042,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         skateboardGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1053,7 +1065,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         skateboardGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1076,7 +1088,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         skateboardGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1099,7 +1111,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         footballGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1122,7 +1134,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         footballGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1145,7 +1157,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         mousepad.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1168,7 +1180,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1191,7 +1203,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         laptopGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1219,7 +1231,7 @@ gltfLoader.load(
         // room.scene.rotation.y = Math.PI * 0.25
         
 
-        console.log(obj)
+        // console.log(obj)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1243,7 +1255,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         wallsandfloor.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1266,7 +1278,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         staticStairsGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1288,7 +1300,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         topDrawer.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1310,7 +1322,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         midDrawer.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1332,7 +1344,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         botDrawer.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1354,7 +1366,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         topBedframeGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1377,7 +1389,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         topBedframeGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1400,7 +1412,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         wallsandfloor.add(obj.scene)
         obj.scene.castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1422,7 +1434,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         topBedframeGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1444,7 +1456,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         bottomBedframeGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1466,7 +1478,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         bottomBedframeGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1489,7 +1501,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         staticStairsGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1512,7 +1524,7 @@ gltfLoader.load(
         // room.scene.position.set(-1,0,5)
         // room.scene.rotation.y = Math.PI * 0.25
 
-        console.log(obj)
+        // console.log(obj)
         topBedframeGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1923,9 +1935,9 @@ let prevParallaxTime = 0
 let firstCurrentIntersect = null
 let isParallaxOn = false
 
-let lightUp = false
-let lightTime = 0
-let resetLightTime = false
+// let lightUp = false
+// let lightTime = 0
+// let resetLightTime = false
 
 const clock = new THREE.Clock()
 
@@ -2026,20 +2038,19 @@ const tick = () =>
         }
     // }
 
-    if (lightUp == true) {
-        console.log(leftDirectionalLight.intensity)
-        if (resetLightTime == true) {
-            lightTime = elapsedTime
-            resetLightTime = false
-        }
-        if (leftDirectionalLight.intensity < 0.6) {
-            leftDirectionalLight.intensity = (elapsedTime - lightTime) * 0.2
-            rightDirectionalLight.intensity = (elapsedTime - lightTime) * 0.2
-        }
-        else {
-            lightUp = false
-        }
-    }
+    // if (lightUp == true) {
+    //     if (resetLightTime == true) {
+    //         lightTime = elapsedTime
+    //         resetLightTime = false
+    //     }
+    //     if (leftDirectionalLight.intensity < 0.6) {
+    //         leftDirectionalLight.intensity = (elapsedTime - lightTime) * 0.2
+    //         rightDirectionalLight.intensity = (elapsedTime - lightTime) * 0.2
+    //     }
+    //     else {
+    //         lightUp = false
+    //     }
+    // }
     
 
     // Update controls
@@ -2263,6 +2274,13 @@ const colorChangeRight = () => {
     }
 } 
 
+console.log(leftDirectionalLight)
+
+const lightUp = () => {
+    gsap.to(leftDirectionalLight, {ease: 'Power3.easeOut', duration: 2, intensity: 0.7})
+    gsap.to(rightDirectionalLight, {ease: 'Power3.easeOut', duration: 2, intensity: 0.7})
+}
+
 if (phase == 0) {
     
     scene.add(leftDirectionalLight)
@@ -2329,8 +2347,7 @@ if (phase == 0) {
         scene.remove(pointLight)
         // scene.add(leftDirectionalLight)
         // scene.add(rightDirectionalLight)
-        lightUp = true
-        resetLightTime = true
+        lightUp()
 
         isParallaxOn = true
     }, 1000)
@@ -2875,8 +2892,7 @@ const phaseChange1to0 = (left, right) => {
             scene.remove(ambientLight)
             scene.remove(pointLight)
 
-            lightUp = true
-            resetLightTime = true
+            lightUp()
 
             isLinkClickAllowed = true
         }, 2500)
