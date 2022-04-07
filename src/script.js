@@ -403,10 +403,6 @@ allObjects.position.set (0,-2,0)
 DBGroup.position.set(-2.25,2.65,-2)
 DBGroup.rotation.y = Math.PI*45/180
 
-
-
-
-
 // GLTF Loader for Phase 0
 
 gltfLoader.load(
@@ -1627,9 +1623,11 @@ galaxy.position.y = -1.10
 
 
 // Lighting
+// const ambientLight = new THREE.AmbientLight(0xaa00ff, 0.1)
 const ambientLight = new THREE.AmbientLight(0xaa00ff, 0.1)
+
 const offAmbientLight = new THREE.AmbientLight(0xaaaaff, 0.3)
-scene.add(ambientLight)
+// scene.add(ambientLight)
 
 
 const pointLight = new THREE.PointLight(0x1100ff, 1)
@@ -1654,7 +1652,7 @@ offPointLight.shadow.camera.far = 30
 offPointLight.shadow.normalBias = 0.05
 // offPointLight.shadow.radius = 5
 
-scene.add(pointLight)
+// scene.add(pointLight)
 
 const rectAreaLight = new THREE.RectAreaLight(0x2222ff, 2000, 0.15, 0.1)
 rectAreaLight.position.set(-1.25,0,-1.75)
@@ -2058,7 +2056,7 @@ const hoverTopBedframeGroup = () => {
     }, 1000)
 
     
-    gsap.to(topBedframeGroup.position, {duration: 1, delay: 0.5, y: 4})
+    gsap.to(topBedframeGroup.position, {duration: 1, delay: 0, y: 4})
     // moveObjects()
 }
 
@@ -2069,8 +2067,8 @@ const topDrawerOut = () => {
     }, 1000)
 
     
-    gsap.to(topDrawer.position, {duration: 1, delay: 1, z: 13*0.05})
-    gsap.to(topDrawer.position, {duration: 1, delay: 3, z: 0})
+    gsap.to(topDrawer.position, {duration: 1, delay: 0, z: 13*0.05})
+    gsap.to(topDrawer.position, {duration: 1, delay: 2, z: 0})
 }
 
 const midDrawerOut = () => {
@@ -2080,8 +2078,8 @@ const midDrawerOut = () => {
     }, 1000)
 
     
-    gsap.to(midDrawer.position, {duration: 1, delay: 1, z: 13*0.05})
-    gsap.to(midDrawer.position, {duration: 1, delay: 3, z: 0})
+    gsap.to(midDrawer.position, {duration: 1, delay: 0, z: 13*0.05})
+    gsap.to(midDrawer.position, {duration: 1, delay: 2, z: 0})
 }
 
 const botDrawerOut = () => {
@@ -2091,8 +2089,8 @@ const botDrawerOut = () => {
     }, 1000)
 
     
-    gsap.to(botDrawer.position, {duration: 1, delay: 1, z: 13*0.05})
-    gsap.to(botDrawer.position, {duration: 1, delay: 3, z: 0})
+    gsap.to(botDrawer.position, {duration: 1, delay: 0, z: 13*0.05})
+    gsap.to(botDrawer.position, {duration: 1, delay: 2, z: 0})
 }
 
 const lightLaptop = () => {
@@ -2163,15 +2161,15 @@ const floatFootball = () => {
     
 
     gsap.set(footballGroup.rotation, {z: - Math.PI*40/180, x: 0})
-    gsap.to(footballGroup.position, {ease: 'Power3.easeOut', duration: 0.75, delay: 0.5, y: 4})
-    gsap.to(footballGroup.position, {ease: 'Power3.easeIn', duration: 0.75, delay: 1.25, y: 2.8})
+    gsap.to(footballGroup.position, {ease: 'Power3.easeOut', duration: 0.75, delay: 0, y: 4})
+    gsap.to(footballGroup.position, {ease: 'Power3.easeIn', duration: 0.75, delay: 0.75, y: 2.8})
 
-    gsap.to(footballGroup.rotation, {ease: 'Power3.easeOut',duration: 0.5, delay: 0.5, x: - Math.PI*45/180})
-    gsap.to(footballGroup.rotation, {duration: 1.4, delay: 0.5, z: Math.PI*2*4 - Math.PI*40/180})
-    gsap.to(footballGroup.rotation, {ease: 'Power1.easeIn', duration: 0.5, delay: 1, x: Math.PI*45/180})
+    gsap.to(footballGroup.rotation, {ease: 'Power3.easeOut',duration: 0.5, delay: 0, x: - Math.PI*45/180})
+    gsap.to(footballGroup.rotation, {duration: 1.4, delay: 0, z: Math.PI*2*4 - Math.PI*40/180})
+    gsap.to(footballGroup.rotation, {ease: 'Power1.easeIn', duration: 0.5, delay: 0.5, x: Math.PI*45/180})
  
     
-    gsap.to(footballGroup.rotation, {ease: 'Power1.easeInOut', duration: 0.25, delay: 1.9, x: 0})
+    gsap.to(footballGroup.rotation, {ease: 'Power1.easeInOut', duration: 0.25, delay: 1.4, x: 0})
 
     // moveObjects()
 }
@@ -2184,9 +2182,9 @@ const flipBoard = () => {
 
     
     gsap.set(skateboardGroup.rotation, {z: Math.PI, y: 0})
-    gsap.to(skateboardGroup.position, {ease: 'Power1.easeOut', duration: 0.6, delay: 0.5, y: 1})
-    gsap.to(skateboardGroup.rotation, {ease: 'Power0.easeNone', duration: 1, delay: 0.55, z: Math.PI*2 + Math.PI, y: Math.PI*2})
-    gsap.to(skateboardGroup.position, {ease: 'Power1.easeIn', duration: 0.45, delay: 1.0, y: 6.1*0.05})
+    gsap.to(skateboardGroup.position, {ease: 'Power1.easeOut', duration: 0.6, delay: 0, y: 1})
+    gsap.to(skateboardGroup.rotation, {ease: 'Power0.easeNone', duration: 1, delay: 0.05, z: Math.PI*2 + Math.PI, y: Math.PI*2})
+    gsap.to(skateboardGroup.position, {ease: 'Power1.easeIn', duration: 0.45, delay: 0.5, y: 6.1*0.05})
 
     // moveObjects()
 }
@@ -2198,35 +2196,32 @@ const switchJump = () => {
     }, 1000)
 
     
-    gsap.to(joyConGroup.position, {ease: 'Power1.easeOut', duration: 1, delay: 0.5, y: 0.5})
-    gsap.to(joyConGroup.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 1.5, y: 0})
-    gsap.to(switchGroup.position, {ease: 'Power1.easeOut', duration: 0.5, delay: 1, y: 0.5})
-    gsap.to(switchGroup.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 1.5, y: 0})
-    gsap.to(switchScreen.position, {ease: 'Power1.easeOut', duration: 0.5, delay: 1, y: 0.5})
-    gsap.to(switchScreen.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 1.5, y: 0})
+    gsap.to(joyConGroup.position, {ease: 'Power1.easeOut', duration: 1, delay: 0, y: 0.5})
+    gsap.to(joyConGroup.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 1, y: 0})
+    gsap.to(switchGroup.position, {ease: 'Power1.easeOut', duration: 0.5, delay: 0.5, y: 0.5})
+    gsap.to(switchGroup.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 1, y: 0})
+    gsap.to(switchScreen.position, {ease: 'Power1.easeOut', duration: 0.5, delay: 0.5, y: 0.5})
+    gsap.to(switchScreen.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 1, y: 0})
 
     setTimeout(() => {
         switchScreen.children[0].children[0].material.emissive.r = 1
         switchScreen.children[0].children[0].material.emissive.g = 1
         switchScreen.children[0].children[0].material.emissive.b = 1
-    }, 1350)
+    }, 850)
 
     setTimeout(() => {
         switchScreen.children[0].children[0].material.emissive.r = 0
         switchScreen.children[0].children[0].material.emissive.g = 0
         switchScreen.children[0].children[0].material.emissive.b = 0
-    }, 1950)
+    }, 1450)
 
 }
 
 // Global Light Phase 0
-const leftDirectionalLight = new THREE.DirectionalLight(0xff0000, 0.3)
-const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0.3)
-
-
+const leftDirectionalLight = new THREE.DirectionalLight(0xff0000, 0.8)
+const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0.8)
 
 if (phase == 0) {
-
 
     controls.enabled = true
     controls.enablePan = false
@@ -2271,12 +2266,19 @@ if (phase == 0) {
     rightNameWallPosition.add(rightNameWall)
     scene.add(rightNameWallPosition)
 
-    const firstAmbientLight = new THREE.AmbientLight(0x000000, 1)
+    scene.add(ambientLight)
+    scene.add(pointLight)
+
+    const firstAmbientLight = new THREE.AmbientLight(0x110044, 0.1)
     scene.add(firstAmbientLight)
 
-    setTimeout(() => {
+    setTimeout(() => { 
+        scene.remove(ambientLight)
+        scene.remove(pointLight)
+
         scene.add(leftDirectionalLight)
         scene.add(rightDirectionalLight)
+
         isParallaxOn = true
     }, 1000)
     
@@ -2647,6 +2649,8 @@ const phaseChange0to1 = (left, right) => {
 
         scene.remove(left)
         scene.remove(right)
+        scene.add(ambientLight)
+        scene.add(pointLight)
 
         phase = 1
         currentLink = 1
@@ -2662,13 +2666,18 @@ const phaseChange0to1 = (left, right) => {
             controls.enableRotate = true
             controls.enablePan = true
             controls.enabled = true    
-            controls.saveState()        
+            controls.saveState()   
+            
+     
+
+            isLinkClickAllowed = true
         }, 2500)
     }, 200)
 }
 
 // Phase Change Sequence
 const phaseChange1to0 = (left, right) => {
+   
     
 
     setTimeout(() => {
@@ -2677,6 +2686,12 @@ const phaseChange1to0 = (left, right) => {
         screenGroup.children[0].children[0].material.emissive.g = 0
         screenGroup.children[0].children[0].material.emissive.b = 0
         scene.remove(rectAreaLight)
+
+        scene.remove(offAmbientLight)
+        scene.remove(offPointLight)
+        
+        scene.add(ambientLight)
+        scene.add(pointLight)
 
         controls.reset()
 
@@ -2719,15 +2734,10 @@ const phaseChange1to0 = (left, right) => {
         scene.add(leftNameWallPosition)
         scene.add(rightNameWallPosition)
 
-        scene.remove(offAmbientLight)
-        scene.remove(offPointLight)
-        scene.add(ambientLight)
-        scene.add(pointLight)
-
         scene.remove(left)
         scene.remove(right)
 
-        phase = 0
+     
         currentLink = 0
 
         gsap.to(camera.position, {duration: 2, delay: 0.5, x: 5*zoomFactor, y: 35, z: 5*zoomFactor})
@@ -2742,13 +2752,28 @@ const phaseChange1to0 = (left, right) => {
             controls.enabled = true
             controls.saveState()
 
+            phase = 0
+
+            scene.remove(ambientLight)
+            scene.remove(pointLight)
+
             scene.add(left)
             scene.add(right)
+
+            isLinkClickAllowed = true
         }, 2500)
     }, 200)
 }
 
+// Phase Change 1 to 2
+const phaseChange1to2 = () => {
+    
+}
+
+
 // Side Bar
+let isLinkClickAllowed = true
+
 const sidebarLinkOne = document.getElementById('sidebarLinkOne')
 const sidebarLinkTwo = document.getElementById('sidebarLinkTwo')
 const sidebarLinkThree = document.getElementById('sidebarLinkThree')
@@ -2759,32 +2784,52 @@ const sidebarCircleThree = document.getElementById('sidebarCircleThree')
 let currentLink = 0
 
 sidebarLinkOne.addEventListener('click', () => {
-    if (currentLink == 1) {
-        phaseChange1to0(leftDirectionalLight, rightDirectionalLight)
-    }
 
-    setTimeout(() => {
-        sidebarCircleOne.classList.add('current')
-        sidebarCircleTwo.classList.remove('current')
-        sidebarCircleThree.classList.remove('current')
-    }, 500)
+    if (isLinkClickAllowed == true) {
+        isLinkClickAllowed = false
+        if (currentLink == 1) {
+            phaseChange1to0(leftDirectionalLight, rightDirectionalLight)
+        }
+    
+        setTimeout(() => {
+            sidebarCircleOne.classList.add('current')
+            sidebarCircleTwo.classList.remove('current')
+            sidebarCircleThree.classList.remove('current')
+        }, 500)
+    }
 })
 sidebarLinkTwo.addEventListener('click', () => {
-    if (currentLink == 0) {
-        phaseChange0to1(leftDirectionalLight, rightDirectionalLight)
-    }
 
-    setTimeout(() => {
-        sidebarCircleOne.classList.remove('current')
-        sidebarCircleTwo.classList.add('current')
-        sidebarCircleThree.classList.remove('current')
-    }, 500)
+    if (isLinkClickAllowed == true) {
+        isLinkClickAllowed = false
+        if (currentLink == 0) {
+            phaseChange0to1(leftDirectionalLight, rightDirectionalLight)
+        }
+    
+        setTimeout(() => {
+            sidebarCircleOne.classList.remove('current')
+            sidebarCircleTwo.classList.add('current')
+            sidebarCircleThree.classList.remove('current')
+        }, 500)
+    }    
 })
 sidebarLinkThree.addEventListener('click', () => {
-    setTimeout(() => {
-        sidebarCircleOne.classList.remove('current')
-        sidebarCircleTwo.classList.remove('current')
-        sidebarCircleThree.classList.add('current')
-    }, 500)
+  
+    if (isLinkClickAllowed == true) {
+        isLinkClickAllowed = false
+        if (currentLink == 1) {
+            phaseChange1to2()
+        }
+
+        setTimeout(() => {
+            sidebarCircleOne.classList.remove('current')
+            sidebarCircleTwo.classList.remove('current')
+            sidebarCircleThree.classList.add('current')
+        }, 500)
+    }
 })
+
+
+
+
 

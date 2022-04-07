@@ -360,12 +360,16 @@ body {
 }
 
 .sidebarCircle {
-    width: 0.5rem;
-    height: 0.5rem;
+    width: 0.25rem;
+    height: 0.25rem;
     border-radius: 50%;
-    border: 2px solid white;
+    border: 1px solid white;
+    background-color: white;
 }
 
 .current {
-    background-color: white;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: rgb(185, 0, 0);
+    border-color: rgb(185, 0, 0);
 }
