@@ -146,6 +146,8 @@ closer.addEventListener('click', () => {
 // -------------------------------------------------------------------------------------------------
 
 const generateNewCanvas = () => {
+    let prevCurrentColor = 0
+
     // Canvas
     const canvas = document.querySelector('canvas.miniWebGL')
 
@@ -269,6 +271,15 @@ const generateNewCanvas = () => {
         let deltaTime = elapsedTime - prevTime
         let parallaxTIme = elapsedTime - prevParallaxTime
         prevParallaxTime = elapsedTime
+
+        // colorChange
+        if (currentColor !== prevCurrentColor) {
+            scene.background = new THREE.Color(directionalLightColors[currentColor][2])
+            boxLine.material.color = new THREE.Color(directionalLightColors[currentColor][3])
+            coneLine.material.color = new THREE.Color(directionalLightColors[currentColor][3])
+            box4Line.material.color = new THREE.Color(directionalLightColors[currentColor][3])
+            sphereLine.material.color = new THREE.Color(directionalLightColors[currentColor][3])
+        }
 
         // Animation
         boxLine.rotation.x += 0.003
@@ -1993,11 +2004,11 @@ const tick = () =>
     if (phase == 0) {
         // Parallax
         if (isParallaxOn == true) {
-            // // const parallaxX = cursor.x * 0.5
-            const parallaxY = - cursor.y * zoomFactor * zoomFactor
-            // // cameraGroup.position.x += ( parallaxX - cameraGroup.position.x ) * 2 * parallaxTIme
+            const parallaxX = cursor.x * 0.5
+            const parallaxY = - cursor.y * 0.5
+            cameraGroup.position.x += ( parallaxX - cameraGroup.position.x ) * 2 * parallaxTIme
             cameraGroup.position.y += ( parallaxY - cameraGroup.position.y ) * 2 * parallaxTIme
-            // // cameraGroup.position.z += ( - parallaxX - cameraGroup.position.z ) * 2 * parallaxTIme
+            cameraGroup.position.z += ( - parallaxX - cameraGroup.position.z ) * 2 * parallaxTIme
         }
 
         // Arrow bobbles
@@ -2318,8 +2329,8 @@ const colorChangeRight = () => {
     leftDirectionalLight.color.setHex(directionalLightColors[currentColor][0])
     rightDirectionalLight.color.setHex(directionalLightColors[currentColor][1])  
 
-    // Strip
-    generateNewCanvas()
+    // // Strip
+    // generateNewCanvas()
 } 
 
 console.log(leftDirectionalLight)
@@ -2338,7 +2349,7 @@ if (phase == 0) {
     scene.add(pointLight)
 
 
-    controls.enabled = true
+    controls.enabled = false
     controls.enableZoom = false
     controls.enablePan = false
     controls.enableRotate = false
@@ -2780,7 +2791,7 @@ const spinRightWall = () => {
     isAnimationPlaying = true
     setTimeout(() => {
         colorChangeRight()
-    }, 500)
+    }, 0)
 
     setTimeout(() => {
         isAnimationPlaying = false
@@ -2793,6 +2804,11 @@ const spinRightWall = () => {
 // Phase Change Sequence
 const phaseChange0to1 = (left, right) => {
     clickCounter = 0
+
+    phase = 1
+
+    cameraGroup.position.set(0,0,0)
+
 
     setTimeout(() => {
         if (isPRotated == true) {
@@ -2833,7 +2849,7 @@ const phaseChange0to1 = (left, right) => {
         scene.add(ambientLight)
         scene.add(pointLight)
 
-        phase = 1
+
         currentLink = 1
 
         gsap.to(camera.position, {duration: 2, delay: 0.5, x: 9*zoomFactor, y: 9, z: 9*zoomFactor})
@@ -2933,7 +2949,7 @@ const phaseChange1to0 = (left, right) => {
             controls.enableRotate = false
             controls.enablePan = false
             controls.enableZoom = false
-            controls.enabled = true
+            controls.enabled = false
             controls.saveState()
 
             phase = 0
