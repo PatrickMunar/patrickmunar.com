@@ -2312,6 +2312,8 @@ const colorChangeRight = () => {
 
     document.styleSheets[3].cssRules[17].style.color = directionalLightColors[currentColor][2]
 
+    document.styleSheets[3].cssRules[9].style.backgroundColor = directionalLightColors[currentColor][2]
+
 
     leftDirectionalLight.color.setHex(directionalLightColors[currentColor][0])
     rightDirectionalLight.color.setHex(directionalLightColors[currentColor][1])  
