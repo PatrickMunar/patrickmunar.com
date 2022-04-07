@@ -35,8 +35,8 @@ let phase = 0
 // h1, h3
 const textArray = [
     ['Hello',
-    'This is the introductory Page',
-    "blah blah blah blah"],
+    '...',
+    "..."],
     ['',
     '...',
     "..."],
