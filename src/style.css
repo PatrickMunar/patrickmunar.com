@@ -392,11 +392,12 @@ body {
     height: 5px;
     width: 200px;
     background-color: white;
+    overflow: hidden;
 }
 
 #loadingBar {
     width: 200px;
-    height: 5px;
+    height: 10px;
     background-color: red;
     transform: scaleX(0);
     transform-origin: left;
