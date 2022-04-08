@@ -37,8 +37,8 @@ let phase = 0
 // h1, h3
 const textArray = [
     ['Hello',
-    '...',
-    "..."],
+    'This is a sample text',
+    "This is also a sample text"],
     ['',
     '...',
     "..."],
@@ -168,6 +168,7 @@ const generateNewCanvas = () => {
         // Update sizes
         sizes.width = window.innerWidth*7.5/100*1.25
         sizes.height = window.innerHeight*0.95
+        
     
         // Update camera
         camera.aspect = window.innerWidth*7.5/100*1.25 / window.innerHeight*0.95
@@ -338,6 +339,14 @@ if (isNewCanvasOn) {
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
+
+canvas.addEventListener('mousedown', () => {
+    canvas.style.cursor = 'grabbing'
+})
+
+canvas.addEventListener('mouseup', () => {
+    canvas.style.cursor = 'grab'
+})
 
 // Scene
 const scene = new THREE.Scene()
@@ -1749,7 +1758,10 @@ const sizes = {
     height: window.innerHeight
 }
 
-if(window.innerHeight > window.innerWidth){
+let isPortrait = false
+let isPhaseChanging = false
+
+if(window.innerHeight > window.innerWidth) {
     if (window.innerWidth <= 320) {
         zoomFactor = 5
     }
@@ -1768,10 +1780,78 @@ if(window.innerHeight > window.innerWidth){
     else {
         zoomFactor = 1
     }
+    isPortrait = true
 }
 
-window.addEventListener('resize', () =>
-{
+console.log(zoomFactor)
+
+
+window.addEventListener('resize', () => {
+    if (isPhaseChanging == false) {
+        if (isPortrait == true) {
+            if (window.innerHeight < window.innerWidth) {
+                console.log(zoomFactor)
+                
+                camera.position.x = camera.position.x/zoomFactor
+                camera.position.z = camera.position.z/zoomFactor
+                camera.position.y = camera.position.y
+                if (phase == 0) {
+                    camera.lookAt(0,30,0)
+                }
+                if (phase == 1) {
+                    camera.position.set(9,9,9)
+    
+                    controls.saveState()
+                }
+                zoomFactor = 1
+            }
+            isPortrait = false
+        }
+        else if (isPortrait == false) {
+            if(window.innerHeight > window.innerWidth) {
+                if (window.innerWidth <= 320) {
+                    zoomFactor = 5
+                }
+                else if (window.innerWidth > 320 && window.innerWidth <= 375) {
+                    zoomFactor = 4.5
+                }
+                else if (window.innerWidth > 375 && window.innerWidth <= 425) {
+                    zoomFactor = 4
+                }
+                else if (window.innerWidth > 425 && window.innerWidth <= 750) {
+                    zoomFactor = 3
+                }
+                else if (window.innerWidth > 750 && window.innerWidth <= 950) {
+                    zoomFactor = 2.5
+                }
+                else {
+                    zoomFactor = 1
+                }
+                camera.position.x = camera.position.x*zoomFactor
+                camera.position.z = camera.position.z*zoomFactor
+                camera.position.y = camera.position.y
+    
+                if (phase == 0) {
+                    camera.lookAt(0,30,0)
+                }
+                if (phase == 1) {
+                    camera.position.set(9*zoomFactor,9,9*zoomFactor)
+    
+                    controls.saveState()
+                }            
+            }
+            isPortrait = true
+        }
+    }
+
+    if (window.innerHeight < window.innerWidth) {
+        isPortrait = false
+    }
+
+    else if (window.innerHeight > window.innerWidth) {
+        isPortrait = true
+    }
+    
     // Update sizes
     sizes.width = window.innerWidth
     sizes.height = window.innerHeight
@@ -1999,7 +2079,6 @@ const tick = () =>
         controls.update()
     }
 
-
     // Render
     renderer.render(scene, camera)
 
@@ -2192,7 +2271,7 @@ const switchJump = () => {
 const leftDirectionalLight = new THREE.DirectionalLight(0xff0000, 0)
 const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0)
 
-// console.log(document.styleSheets[3].cssRules)
+
 // console.log(document.styleSheets[3].cssRules[45].style.textShadow)
 
 const colorChangeRight = () => {
@@ -2215,6 +2294,11 @@ const colorChangeRight = () => {
 
     document.styleSheets[3].cssRules[44].style.color = directionalLightColors[currentColor][2]
     document.styleSheets[3].cssRules[45].style.color = directionalLightColors[currentColor][3]
+
+    document.styleSheets[3].cssRules[46].style.color = directionalLightColors[currentColor][2]
+    document.styleSheets[3].cssRules[49].style.color = directionalLightColors[currentColor][3]
+
+    console.log(document.styleSheets[3].cssRules[48])
 
     leftDirectionalLight.color.setHex(directionalLightColors[currentColor][0])
     rightDirectionalLight.color.setHex(directionalLightColors[currentColor][1])  
@@ -2329,6 +2413,10 @@ if (phase == 0) {
 
  // RayCasting
 let isAnimationPlaying = false
+const turnLaptopOn = document.getElementById('turnLaptopOn')
+let isTextAtTheBottom = false
+let isItEverOn = false
+
 
 window.addEventListener('click', () => {
     if (isAnimationPlaying == false && noClicks == false) {
@@ -2402,6 +2490,15 @@ window.addEventListener('click', () => {
                         if (clickCounter%2 == 0) {
                             if (isLaptopOn == false) {
                                 lightLaptop()
+
+                                if (isItEverOn == false) {
+                                    gsap.to(turnLaptopOn, {duration: 1, opacity: 0})
+                                    setTimeout(() => {
+                                        turnLaptopOn.style.display = 'none'
+                                    }, 1000)
+                                    isItEverOn = true
+                                    isTextAtTheBottom = false
+                                }
         
                                 setTimeout(() => {
                                     arrayIndex = 0
@@ -2688,14 +2785,133 @@ const spinRightWall = () => {
     gsap.to(rightNameWall.rotation, {duration: 1, z: Math.PI + rightNameWall.rotation.x})
 }
 
+
+// Side Bar
+let isArrowClickAllowed = true
+
+
+const sidebarCircleOne = document.getElementById('sidebarCircleOne')
+const sidebarCircleTwo = document.getElementById('sidebarCircleTwo')
+const sidebarCircleThree = document.getElementById('sidebarCircleThree')
+const upArrow = document.getElementById('up')
+const downArrow = document.getElementById('down')
+
+
+// Clicking Links
+
+let currentLink = 0
+
+upArrow.addEventListener('click', () => {
+    if (isArrowClickAllowed == true && noClicks == false) {
+        if (currentLink == 1) {
+            isArrowClickAllowed = false
+            phaseChange1to0(leftDirectionalLight, rightDirectionalLight, zoomFactor)
+
+            setTimeout(() => {
+                sidebarCircleOne.classList.add('current')
+                sidebarCircleTwo.classList.remove('current')
+                sidebarCircleThree.classList.remove('current')
+               
+            }, 500)
+        }
+        else if (currentLink == 2) {
+            // Temporary
+            currentLink = 1
+            setTimeout(() => {
+                sidebarCircleOne.classList.remove('current')
+                sidebarCircleTwo.classList.add('current')
+                sidebarCircleThree.classList.remove('current')
+               
+            }, 500)
+        }
+    }
+})
+
+downArrow.addEventListener('click', () => {
+    if (isArrowClickAllowed == true && noClicks == false) {
+        if (currentLink == 0) {
+            isArrowClickAllowed = false
+            phaseChange0to1(leftDirectionalLight, rightDirectionalLight, zoomFactor)
+
+            setTimeout(() => {
+                sidebarCircleOne.classList.remove('current')
+                sidebarCircleTwo.classList.add('current')
+                sidebarCircleThree.classList.remove('current')
+            }, 500)
+        }
+        else if (currentLink == 1) {
+            // Temporary
+            currentLink = 2
+            setTimeout(() => {
+                sidebarCircleOne.classList.remove('current')
+                sidebarCircleTwo.classList.remove('current')
+                sidebarCircleThree.classList.add('current')
+               
+            }, 500)
+        }
+    }
+})
+
+// instructionsText
+let isRightFlipped = true
+
+const instructionsText = document.getElementById('instructionsText')
+const instructionsBar= document.getElementById('instructionsBar')
+
+
+const instructionsTextArray = [
+    'Tap objects twice to interact with them.',
+    'Pan, Rotate & Zoom to get a better look.'
+]
+
+const changeInstructions = (index) => {
+    instructionsText.innerText = instructionsTextArray[index]
+}
+
+const rightDiv = document.getElementById('rightDiv')
+const rightArrow = document.getElementById('right')
+
+let closedOnOne = false
+let closedOnTwo = false
+let closedOnThree = false
+
+rightDiv.addEventListener('click', () => {
+    if (isRightFlipped == true) {
+        gsap.to(instructionsBar, {duration: 0.5, x:'-32.5rem'})
+
+        rightArrow.classList.remove('flipped')
+        isRightFlipped = false
+
+        closeChecker(phase)
+    }
+    else if (isRightFlipped == false) {
+        gsap.to(instructionsBar, {duration: 0.5, x:'0rem'})
+
+        rightArrow.classList.add('flipped')
+        isRightFlipped = true
+    }
+})
+
 // Phase Change Sequence
-const phaseChange0to1 = (left, right) => {
+const phaseChange0to1 = (left, right, zf) => {
+    isPhaseChanging = true
     clickCounter = 0
 
     phase = 1
 
-    cameraGroup.position.set(0,0,0)
+    changeInstructions(phase)
 
+    if (closedOnTwo == false) {
+        setTimeout(() => {
+            if (isRightFlipped == false) {
+                gsap.to(instructionsBar, {duration: 0.5, x:'0rem'})
+                rightArrow.classList.add('flipped')
+                isRightFlipped = true
+            }
+        }, 1000)
+    }
+    
+    cameraGroup.position.set(0,0,0)
 
     setTimeout(() => {
         if (isPRotated == true) {
@@ -2739,7 +2955,7 @@ const phaseChange0to1 = (left, right) => {
 
         currentLink = 1
 
-        gsap.to(camera.position, {duration: 2, delay: 0.5, x: 9*zoomFactor, y: 9, z: 9*zoomFactor})
+        gsap.to(camera.position, {duration: 2, delay: 0.5, x: 9*zf, y: 9, z: 9*zf})
     
         setTimeout(() => {
        
@@ -2753,14 +2969,32 @@ const phaseChange0to1 = (left, right) => {
             controls.enabled = true    
             controls.saveState()   
 
-            isLinkClickAllowed = true
+            isArrowClickAllowed = true
+
+            isPhaseChanging = false
+
+            if (isItEverOn == false) {
+                turnLaptopOn.style.display = 'block'
+                gsap.to(turnLaptopOn, {duration: 1, opacity: 1})
+                isTextAtTheBottom = true
+            }
         }, 2500)
     }, 0)
 }
 
 // Phase Change Sequence
-const phaseChange1to0 = (left, right) => { 
+const phaseChange1to0 = (left, right, zf) => { 
+    isPhaseChanging = true
     clickCounter = 0
+
+
+    if (isTextAtTheBottom == true) {
+        gsap.to(turnLaptopOn, {duration: 1, opacity: 0})
+        setTimeout(() => {
+            turnLaptopOn.style.display = 'none'
+        }, 1000)
+        isTextAtTheBottom = false
+    }
 
     setTimeout(() => {
 
@@ -2778,8 +3012,6 @@ const phaseChange1to0 = (left, right) => {
         controls.reset()
 
         controls.enabled = false
-
-        
 
         // Close Modal if there is a modal
         if (isModalOn) {
@@ -2822,11 +3054,28 @@ const phaseChange1to0 = (left, right) => {
         rightDirectionalLight.intensity = 0
         scene.add(left)
         scene.add(right)
-
      
         currentLink = 0
 
-        gsap.to(camera.position, {duration: 2, delay: 0.5, x: 5*zoomFactor, y: 35, z: 5*zoomFactor})
+        phase = 0
+
+        changeInstructions(phase)
+
+        if (closedOnOne == false) {
+            setTimeout(() => {
+                if (isRightFlipped == false) {
+                    gsap.to(instructionsBar, {duration: 0.5, x:'0rem'})
+                    rightArrow.classList.add('flipped')
+                    isRightFlipped = true
+                }
+            }, 1000)
+        }
+
+        console.log(controls.enabled, controls.target)
+        camera.lookAt(0,0,0)
+
+        console.log(zf)
+        gsap.to(camera.position, {duration: 2, delay: 0.5, x: 5*zf, y: 35, z: 5*zf})
     
         setTimeout(() => {
        
@@ -2839,14 +3088,15 @@ const phaseChange1to0 = (left, right) => {
             controls.enabled = false
             controls.saveState()
 
-            phase = 0
 
             scene.remove(ambientLight)
             scene.remove(pointLight)
 
             lightUp()
 
-            isLinkClickAllowed = true
+            isArrowClickAllowed = true
+
+            isPhaseChanging = false
         }, 2500)
     }, 200)
 }
@@ -2856,71 +3106,17 @@ const phaseChange1to2 = () => {
     
 }
 
+// Close checker
 
-// Side Bar
-let isLinkClickAllowed = true
-
-const sidebarLinkOne = document.getElementById('sidebarLinkOne')
-const sidebarLinkTwo = document.getElementById('sidebarLinkTwo')
-const sidebarLinkThree = document.getElementById('sidebarLinkThree')
-const sidebarCircleOne = document.getElementById('sidebarCircleOne')
-const sidebarCircleTwo = document.getElementById('sidebarCircleTwo')
-const sidebarCircleThree = document.getElementById('sidebarCircleThree')
-
-// Clicking Links
-
-let currentLink = 0
-
-sidebarLinkOne.addEventListener('click', () => {
-
-    if (isLinkClickAllowed == true && noClicks == false) {
-        if (currentLink == 1) {
-            isLinkClickAllowed = false
-            phaseChange1to0(leftDirectionalLight, rightDirectionalLight)
-        }
-    
-        setTimeout(() => {
-            sidebarCircleOne.classList.add('current')
-            sidebarCircleTwo.classList.remove('current')
-            sidebarCircleThree.classList.remove('current')
-        }, 500)
+const closeChecker = (index) => {
+    console.log(index)
+    if (index == 0) {
+        closedOnOne = true
     }
-})
-sidebarLinkTwo.addEventListener('click', () => {
-
-    if (isLinkClickAllowed == true && noClicks == false) {
-   
-        if (currentLink == 0) {
-            isLinkClickAllowed = false
-            phaseChange0to1(leftDirectionalLight, rightDirectionalLight)
-        }
-    
-        setTimeout(() => {
-            sidebarCircleOne.classList.remove('current')
-            sidebarCircleTwo.classList.add('current')
-            sidebarCircleThree.classList.remove('current')
-        }, 500)
-    }    
-})
-sidebarLinkThree.addEventListener('click', () => {
-  
-    if (isLinkClickAllowed == true && noClicks == false) {
-        isLinkClickAllowed = true
-        currentLink = currentLink
-        phase = phase
-        // if (currentLink == 1) {
-        //     phaseChange1to2()
-        // }
-
-        setTimeout(() => {
-            sidebarCircleOne.classList.remove('current')
-            sidebarCircleTwo.classList.remove('current')
-            sidebarCircleThree.classList.add('current')
-        }, 500)
+    else if (index == 1) {
+        closedOnTwo = true
     }
-})
-
-
-
-
-
+    else if (index == 2) {
+        closedOnThree = true
+    }
+}
