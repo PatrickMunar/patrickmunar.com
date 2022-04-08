@@ -10,6 +10,10 @@ html {
     color: white;
 }
 
+body {
+    overflow: hidden;
+}
+
 @media (orientation:portrait) {
     html {
         font-size: 1.25vw;
@@ -23,10 +27,10 @@ html {
 
 
 /* html,
-body
+/* body
 {
     overflow: hidden;
-} */
+} */ */
 
 body {
     overflow: hidden;
@@ -403,15 +407,12 @@ body {
     transform-origin: left;
 }
 
-/* .fadeAway {
-    animation: fadeAway 2s forwards;
+
+#h1Grey {
+    color: red;
 }
 
-@keyframes fadeAway {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
-} */
+#h1Red {
+    color: white;
+    text-shadow: 2px 2px 3px black;
+}
