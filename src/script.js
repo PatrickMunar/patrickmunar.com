@@ -2648,8 +2648,8 @@ const spinLeftWall = () => {
         isAnimationPlaying = false
     }, 1000)
 
-    gsap.set(leftNameWall.rotation, {x: 0, y: 0, z: 0})
-    gsap.to(leftNameWall.rotation, {duration: 1, x: Math.PI*2})
+    gsap.set(leftNameWall.rotation, {x: leftNameWall.rotation.x, y: 0, z: 0})
+    gsap.to(leftNameWall.rotation, {duration: 1, x: Math.PI + leftNameWall.rotation.x})
 
     if (isPRotated == true) {
         gsap.to(P.rotation, {duration: 1, delay: 0, y: P.rotation.y - Math.PI*90/180})
@@ -2691,8 +2691,8 @@ const spinRightWall = () => {
         isAnimationPlaying = false
     }, 1000)
 
-    gsap.set(rightNameWall.rotation, {x: 0, y: 0, z: 0})
-    gsap.to(rightNameWall.rotation, {duration: 1, z: Math.PI*2})
+    gsap.set(rightNameWall.rotation, {x: rightNameWall.rotation.x, y: 0, z: 0})
+    gsap.to(rightNameWall.rotation, {duration: 1, z: Math.PI + rightNameWall.rotation.x})
 }
 
 // Phase Change Sequence
