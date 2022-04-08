@@ -11,20 +11,22 @@ import gsap from 'gsap'
 import { BoxBufferGeometry, Vector2, Vector3 } from 'three'
 import all from 'gsap/all'
 
+let noClicks = true
+
 let arrayIndex = 0
 let isModalOn = false
 let prevIndex = 0
 
 // Colors
+    // Strip Background, CubeLines
 
 const directionalLightColors = [
     ['0xff0000', '0xffffff', '#ff0000', '#ffffff'],
-    // ['0xF95700', '0x00A4CC', '#F95700', '#00A4CC'],
     ['0xD6ED17', '0x606060', '#D6ED17', '#606060'],
     ['0xff2B33', '0xD05A7F', '#ff2B33', '#D05A7F'],
-    ['0xF95700', '0x00539C', '#F95700', '#00539C'],
-    // ['0x5BfE51', '0xEA738D', '#5BfE51', '#EA738D'],
-    // ['0x2C88ff', '0xff321E', '#2C88ff', '#ff321E']
+    ['0x3B64f1', '0xFf6050', '#5B84B1', '#FC766A'],
+    ['0xF93822', '0xFDD20E', '#F93822', '#FDD20E'],
+    ['0xFCF6F5', '0x2BAE66', '#FCF6F5', '#2BAE66']
 ]
 
 let currentColor = 0
@@ -279,6 +281,7 @@ const generateNewCanvas = () => {
             coneLine.material.color = new THREE.Color(directionalLightColors[currentColor][3])
             box4Line.material.color = new THREE.Color(directionalLightColors[currentColor][3])
             sphereLine.material.color = new THREE.Color(directionalLightColors[currentColor][3])
+            prevCurrentColor = currentColor
         }
 
         // Animation
@@ -345,14 +348,25 @@ scene.background = new THREE.Color(0x000000)
  * Loaders
  */
 // Loading Manager
+const loadingBar = document.getElementById('loadingBar')
+const loadingPage = document.getElementById('loadingPage')
+
+// let goStartSequence = false
+
 const loadingManager = new THREE.LoadingManager(
     // Loaded
     () => {
-        console.log('loaded')
+        gsap.to('#loadingPage' ,{duration: 1, opacity: 0})
+        startSequence()
+        setTimeout(() => {
+            loadingPage.style.display = 'none'
+            // goStartSequence = true
+        }, 1000)
     },
     // Progress
-    () => {
-        console.log('progress')
+    (itemUrl, itemsLoaded, itemsTotal) => {
+        const progressRatio = itemsLoaded/itemsTotal
+        loadingBar.style.transform = 'scaleX(' + progressRatio + ')'
     }
 )
 
@@ -1825,119 +1839,7 @@ var clickCounter = 0
 let isLaptopOn = false
 let isAnimationDone = false
 
-//  window.addEventListener('click', () => {
-//     clickCounter += 1
-//     console.log(clickCounter)
-//     if (currentIntersect) {
-//         console.log('click')
-//             if (currentIntersect.object == laptopGroup.children[0].children[0] || currentIntersect.object == laptopGroup.children[1].children[0] || currentIntersect.object == screenGroup.children[0].children[0]) {
-//                 if (clickCounter%2 == 0) {
-//                     if (isLaptopOn == false) {
-//                         lightLaptop()
 
-//                         setTimeout(() => {
-//                             arrayIndex = 0
-//                             insertModal(arrayIndex)
-//                         }, 1000)
-//                     }
-//                     else if (isLaptopOn == true && isAnimationDone == true) {
-//                         arrayIndex = 1
-//                         insertModal(arrayIndex)
-//                     }
-//                 }
-//                 currentIntersect = null
-//             }
-//         if (isLaptopOn == true) {
-//             if (currentIntersect.object == topBedframeGroup.children[0].children[0] || currentIntersect.object == topBedframeGroup.children[1].children[0] || currentIntersect.object == topBedframeGroup.children[2].children[0] || currentIntersect.object == topBedframeGroup.children[3].children[0]) {
-//                 if (clickCounter%2 == 0) {
-//                     hoverTopBedframeGroup()
-//                 }
-//                 currentIntersect = null
-//             }
-//             else if (currentIntersect.object == topDrawer.children[0].children[0]) {
-//                 if (clickCounter%2 == 0) {
-//                     topDrawerOut()
-//                 }
-//                 currentIntersect = null
-//             }
-//             else if (currentIntersect.object == midDrawer.children[0].children[0]) {
-//                 if (clickCounter%2 == 0) {
-//                     midDrawerOut()
-//                 }
-//                 currentIntersect = null
-//             }
-//             else if (currentIntersect.object == botDrawer.children[0].children[0]) {
-//                 if (clickCounter%2 == 0) {
-//                     botDrawerOut()
-//                 }
-//                 currentIntersect = null
-//             }
-//             else if (currentIntersect.object == footballGroup.children[0].children[0] || currentIntersect.object == footballGroup.children[1].children[0]) {
-//                 if (clickCounter%2 == 0) {
-//                     // openLaptop()
-//                     // console.log('animate laptop')
-//                     // console.log('change screen texture')
-    
-//                     floatFootball()
-
-//                     arrayIndex = 2
-//                     insertModal(arrayIndex)
-//                 }
-//                 currentIntersect = null
-//             }
-//             else if (currentIntersect.object == skateboardGroup.children[0].children[0] || currentIntersect.object == skateboardGroup.children[1].children[0] || currentIntersect.object == skateboardGroup.children[2].children[0] ||currentIntersect.object == skateboardGroup.children[3].children[0]) {
-//                 if (clickCounter%2 == 0) {
-//                     // openLaptop()
-//                     // console.log('animate laptop')
-//                     // console.log('change screen texture')
-//                     flipBoard()
-
-//                     arrayIndex = 3
-//                     insertModal(arrayIndex)
-//                 }
-//                 currentIntersect = null
-//             }
-//             else if (currentIntersect.object == sablayGroup.children[0].children[0] || currentIntersect.object == sablayGroup.children[0].children[1] || currentIntersect.object == sablayGroup.children[0].children[2] || currentIntersect.object == sablayGroup.children[0].children[3] || currentIntersect.object == sablayGroup.children[0].children[4] || currentIntersect.object == sablayGroup.children[0].children[5] || currentIntersect.object == sablayGroup.children[0].children[6] || currentIntersect.object == sablayGroup.children[0].children[7] ) {
-//                 if (clickCounter%2 == 0) {
-//                     // openLaptop()
-//                     // console.log('animate laptop')
-//                     // console.log('change screen texture')
-//                     // !!! sunflowers()
-
-//                     arrayIndex = 4
-//                     insertModal(arrayIndex)
-//                 }
-//                 currentIntersect = null
-//             }
-//             else if (currentIntersect.object == switchGroup.children[0].children[0] || currentIntersect.object == switchScreen.children[0].children[0] || currentIntersect.object == joyConGroup.children[0].children[0] || currentIntersect.object == joyConGroup.children[1].children[0] || currentIntersect.object == joyConGroup.children[2].children[0] || currentIntersect.object == switchDock.children[0].children[0]) {
-//                 if (clickCounter%2 == 0) {
-//                     // openLaptop()
-//                     // console.log('animate laptop')
-//                     // console.log('change screen texture')
-//                     switchJump()
-
-//                     arrayIndex = 3
-//                     insertModal(arrayIndex)
-//                 }
-//                 currentIntersect = null
-//             }
-//             else if (currentIntersect.object == headphoneGroup.children[0].children[0] || currentIntersect.object == headphoneGroup.children[1].children[0]) {
-//                 if (clickCounter%2 == 0) {
-//                     // openLaptop()
-//                     // console.log('animate laptop')
-//                     // console.log('change screen texture')
-//                     // !!! notesPlaying()
-
-//                     arrayIndex = 5
-//                     insertModal(arrayIndex)
-//                 }
-//                 currentIntersect = null
-//             }
-//         }
-//     }
-//  })
-
-//  console.log(headphoneGroup.children[1])
 
 // Raycaster
 const raycaster = new THREE.Raycaster()
@@ -2088,20 +1990,10 @@ const tick = () =>
         }
     // }
 
-    // if (lightUp == true) {
-    //     if (resetLightTime == true) {
-    //         lightTime = elapsedTime
-    //         resetLightTime = false
-    //     }
-    //     if (leftDirectionalLight.intensity < 0.6) {
-    //         leftDirectionalLight.intensity = (elapsedTime - lightTime) * 0.2
-    //         rightDirectionalLight.intensity = (elapsedTime - lightTime) * 0.2
-    //     }
-    //     else {
-    //         lightUp = false
-    //     }
+    // // Start Sequence
+    // if (goStartSequence == true) {
+    //     startSequence()
     // }
-    
 
     // Update controls
     if (controls.enabled == true) {
@@ -2306,9 +2198,11 @@ const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0)
 const colorChangeRight = () => {
     if (currentColor < directionalLightColors.length - 1) {
         currentColor += 1
+        console.log(currentColor)
     }
-    else {
+    else if (currentColor == directionalLightColors.length - 1) {
         currentColor = 0
+        console.log(currentColor)
     }
 
     document.styleSheets[3].cssRules[40].style.backgroundColor = directionalLightColors[currentColor][2]
@@ -2336,8 +2230,21 @@ const colorChangeRight = () => {
 console.log(leftDirectionalLight)
 
 const lightUp = () => {
-    gsap.to(leftDirectionalLight, {ease: 'Power3.easeOut', duration: 2, intensity: 0.7})
-    gsap.to(rightDirectionalLight, {ease: 'Power3.easeOut', duration: 2, intensity: 0.7})
+    gsap.to(leftDirectionalLight, {ease: 'Power1.easeOut', duration: 3, intensity: 0.7})
+    gsap.to(rightDirectionalLight, {ease: 'Power1.easeOut', duration: 3, intensity: 0.7})
+}
+
+const startSequence = () => {
+    setTimeout(() => { 
+        scene.remove(ambientLight)
+        scene.remove(pointLight)
+        // scene.add(leftDirectionalLight)
+        // scene.add(rightDirectionalLight)
+        lightUp()
+
+        noClicks = false
+        isParallaxOn = true
+    }, 1000)
 }
 
 if (phase == 0) {
@@ -2398,20 +2305,7 @@ if (phase == 0) {
     // scene.add(pointLight)
 
     const firstAmbientLight = new THREE.AmbientLight(0x000000, 0.1)
-    scene.add(firstAmbientLight)
-
- 
-
-    setTimeout(() => { 
-        scene.remove(ambientLight)
-        scene.remove(pointLight)
-        // scene.add(leftDirectionalLight)
-        // scene.add(rightDirectionalLight)
-        lightUp()
-
-        isParallaxOn = true
-    }, 1000)
-    
+    scene.add(firstAmbientLight)    
 
     leftDirectionalLight.position.set(0,30,40)
     leftDirectionalLight.target.position.set(0,30,0)
@@ -2444,7 +2338,7 @@ if (phase == 0) {
 let isAnimationPlaying = false
 
 window.addEventListener('click', () => {
-    if (isAnimationPlaying == false) {
+    if (isAnimationPlaying == false && noClicks == false) {
         clickCounter += 1
         // console.log(clickCounter)
         if (phase == 0) {
@@ -2618,8 +2512,8 @@ window.addEventListener('click', () => {
             }
         }
     }
-    
 })
+
 // GSAP Animations for Phase 0
 let isPRotated = false
 let isARotated = false
@@ -2868,7 +2762,7 @@ const phaseChange0to1 = (left, right) => {
 
             isLinkClickAllowed = true
         }, 2500)
-    }, 200)
+    }, 0)
 }
 
 // Phase Change Sequence
@@ -2986,7 +2880,7 @@ let currentLink = 0
 
 sidebarLinkOne.addEventListener('click', () => {
 
-    if (isLinkClickAllowed == true) {
+    if (isLinkClickAllowed == true && noClicks == false) {
         if (currentLink == 1) {
             isLinkClickAllowed = false
             phaseChange1to0(leftDirectionalLight, rightDirectionalLight)
@@ -3001,7 +2895,7 @@ sidebarLinkOne.addEventListener('click', () => {
 })
 sidebarLinkTwo.addEventListener('click', () => {
 
-    if (isLinkClickAllowed == true) {
+    if (isLinkClickAllowed == true && noClicks == false) {
    
         if (currentLink == 0) {
             isLinkClickAllowed = false
@@ -3017,7 +2911,7 @@ sidebarLinkTwo.addEventListener('click', () => {
 })
 sidebarLinkThree.addEventListener('click', () => {
   
-    if (isLinkClickAllowed == true) {
+    if (isLinkClickAllowed == true && noClicks == false) {
         isLinkClickAllowed = true
         currentLink = currentLink
         phase = phase
