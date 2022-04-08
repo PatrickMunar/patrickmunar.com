@@ -399,7 +399,7 @@ body {
     height: 5px;
     background-color: red;
     transform: scaleX(0);
-    transform-origin: top left;
+    transform-origin: left;
 }
 
 /* .fadeAway {
