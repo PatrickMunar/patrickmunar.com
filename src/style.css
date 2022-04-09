@@ -478,3 +478,12 @@ body {
     display: none;
     opacity: 0;
 }
+
+#loadingText {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 2rem;
+}
+
+#loadingDiv {
+    text-align: center;
+}
