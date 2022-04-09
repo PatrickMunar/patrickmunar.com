@@ -45,15 +45,18 @@ const textArray = [
     ['Flag \n Football',
     '...',
     '...'],
-    ['Hobbies & Interests',
+    ['Hobbies & Interests<br><t class="subText">Skateboarding</t>',
     '...',
     '...'],
     ['Education',
-    '...',
-    '...'],
+    'University of the Philippines - Diliman<br><t class="smallestText mainColor">2021</t><br><t class="smallestText italic">BS Mechanical Engineering</t>',
+    'Philippine Science High School - Central Luzon Campus<br><t class="smallestText mainColor">2015</t>'],
     ["What's \n Playin'",
     '...',
-    '...']
+    '...'],
+    ['Hobbies & Interests<br><t class="subText">Gaming</t>',
+    'Avid gamer interested in Game Development',
+    '<ul>Favorite Games:<li class="smallestText">Monster Hunter (HH, SnS)</li><li class="smallestText">R6 Siege (Amaru, Kapkan)</li><li class="smallestText">DOTA 2 (Pudge, Rubick)</li></ul>'],
 ]
 
 
@@ -81,8 +84,8 @@ const insertModal = (index) => {
         const h3Grey2 = document.getElementById('h3Grey2')
         const h3Red2 = document.getElementById('h3Red2')
     
-        h1Grey.innerText = textArray[index][0]
-        h1Red.innerText = textArray[index][0]
+        h1Grey.innerHTML = textArray[index][0]
+        h1Red.innerHTML = textArray[index][0]
         h3Grey.innerHTML = textArray[index][1]
         h3Red.innerHTML = textArray[index][1]
         h3Grey2.innerHTML = textArray[index][2]
@@ -2282,6 +2285,7 @@ const colorChangeRight = () => {
     else if (currentColor == directionalLightColors.length - 1) {
         currentColor = 0
     }
+    // 2: Strip Color, 3: SubColor
 
     document.styleSheets[3].cssRules[40].style.backgroundColor = directionalLightColors[currentColor][2]
     document.styleSheets[3].cssRules[40].style.borderColor = directionalLightColors[currentColor][2]
@@ -2300,6 +2304,8 @@ const colorChangeRight = () => {
 
     document.styleSheets[3].cssRules[56].style.color = directionalLightColors[currentColor][3]
     document.styleSheets[3].cssRules[57].style.color = directionalLightColors[currentColor][3]
+
+    document.styleSheets[3].cssRules[66].style.color = directionalLightColors[currentColor][2]
 
     leftDirectionalLight.color.setHex(directionalLightColors[currentColor][0])
     rightDirectionalLight.color.setHex(directionalLightColors[currentColor][1])  
@@ -2582,7 +2588,7 @@ window.addEventListener('click', () => {
                             // console.log('change screen texture')
                             switchJump()
         
-                            arrayIndex = 3
+                            arrayIndex = 6
                             insertModal(arrayIndex)
                         }
                         currentIntersect = null

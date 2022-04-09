@@ -521,3 +521,37 @@ body {
     box-shadow: 0.5rem 0rem 0.5rem black;
     border-radius: 0 0.5rem 0.5rem 0;
 }
+
+.smallText {
+    font-size: 2rem;
+}
+
+.smallestText {
+    font-size: 1.5rem;
+    font-style: normal;
+}
+
+.mainColor {
+    color: red;
+}
+
+.subText {
+    font-size: 2.5rem;
+}
+
+.italic {
+    font-style: italic;
+}
+
+ul {
+    list-style: none; /* Remove default bullets */  
+}
+
+ul li::before {
+    content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+    color: red; /* Change the color */
+    font-weight: bold; /* If you want it to be bold */
+    display: inline-block; /* Needed to add space between the bullet and the text */
+    width: 1em; /* Also needed for space (tweak if needed) */
+    margin-left: -1em; /* Also needed for space (tweak if needed) */
+}
