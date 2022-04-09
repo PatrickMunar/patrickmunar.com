@@ -36,7 +36,7 @@ let phase = 0
 
 // h1, h3
 const textArray = [
-    ['Hello!',
+    ['Hello',
     'You can get to know me better through this room.',
     "Just explore the scene and interact with objects."],
     ['',
@@ -458,7 +458,7 @@ let switchDock = new THREE.Group
 let switchScreen = new THREE.Group
 let headphoneGroup = new THREE.Group
 let DBGroup = new THREE.Group
-
+let chair = new THREE.Group
 
 allObjects.add(bottomBedframeGroup)
 allObjects.add(topBedframeGroup)
@@ -481,6 +481,7 @@ allObjects.add(switchDock)
 allObjects.add(switchScreen)
 allObjects.add(headphoneGroup)
 allObjects.add(DBGroup)
+allObjects.add(chair)
 
 
 allObjects.position.set (0,-2,0)
@@ -491,7 +492,12 @@ allObjects.position.set (0,-2,0)
 DBGroup.position.set(-2.25,2.65,-2)
 DBGroup.rotation.y = Math.PI*45/180
 
+chair.position.set(-35*0.05, 23*0.05, -20*0.05)
+chair.rotation.y = Math.PI*30/180
+
 // GLTF Loader for Phase 0
+
+
 
 gltfLoader.load(
     'LeftNameWall.glb',
@@ -710,6 +716,29 @@ gltfLoader.load(
 
 
 // GLTF Loader for Phase 1
+gltfLoader.load(
+    'Chair.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        // console.log(obj)
+        chair.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
 gltfLoader.load(
     'DBSphere.glb',
     (obj) => {
@@ -2275,7 +2304,7 @@ const leftDirectionalLight = new THREE.DirectionalLight(0xff0000, 0)
 const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0)
 
 
-// console.log(document.styleSheets[3])
+console.log(document.styleSheets[3])
 
 const colorChangeRight = () => {
     if (currentColor < directionalLightColors.length - 1) {
@@ -2307,7 +2336,6 @@ const colorChangeRight = () => {
 
     document.styleSheets[3].cssRules[66].style.color = directionalLightColors[currentColor][2]
     document.styleSheets[3].cssRules[62].style.color = directionalLightColors[currentColor][2]
-
 
     leftDirectionalLight.color.setHex(directionalLightColors[currentColor][0])
     rightDirectionalLight.color.setHex(directionalLightColors[currentColor][1])  
