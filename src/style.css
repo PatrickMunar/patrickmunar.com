@@ -335,6 +335,7 @@ body {
     position: fixed;
     height: 100%;
     width: 3rem;
+    left: 2rem;
     background-color: transparent;
     box-sizing: border-box;
     display: flex;
@@ -509,4 +510,14 @@ body {
     background-color: #121617;
     box-sizing: border-box;
     padding: 1rem;
+}
+
+#h3Grey {
+    box-shadow: -0.5rem 0rem 0.5rem black;
+    border-radius: 0.5rem 0 0 0.5rem;
+}
+
+#h3Grey2 {
+    box-shadow: 0.5rem 0rem 0.5rem black;
+    border-radius: 0 0.5rem 0.5rem 0;
 }
