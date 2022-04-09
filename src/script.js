@@ -26,7 +26,7 @@ const directionalLightColors = [
     ['0xff2B33', '0xD05A7F', '#ff2B33', '#D05A7F'],
     ['0x3B64f1', '0xFf6050', '#5B84B1', '#FC766A'],
     ['0xF93822', '0xFDD20E', '#F93822', '#FDD20E'],
-    ['0x2BAE66', '0xFCF6F5', '#2BAE66', '#FCF6F5']
+    ['0xFCF6F5', '0x2BAE66', '#FCF6F5', '#2BAE66']
 ]
 
 let currentColor = 0
