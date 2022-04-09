@@ -21,12 +21,12 @@ let prevIndex = 0
     // Strip Background, CubeLines
 
 const directionalLightColors = [
-    ['0xff0000', '0xffffff', '#ff0000', '#ffffff', '#000000'],
-    ['0xD6ED17', '0x606060', '#D6ED17', '#606060', '#000000'],
-    ['0xff2B33', '0xD05A7F', '#ff2B33', '#D05A7F', '#ffffff'],
-    ['0x3B64f1', '0xFf6050', '#5B84B1', '#FC766A', '#000000'],
-    ['0xF93822', '0xFDD20E', '#F93822', '#FDD20E', '#000000'],
-    ['0xFCF6F5', '0x2BAE66', '#FCF6F5', '#2BAE66', '#000000']
+    ['0xff0000', '0xffffff', '#ff0000', '#ffffff'],
+    ['0xD6ED17', '0x606060', '#D6ED17', '#606060'],
+    ['0xff2B33', '0xD05A7F', '#ff2B33', '#D05A7F'],
+    ['0x3B64f1', '0xFf6050', '#5B84B1', '#FC766A'],
+    ['0xF93822', '0xFDD20E', '#F93822', '#FDD20E'],
+    ['0x2BAE66', '0xFCF6F5', '#2BAE66', '#FCF6F5']
 ]
 
 let currentColor = 0
@@ -36,9 +36,9 @@ let phase = 0
 
 // h1, h3
 const textArray = [
-    ['Hello',
-    'This is a sample text',
-    "This is also a sample text"],
+    ['Hello!',
+    'You can get to know me better through this room.',
+    "Just explore the scene and interact with objects."],
     ['',
     '...',
     "..."],
@@ -2272,7 +2272,7 @@ const leftDirectionalLight = new THREE.DirectionalLight(0xff0000, 0)
 const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0)
 
 
-// console.log(document.styleSheets[3].cssRules[45].style.textShadow)
+console.log(document.styleSheets[3])
 
 const colorChangeRight = () => {
     if (currentColor < directionalLightColors.length - 1) {
@@ -2298,7 +2298,7 @@ const colorChangeRight = () => {
     document.styleSheets[3].cssRules[46].style.color = directionalLightColors[currentColor][2]
     document.styleSheets[3].cssRules[49].style.color = directionalLightColors[currentColor][3]
 
-    console.log(document.styleSheets[3].cssRules[48])
+
 
     leftDirectionalLight.color.setHex(directionalLightColors[currentColor][0])
     rightDirectionalLight.color.setHex(directionalLightColors[currentColor][1])  

@@ -451,6 +451,7 @@ body {
 #instructionsText {
     text-align: right;
     color: white;
+    font-size: 2rem;
 }
 
 #rightDiv {
@@ -479,11 +480,25 @@ body {
     opacity: 0;
 }
 
+#turnLaptopOnText {
+    font-size: 2rem;
+}
+
 #loadingText {
     font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
     margin-bottom: 2rem;
 }
 
 #loadingDiv {
     text-align: center;
+}
+
+#h3Red, #h3Red2 {
+    color: white;
+    text-shadow: 0.15rem 0.15rem 0.15rem black;
+}
+
+#h3Grey, #h3Grey2 {
+    color: white;
 }
