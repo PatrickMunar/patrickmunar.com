@@ -496,9 +496,16 @@ body {
 
 #h3Red, #h3Red2 {
     color: white;
-    text-shadow: 0.15rem 0.15rem 0.15rem black;
+    /* text-shadow: 0.15rem 0.15rem 0.15rem black; */
+    background-color: #121617;
+    box-sizing: border-box;
+    padding: 1rem;
+    box-shadow: 0 0 0.5rem black;
 }
 
 #h3Grey, #h3Grey2 {
     color: white;
+    background-color: #121617;
+    box-sizing: border-box;
+    padding: 1rem;
 }
