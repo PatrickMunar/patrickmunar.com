@@ -56,7 +56,7 @@ const textArray = [
     '...'],
     ['Hobbies & Interests<br><t class="subText">Gaming</t>',
     'Avid gamer interested in Game Development',
-    '<ul>Favorite Games:<li class="smallestText">Monster Hunter (HH, SnS)</li><li class="smallestText">R6 Siege (Amaru, Kapkan)</li><li class="smallestText">DOTA 2 (Pudge, Rubick)</li></ul>'],
+    '<ul>Favorite Games <t class="mainColor">:</t><li class="smallestText">Monster Hunter (HH, SnS)</li><li class="smallestText">R6 Siege (Amaru, Kapkan)</li><li class="smallestText">DOTA 2 (Pudge, Rubick)</li></ul>']
 ]
 
 
@@ -2275,7 +2275,7 @@ const leftDirectionalLight = new THREE.DirectionalLight(0xff0000, 0)
 const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0)
 
 
-console.log(document.styleSheets[3])
+// console.log(document.styleSheets[3])
 
 const colorChangeRight = () => {
     if (currentColor < directionalLightColors.length - 1) {
@@ -2306,6 +2306,8 @@ const colorChangeRight = () => {
     document.styleSheets[3].cssRules[57].style.color = directionalLightColors[currentColor][3]
 
     document.styleSheets[3].cssRules[66].style.color = directionalLightColors[currentColor][2]
+    document.styleSheets[3].cssRules[62].style.color = directionalLightColors[currentColor][2]
+
 
     leftDirectionalLight.color.setHex(directionalLightColors[currentColor][0])
     rightDirectionalLight.color.setHex(directionalLightColors[currentColor][1])  
