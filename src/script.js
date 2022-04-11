@@ -26,7 +26,9 @@ const directionalLightColors = [
     ['0xff2B33', '0xD05A7F', '#ff2B33', '#D05A7F'],
     ['0x3B64f1', '0xFf6050', '#5B84B1', '#FC766A'],
     ['0xF93822', '0xFDD20E', '#F93822', '#FDD20E'],
-    ['0xFCF6F5', '0x2BAE66', '#FCF6F5', '#2BAE66']
+    ['0xFCF6F5', '0x2BAE66', '#FCF6F5', '#2BAE66'],
+    ['0xc67bc9', '0xb9dafa', '#c67bc9', '#b9dafa'],
+    ['0x54afd2', '0xf8d208', '#54afd2', '#f8d208']
 ]
 
 let currentColor = 0
@@ -37,7 +39,7 @@ let phase = 0
 // h1, h3
 const textArray = [
     ['Hello',
-    'You can get to know me better through this room.',
+    'Get to know me better through this room.',
     "Just explore the scene and interact with objects."],
     ['',
     '...',
@@ -459,6 +461,7 @@ let switchScreen = new THREE.Group
 let headphoneGroup = new THREE.Group
 let DBGroup = new THREE.Group
 let chair = new THREE.Group
+let kunai = new THREE.Group
 
 allObjects.add(bottomBedframeGroup)
 allObjects.add(topBedframeGroup)
@@ -482,18 +485,21 @@ allObjects.add(switchScreen)
 allObjects.add(headphoneGroup)
 allObjects.add(DBGroup)
 allObjects.add(chair)
-
+allObjects.add(kunai)
 
 allObjects.position.set (0,-2,0)
 // allObjects.rotation.y = - Math.PI*90/180
 
 
 // Group Repositions for Phase 1
-DBGroup.position.set(-2.25,2.65,-2)
-DBGroup.rotation.y = Math.PI*45/180
+DBGroup.position.set(-2.25,2.65,-1.75)
+DBGroup.rotation.y = Math.PI*90/180
 
 chair.position.set(-35*0.05, 23*0.05, -20*0.05)
 chair.rotation.y = Math.PI*30/180
+
+kunai.position.set(2*0.05, -0.25*0.05, 0)
+// kunai.rotation.y = Math.PI*30/180
 
 // GLTF Loader for Phase 0
 
@@ -716,6 +722,52 @@ gltfLoader.load(
 
 
 // GLTF Loader for Phase 1
+gltfLoader.load(
+    'KunaiBase.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        // console.log(obj)
+        kunai.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'KunaiHandle.glb',
+    (obj) => {
+        // room.scene.traverse((child) => {
+        //     child.material = bakedMaterial
+        // })
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+        // room.scene.position.y = -1
+        // room.scene.rotation.y = Math.PI * 0.25
+        // floor.scene.position.x = -1.5
+        // room.scene.position.z = 1.5
+        // room.scene.position.set(-1,0,5)
+        // room.scene.rotation.y = Math.PI * 0.25
+
+        // console.log(obj)
+        kunai.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
 gltfLoader.load(
     'Chair.glb',
     (obj) => {

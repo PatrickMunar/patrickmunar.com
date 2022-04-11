@@ -135,7 +135,7 @@ body {
     position: absolute;
     right: 5rem;
     top: 5vh;
-    background-color: #121617;
+    background-color: #000000b0;
     /* background-color: #eaeaea; */
     border-radius: 0.5rem 0.5rem 0 0;
     /* border-radius: 2rem 2rem 0rem 0rem; */
@@ -176,7 +176,16 @@ body {
     top: 1vh;
     cursor: pointer;
     color: #ff0000;
-    font-weight: bold;
+    /* font-weight: bold; */
+    border: 2px solid #121617;
+    background-color: #121617;
+    height: 30px;
+    width: 30px;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .display {
@@ -502,7 +511,7 @@ body {
     background-color: #121617;
     box-sizing: border-box;
     padding: 1rem;
-    box-shadow: 0 0.5rem 0.5rem -0.5rem black, 0 -0.5rem 0.5rem -0.5rem black;
+    box-shadow: 0 0 0.5rem black, 0 0 0.5rem black;
 }
 
 #h3Grey, #h3Grey2 {
@@ -510,15 +519,15 @@ body {
     background-color: #121617;
     box-sizing: border-box;
     padding: 1rem;
+    border-radius: 0.5rem;
 }
 
 #h3Grey {
-    box-shadow: 0 0.5rem 0.5rem -0.5rem black, 0 -0.5rem 0.5rem -0.5rem black;
+    box-shadow: 0 0 0.5rem black, 0 0 0.5rem black;
 }
 
 #h3Grey2 {
-    box-shadow: 0 0.5rem 0.5rem -0.5rem black, 0 -0.5rem 0.5rem -0.5rem black;
-
+    box-shadow: 0 0 0.5rem black, 0 0 0.5rem black;
 }
 
 .smallText {
@@ -552,5 +561,17 @@ ul li::before {
     font-weight: bold; /* If you want it to be bold */
     display: inline-block; /* Needed to add space between the bullet and the text */
     width: 1em; /* Also needed for space (tweak if needed) */
-    margin-left: -1em; /* Also needed for space (tweak if needed) */
+    margin-left: 0rem; /* Also needed for space (tweak if needed) */
+}
+
+#up, #down {
+    border: 2px solid #121617;
+    background-color: #121617;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
