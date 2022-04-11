@@ -19,6 +19,7 @@
     "ip": "^1.1.5",
     "lil-gui": "^0.16.0",
     "mini-css-extract-plugin": "^2.5.3",
+    "pixi.js": "^6.3.0",
     "portfinder-sync": "0.0.2",
     "raw-loader": "^4.0.2",
     "spectorjs": "^0.9.27",

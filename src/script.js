@@ -6,13 +6,10 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 // import { sRGBEncoding } from 'three'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
 import gsap from 'gsap'
-import { BoxBufferGeometry, Vector2, Vector3 } from 'three'
-import all from 'gsap/all'
+
 
 let noClicks = true
-
 let arrayIndex = 0
 let isModalOn = false
 let prevIndex = 0
@@ -233,11 +230,13 @@ const generateNewCanvas = () => {
     const cursor = {}
     cursor.x = 0
     cursor.y = 0
+ 
 
     window.addEventListener('mousemove', (event) =>
     {
         cursor.x = event.clientX / sizes.width - 0.5
         cursor.y = event.clientY / sizes.height - 0.5
+
 
     })
 
@@ -345,13 +344,13 @@ if (isNewCanvasOn) {
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
-canvas.addEventListener('mousedown', () => {
-    canvas.style.cursor = 'grabbing'
-})
+// canvas.addEventListener('mousedown', () => {
+//     canvas.style.cursor = 'grabbing'
+// })
 
-canvas.addEventListener('mouseup', () => {
-    canvas.style.cursor = 'grab'
-})
+// canvas.addEventListener('mouseup', () => {
+//     canvas.style.cursor = 'grab'
+// })
 
 // Scene
 const scene = new THREE.Scene()
@@ -2031,11 +2030,16 @@ const cursor = {}
 cursor.x = 0
 cursor.y = 0
 
+
+
+const cursorDiv = document.querySelector('.cursor')
+
 window.addEventListener('mousemove', (event) =>
 {
     cursor.x = event.clientX / sizes.width - 0.5
     cursor.y = event.clientY / sizes.height - 0.5
 
+    cursorDiv.setAttribute('style', 'top: '+(event.clientY - 10)+'px; left: '+(event.clientX - 10)+'px;')
 })
 
 /**
@@ -2355,6 +2359,24 @@ const switchJump = () => {
 const leftDirectionalLight = new THREE.DirectionalLight(0xff0000, 0)
 const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0)
 
+document.addEventListener('mousedown', () => {
+
+    document.styleSheets[3].cssRules[69].style.backgroundColor = 'transparent'
+    document.styleSheets[3].cssRules[69].style.borderColor = 'transparent'
+    document.styleSheets[3].cssRules[69].style.boxShadow= '0 0 0 1px transparent'
+
+
+    document.styleSheets[3].cssRules[70].style.borderColor = directionalLightColors[currentColor][2]
+})
+
+document.addEventListener('mouseup', () => {
+
+    document.styleSheets[3].cssRules[69].style.backgroundColor = directionalLightColors[currentColor][2]
+    document.styleSheets[3].cssRules[69].style.borderColor = directionalLightColors[currentColor][2]
+    document.styleSheets[3].cssRules[69].style.boxShadow= '0 0 0 1px black'
+
+    document.styleSheets[3].cssRules[70].style.borderColor = directionalLightColors[currentColor][3]
+})
 
 console.log(document.styleSheets[3])
 
@@ -2388,6 +2410,11 @@ const colorChangeRight = () => {
 
     document.styleSheets[3].cssRules[66].style.color = directionalLightColors[currentColor][2]
     document.styleSheets[3].cssRules[62].style.color = directionalLightColors[currentColor][2]
+
+    document.styleSheets[3].cssRules[69].style.backgroundColor = directionalLightColors[currentColor][2]
+    document.styleSheets[3].cssRules[69].style.borderColor = directionalLightColors[currentColor][2]
+
+    document.styleSheets[3].cssRules[70].style.borderColor = directionalLightColors[currentColor][3]
 
     leftDirectionalLight.color.setHex(directionalLightColors[currentColor][0])
     rightDirectionalLight.color.setHex(directionalLightColors[currentColor][1])  
