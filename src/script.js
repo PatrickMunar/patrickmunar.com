@@ -40,7 +40,7 @@ let phase = 0
 const textArray = [
     ['Hello',
     'Get to know me better through this room.',
-    "Just explore the scene and interact with objects."],
+    "Explore the scene and interact with objects."],
     ['',
     '...',
     "..."],
