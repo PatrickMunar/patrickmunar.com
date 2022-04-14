@@ -38,15 +38,15 @@ const textArray = [
     ['Hello',
     'Get to know me better through this room.',
     "Explore the scene and interact with objects."],
-    ['',
-    '...',
-    "..."],
+    ['Tech Stack',
+    'Coding <t class="mainColor">:</t><br><t class="smallestText">HTML</t> <t class="mainColor smallestText">+</t> <t class="smallestText">CSS</t> <t class="mainColor smallestText">+</t> <t class="smallestText">JavaScript</t> <t class="mainColor smallestText">+</t> <t class="smallestText">WebGL</t> <t class="mainColor smallestText">+</t> <t class="smallestText">Three.js</t> <t class="mainColor smallestText">+</t> <t class="smallestText">GSAP</t><br><br><t class="mainColor smallestText">|</t> <t class="smallestText">Currently unlocking ReactJS, react-three-fiber, PixiJS </t>',
+    'Other Tools <t class="mainColor">:</t><br><t class="smallestText">Fusion 360</t> <t class="mainColor smallestText">+</t> <t class="smallestText">Blender</t> <t class="mainColor smallestText">+</t> <t class="smallestText">Inkscape</t>'],
     ['Flag<br>Football',
-    '...',
+    "<t class='smallText'>I've always had the knack for sports, but flag football was</t> <b class='smallestText mainColor'>THE sport.</b>",
     '...'],
     ['Hobbies & Interests<br><t class="subText">Skateboarding</t>',
-    '...',
-    '...'],
+    '<t class="smallText">Been skating since I was a kid, but I took a pause due to school.</t><br><br><t class="smallText">More than 10 years later, I hopped back on.</t>',
+    '<ul>Favorite Skaters <t class="mainColor">:</t><li class="smallestText">Jonny Giger</li><li class="smallestText">P-Rod</li><li class="smallestText">Chris Joslin</li><li class="smallestText">Milton Martinez</li></ul>'],
     ['Education',
     'University of the Philippines - Diliman<br><t class="smallestText mainColor">2021</t><br><t class="smallestText italic">BS Mechanical Engineering</t>',
     'Philippine Science High School - Central Luzon Campus<br><t class="smallestText mainColor">2015</t>'],
@@ -54,7 +54,7 @@ const textArray = [
     '...',
     '...'],
     ['Hobbies & Interests<br><t class="subText">Gaming</t>',
-    'Avid gamer interested in Game Development',
+    'Avid gamer interested in Game Development<br><br><t class="mainColor smallestText">|</t> <t class="smallestText">Fiddling with Unreal Engine 5</t>',
     '<ul>Favorite Games <t class="mainColor">:</t><li class="smallestText">Monster Hunter (HH, SnS)</li><li class="smallestText">R6 Siege (Amaru, Kapkan)</li><li class="smallestText">DOTA 2 (Pudge, Rubick)</li></ul>']
 ]
 
@@ -316,7 +316,7 @@ const generateNewCanvas = () => {
         const parallaxY = - cursor.y * 0.5
         cameraGroup.position.x += ( parallaxX - cameraGroup.position.x ) * 2 * parallaxTIme
         cameraGroup.position.y += ( parallaxY - cameraGroup.position.y ) * 2 * parallaxTIme
-        // // cameraGroup.position.z += ( - parallaxX - cameraGroup.position.z ) * 2 * parallaxTIme
+
 
         // Render
         renderer.render(scene, camera)
@@ -344,13 +344,13 @@ if (isNewCanvasOn) {
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
-// canvas.addEventListener('mousedown', () => {
-//     canvas.style.cursor = 'grabbing'
-// })
+canvas.addEventListener('mousedown', () => {
+    canvas.style.cursor = 'grabbing'
+})
 
-// canvas.addEventListener('mouseup', () => {
-//     canvas.style.cursor = 'grab'
-// })
+canvas.addEventListener('mouseup', () => {
+    canvas.style.cursor = 'grab'
+})
 
 // Scene
 const scene = new THREE.Scene()
@@ -2030,16 +2030,14 @@ const cursor = {}
 cursor.x = 0
 cursor.y = 0
 
-
-
-const cursorDiv = document.querySelector('.cursor')
+// const cursorDiv = document.querySelector('.cursor')
 
 window.addEventListener('mousemove', (event) =>
 {
     cursor.x = event.clientX / sizes.width - 0.5
     cursor.y = event.clientY / sizes.height - 0.5
 
-    cursorDiv.setAttribute('style', 'top: '+(event.clientY - 10)+'px; left: '+(event.clientX - 10)+'px;')
+    // cursorDiv.setAttribute('style', 'top: '+(event.clientY - 10)+'px; left: '+(event.clientX - 10)+'px;')
 })
 
 /**
@@ -2359,24 +2357,24 @@ const switchJump = () => {
 const leftDirectionalLight = new THREE.DirectionalLight(0xff0000, 0)
 const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0)
 
-document.addEventListener('mousedown', () => {
+// document.addEventListener('mousedown', () => {
 
-    document.styleSheets[3].cssRules[69].style.backgroundColor = 'transparent'
-    document.styleSheets[3].cssRules[69].style.borderColor = 'transparent'
-    document.styleSheets[3].cssRules[69].style.boxShadow= '0 0 0 1px transparent'
+//     document.styleSheets[3].cssRules[69].style.backgroundColor = 'transparent'
+//     document.styleSheets[3].cssRules[69].style.borderColor = 'transparent'
+//     document.styleSheets[3].cssRules[69].style.boxShadow= '0 0 0 1px transparent'
 
 
-    document.styleSheets[3].cssRules[70].style.borderColor = directionalLightColors[currentColor][2]
-})
+//     document.styleSheets[3].cssRules[70].style.borderColor = directionalLightColors[currentColor][2]
+// })
 
-document.addEventListener('mouseup', () => {
+// document.addEventListener('mouseup', () => {
 
-    document.styleSheets[3].cssRules[69].style.backgroundColor = directionalLightColors[currentColor][2]
-    document.styleSheets[3].cssRules[69].style.borderColor = directionalLightColors[currentColor][2]
-    document.styleSheets[3].cssRules[69].style.boxShadow= '0 0 0 1px black'
+//     document.styleSheets[3].cssRules[69].style.backgroundColor = directionalLightColors[currentColor][2]
+//     document.styleSheets[3].cssRules[69].style.borderColor = directionalLightColors[currentColor][2]
+//     document.styleSheets[3].cssRules[69].style.boxShadow= '0 0 0 1px black'
 
-    document.styleSheets[3].cssRules[70].style.borderColor = directionalLightColors[currentColor][3]
-})
+//     document.styleSheets[3].cssRules[70].style.borderColor = directionalLightColors[currentColor][3]
+// })
 
 console.log(document.styleSheets[3])
 
@@ -2411,10 +2409,10 @@ const colorChangeRight = () => {
     document.styleSheets[3].cssRules[66].style.color = directionalLightColors[currentColor][2]
     document.styleSheets[3].cssRules[62].style.color = directionalLightColors[currentColor][2]
 
-    document.styleSheets[3].cssRules[69].style.backgroundColor = directionalLightColors[currentColor][2]
-    document.styleSheets[3].cssRules[69].style.borderColor = directionalLightColors[currentColor][2]
+    // document.styleSheets[3].cssRules[69].style.backgroundColor = directionalLightColors[currentColor][2]
+    // document.styleSheets[3].cssRules[69].style.borderColor = directionalLightColors[currentColor][2]
 
-    document.styleSheets[3].cssRules[70].style.borderColor = directionalLightColors[currentColor][3]
+    // document.styleSheets[3].cssRules[70].style.borderColor = directionalLightColors[currentColor][3]
 
     leftDirectionalLight.color.setHex(directionalLightColors[currentColor][0])
     rightDirectionalLight.color.setHex(directionalLightColors[currentColor][1])  
@@ -2614,12 +2612,21 @@ window.addEventListener('click', () => {
                                     }, 1000)
                                     isItEverOn = true
                                     isTextAtTheBottom = false
+
+                                    setTimeout(() => {
+                                        arrayIndex = 0
+                                        insertModal(arrayIndex)
+                                    }, 1250)
+
+                                    setTimeout(() => {
+                                        hoverTopBedframeGroup()
+                                    }, 2000)
                                 }
-        
-                                setTimeout(() => {
-                                    arrayIndex = 0
-                                    insertModal(arrayIndex)
-                                }, 1250)
+
+                                else if (isItEverOn == true) {
+                                    arrayIndex = 1
+                                    insertModal(arrayIndex) 
+                                }
                             }
                             else if (isLaptopOn == true && isAnimationDone == true) {
                                 arrayIndex = 1
@@ -2631,7 +2638,7 @@ window.addEventListener('click', () => {
                 if (isLaptopOn == true) {
                     if (currentIntersect.object == topBedframeGroup.children[0].children[0] || currentIntersect.object == topBedframeGroup.children[1].children[0] || currentIntersect.object == topBedframeGroup.children[2].children[0] || currentIntersect.object == topBedframeGroup.children[3].children[0]) {
                         if (clickCounter%2 == 0) {
-                            hoverTopBedframeGroup()
+                            // hoverTopBedframeGroup()
                         }
                         currentIntersect = null
                     }

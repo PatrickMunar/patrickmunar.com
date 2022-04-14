@@ -8,7 +8,7 @@ html {
     background-color: #1e1a20;
     font-size: 1vh;
     color: white;
-    cursor: none;
+    /* cursor: none; */
 }
 
 body {
@@ -43,7 +43,7 @@ body {
     outline: none;
     box-sizing: border-box;
     /* border: 2px solid blue; */
-    /* cursor: grab; */
+    cursor: grab;
 }
 
 .miniWebGL {
@@ -175,7 +175,7 @@ body {
     position: absolute;
     right: 1vh;
     top: 1vh;
-    /* cursor: pointer; */
+    cursor: pointer;
     color: #ff0000;
     /* font-weight: bold; */
     border: 2px solid #121617;
@@ -432,7 +432,7 @@ body {
 
 #up, #down, #right {
     color: red;
-    /* cursor: pointer; */
+    cursor: pointer;
 }
 
 #instructionsBar {
@@ -467,7 +467,7 @@ body {
 }
 
 #rightDiv {
-    /* cursor: pointer; */
+    cursor: pointer;
     height: 100%;
     display: flex;
     align-items: center;
@@ -524,20 +524,21 @@ body {
 }
 
 #h3Grey {
-    box-shadow: 0 0 0.5rem black, 0 0 0.5rem black;
+    /* box-shadow: 0 0 0.5rem black, 0 0 0.5rem black; */
 }
 
 #h3Grey2 {
-    box-shadow: 0 0 0.5rem black, 0 0 0.5rem black;
+    /* box-shadow: 0 0 0.5rem black, 0 0 0.5rem black; */
 }
 
 .smallText {
-    font-size: 2rem;
+    font-size: 1.75rem;
+    /* font-style: normal; */
 }
 
 .smallestText {
     font-size: 1.5rem;
-    font-style: normal;
+    /* font-style: normal; */
 }
 
 .mainColor {
@@ -579,13 +580,12 @@ ul li::before {
 
 /* Cursor */
 
-.cursor {
+/* .cursor {
     position: absolute;
     z-index: 10000;
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    /* background-color: white; */
     pointer-events: none;
     display: flex;
     justify-content: center;
@@ -607,7 +607,6 @@ ul li::before {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    /* background-color: white; */
     border: 2px solid white;
     box-shadow: 0 0 0 1px black, inset 0 0 0 1px black;
-}
+} */
