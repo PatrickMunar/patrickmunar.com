@@ -7,6 +7,7 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 // import { sRGBEncoding } from 'three'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
 import gsap from 'gsap'
+import { RedFormat } from 'three'
 
 
 let noClicks = true
@@ -1689,107 +1690,6 @@ gltfLoader.load(
     }
 )
 
-
-/**
- * Galaxy
- */
-
-
-
- const parameters = {
-    count: 50000,
-    size: 0.05,
-    spread: 3,
-    radius: 20,
-    branches: 3,
-    spin: 1,
-    randomness: 0.2,
-    rpower: 3,
-    insideColor: '#ff0000',
-    outsideColor: '#0000ff'
-}
-
-let geometry = null
-let material = null
-let points = null
-let galaxy = new THREE.Group()
-
-const generateGalaxy = () => {
-    // Destroy
-    if ( points !== null) {
-        geometry.dispose()
-        material.dispose()
-        scene.remove(points)
-    }
-
-
-    geometry = new THREE.BufferGeometry()
-    const positions = new Float32Array(parameters.count*3)
-    const colors = new Float32Array(parameters.count*3)
-
-    const colorInside = new THREE.Color(parameters.insideColor)
-    const colorOutside = new THREE.Color(parameters.outsideColor)
-
-
-
-    for (let i=0; i<parameters.count; i++) {
-        const i3 = i*3
-
-        // Position
-        const radius = Math.random()*parameters.radius
-        const spinAngle = radius * parameters.spin
-        const branchAngle = ( i % parameters.branches ) / parameters.branches * Math.PI * 2
-
-        // randomness
-        const randomX = Math.pow(Math.random(), parameters.rpower) * (Math.random() < 0.5 ? 1 : -1)
-        const randomY = Math.pow(Math.random(), parameters.rpower) * (Math.random() < 0.5 ? 1 : -1)
-        const randomZ = Math.pow(Math.random(), parameters.rpower) * (Math.random() < 0.5 ? 1 : -1)
-
-        positions[i3+0] = Math.cos(branchAngle + spinAngle) * radius + randomX
-        positions[i3+1] = 0 + randomY
-        positions[i3+2] = Math.sin(branchAngle + spinAngle) * radius + randomZ
-
-        // Color
-        const mixedColor = colorInside.clone()
-        mixedColor.lerp(colorOutside, radius / parameters.radius)
-
-        colors[i3+0] = mixedColor.r
-        colors[i3+1] = mixedColor.g
-        colors[i3+2] = mixedColor.b
-
-    }
-
-    geometry.setAttribute(
-        'position',
-        new THREE.BufferAttribute(positions, 3)
-    )
-
-    geometry.setAttribute(
-        'color',
-        new THREE.BufferAttribute(colors, 3)
-    )
-    
-    // Material
-    material = new THREE.PointsMaterial({
-    size: parameters.size,
-    sizeAttenuation: true,
-    // depthWrite: false,
-    blending: THREE.AdditiveBlending,
-    vertexColors: true
-    // color: '#ff5588'
-    })
-
-    // Points
-    points = new THREE.Points(geometry, material)
-    galaxy.add(points)
-}
-
-generateGalaxy()
-
-
-galaxy.position.y = -1.10
-
-
 // Lighting
 // const ambientLight = new THREE.AmbientLight(0xaa00ff, 0.1)
 const ambientLight = new THREE.AmbientLight(0xaa00ff, 0.1)
@@ -2040,6 +1940,30 @@ window.addEventListener('mousemove', (event) =>
     // cursorDiv.setAttribute('style', 'top: '+(event.clientY - 10)+'px; left: '+(event.clientX - 10)+'px;')
 })
 
+// Particles
+const particlesCount = 20000
+const positions = new Float32Array(particlesCount * 3)
+
+for (let i=0; i<particlesCount*3; i++) {
+    positions[i*3 + 0] = ( Math.random() - 0.5 ) * 100
+    positions[i*3 + 1] = ( Math.random() - 0.5 ) * 70 + ( Math.random() * 10 )
+    positions[i*3 + 2] = ( Math.random() - 0.5 ) * 100
+}
+
+const particlesGeometry = new THREE.BufferGeometry()
+particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
+
+const particlesMaterial = new THREE.PointsMaterial({
+    color: '#ffffff',
+    size: 0.03,
+    sizeAttenuation: true,
+    // depthWrite: false,
+    // blending: THREE.AdditiveBlending
+})
+
+const particles = new THREE.Points(particlesGeometry, particlesMaterial)
+scene.add(particles)
+
 /**
  * Animate
  */
@@ -2052,9 +1976,7 @@ let prevParallaxTime = 0
 let firstCurrentIntersect = null
 let isParallaxOn = false
 
-// let lightUp = false
-// let lightTime = 0
-// let resetLightTime = false
+
 
 const clock = new THREE.Clock()
 
@@ -2067,23 +1989,28 @@ const tick = () =>
     prevParallaxTime = elapsedTime
 
 
-    // Phase 0 Animations
-    if (phase == 0) {
-        // Parallax
-        if (isParallaxOn == true) {
-            const parallaxX = cursor.x * 0.5
-            const parallaxY = - cursor.y * 0.5
-            cameraGroup.position.x += ( parallaxX - cameraGroup.position.x ) * 2 * parallaxTIme
-            cameraGroup.position.y += ( parallaxY - cameraGroup.position.y ) * 2 * parallaxTIme
-            cameraGroup.position.z += ( - parallaxX - cameraGroup.position.z ) * 2 * parallaxTIme
-        }
+    // // Phase 0 Animations
+    // if (phase == 0) {
+    //     // Parallax
+    //     if (isParallaxOn == true) {
+    //         const parallaxX = cursor.x * 0.5
+    //         const parallaxY = - cursor.y * 0.5
+    //         cameraGroup.position.x += ( parallaxX - cameraGroup.position.x ) * 2 * parallaxTIme
+    //         cameraGroup.position.y += ( parallaxY - cameraGroup.position.y ) * 2 * parallaxTIme
+    //         cameraGroup.position.z += ( - parallaxX - cameraGroup.position.z ) * 2 * parallaxTIme
+    //     }
 
-        // Arrow bobbles
-        P.position.z = - Math.sin(elapsedTime*2) * 0.05 - 105*0.025
-        K.position.z = Math.sin(elapsedTime*2) * 0.05 + 105*0.025
-    }
+    //     // Arrow bobbles
+    //     P.position.z = - Math.sin(elapsedTime*2) * 0.05 - 105*0.025
+    //     K.position.z = Math.sin(elapsedTime*2) * 0.05 + 105*0.025
+    // }
 
-
+    //Particles following cursor  
+    const parallaxX = cursor.x * 0.5
+    const parallaxY = - cursor.y * 0.5
+    particles.position.x += ( parallaxX - cameraGroup.position.x ) * parallaxTIme
+    particles.position.y += ( parallaxY - cameraGroup.position.y ) * parallaxTIme
+    particles.position.z += ( - parallaxX - cameraGroup.position.z ) * parallaxTIme
 
     // Animations
     if (topBedframeGroup.position.y == 4 && isTopHalfFloating == false) {
@@ -2409,6 +2336,8 @@ const colorChangeRight = () => {
     document.styleSheets[3].cssRules[66].style.color = directionalLightColors[currentColor][2]
     document.styleSheets[3].cssRules[62].style.color = directionalLightColors[currentColor][2]
 
+    // particlesMaterial.color.set(directionalLightColors[currentColor][3])
+
     // document.styleSheets[3].cssRules[69].style.backgroundColor = directionalLightColors[currentColor][2]
     // document.styleSheets[3].cssRules[69].style.borderColor = directionalLightColors[currentColor][2]
 
@@ -2420,11 +2349,13 @@ const colorChangeRight = () => {
 
 // console.log(leftDirectionalLight)
 
+// Light Up Animation
 const lightUp = () => {
     gsap.to(leftDirectionalLight, {ease: 'Power1.easeOut', duration: 3, intensity: 0.7})
     gsap.to(rightDirectionalLight, {ease: 'Power1.easeOut', duration: 3, intensity: 0.7})
 }
 
+// Start Sequence after loading
 const startSequence = () => {
     setTimeout(() => { 
         scene.remove(ambientLight)
