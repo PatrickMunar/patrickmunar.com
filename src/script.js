@@ -46,7 +46,7 @@ const textArray = [
     "<t class='smallText'>I've always had the knack for sports, but flag football was</t> <b class='smallestText mainColor'>the sport.</b>",
     '...'],
     ['Hobbies & Interests<br><t class="subText">Skateboarding</t>',
-    '<t class="smallText">I feel free everytime I skate.<br><br>Hopped back on after more than 10 years.</t>',
+    '<t class="smallText">Hopped back on after more than 10 years.</t>',
     '<ul>Favorite Skaters <t class="mainColor">:</t><li class="smallestText">Jonny Giger</li><li class="smallestText">P-Rod</li><li class="smallestText">Chris Joslin</li><li class="smallestText">Milton Martinez</li></ul>'],
     ['Education',
     'University of the Philippines - Diliman<br><t class="smallestText mainColor">2021</t><br><t class="smallestText italic">BS Mechanical Engineering</t>',
@@ -1957,8 +1957,8 @@ const particlesMaterial = new THREE.PointsMaterial({
     color: '#ffffff',
     size: 0.03,
     sizeAttenuation: true,
-    // depthWrite: false,
-    // blending: THREE.AdditiveBlending
+    depthWrite: false,
+    blending: THREE.AdditiveBlending
 })
 
 const particles = new THREE.Points(particlesGeometry, particlesMaterial)
@@ -2006,8 +2006,8 @@ const tick = () =>
     // }
 
     //Particles following cursor  
-    const parallaxX = cursor.x * 0.075
-    const parallaxY = - cursor.y * 0.075
+    const parallaxX = cursor.x * 0.1
+    const parallaxY = - cursor.y * 0.1
     particles.position.x += ( parallaxX - cameraGroup.position.x ) * parallaxTIme
     particles.position.y += ( parallaxY - cameraGroup.position.y ) * parallaxTIme
     particles.position.z += ( - parallaxX - cameraGroup.position.z ) * parallaxTIme
