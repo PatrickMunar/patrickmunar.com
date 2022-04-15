@@ -2006,8 +2006,8 @@ const tick = () =>
     // }
 
     //Particles following cursor  
-    const parallaxX = cursor.x * 0.5
-    const parallaxY = - cursor.y * 0.5
+    const parallaxX = cursor.x * 0.075
+    const parallaxY = - cursor.y * 0.075
     particles.position.x += ( parallaxX - cameraGroup.position.x ) * parallaxTIme
     particles.position.y += ( parallaxY - cameraGroup.position.y ) * parallaxTIme
     particles.position.z += ( - parallaxX - cameraGroup.position.z ) * parallaxTIme
@@ -2080,11 +2080,6 @@ const tick = () =>
             currentIntersect = null
             // console.log(currentIntersect)
         }
-    // }
-
-    // // Start Sequence
-    // if (goStartSequence == true) {
-    //     startSequence()
     // }
 
     // Update controls
@@ -2914,12 +2909,12 @@ const instructionsBar= document.getElementById('instructionsBar')
 
 
 const instructionsTextArray = [
-    'Tap objects twice to interact with them.',
-    'Pan, Rotate & Zoom to get a better look.'
+    '<t class="smallText">Tap objects twice to interact.</t>',
+    '<t class="smallText">Rotate & Zoom to get a better look.</t>'
 ]
 
 const changeInstructions = (index) => {
-    instructionsText.innerText = instructionsTextArray[index]
+    instructionsText.innerHTML = instructionsTextArray[index]
 }
 
 const rightDiv = document.getElementById('rightDiv')
@@ -3018,7 +3013,7 @@ const phaseChange0to1 = (left, right, zf) => {
             scene.remove(rightNameWallPosition)
             controls.target.set(0,0,0)
             controls.enableRotate = true
-            controls.enablePan = true
+            // controls.enablePan = true
             controls.enableZoom = true
             controls.enabled = true    
             controls.saveState()   

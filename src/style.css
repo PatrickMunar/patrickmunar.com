@@ -454,7 +454,7 @@ body {
     font-size: 0.75rem;
     /* border: 2px solid white; */
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     box-sizing: border-box;
     padding: 1rem;
