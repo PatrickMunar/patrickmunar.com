@@ -43,7 +43,7 @@ const textArray = [
     'Coding <t class="mainColor">:</t><br><t class="smallestText">HTML</t> <t class="mainColor smallestText">+</t> <t class="smallestText">CSS</t> <t class="mainColor smallestText">+</t> <t class="smallestText">JavaScript</t> <t class="mainColor smallestText">+</t> <t class="smallestText">WebGL</t> <t class="mainColor smallestText">+</t> <t class="smallestText">Three.js</t> <t class="mainColor smallestText">+</t> <t class="smallestText">GSAP</t><br><br><t class="mainColor smallestText">|</t> <t class="smallestText">Currently unlocking ReactJS, react-three-fiber, PixiJS </t>',
     'Other Tools <t class="mainColor">:</t><br><t class="smallestText">Fusion 360</t> <t class="mainColor smallestText">+</t> <t class="smallestText">Blender</t> <t class="mainColor smallestText">+</t> <t class="smallestText">Inkscape</t>'],
     ['Flag<br>Football',
-    "<t class='smallText'>I've always had the knack for sports, but flag football was</t> <b class='smallestText mainColor'>the sport.</b>",
+    "<t class='smallText'>I've always had the knack for sports, but flag football was</t> <b class='smallText mainColor'>the sport.</b>",
     '...'],
     ['Hobbies & Interests<br><t class="subText">Skateboarding</t>',
     '<t class="smallText">Hopped back on after more than 10 years.</t>',
