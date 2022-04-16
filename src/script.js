@@ -9,6 +9,7 @@ import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
 import gsap from 'gsap'
 import { RedFormat } from 'three'
 
+console.log(document.styleSheets)
 
 let noClicks = true
 let arrayIndex = 0
@@ -62,7 +63,7 @@ const textArray = [
 
 // Inserts Appropriate Topic info
 const insertModal = (index) => {
-    console.log('index: ', index)
+    // console.log('index: ', index)
     const infoModal = document.getElementById('infoModal')
     const contentGrey = document.getElementById('contentGrey')
     const contentRed = document.getElementById('contentRed')
@@ -171,7 +172,6 @@ const generateNewCanvas = () => {
         // Update sizes
         sizes.width = window.innerWidth*7.5/100*1.25
         sizes.height = window.innerHeight*0.95
-        
     
         // Update camera
         camera.aspect = window.innerWidth*7.5/100*1.25 / window.innerHeight*0.95
@@ -1744,9 +1744,16 @@ const sizes = {
 let isPortrait = false
 let isPhaseChanging = false
 
+let scrollMainTextSize = document.styleSheets[5].cssRules[69]
+let scrollTopSize = document.styleSheets[5].cssRules[71]
+let scrollBottomSize = document.styleSheets[5].cssRules[72]
+
 if(window.innerHeight > window.innerWidth) {
     if (window.innerWidth <= 320) {
         zoomFactor = 5
+        scrollMainTextSize.style.fontSize = '10rem'
+        scrollTopSize.style.fontSize = '10rem'
+        scrollBottomSize.style.fontSize = '10rem'
     }
     else if (window.innerWidth > 320 && window.innerWidth <= 375) {
         zoomFactor = 4.5
@@ -1766,15 +1773,11 @@ if(window.innerHeight > window.innerWidth) {
     isPortrait = true
 }
 
-console.log(zoomFactor)
-
-
 window.addEventListener('resize', () => {
+
     if (isPhaseChanging == false) {
         if (isPortrait == true) {
             if (window.innerHeight < window.innerWidth) {
-                console.log(zoomFactor)
-                
                 camera.position.x = camera.position.x/zoomFactor
                 camera.position.z = camera.position.z/zoomFactor
                 camera.position.y = camera.position.y
@@ -1941,13 +1944,13 @@ window.addEventListener('mousemove', (event) =>
 })
 
 // Particles
-const particlesCount = 20000
+const particlesCount = 70000
 const positions = new Float32Array(particlesCount * 3)
 
 for (let i=0; i<particlesCount*3; i++) {
-    positions[i*3 + 0] = ( Math.random() - 0.5 ) * 100
-    positions[i*3 + 1] = ( Math.random() - 0.5 ) * 70 + ( Math.random() * 10 )
-    positions[i*3 + 2] = ( Math.random() - 0.5 ) * 100
+    positions[i*3 + 0] = ( Math.random() - 0.5 ) * 200
+    positions[i*3 + 1] = ( Math.random() - 0.5 ) * 300 + ( Math.random() * 10 )
+    positions[i*3 + 2] = ( Math.random() - 0.5 ) * 200
 }
 
 const particlesGeometry = new THREE.BufferGeometry()
@@ -1976,7 +1979,7 @@ let prevParallaxTime = 0
 let firstCurrentIntersect = null
 let isParallaxOn = false
 
-
+let scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop
 
 const clock = new THREE.Clock()
 
@@ -2037,7 +2040,7 @@ const tick = () =>
     if (firstIntersects.length) {
         if (firstCurrentIntersect === null) {
             firstCurrentIntersect = firstIntersects[0]
-            console.log(firstCurrentIntersect.object)
+            // console.log(firstCurrentIntersect.object)
 
         }
     }
@@ -2066,11 +2069,8 @@ const tick = () =>
     
         if (intersects.length) {
             if (currentIntersect === null) {
-                console.log(intersects)
+                // console.log(intersects)
                 currentIntersect = intersects[0]
-                // console.log(currentIntersect.object)
-                // console.log(topBedframeGroup)
-    
             }
         }
         else {
@@ -2081,6 +2081,8 @@ const tick = () =>
             // console.log(currentIntersect)
         }
     // }
+
+    scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
 
     // Update controls
     if (controls.enabled == true) {
@@ -2279,27 +2281,6 @@ const switchJump = () => {
 const leftDirectionalLight = new THREE.DirectionalLight(0xff0000, 0)
 const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0)
 
-// document.addEventListener('mousedown', () => {
-
-//     document.styleSheets[3].cssRules[69].style.backgroundColor = 'transparent'
-//     document.styleSheets[3].cssRules[69].style.borderColor = 'transparent'
-//     document.styleSheets[3].cssRules[69].style.boxShadow= '0 0 0 1px transparent'
-
-
-//     document.styleSheets[3].cssRules[70].style.borderColor = directionalLightColors[currentColor][2]
-// })
-
-// document.addEventListener('mouseup', () => {
-
-//     document.styleSheets[3].cssRules[69].style.backgroundColor = directionalLightColors[currentColor][2]
-//     document.styleSheets[3].cssRules[69].style.borderColor = directionalLightColors[currentColor][2]
-//     document.styleSheets[3].cssRules[69].style.boxShadow= '0 0 0 1px black'
-
-//     document.styleSheets[3].cssRules[70].style.borderColor = directionalLightColors[currentColor][3]
-// })
-
-console.log(document.styleSheets[3])
-
 const colorChangeRight = () => {
     if (currentColor < directionalLightColors.length - 1) {
         currentColor += 1
@@ -2310,33 +2291,26 @@ const colorChangeRight = () => {
     }
     // 2: Strip Color, 3: SubColor
 
-    document.styleSheets[3].cssRules[40].style.backgroundColor = directionalLightColors[currentColor][2]
-    document.styleSheets[3].cssRules[40].style.borderColor = directionalLightColors[currentColor][2]
+    document.styleSheets[5].cssRules[40].style.backgroundColor = directionalLightColors[currentColor][2]
+    document.styleSheets[5].cssRules[40].style.borderColor = directionalLightColors[currentColor][2]
+    document.styleSheets[5].cssRules[39].style.backgroundColor = directionalLightColors[currentColor][3]
+    document.styleSheets[5].cssRules[39].style.borderColor = directionalLightColors[currentColor][3]
+    document.styleSheets[5].cssRules[17].style.color = directionalLightColors[currentColor][2]
+    document.styleSheets[5].cssRules[9].style.backgroundColor = directionalLightColors[currentColor][2]
+    document.styleSheets[5].cssRules[44].style.color = directionalLightColors[currentColor][2]
+    document.styleSheets[5].cssRules[45].style.color = directionalLightColors[currentColor][3]
+    document.styleSheets[5].cssRules[46].style.color = directionalLightColors[currentColor][2]
+    document.styleSheets[5].cssRules[49].style.color = directionalLightColors[currentColor][3]
+    document.styleSheets[5].cssRules[56].style.color = directionalLightColors[currentColor][3]
+    document.styleSheets[5].cssRules[57].style.color = directionalLightColors[currentColor][3]
+    document.styleSheets[5].cssRules[66].style.color = directionalLightColors[currentColor][2]
+    document.styleSheets[5].cssRules[62].style.color = directionalLightColors[currentColor][2]
+    document.styleSheets[5].cssRules[71].style.webkitTextStrokeColor = directionalLightColors[currentColor][2]
+    document.styleSheets[5].cssRules[72].style.webkitTextStrokeColor = directionalLightColors[currentColor][3]
+    document.styleSheets[5].cssRules[78].style.textShadow = '0 0 2px black, 5px 5px 2px '+ directionalLightColors[currentColor][2] +',  6px 6px 2px black'
+    document.styleSheets[5].cssRules[79].style.textShadow = '0 0 2px black, 5px 5px 2px '+ directionalLightColors[currentColor][2] +',  6px 6px 2px black'
 
-    document.styleSheets[3].cssRules[39].style.backgroundColor = directionalLightColors[currentColor][3]
-    document.styleSheets[3].cssRules[39].style.borderColor = directionalLightColors[currentColor][3]
 
-    document.styleSheets[3].cssRules[17].style.color = directionalLightColors[currentColor][2]
-    document.styleSheets[3].cssRules[9].style.backgroundColor = directionalLightColors[currentColor][2]
-
-    document.styleSheets[3].cssRules[44].style.color = directionalLightColors[currentColor][2]
-    document.styleSheets[3].cssRules[45].style.color = directionalLightColors[currentColor][3]
-
-    document.styleSheets[3].cssRules[46].style.color = directionalLightColors[currentColor][2]
-    document.styleSheets[3].cssRules[49].style.color = directionalLightColors[currentColor][3]
-
-    document.styleSheets[3].cssRules[56].style.color = directionalLightColors[currentColor][3]
-    document.styleSheets[3].cssRules[57].style.color = directionalLightColors[currentColor][3]
-
-    document.styleSheets[3].cssRules[66].style.color = directionalLightColors[currentColor][2]
-    document.styleSheets[3].cssRules[62].style.color = directionalLightColors[currentColor][2]
-
-    // particlesMaterial.color.set(directionalLightColors[currentColor][3])
-
-    // document.styleSheets[3].cssRules[69].style.backgroundColor = directionalLightColors[currentColor][2]
-    // document.styleSheets[3].cssRules[69].style.borderColor = directionalLightColors[currentColor][2]
-
-    // document.styleSheets[3].cssRules[70].style.borderColor = directionalLightColors[currentColor][3]
 
     leftDirectionalLight.color.setHex(directionalLightColors[currentColor][0])
     rightDirectionalLight.color.setHex(directionalLightColors[currentColor][1])  
@@ -2863,9 +2837,11 @@ upArrow.addEventListener('click', () => {
                
             }, 500)
         }
-        else if (currentLink == 2) {
+        else if (currentLink == 2 && scrollTop == 0) {
             // Temporary
             currentLink = 1
+            phaseChange2to1(zoomFactor)
+
             setTimeout(() => {
                 sidebarCircleOne.classList.remove('current')
                 sidebarCircleTwo.classList.add('current')
@@ -2889,8 +2865,8 @@ downArrow.addEventListener('click', () => {
             }, 500)
         }
         else if (currentLink == 1) {
-            // Temporary
-            currentLink = 2
+            phaseChange1to2(zoomFactor)
+
             setTimeout(() => {
                 sidebarCircleOne.classList.remove('current')
                 sidebarCircleTwo.classList.remove('current')
@@ -2909,8 +2885,9 @@ const instructionsBar= document.getElementById('instructionsBar')
 
 
 const instructionsTextArray = [
-    '<t class="smallText">Tap objects twice to interact.</t>',
-    '<t class="smallText">Rotate & Zoom to get a better look.</t>'
+    '<t class="smallText">Tap objects twice to interact</t>',
+    '<t class="smallText">Rotate & Zoom to get a better look</t>',
+    '<t class="smallText">Scroll down slowly</t>'
 ]
 
 const changeInstructions = (index) => {
@@ -3047,10 +3024,10 @@ const phaseChange1to0 = (left, right, zf) => {
 
     setTimeout(() => {
 
-        screenGroup.children[0].children[0].material.emissive.r = 0
-        screenGroup.children[0].children[0].material.emissive.g = 0
-        screenGroup.children[0].children[0].material.emissive.b = 0
-        scene.remove(rectAreaLight)
+        // screenGroup.children[0].children[0].material.emissive.r = 0
+        // screenGroup.children[0].children[0].material.emissive.g = 0
+        // screenGroup.children[0].children[0].material.emissive.b = 0
+        // scene.remove(rectAreaLight)
 
         scene.remove(offAmbientLight)
         scene.remove(offPointLight)
@@ -3119,11 +3096,10 @@ const phaseChange1to0 = (left, right, zf) => {
                 }
             }, 1000)
         }
-
-        console.log(controls.enabled, controls.target)
+        
         camera.lookAt(0,0,0)
 
-        console.log(zf)
+        // console.log(zf)
         gsap.to(camera.position, {duration: 2, delay: 0.5, x: 5*zf, y: 35, z: 5*zf})
     
         setTimeout(() => {
@@ -3151,14 +3127,193 @@ const phaseChange1to0 = (left, right, zf) => {
 }
 
 // Phase Change 1 to 2
-const phaseChange1to2 = () => {
+const phaseChange1to2 = (zf) => {
+    document.querySelectorAll('.displayBlockMe').forEach((a) => {
+        a.classList.remove('displayBlockMe')
+        a.classList.add('displayNoneMe')
+        gsap.to(a, {duration: 0.5, opacity: 1})
+    })
+
+    activateScrollTrigger()
+
+    document.querySelector('.scrollBlanks').style.zIndex = '10'
+
+    phase = 2
+    changeInstructions(phase)
+
+    isPhaseChanging = true
+    clickCounter = 0
+
+    scene.remove(offAmbientLight)
+    scene.remove(offPointLight)
     
+    scene.add(ambientLight)
+    scene.add(pointLight)
+
+    if (closedOnThree == false) {
+        setTimeout(() => {
+            if (isRightFlipped == false) {
+                gsap.to(instructionsBar, {duration: 0.5, x:'0rem'})
+                rightArrow.classList.add('flipped')
+                isRightFlipped = true
+            }
+        }, 1000)
+    }
+
+    if (isTextAtTheBottom == true) {
+        gsap.to(turnLaptopOn, {duration: 1, opacity: 0})
+        setTimeout(() => {
+            turnLaptopOn.style.display = 'none'
+        }, 1000)
+        isTextAtTheBottom = false
+    }
+
+    setTimeout(() => {
+        controls.reset()
+
+        controls.enabled = false
+
+        // Close Modal if there is a modal
+        if (isModalOn) {
+            const infoModalx = document.getElementById('infoModal')
+            const contentGreyx = document.getElementById('contentGrey')
+            const contentRedx = document.getElementById('contentRed')
+            const stayx = document.getElementById('stay')
+            const newCanvas = document.getElementById('newCanvas')
+
+            // infoModalx.classList.remove('display')
+            contentGreyx.classList.remove('displayGrey')
+            contentRedx.classList.remove('displayRed')
+            stayx.classList.remove('stay')
+            newCanvas.classList.remove('canvasStay')
+
+
+            // infoModalx.classList.add('displayx')
+            contentGreyx.classList.add('displayGreyx')
+            contentRedx.classList.add('displayRedx')
+            stayx.classList.add('stayx')
+            newCanvas.classList.add('canvasStayx')
+
+
+            isModalOn = false
+
+            setTimeout(() => {
+                infoModalx.classList.add('displayx')
+            }, 500)
+        }
+
+        isLaptopOn = false
+     
+        currentLink = 2
+
+
+
+        // changeInstructions(phase)
+
+        // if (closedOnOne == false) {
+        //     setTimeout(() => {
+        //         if (isRightFlipped == false) {
+        //             gsap.to(instructionsBar, {duration: 0.5, x:'0rem'})
+        //             rightArrow.classList.add('flipped')
+        //             isRightFlipped = true
+        //         }
+        //     }, 1000)
+        // }
+
+        // console.log(controls.enabled, controls.target)
+        camera.lookAt(0,0,0)
+
+        // console.log(zf)
+        gsap.to(camera.position, {duration: 2, delay: 0.5, x: 5*zf, y: -25, z: 5*zf})
+    
+        setTimeout(() => {
+       
+            scene.remove(allObjects)
+            
+            controls.target.set(0,-20,0)
+            controls.enableRotate = false
+            controls.enablePan = false
+            controls.enableZoom = false
+            controls.enabled = false
+            controls.saveState()
+
+            isArrowClickAllowed = true
+
+            isPhaseChanging = false
+
+            document.body.style.overflowY = 'scroll'
+        }, 2500)
+    }, 200)
+}
+
+const stayDiv = document.getElementById('stayDiv') 
+
+// Phase Change 2 to 1
+const phaseChange2to1 = (zf) => {
+    document.querySelectorAll('.displayNoneMe').forEach((a) => {
+        a.classList.remove('displayNoneMe')
+        a.classList.add('displayBlockMe')
+    })
+    document.querySelector('.scrollBlanks').style.zIndex = '-10'
+
+    document.body.style.overflowY = 'hidden'
+
+    isPhaseChanging = true
+    clickCounter = 0
+
+    phase = 1
+
+    changeInstructions(phase)
+
+    if (closedOnTwo == false) {
+        setTimeout(() => {
+            if (isRightFlipped == false) {
+                gsap.to(instructionsBar, {duration: 0.5, x:'0rem'})
+                rightArrow.classList.add('flipped')
+                isRightFlipped = true
+            }
+        }, 1000)
+    }
+    
+    cameraGroup.position.set(0,0,0)
+
+    setTimeout(() => {
+
+        scene.add(allObjects)
+
+        controls.enabled = false
+
+        scene.add(ambientLight)
+        scene.add(pointLight)
+
+        currentLink = 1
+
+        gsap.to(camera.position, {duration: 2, delay: 0.5, x: 9*zf, y: 9, z: 9*zf})
+    
+        setTimeout(() => {
+            controls.target.set(0,0,0)
+            controls.enableRotate = true
+            // controls.enablePan = true
+            controls.enableZoom = true
+            controls.enabled = true    
+            controls.saveState()   
+
+            isArrowClickAllowed = true
+
+            isPhaseChanging = false
+
+            if (isItEverOn == false) {
+                turnLaptopOn.style.display = 'block'
+                gsap.to(turnLaptopOn, {duration: 1, opacity: 1})
+                isTextAtTheBottom = true
+            }
+        }, 2500)
+    }, 0)
 }
 
 // Close checker
 
 const closeChecker = (index) => {
-    console.log(index)
     if (index == 0) {
         closedOnOne = true
     }
@@ -3169,3 +3324,181 @@ const closeChecker = (index) => {
         closedOnThree = true
     }
 }
+
+// Scroll Animations
+
+gsap.registerPlugin(ScrollTrigger)
+
+const activateScrollTrigger = () => {
+    gsap.to('#scrollTop1', {
+        scrollTrigger: {
+            trigger: '.stayDiv',
+            start: 'center center',
+            end: '+=400%',
+            pin: true,
+            scrub: true,
+            markers: false
+        },
+        y: '-7.5rem',
+        // scale: 0.95,
+        ease: 'none',
+        
+    })
+    
+    gsap.to('#scrollTop2', {
+        scrollTrigger: {
+            trigger: '.stayDiv',
+            start: 'center center',
+            end: '+=400%',
+            pin: true,
+            scrub: true,
+            markers: false
+        },
+        y: '-15rem',
+        // scale: 0.9,
+        ease: 'none',
+        
+    })
+    
+    gsap.to('#scrollTop3', {
+        scrollTrigger: {
+            trigger: '.stayDiv',
+            start: 'center center',
+            end: '+=400%',
+            pin: true,
+            scrub: true,
+            markers: false
+        },
+        y: '-22.5rem',
+        // scale: 0.85,
+        ease: 'none',
+        
+    })
+    
+    gsap.to('#scrollTop4', {
+        scrollTrigger: {
+            trigger: '.stayDiv',
+            start: 'center center',
+            end: '+=400%',
+            pin: true,
+            scrub: true,
+            markers: false
+        },
+        y: '-30rem',
+        // scale: 0.8,
+        ease: 'none',
+        
+    })
+    
+    gsap.to('#scrollBottom1', {
+        scrollTrigger: {
+            trigger: '.stayDiv',
+            start: 'center center',
+            end: '+=400%',
+            pin: true,
+            scrub: true,
+            markers: false
+        },
+        y: '7.5rem',
+        // scale: 0.95,
+        ease: 'none',
+        
+    })
+    
+    gsap.to('#scrollBottom2', {
+        scrollTrigger: {
+            trigger: '.stayDiv',
+            start: 'center center',
+            end: '+=400%',
+            pin: true,
+            scrub: true,
+            markers: false
+        },
+        y: '15rem',
+        // scale: 0.9,
+        ease: 'none',
+        
+    })
+    
+    gsap.to('#scrollBottom3', {
+        scrollTrigger: {
+            trigger: '.stayDiv',
+            start: 'center center',
+            end: '+=400%',
+            pin: true,
+            scrub: true,
+            markers: false
+        },
+        y: '22.5rem',
+        // scale: 0.85,
+        ease: 'none',
+        
+    })
+    
+    gsap.to('#scrollBottom4', {
+        scrollTrigger: {
+            trigger: '.stayDiv',
+            start: 'center center',
+            end: '+=400%',
+            pin: true,
+            scrub: true,
+            markers: false
+        },
+        y: '30rem',
+        // scale: 0.8,
+        ease: 'none',
+        
+    })
+
+    gsap.to('.fromTheLeft', {
+        scrollTrigger: {
+            trigger: '.stayDiv',
+            start: 'center center',
+            end: '+=400%',
+            pin: true,
+            scrub: true,
+            markers: false
+        },
+        x: '2.5%',
+        // scale: 0.8,
+        ease: 'none',
+        
+    })  
+
+    gsap.to('.fromTheRight', {
+        scrollTrigger: {
+            trigger: '.stayDiv',
+            start: 'center center',
+            end: '+=400%',
+            pin: true,
+            scrub: true,
+            markers: false
+        },
+        x: '-2.5%',
+        // scale: 0.8,
+        ease: 'none',
+        
+    }) 
+}
+// Scroll Event Listener
+window.addEventListener('scroll', () => {
+    // console.log(scrollTop)
+    if (phase == 2) {
+        if (scrollTop > 10) {
+            gsap.to('.sidebarMain', {duration: 1, ease: 'none', opacity: 0})
+            gsap.to('#instructionsBar', {duration: 1, ease: 'none', opacity: 0})
+            setTimeout(() => {
+                document.querySelector('.sidebarMain').style.cursor = 'default'
+                document.querySelector('#instructionsBar').style.cursor = 'default'
+            }, 1000);
+        }
+        else if (scrollTop <= 10) {
+            document.querySelector('.sidebarMain').style.cursor = 'pointer'
+            document.querySelector('#instructionsBar').style.cursor = 'pointer'
+            setTimeout(() => {
+                gsap.to('.sidebarMain', {duration: 1, ease: 'none', opacity: 1})
+                gsap.to('#instructionsBar', {duration: 1, ease: 'none', opacity: 1})
+            }, 500)
+        }
+    }
+})
