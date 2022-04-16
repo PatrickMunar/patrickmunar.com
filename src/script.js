@@ -2967,9 +2967,9 @@ const instructionsBar= document.getElementById('instructionsBar')
 
 
 const instructionsTextArray = [
-    '<t class="smallText">Tap objects twice to interact</t>',
-    '<t class="smallText">Rotate & Zoom to get a better look</t>',
-    '<t class="smallText">Scroll down slowly</t>'
+    '<t class="smallText">Tap objects twice to interact.</t>',
+    '<t class="smallText">Rotate & Zoom to get a better look.</t>',
+    '<t class="smallText">Scroll down slowly.</t>'
 ]
 
 const changeInstructions = (index) => {
