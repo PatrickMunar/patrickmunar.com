@@ -3002,6 +3002,37 @@ rightDiv.addEventListener('click', () => {
     }
 })
 
+const rotationChecker = () => {
+    if (isPRotated == true) {
+        gsap.to(P.rotation, {duration: 1, delay: 0, y: P.rotation.y - Math.PI*90/180})
+        isPRotated = false
+    }
+    if (isARotated == true) {
+        gsap.to(A.rotation, {duration: 1, delay: 0, y: A.rotation.y - Math.PI*90/180})
+        isARotated = false
+    }
+    if (isTRotated == true) {
+        gsap.to(T.rotation, {duration: 1, delay: 0, y: T.rotation.y - Math.PI*90/180})
+        isTRotated = false
+    }
+    if (isRRotated == true) {
+        gsap.to(R.rotation, {duration: 1, delay: 0, y: R.rotation.y - Math.PI*90/180})
+        isRRotated = false
+    }
+    if (isIRotated == true) {
+        gsap.to(I.rotation, {duration: 1, delay: 0, y: I.rotation.y - Math.PI*90/180})
+        isIRotated = false
+    }
+    if (isCRotated == true) {
+        gsap.to(C.rotation, {duration: 1, delay: 0, y: C.rotation.y - Math.PI*90/180})
+        isCRotated = false
+    }
+    if (isKRotated == true) {
+        gsap.to(K.rotation, {duration: 1, delay: 0, y: K.rotation.y - Math.PI*90/180})
+        isKRotated = false
+    }
+}
+
 // Phase Change Sequence
 const phaseChange0to1 = (left, right, zf) => {
     isPhaseChanging = true
@@ -3023,73 +3054,43 @@ const phaseChange0to1 = (left, right, zf) => {
     
     cameraGroup.position.set(0,0,0)
 
+    rotationChecker()
+
+    controls.enabled = false
+
+    scene.remove(left)
+    scene.remove(right)
+    scene.add(ambientLight)
+    scene.add(pointLight)
+
+
+    currentLink = 1
+
+    scene.add(allObjects)
+
+    gsap.to(camera.position, {duration: 2, delay: 0.5, x: 9*zf, y: 9, z: 9*zf})
+
     setTimeout(() => {
-        if (isPRotated == true) {
-            gsap.to(P.rotation, {duration: 1, delay: 0, y: P.rotation.y - Math.PI*90/180})
-            isPRotated = false
-        }
-        if (isARotated == true) {
-            gsap.to(A.rotation, {duration: 1, delay: 0, y: A.rotation.y - Math.PI*90/180})
-            isARotated = false
-        }
-        if (isTRotated == true) {
-            gsap.to(T.rotation, {duration: 1, delay: 0, y: T.rotation.y - Math.PI*90/180})
-            isTRotated = false
-        }
-        if (isRRotated == true) {
-            gsap.to(R.rotation, {duration: 1, delay: 0, y: R.rotation.y - Math.PI*90/180})
-            isRRotated = false
-        }
-        if (isIRotated == true) {
-            gsap.to(I.rotation, {duration: 1, delay: 0, y: I.rotation.y - Math.PI*90/180})
-            isIRotated = false
-        }
-        if (isCRotated == true) {
-            gsap.to(C.rotation, {duration: 1, delay: 0, y: C.rotation.y - Math.PI*90/180})
-            isCRotated = false
-        }
-        if (isKRotated == true) {
-            gsap.to(K.rotation, {duration: 1, delay: 0, y: K.rotation.y - Math.PI*90/180})
-            isKRotated = false
-        }
-
-        scene.add(allObjects)
-
-        controls.enabled = false
-
-        scene.remove(left)
-        scene.remove(right)
-        scene.add(ambientLight)
-        scene.add(pointLight)
-
-
-        currentLink = 1
-
-        gsap.to(camera.position, {duration: 2, delay: 0.5, x: 9*zf, y: 9, z: 9*zf})
     
-        setTimeout(() => {
-       
-            scene.remove(nameGroup)
-            scene.remove(leftNameWallPosition)
-            scene.remove(rightNameWallPosition)
-            controls.target.set(0,0,0)
-            controls.enableRotate = true
-            // controls.enablePan = true
-            controls.enableZoom = true
-            controls.enabled = true    
-            controls.saveState()   
+        scene.remove(nameGroup)
+        scene.remove(leftNameWallPosition)
+        scene.remove(rightNameWallPosition)
+        controls.target.set(0,0,0)
+        controls.enableRotate = true
+        controls.enableZoom = true
+        controls.enabled = true    
+        controls.saveState()   
 
-            isArrowClickAllowed = true
+        isArrowClickAllowed = true
 
-            isPhaseChanging = false
+        isPhaseChanging = false
 
-            if (isItEverOn == false) {
-                turnLaptopOn.style.display = 'block'
-                gsap.to(turnLaptopOn, {duration: 1, opacity: 1})
-                isTextAtTheBottom = true
-            }
-        }, 2500)
-    }, 0)
+        if (isItEverOn == false) {
+            turnLaptopOn.style.display = 'block'
+            gsap.to(turnLaptopOn, {duration: 1, opacity: 1})
+            isTextAtTheBottom = true
+        }
+    }, 2500)
 }
 
 // Phase Change Sequence
@@ -3290,21 +3291,6 @@ const phaseChange1to2 = (zf) => {
      
         currentLink = 2
 
-
-
-        // changeInstructions(phase)
-
-        // if (closedOnOne == false) {
-        //     setTimeout(() => {
-        //         if (isRightFlipped == false) {
-        //             gsap.to(instructionsBar, {duration: 0.5, x:'0rem'})
-        //             rightArrow.classList.add('flipped')
-        //             isRightFlipped = true
-        //         }
-        //     }, 1000)
-        // }
-
-        // console.log(controls.enabled, controls.target)
         camera.lookAt(0,0,0)
 
         // console.log(zf)
