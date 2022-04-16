@@ -578,7 +578,7 @@ ul li::before {
 .scrollEnd {
     /* display: none; */
     position: absolute;
-    top: calc(160vh + 400%);
+    top: calc(160vh + 500%);
     width: 100vw;
     height: 2vh;
     background-color: transparent;
@@ -674,28 +674,28 @@ body::-webkit-scrollbar {
 
 .fromTheLeft {
     float: left;
-    font-size: 10rem;
+    font-size: 9rem;
     color: white;
     box-sizing: border-box;
     width: 100%;
     font-family: 'Montserrat', sans-serif;
-    transform: translateX(-100%);
+    transform: translateX(-200vw);
     z-index: 10;
-    text-shadow: 0 0 2px black, -5px 5px 2px red,  -6px 6px 2px black;
+    text-shadow: 0 0 0.3rem black, -0.25rem 0.25rem 0.1rem white,  -0.3rem 0.3rem 0.1rem black;
     font-family: 'Orbitron', sans-serif;
 }
 
 .fromTheRight {
     float: right;
-    font-size: 10rem;
+    font-size: 9rem;
     color: white;
     box-sizing: border-box;
     width: 100%;
     font-family: 'Montserrat', sans-serif;
-    transform: translateX(100%);
+    transform: translateX(200vw);
     z-index: 10;
     font-family: 'Orbitron', sans-serif;
-    text-shadow: 0 0 2px black, 5px 5px 2px red,  6px 6px 2px black;
+    text-shadow: 0 0 0.3rem black, 0.25rem 0.25rem 0.1rem red, 0.3rem 0.3rem 0.1rem black;
 
 }
 
@@ -748,7 +748,15 @@ body::-webkit-scrollbar {
     font-family: 'Nova Square', cursive;
 }
 
-.Playfair {
-    font-family: 'Playfair Display', serif;
+.Merriweather {
+    font-family: 'Merriweather', serif;
 }
 
+.PressStart {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 6rem;
+}
+
+.Bangers {
+    font-family: 'Bangers', cursive;
+}

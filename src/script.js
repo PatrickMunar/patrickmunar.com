@@ -1747,6 +1747,10 @@ let isPhaseChanging = false
 let scrollMainTextSize = document.styleSheets[5].cssRules[69]
 let scrollTopSize = document.styleSheets[5].cssRules[71]
 let scrollBottomSize = document.styleSheets[5].cssRules[72]
+let fromTheLeftSize = document.styleSheets[5].cssRules[78]
+let fromTheRightSize = document.styleSheets[5].cssRules[79]
+let pressStartSize = document.styleSheets[5].cssRules[88]
+
 
 if(window.innerHeight > window.innerWidth) {
     if (window.innerWidth <= 320) {
@@ -1754,21 +1758,59 @@ if(window.innerHeight > window.innerWidth) {
         scrollMainTextSize.style.fontSize = '10rem'
         scrollTopSize.style.fontSize = '10rem'
         scrollBottomSize.style.fontSize = '10rem'
+        fromTheLeftSize.style.fontSize = '6rem'
+        fromTheRightSize.style.fontSize = '6rem'
+        pressStartSize.style.fontSize = '4rem'
     }
     else if (window.innerWidth > 320 && window.innerWidth <= 375) {
         zoomFactor = 4.5
+        scrollMainTextSize.style.fontSize = '10rem'
+        scrollTopSize.style.fontSize = '10rem'
+        scrollBottomSize.style.fontSize = '10rem'
+        fromTheLeftSize.style.fontSize = '6rem'
+        fromTheRightSize.style.fontSize = '6rem'
+        pressStartSize.style.fontSize = '4rem'
+
     }
     else if (window.innerWidth > 375 && window.innerWidth <= 425) {
         zoomFactor = 4
+        scrollMainTextSize.style.fontSize = '10rem'
+        scrollTopSize.style.fontSize = '10rem'
+        scrollBottomSize.style.fontSize = '10rem'
+        fromTheLeftSize.style.fontSize = '6rem'
+        fromTheRightSize.style.fontSize = '6rem'
+        pressStartSize.style.fontSize = '4rem'
+
     }
     else if (window.innerWidth > 425 && window.innerWidth <= 750) {
         zoomFactor = 3
+        scrollMainTextSize.style.fontSize = '10rem'
+        scrollTopSize.style.fontSize = '10rem'
+        scrollBottomSize.style.fontSize = '10rem'
+        fromTheLeftSize.style.fontSize = '6rem'
+        fromTheRightSize.style.fontSize = '6rem'
+        pressStartSize.style.fontSize = '4rem'
+
     }
     else if (window.innerWidth > 750 && window.innerWidth <= 950) {
         zoomFactor = 2.5
+        scrollMainTextSize.style.fontSize = '10rem'
+        scrollTopSize.style.fontSize = '10rem'
+        scrollBottomSize.style.fontSize = '10rem'
+        fromTheLeftSize.style.fontSize = '6rem'
+        fromTheRightSize.style.fontSize = '6rem'
+        pressStartSize.style.fontSize = '4rem'
+
     }
     else {
         zoomFactor = 1
+        scrollMainTextSize.style.fontSize = '10rem'
+        scrollTopSize.style.fontSize = '10rem'
+        scrollBottomSize.style.fontSize = '10rem'
+        fromTheLeftSize.style.fontSize = '6rem'
+        fromTheRightSize.style.fontSize = '6rem'
+        pressStartSize.style.fontSize = '4rem'
+
     }
     isPortrait = true
 }
@@ -1792,26 +1834,68 @@ window.addEventListener('resize', () => {
                 zoomFactor = 1
             }
             isPortrait = false
+            scrollMainTextSize.style.fontSize = '15rem'
+            scrollTopSize.style.fontSize = '15rem'
+            scrollBottomSize.style.fontSize = '15rem'
+            fromTheLeftSize.style.fontSize = '9rem'
+            fromTheRightSize.style.fontSize = '9rem'
+            pressStartSize.style.fontSize = '6rem'
         }
         else if (isPortrait == false) {
             if(window.innerHeight > window.innerWidth) {
                 if (window.innerWidth <= 320) {
                     zoomFactor = 5
+                    scrollMainTextSize.style.fontSize = '10rem'
+                    scrollTopSize.style.fontSize = '10rem'
+                    scrollBottomSize.style.fontSize = '10rem'
+                    fromTheLeftSize.style.fontSize = '6rem'
+                    fromTheRightSize.style.fontSize = '6rem'
+                    pressStartSize.style.fontSize = '4rem'
                 }
                 else if (window.innerWidth > 320 && window.innerWidth <= 375) {
                     zoomFactor = 4.5
+                    scrollMainTextSize.style.fontSize = '10rem'
+                    scrollTopSize.style.fontSize = '10rem'
+                    scrollBottomSize.style.fontSize = '10rem'
+                    fromTheLeftSize.style.fontSize = '6rem'
+                    fromTheRightSize.style.fontSize = '6rem'
+                    pressStartSize.style.fontSize = '4rem'
                 }
                 else if (window.innerWidth > 375 && window.innerWidth <= 425) {
                     zoomFactor = 4
+                    scrollMainTextSize.style.fontSize = '10rem'
+                    scrollTopSize.style.fontSize = '10rem'
+                    scrollBottomSize.style.fontSize = '10rem'
+                    fromTheLeftSize.style.fontSize = '6rem'
+                    fromTheRightSize.style.fontSize = '6rem'
+                    pressStartSize.style.fontSize = '4rem'
                 }
                 else if (window.innerWidth > 425 && window.innerWidth <= 750) {
                     zoomFactor = 3
+                    scrollMainTextSize.style.fontSize = '10rem'
+                    scrollTopSize.style.fontSize = '10rem'
+                    scrollBottomSize.style.fontSize = '10rem'
+                    fromTheLeftSize.style.fontSize = '6rem'
+                    fromTheRightSize.style.fontSize = '6rem'
+                    pressStartSize.style.fontSize = '4rem'
                 }
                 else if (window.innerWidth > 750 && window.innerWidth <= 950) {
                     zoomFactor = 2.5
+                    scrollMainTextSize.style.fontSize = '10rem'
+                    scrollTopSize.style.fontSize = '10rem'
+                    scrollBottomSize.style.fontSize = '10rem'
+                    fromTheLeftSize.style.fontSize = '6rem'
+                    fromTheRightSize.style.fontSize = '6rem'
+                    pressStartSize.style.fontSize = '4rem'
                 }
                 else {
                     zoomFactor = 1
+                    scrollMainTextSize.style.fontSize = '10rem'
+                    scrollTopSize.style.fontSize = '10rem'
+                    scrollBottomSize.style.fontSize = '10rem'
+                    fromTheLeftSize.style.fontSize = '6rem'
+                    fromTheRightSize.style.fontSize = '6rem'
+                    pressStartSize.style.fontSize = '4rem'
                 }
                 camera.position.x = camera.position.x*zoomFactor
                 camera.position.z = camera.position.z*zoomFactor
@@ -2307,10 +2391,8 @@ const colorChangeRight = () => {
     document.styleSheets[5].cssRules[62].style.color = directionalLightColors[currentColor][2]
     document.styleSheets[5].cssRules[71].style.webkitTextStrokeColor = directionalLightColors[currentColor][2]
     document.styleSheets[5].cssRules[72].style.webkitTextStrokeColor = directionalLightColors[currentColor][3]
-    document.styleSheets[5].cssRules[78].style.textShadow = '0 0 2px black, 5px 5px 2px '+ directionalLightColors[currentColor][2] +',  6px 6px 2px black'
-    document.styleSheets[5].cssRules[79].style.textShadow = '0 0 2px black, 5px 5px 2px '+ directionalLightColors[currentColor][2] +',  6px 6px 2px black'
-
-
+    document.styleSheets[5].cssRules[78].style.textShadow = '0 0 0.3rem black, -0.25rem 0.25rem 0.1rem '+ directionalLightColors[currentColor][3] +', -0.3rem 0.3rem 0.1rem black'
+    document.styleSheets[5].cssRules[79].style.textShadow = '0 0 0.3rem black, 0.25rem 0.25rem 0.1rem '+ directionalLightColors[currentColor][2] +', 0.3rem 0.3rem 0.1rem black'
 
     leftDirectionalLight.color.setHex(directionalLightColors[currentColor][0])
     rightDirectionalLight.color.setHex(directionalLightColors[currentColor][1])  
@@ -3459,7 +3541,7 @@ const activateScrollTrigger = () => {
             scrub: true,
             markers: false
         },
-        x: '2.5%',
+        x: '0%',
         // scale: 0.8,
         ease: 'none',
         
@@ -3474,7 +3556,7 @@ const activateScrollTrigger = () => {
             scrub: true,
             markers: false
         },
-        x: '-2.5%',
+        x: '-0.75%',
         // scale: 0.8,
         ease: 'none',
         
