@@ -2076,28 +2076,30 @@ const tick = () =>
     prevParallaxTime = elapsedTime
 
 
-    // // Phase 0 Animations
-    // if (phase == 0) {
-    //     // Parallax
-    //     if (isParallaxOn == true) {
-    //         const parallaxX = cursor.x * 0.5
-    //         const parallaxY = - cursor.y * 0.5
-    //         cameraGroup.position.x += ( parallaxX - cameraGroup.position.x ) * 2 * parallaxTIme
-    //         cameraGroup.position.y += ( parallaxY - cameraGroup.position.y ) * 2 * parallaxTIme
-    //         cameraGroup.position.z += ( - parallaxX - cameraGroup.position.z ) * 2 * parallaxTIme
-    //     }
+    // Phase 0 Animations
+    if (phase == 0) {
+        // Parallax
+        if (isParallaxOn == true) {
+            const parallaxX = cursor.x * 0.1
+            const parallaxY = - cursor.y * 0.1
+            cameraGroup.position.x += ( parallaxX - cameraGroup.position.x ) * 2 * parallaxTIme
+            cameraGroup.position.y += ( parallaxY - cameraGroup.position.y ) * 2 * parallaxTIme
+            cameraGroup.position.z += ( - parallaxX - cameraGroup.position.z ) * 2 * parallaxTIme
+        }
 
-    //     // Arrow bobbles
-    //     P.position.z = - Math.sin(elapsedTime*2) * 0.05 - 105*0.025
-    //     K.position.z = Math.sin(elapsedTime*2) * 0.05 + 105*0.025
-    // }
+        // Arrow bobbles
+        P.position.z = - Math.sin(elapsedTime*2) * 0.05 - 105*0.025
+        K.position.z = Math.sin(elapsedTime*2) * 0.05 + 105*0.025
+    }
 
-    //Particles following cursor  
-    const parallaxX = cursor.x * 0.1
-    const parallaxY = - cursor.y * 0.1
-    particles.position.x += ( parallaxX - cameraGroup.position.x ) * parallaxTIme
-    particles.position.y += ( parallaxY - cameraGroup.position.y ) * parallaxTIme
-    particles.position.z += ( - parallaxX - cameraGroup.position.z ) * parallaxTIme
+    //Particles following cursor 
+    if (phase !== 0) {
+        const parallaxX = cursor.x * 0.1
+        const parallaxY = - cursor.y * 0.1
+        particles.position.x += - ( parallaxX - cameraGroup.position.x ) * parallaxTIme
+        particles.position.y += - ( parallaxY - cameraGroup.position.y ) * parallaxTIme
+        particles.position.z += - ( - parallaxX - cameraGroup.position.z ) * parallaxTIme
+    }
 
     // Animations
     if (topBedframeGroup.position.y == 4 && isTopHalfFloating == false) {
