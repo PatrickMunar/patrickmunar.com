@@ -1834,12 +1834,12 @@ window.addEventListener('resize', () => {
                 zoomFactor = 1
             }
             isPortrait = false
-            scrollMainTextSize.style.fontSize = '15rem'
-            scrollTopSize.style.fontSize = '15rem'
-            scrollBottomSize.style.fontSize = '15rem'
-            fromTheLeftSize.style.fontSize = '9rem'
-            fromTheRightSize.style.fontSize = '9rem'
-            pressStartSize.style.fontSize = '6rem'
+            scrollMainTextSize.style.fontSize = '10rem'
+            scrollTopSize.style.fontSize = '10rem'
+            scrollBottomSize.style.fontSize = '10rem'
+            fromTheLeftSize.style.fontSize = '6rem'
+            fromTheRightSize.style.fontSize = '6rem'
+            pressStartSize.style.fontSize = '4rem'
         }
         else if (isPortrait == false) {
             if(window.innerHeight > window.innerWidth) {
