@@ -3110,6 +3110,21 @@ const activateScrollTrigger = () => {
 
     // Projects
 
+    
+    gsap.to('#mottoText', {
+        scrollTrigger: {
+            trigger: '.horizontalScrollDiv',
+            start: 'top center',
+            end: '+=50%',
+            // pin: true,
+            scrub: true,
+            markers: false
+        },
+        opacity: '1',
+        // scale: 0.8,
+        ease: 'none',
+    }) 
+
     gsap.to('.projectsTextDiv', {
         scrollTrigger: {
             trigger: '.horizontalScrollDiv',

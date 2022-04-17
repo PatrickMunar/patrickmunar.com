@@ -655,7 +655,7 @@ body::-webkit-scrollbar {
 }
 
 .scrollBlanks {
-    height: 900%;
+    height: 900vh;
     width: 100vw;
     position: absolute;
     top: 0;
@@ -784,7 +784,7 @@ body::-webkit-scrollbar {
     /* border: 2px solid yellow; */
     box-sizing: border-box;
     overflow: hidden;
-    z-index: 30;
+    z-index: 5;
 }
 
 .projectsTextDiv {
@@ -800,7 +800,6 @@ body::-webkit-scrollbar {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 20;
 }
 
 .projectsTextDivSubs {
@@ -815,15 +814,6 @@ body::-webkit-scrollbar {
     transform: scale(3);
 }
 
-.projectsContentDivSubs {
-    width: calc(100vw - 15rem);
-    height: 100vh;
-    /* border: 2px solid lime; */
-    background-color: transparent;
-    margin-left: 15rem;
-    font-family: 'Orbitron', sans-serif;
-}
-
 .projectsContent {
     width: 400vw;
     height: 100vh;
@@ -833,4 +823,38 @@ body::-webkit-scrollbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.projectsContentDivSubs {
+    width: calc(100vw - 15rem);
+    height: 100vh;
+    /* border: 2px solid lime; */
+    background-color: transparent;
+    margin-left: 15rem;
+    font-family: 'Orbitron', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.projectsContentHeader {
+    width: 100%;
+    height: 20vh;
+    text-align: right;
+    /* border: 2px solid white; */
+    padding: 5rem;
+    box-sizing: border-box;
+}
+
+.projectsContentText {
+    height: 80vh;
+    width: 100%;
+    /* border: 2px solid white; */
+    box-sizing: border-box;
+    padding: 5rem;
+    padding-top: 20vh;
+    font-family: 'BIZ UDPMincho', serif;
+}
+
+#mottoText {
+    opacity: 0;
 }
