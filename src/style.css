@@ -655,7 +655,7 @@ body::-webkit-scrollbar {
 }
 
 .scrollBlanks {
-    height: 100vh;
+    height: 900%;
     width: 100vw;
     position: absolute;
     top: 0;
@@ -759,4 +759,78 @@ body::-webkit-scrollbar {
 
 .Bangers {
     font-family: 'Bangers', cursive;
+}
+
+.horizontalScrollDiv {
+    position: absolute;
+    top: 600vh;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    /* border: 2px solid blue; */
+    text-align: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+}
+
+.projectsDiv {
+    position: fixed;
+    width: 15rem;
+    height: 100vh;
+    background-color: #00000040;
+    /* border-radius: 1rem; */
+    /* border: 2px solid yellow; */
+    box-sizing: border-box;
+    overflow: hidden;
+    z-index: 30;
+}
+
+.projectsTextDiv {
+    color: white;
+    font-size: 7.5rem;
+    /* border: 2px solid orange; */
+    box-sizing: border-box;
+    height: 15rem;
+    width: 400vh;
+    transform: rotate(90deg) translateY(-15rem) translateX(-300vh);
+    transform-origin: 0% 0%;
+    font-family: 'Orbitron', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+}
+
+.projectsTextDivSubs {
+    width: 100vh;
+    height: 15rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.doubleUp {
+    transform: scale(3);
+}
+
+.projectsContentDivSubs {
+    width: calc(100vw - 15rem);
+    height: 100vh;
+    /* border: 2px solid lime; */
+    background-color: transparent;
+    margin-left: 15rem;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.projectsContent {
+    width: 400vw;
+    height: 100vh;
+    /* border: 2px solid violet; */
+    color: white;
+    font-size: 7.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

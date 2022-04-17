@@ -387,18 +387,6 @@ const loadingManager = new THREE.LoadingManager(
 // Texture loader
 const textureLoader = new THREE.TextureLoader()
 
-// const offLaptopTexture = textureLoader.load(
-//     'OffLaptop.jpg'
-// )
-
-// const offLaptopMaterial = new THREE.MeshStandardMaterial({
-//     map: offLaptopTexture
-// })
-
-// const whiteMaterial = new THREE.MeshStandardMaterial({
-//     color: 'white'
-// })
-
 // Draco loader
 const dracoLoader = new DRACOLoader()
 dracoLoader.setDecoderPath('draco/')
@@ -409,19 +397,6 @@ gltfLoader.setDRACOLoader(dracoLoader)
 
 // Font Loader
 const fontLoader = new FontLoader()
-
-
-// // Texture
-// const bakedTexture = textureLoader.load(
-//     'baked.jpg'
-// )
-// bakedTexture.flipY = false
-// bakedTexture.encoding = THREE.sRGBEncoding
-
-// // Material
-// const bakedMaterial = new THREE.MeshBasicMaterial({
-//     map: bakedTexture
-// })
 
 // Variables for Phase 0
 let P = new THREE.Group
@@ -508,17 +483,9 @@ kunai.position.set(2*0.05, -0.25*0.05, 0)
 gltfLoader.load(
     'LeftNameWall.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.025,0.025,0.025)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         leftNameWall.add(obj.scene)
@@ -531,17 +498,9 @@ gltfLoader.load(
 gltfLoader.load(
     'RightNameWall.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.025,0.025,0.025)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         rightNameWall.add(obj.scene)
@@ -554,17 +513,9 @@ gltfLoader.load(
 gltfLoader.load(
     'P.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.025,0.025,0.025)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         P.add(obj.scene)
@@ -577,18 +528,10 @@ gltfLoader.load(
 gltfLoader.load(
     'A.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.025,0.025,0.025)
 
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         A.add(obj.scene)
@@ -601,18 +544,10 @@ gltfLoader.load(
 gltfLoader.load(
     'T.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.025,0.025,0.025)
 
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         T.add(obj.scene)
@@ -625,18 +560,10 @@ gltfLoader.load(
 gltfLoader.load(
     'R.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.025,0.025,0.025)
 
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         R.add(obj.scene)
@@ -649,18 +576,10 @@ gltfLoader.load(
 gltfLoader.load(
     'I.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.025,0.025,0.025)
 
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         I.add(obj.scene)
@@ -673,18 +592,10 @@ gltfLoader.load(
 gltfLoader.load(
     'C.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.025,0.025,0.025)
 
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         C.add(obj.scene)
@@ -697,18 +608,10 @@ gltfLoader.load(
 gltfLoader.load(
     'K.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.025,0.025,0.025)
 
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         K.add(obj.scene)
@@ -725,17 +628,9 @@ gltfLoader.load(
 gltfLoader.load(
     'KunaiBase.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         kunai.add(obj.scene)
@@ -748,17 +643,9 @@ gltfLoader.load(
 gltfLoader.load(
     'KunaiHandle.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         kunai.add(obj.scene)
@@ -771,17 +658,9 @@ gltfLoader.load(
 gltfLoader.load(
     'Chair.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         chair.add(obj.scene)
@@ -794,17 +673,9 @@ gltfLoader.load(
 gltfLoader.load(
     'DBSphere.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         DBGroup.add(obj.scene)
@@ -817,17 +688,9 @@ gltfLoader.load(
 gltfLoader.load(
     'DBStar.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         DBGroup.add(obj.scene)
@@ -840,17 +703,9 @@ gltfLoader.load(
 gltfLoader.load(
     'HeadphoneFoam.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         headphoneGroup.add(obj.scene)
@@ -863,17 +718,9 @@ gltfLoader.load(
 gltfLoader.load(
     'HeadphoneBase.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         headphoneGroup.add(obj.scene)
@@ -886,17 +733,9 @@ gltfLoader.load(
 gltfLoader.load(
     'SwitchDock.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         switchDock.add(obj.scene)
@@ -909,17 +748,9 @@ gltfLoader.load(
 gltfLoader.load(
     'BlackSwitchButtons.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         joyConGroup.add(obj.scene)
@@ -932,17 +763,9 @@ gltfLoader.load(
 gltfLoader.load(
     'BlueJoyCon.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         joyConGroup.add(obj.scene)
@@ -955,17 +778,9 @@ gltfLoader.load(
 gltfLoader.load(
     'RedJoyCon.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         joyConGroup.add(obj.scene)
@@ -979,17 +794,9 @@ gltfLoader.load(
 gltfLoader.load(
     'SwitchScreen.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         switchScreen.add(obj.scene)
@@ -1003,17 +810,9 @@ gltfLoader.load(
 gltfLoader.load(
     'SwitchBlack.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         switchGroup.add(obj.scene)
@@ -1026,17 +825,9 @@ gltfLoader.load(
 gltfLoader.load(
     'Sablay.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         sablayGroup.add(obj.scene)
@@ -1049,17 +840,9 @@ gltfLoader.load(
 gltfLoader.load(
     'HookBase.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         hookbase.add(obj.scene)
@@ -1072,17 +855,9 @@ gltfLoader.load(
 gltfLoader.load(
     'ChessBoard.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         chessboardGroup.add(obj.scene)
@@ -1095,17 +870,9 @@ gltfLoader.load(
 gltfLoader.load(
     'ChessBoardLight.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         chessboardGroup.add(obj.scene)
@@ -1118,17 +885,9 @@ gltfLoader.load(
 gltfLoader.load(
     'DarkTiles.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         chessboardGroup.add(obj.scene)
@@ -1141,17 +900,9 @@ gltfLoader.load(
 gltfLoader.load(
     'LightTIles.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         chessboardGroup.add(obj.scene)
@@ -1164,17 +915,9 @@ gltfLoader.load(
 gltfLoader.load(
     'Board.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         skateboardGroup.add(obj.scene)
@@ -1187,17 +930,9 @@ gltfLoader.load(
 gltfLoader.load(
     'Trucks.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         skateboardGroup.add(obj.scene)
@@ -1210,17 +945,9 @@ gltfLoader.load(
 gltfLoader.load(
     'Wheels.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         skateboardGroup.add(obj.scene)
@@ -1233,17 +960,9 @@ gltfLoader.load(
 gltfLoader.load(
     'Griptape.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         skateboardGroup.add(obj.scene)
@@ -1256,17 +975,9 @@ gltfLoader.load(
 gltfLoader.load(
     'Laces.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         footballGroup.add(obj.scene)
@@ -1279,17 +990,9 @@ gltfLoader.load(
 gltfLoader.load(
     'Football.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         footballGroup.add(obj.scene)
@@ -1302,17 +1005,9 @@ gltfLoader.load(
 gltfLoader.load(
     'MousePad.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         mousepad.add(obj.scene)
@@ -1325,17 +1020,9 @@ gltfLoader.load(
 gltfLoader.load(
     'TopLaptop.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         // obj.scene.castShadow = true
@@ -1348,17 +1035,9 @@ gltfLoader.load(
 gltfLoader.load(
     'BottomLaptop.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         laptopGroup.add(obj.scene)
@@ -1371,21 +1050,13 @@ gltfLoader.load(
 gltfLoader.load(
     'Screen.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         // obj.scene.traverse((child) => {
         //     child.material = offLaptopMaterial
         // })
 
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
         
 
         // console.log(obj)
@@ -1400,17 +1071,9 @@ gltfLoader.load(
 gltfLoader.load(
     'WoodFloor.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         wallsandfloor.add(obj.scene)
@@ -1423,17 +1086,9 @@ gltfLoader.load(
 gltfLoader.load(
     'WhiteMats.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         staticStairsGroup.add(obj.scene)
@@ -1445,17 +1100,9 @@ gltfLoader.load(
 gltfLoader.load(
     'WhiteDrawerTop.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         topDrawer.add(obj.scene)
@@ -1467,17 +1114,9 @@ gltfLoader.load(
 gltfLoader.load(
     'WhiteDrawerMiddle.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         midDrawer.add(obj.scene)
@@ -1489,17 +1128,9 @@ gltfLoader.load(
 gltfLoader.load(
     'WhiteDrawerBottom.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         botDrawer.add(obj.scene)
@@ -1511,17 +1142,9 @@ gltfLoader.load(
 gltfLoader.load(
     'TopWhiteBedframe.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         topBedframeGroup.add(obj.scene)
@@ -1534,17 +1157,9 @@ gltfLoader.load(
 gltfLoader.load(
     'TopBlackBedframe.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         topBedframeGroup.add(obj.scene)
@@ -1557,17 +1172,9 @@ gltfLoader.load(
 gltfLoader.load(
     'RedWalls.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         wallsandfloor.add(obj.scene)
@@ -1579,17 +1186,9 @@ gltfLoader.load(
 gltfLoader.load(
     'Pillow.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         topBedframeGroup.add(obj.scene)
@@ -1601,17 +1200,9 @@ gltfLoader.load(
 gltfLoader.load(
     'BottomWhiteBedframe.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         bottomBedframeGroup.add(obj.scene)
@@ -1623,17 +1214,9 @@ gltfLoader.load(
 gltfLoader.load(
     'BottomBlackBedframe.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         bottomBedframeGroup.add(obj.scene)
@@ -1646,17 +1229,9 @@ gltfLoader.load(
 gltfLoader.load(
     'BlackStairs.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         staticStairsGroup.add(obj.scene)
@@ -1669,17 +1244,9 @@ gltfLoader.load(
 gltfLoader.load(
     'Bed.glb',
     (obj) => {
-        // room.scene.traverse((child) => {
-        //     child.material = bakedMaterial
-        // })
+       
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
-        // room.scene.position.y = -1
-        // room.scene.rotation.y = Math.PI * 0.25
-        // floor.scene.position.x = -1.5
-        // room.scene.position.z = 1.5
-        // room.scene.position.set(-1,0,5)
-        // room.scene.rotation.y = Math.PI * 0.25
 
         // console.log(obj)
         topBedframeGroup.add(obj.scene)
@@ -1691,7 +1258,7 @@ gltfLoader.load(
 )
 
 // Lighting
-// const ambientLight = new THREE.AmbientLight(0xaa00ff, 0.1)
+
 const ambientLight = new THREE.AmbientLight(0xaa00ff, 0.1)
 
 const offAmbientLight = new THREE.AmbientLight(0xaaaaff, 0.3)
@@ -2187,10 +1754,6 @@ tick()
 // Phase initialization
 
 
-    // var clickCounter = 0
-
-    // let isLaptopOn = false
-    // let isAnimationDone = false
 
 
 // GSAP Animations
@@ -2458,7 +2021,6 @@ if (phase == 0) {
     nameGroup.add(C)
     nameGroup.add(K)
 
-  
     leftNameWallPosition.position.y = -1+30+ 15*0.025
     leftNameWallPosition.position.x = - 5
 
@@ -2892,17 +2454,14 @@ const spinRightWall = () => {
     gsap.to(rightNameWall.rotation, {duration: 1, z: Math.PI + rightNameWall.rotation.x})
 }
 
-
 // Side Bar
 let isArrowClickAllowed = true
-
 
 const sidebarCircleOne = document.getElementById('sidebarCircleOne')
 const sidebarCircleTwo = document.getElementById('sidebarCircleTwo')
 const sidebarCircleThree = document.getElementById('sidebarCircleThree')
 const upArrow = document.getElementById('up')
 const downArrow = document.getElementById('down')
-
 
 // Clicking Links
 
@@ -2966,7 +2525,6 @@ let isRightFlipped = true
 
 const instructionsText = document.getElementById('instructionsText')
 const instructionsBar= document.getElementById('instructionsBar')
-
 
 const instructionsTextArray = [
     '<t class="smallText">Tap objects twice to interact.</t>',
@@ -3548,6 +3106,36 @@ const activateScrollTrigger = () => {
         // scale: 0.8,
         ease: 'none',
         
+    }) 
+
+    // Projects
+
+    gsap.to('.projectsTextDiv', {
+        scrollTrigger: {
+            trigger: '.horizontalScrollDiv',
+            start: 'top top',
+            end: '+=200%',
+            pin: true,
+            scrub: true,
+            markers: false
+        },
+        y: '0',
+        // scale: 0.8,
+        ease: 'none',
+    }) 
+
+    gsap.to('.projectsContent', {
+        scrollTrigger: {
+            trigger: '.horizontalScrollDiv',
+            start: 'top top',
+            end: '+=200%',
+            pin: true,
+            scrub: true,
+            markers: false
+        },
+        x: '-300vw',
+        // scale: 0.8,
+        ease: 'none',
     }) 
 }
 // Scroll Event Listener
