@@ -3227,7 +3227,8 @@ const activateScrollTrigger = () => {
             end: '+=200%',
             pin: true,
             scrub: true,
-            markers: false
+            markers: false,
+            snap: 1/3
         },
         x: '-300vw',
         // scale: 0.8,
