@@ -428,7 +428,7 @@ body {
 
 #up, #down, #right {
     color: red;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 #instructionsBar {
@@ -662,6 +662,7 @@ body::-webkit-scrollbar {
     box-sizing: border-box;
     /* border: 2px solid purple; */
     z-index: -10;
+    /* pointer-events: none; */
 }
 
 .displayBlockMe {
@@ -773,6 +774,7 @@ body::-webkit-scrollbar {
     justify-content: flex-start;
     align-items: center;
     overflow: hidden;
+    z-index: 100;
 }
 
 .projectsDiv {
@@ -804,7 +806,7 @@ body::-webkit-scrollbar {
 
 .projectsTextDivSubs {
     width: 100vh;
-    height: 15rem;
+    height: 20vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -851,10 +853,65 @@ body::-webkit-scrollbar {
     /* border: 2px solid white; */
     box-sizing: border-box;
     padding: 5rem;
-    padding-top: 20vh;
+    padding-top: 10vh;
     font-family: 'BIZ UDPMincho', serif;
 }
 
 #mottoText {
+    padding-top: 20vh;
     opacity: 0;
+}
+
+.Monoton {
+    font-family: 'Monoton', cursive;
+}
+
+.Pacifico {
+    font-family: 'Pacifico', cursive;
+}
+
+.pointers {
+    cursor: pointer;
+}
+
+.gum1 {
+    color: #ffc3c3;
+}
+
+.gum2 {
+    color: #f9ff94;
+}
+
+.gum3 {
+    color: #92f5ff;
+}
+
+.actualProjects {
+    text-align: left;
+}
+
+.descriptionText {
+    font-size: 5rem;
+}
+
+.contributionsText {
+    font-size: 4rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.stackText {
+    font-size: 3.5rem;
+}
+
+.linkText {
+    font-size: 3.5rem;
+    z-index: 1000;
+    font-style: none;
+    text-decoration: underline;
+    /* cursor: pointer; */
+}
+
+.PressStartSmaller {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 3rem;
 }

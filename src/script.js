@@ -11,6 +11,9 @@ import { RedFormat } from 'three'
 
 console.log(document.styleSheets)
 
+// Clear Scroll Memory
+window.history.scrollRestoration = 'manual'
+
 let noClicks = true
 let arrayIndex = 0
 let isModalOn = false
@@ -1746,7 +1749,12 @@ const tick = () =>
     renderer.render(scene, camera)
 
     // Call tick again on the next frame
-    window.requestAnimationFrame(tick)
+    // window.requestAnimationFrame(tick)
+
+    // fps from 70 to 130+ constant
+    setTimeout(() => {
+        window.requestAnimationFrame(tick)
+    }, 1)
 }
 
 tick()
@@ -2958,6 +2966,38 @@ const closeChecker = (index) => {
 gsap.registerPlugin(ScrollTrigger)
 
 const activateScrollTrigger = () => {
+    // hide side and instructions
+    gsap.to('.sidebarMain', {
+        scrollTrigger: {
+            trigger: '.stayDiv',
+            start: 'top bottom',
+            end: '+=50%',
+            // pin: true,
+            scrub: true,
+            markers: false
+        },
+        opacity: 0,
+        // scale: 0.95,
+        ease: 'none',
+        
+    })
+
+    gsap.to('#instructionsBar', {
+        scrollTrigger: {
+            trigger: '.stayDiv',
+            start: 'top bottom',
+            end: '+=50%',
+            // pin: true,
+            scrub: true,
+            markers: false
+        },
+        opacity: 0,
+        // scale: 0.95,
+        ease: 'none',
+        
+    })
+
+    // Scroll anims
     gsap.to('#scrollTop1', {
         scrollTrigger: {
             trigger: '.stayDiv',
@@ -3110,7 +3150,6 @@ const activateScrollTrigger = () => {
 
     // Projects
 
-    
     gsap.to('#mottoText', {
         scrollTrigger: {
             trigger: '.horizontalScrollDiv',
@@ -3121,6 +3160,48 @@ const activateScrollTrigger = () => {
             markers: false
         },
         opacity: '1',
+        // scale: 0.8,
+        ease: 'none',
+    }) 
+
+    gsap.to('.gum1', {
+        scrollTrigger: {
+            trigger: '.horizontalScrollDiv',
+            start: '55% center',
+            end: '+=2px',
+            // pin: true,
+            scrub: true,
+            markers: false
+        },
+        opacity: '0',
+        // scale: 0.8,
+        ease: 'none',
+    }) 
+
+    gsap.to('.gum2', {
+        scrollTrigger: {
+            trigger: '.horizontalScrollDiv',
+            start: '62.5% center',
+            end: '+=2px',
+            // pin: true,
+            scrub: true,
+            markers: false
+        },
+        opacity: '0',
+        // scale: 0.8,
+        ease: 'none',
+    }) 
+
+    gsap.to('.gum3', {
+        scrollTrigger: {
+            trigger: '.horizontalScrollDiv',
+            start: '70% center',
+            end: '+=2px',
+            // pin: true,
+            scrub: true,
+            markers: false
+        },
+        opacity: '0',
         // scale: 0.8,
         ease: 'none',
     }) 
@@ -3153,25 +3234,21 @@ const activateScrollTrigger = () => {
         ease: 'none',
     }) 
 }
-// Scroll Event Listener
+
+// cursor change
+const sidebarMainCursor = document.querySelector('.sidebarMain')
+const pointers = document.querySelectorAll('.pointers')
 window.addEventListener('scroll', () => {
-    // console.log(scrollTop)
     if (phase == 2) {
-        if (scrollTop > 10) {
-            gsap.to('.sidebarMain', {duration: 1, ease: 'none', opacity: 0})
-            gsap.to('#instructionsBar', {duration: 1, ease: 'none', opacity: 0})
-            setTimeout(() => {
-                document.querySelector('.sidebarMain').style.cursor = 'default'
-                document.querySelector('#instructionsBar').style.cursor = 'default'
-            }, 1000);
+        if (sidebarMainCursor.style.opacity < 0.9) {
+            pointers.forEach((p) => {
+                p.style.cursor = 'default'
+            })
         }
-        else if (scrollTop <= 10) {
-            document.querySelector('.sidebarMain').style.cursor = 'pointer'
-            document.querySelector('#instructionsBar').style.cursor = 'pointer'
-            setTimeout(() => {
-                gsap.to('.sidebarMain', {duration: 1, ease: 'none', opacity: 1})
-                gsap.to('#instructionsBar', {duration: 1, ease: 'none', opacity: 1})
-            }, 500)
+        else {
+            pointers.forEach((p) => {
+                p.style.cursor = 'pointer'
+            })
         }
     }
 })
