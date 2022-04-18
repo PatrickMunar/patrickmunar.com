@@ -1321,6 +1321,14 @@ let fromTheLeftSize = document.styleSheets[5].cssRules[78]
 let fromTheRightSize = document.styleSheets[5].cssRules[79]
 let pressStartSize = document.styleSheets[5].cssRules[88]
 
+const projectsContentResize = document.styleSheets[5].cssRules[95]
+const projectsDivResize = document.styleSheets[5].cssRules[91]
+const projectsTextDivResize = document.styleSheets[5].cssRules[92]
+const projectsContentDivSubsResize = document.styleSheets[5].cssRules[96]
+const stackTextResize = document.styleSheets[5].cssRules[109]
+const PressStartSmallerResize = document.styleSheets[5].cssRules[111]
+const doubleUpResize = document.styleSheets[5].cssRules[94]
+
 
 if(window.innerHeight > window.innerWidth) {
     if (window.innerWidth <= 320) {
@@ -1331,6 +1339,16 @@ if(window.innerHeight > window.innerWidth) {
         fromTheLeftSize.style.fontSize = '6rem'
         fromTheRightSize.style.fontSize = '6rem'
         pressStartSize.style.fontSize = '4rem'
+        projectsContentResize.style.fontSize = '4rem'
+        projectsDivResize.style.fontSize = '4rem'
+        projectsDivResize.style.width = '10vh'
+        projectsTextDivResize.style.height = '10vh'
+        projectsTextDivResize.style.transform = 'rotate(90deg) translateY(-10vh) translateX(-300vh)'
+        projectsContentDivSubsResize.style.width = 'calc(100vw - 10vh)'
+        projectsContentDivSubsResize.style.marginLeft = '10vh'
+        stackTextResize.style.fontSize = '2rem'
+        PressStartSmallerResize.style.fontSize = '1.5rem'
+        doubleUpResize.style.transform = 'scale(1.5)'
     }
     else if (window.innerWidth > 320 && window.innerWidth <= 375) {
         zoomFactor = 4.5
@@ -1340,6 +1358,17 @@ if(window.innerHeight > window.innerWidth) {
         fromTheLeftSize.style.fontSize = '6rem'
         fromTheRightSize.style.fontSize = '6rem'
         pressStartSize.style.fontSize = '4rem'
+        projectsContentResize.style.fontSize = '4rem'
+        projectsDivResize.style.fontSize = '4rem'
+        projectsDivResize.style.width = '10vh'
+        projectsTextDivResize.style.height = '10vh'
+        projectsTextDivResize.style.transform = 'rotate(90deg) translateY(-10vh) translateX(-300vh)'
+        projectsContentDivSubsResize.style.width = 'calc(100vw - 10vh)'
+        projectsContentDivSubsResize.style.marginLeft = '10vh'
+        stackTextResize.style.fontSize = '2rem'
+        PressStartSmallerResize.style.fontSize = '1.5rem'
+        doubleUpResize.style.transform = 'scale(1.5)'
+        
 
     }
     else if (window.innerWidth > 375 && window.innerWidth <= 425) {
@@ -1350,6 +1379,16 @@ if(window.innerHeight > window.innerWidth) {
         fromTheLeftSize.style.fontSize = '6rem'
         fromTheRightSize.style.fontSize = '6rem'
         pressStartSize.style.fontSize = '4rem'
+        projectsContentResize.style.fontSize = '4rem'
+        projectsDivResize.style.fontSize = '4rem'
+        projectsDivResize.style.width = '10vh'
+        projectsTextDivResize.style.height = '10vh'
+        projectsTextDivResize.style.transform = 'rotate(90deg) translateY(-10vh) translateX(-300vh)'
+        projectsContentDivSubsResize.style.width = 'calc(100vw - 10vh)'
+        projectsContentDivSubsResize.style.marginLeft = '10vh'
+        stackTextResize.style.fontSize = '2rem'
+        PressStartSmallerResize.style.fontSize = '1.5rem'
+        doubleUpResize.style.transform = 'scale(1.5)'
 
     }
     else if (window.innerWidth > 425 && window.innerWidth <= 750) {
@@ -1360,6 +1399,16 @@ if(window.innerHeight > window.innerWidth) {
         fromTheLeftSize.style.fontSize = '6rem'
         fromTheRightSize.style.fontSize = '6rem'
         pressStartSize.style.fontSize = '4rem'
+        projectsContentResize.style.fontSize = '4rem'
+        projectsDivResize.style.fontSize = '4rem'
+        projectsDivResize.style.width = '10vh'
+        projectsTextDivResize.style.height = '10vh'
+        projectsTextDivResize.style.transform = 'rotate(90deg) translateY(-10vh) translateX(-300vh)'
+        projectsContentDivSubsResize.style.width = 'calc(100vw - 10vh)'
+        projectsContentDivSubsResize.style.marginLeft = '10vh'
+        stackTextResize.style.fontSize = '2rem'
+        PressStartSmallerResize.style.fontSize = '1.5rem'
+        doubleUpResize.style.transform = 'scale(1.5)'
 
     }
     else if (window.innerWidth > 750 && window.innerWidth <= 950) {
@@ -1370,6 +1419,16 @@ if(window.innerHeight > window.innerWidth) {
         fromTheLeftSize.style.fontSize = '6rem'
         fromTheRightSize.style.fontSize = '6rem'
         pressStartSize.style.fontSize = '4rem'
+        projectsDivResize.style.fontSize = '4rem'
+        projectsContentResize.style.fontSize = '4rem'
+        projectsDivResize.style.width = '10vh'
+        projectsTextDivResize.style.height = '10vh'
+        projectsTextDivResize.style.transform = 'rotate(90deg) translateY(-10vh) translateX(-300vh)'
+        projectsContentDivSubsResize.style.width = 'calc(100vw - 10vh)'
+        projectsContentDivSubsResize.style.marginLeft = '10vh'
+        stackTextResize.style.fontSize = '2rem'
+        PressStartSmallerResize.style.fontSize = '1.5rem'
+        doubleUpResize.style.transform = 'scale(1.5)'
 
     }
     else {
@@ -1380,6 +1439,16 @@ if(window.innerHeight > window.innerWidth) {
         fromTheLeftSize.style.fontSize = '6rem'
         fromTheRightSize.style.fontSize = '6rem'
         pressStartSize.style.fontSize = '4rem'
+        projectsContentResize.style.fontSize = '4rem'
+        projectsDivResize.style.fontSize = '4rem'
+        projectsDivResize.style.width = '10vh'
+        projectsTextDivResize.style.height = '10vh'
+        projectsTextDivResize.style.transform = 'rotate(90deg) translateY(-10vh) translateX(-300vh)'
+        projectsContentDivSubsResize.style.width = 'calc(100vw - 10vh)'
+        projectsContentDivSubsResize.style.marginLeft = '10vh'
+        stackTextResize.style.fontSize = '2rem'
+        PressStartSmallerResize.style.fontSize = '1.5rem'
+        doubleUpResize.style.transform = 'scale(1.5)'
 
     }
     isPortrait = true
@@ -1390,6 +1459,7 @@ window.addEventListener('resize', () => {
     if (isPhaseChanging == false) {
         if (isPortrait == true) {
             if (window.innerHeight < window.innerWidth) {
+                location.reload()
                 camera.position.x = camera.position.x/zoomFactor
                 camera.position.z = camera.position.z/zoomFactor
                 camera.position.y = camera.position.y
@@ -1408,11 +1478,22 @@ window.addEventListener('resize', () => {
                 fromTheLeftSize.style.fontSize = '9rem'
                 fromTheRightSize.style.fontSize = '9rem'
                 pressStartSize.style.fontSize = '6rem'
+                projectsContentResize.style.fontSize = '7.5rem'
+                projectsDivResize.style.fontSize = '7.5rem'
+                projectsDivResize.style.width = '20vh'
+                projectsTextDivResize.style.height = '20vh'
+                projectsTextDivResize.style.transform = 'rotate(90deg) translateY(-20vh) translateX(-300vh)'
+                projectsContentDivSubsResize.style.width = 'calc(100vw - 20vh)'
+                projectsContentDivSubsResize.style.marginLeft = '20vh'
+                stackTextResize.style.fontSize = '3.5rem'
+                PressStartSmallerResize.style.fontSize = '3rem'
+                doubleUpResize.style.transform = 'scale(3)'
             }
             isPortrait = false
         }
         else if (isPortrait == false) {
             if(window.innerHeight > window.innerWidth) {
+                location.reload()
                 if (window.innerWidth <= 320) {
                     zoomFactor = 5
                     scrollMainTextSize.style.fontSize = '10rem'
@@ -1421,6 +1502,17 @@ window.addEventListener('resize', () => {
                     fromTheLeftSize.style.fontSize = '6rem'
                     fromTheRightSize.style.fontSize = '6rem'
                     pressStartSize.style.fontSize = '4rem'
+                    projectsContentResize.style.fontSize = '4rem'
+                    projectsDivResize.style.fontSize = '4rem'
+                    projectsDivResize.style.width = '10vh'
+                    projectsTextDivResize.style.height = '10vh'
+                    projectsTextDivResize.style.transform = 'rotate(90deg) translateY(-10vh) translateX(-300vh)'
+                    projectsContentDivSubsResize.style.width = 'calc(100vw - 10vh)'
+                    projectsContentDivSubsResize.style.marginLeft = '10vh'
+                    stackTextResize.style.fontSize = '2rem'
+                    PressStartSmallerResize.style.fontSize = '1.5rem'
+                    doubleUpResize.style.transform = 'scale(1.5)'
+                    
                 }
                 else if (window.innerWidth > 320 && window.innerWidth <= 375) {
                     zoomFactor = 4.5
@@ -1430,6 +1522,17 @@ window.addEventListener('resize', () => {
                     fromTheLeftSize.style.fontSize = '6rem'
                     fromTheRightSize.style.fontSize = '6rem'
                     pressStartSize.style.fontSize = '4rem'
+                    projectsContentResize.style.fontSize = '4rem'
+                    projectsDivResize.style.fontSize = '4rem'
+                    projectsDivResize.style.width = '10vh'
+                    projectsTextDivResize.style.height = '10vh'
+                    projectsTextDivResize.style.transform = 'rotate(90deg) translateY(-10vh) translateX(-300vh)'
+                    projectsContentDivSubsResize.style.width = 'calc(100vw - 10vh)'
+                    projectsContentDivSubsResize.style.marginLeft = '10vh'
+                    stackTextResize.style.fontSize = '2rem'
+                    PressStartSmallerResize.style.fontSize = '1.5rem'
+                    doubleUpResize.style.transform = 'scale(1.5)'
+                    
                 }
                 else if (window.innerWidth > 375 && window.innerWidth <= 425) {
                     zoomFactor = 4
@@ -1439,6 +1542,18 @@ window.addEventListener('resize', () => {
                     fromTheLeftSize.style.fontSize = '6rem'
                     fromTheRightSize.style.fontSize = '6rem'
                     pressStartSize.style.fontSize = '4rem'
+                    projectsContentResize.style.fontSize = '4rem'
+                    projectsDivResize.style.fontSize = '4rem'
+                    projectsDivResize.style.width = '10vh'
+                    projectsTextDivResize.style.height = '10vh'
+                    projectsTextDivResize.style.transform = 'rotate(90deg) translateY(-10vh) translateX(-300vh)'
+                    projectsContentDivSubsResize.style.width = 'calc(100vw - 10vh)'
+                    projectsContentDivSubsResize.style.marginLeft = '10vh'
+                    stackTextResize.style.fontSize = '2rem'
+                    PressStartSmallerResize.style.fontSize = '1.5rem'
+                    doubleUpResize.style.transform = 'scale(1.5)'
+                    
+                    
                 }
                 else if (window.innerWidth > 425 && window.innerWidth <= 750) {
                     zoomFactor = 3
@@ -1448,6 +1563,17 @@ window.addEventListener('resize', () => {
                     fromTheLeftSize.style.fontSize = '6rem'
                     fromTheRightSize.style.fontSize = '6rem'
                     pressStartSize.style.fontSize = '4rem'
+                    projectsContentResize.style.fontSize = '4rem'
+                    projectsDivResize.style.fontSize = '4rem'
+                    projectsDivResize.style.width = '10vh'
+                    projectsTextDivResize.style.height = '10vh'
+                    projectsTextDivResize.style.transform = 'rotate(90deg) translateY(-10vh) translateX(-300vh)'
+                    projectsContentDivSubsResize.style.width = 'calc(100vw - 10vh)'
+                    projectsContentDivSubsResize.style.marginLeft = '10vh'
+                    stackTextResize.style.fontSize = '2rem'
+                    PressStartSmallerResize.style.fontSize = '1.5rem'
+                    doubleUpResize.style.transform = 'scale(1.5)'
+                    
                 }
                 else if (window.innerWidth > 750 && window.innerWidth <= 950) {
                     zoomFactor = 2.5
@@ -1457,6 +1583,17 @@ window.addEventListener('resize', () => {
                     fromTheLeftSize.style.fontSize = '6rem'
                     fromTheRightSize.style.fontSize = '6rem'
                     pressStartSize.style.fontSize = '4rem'
+                    projectsContentResize.style.fontSize = '4rem'
+                    projectsDivResize.style.fontSize = '4rem'
+                    projectsDivResize.style.width = '10vh'
+                    projectsTextDivResize.style.height = '10vh'
+                    projectsTextDivResize.style.transform = 'rotate(90deg) translateY(-10vh) translateX(-300vh)'
+                    projectsContentDivSubsResize.style.width = 'calc(100vw - 10vh)'
+                    projectsContentDivSubsResize.style.marginLeft = '10vh'
+                    stackTextResize.style.fontSize = '2rem'
+                    PressStartSmallerResize.style.fontSize = '1.5rem'
+                    doubleUpResize.style.transform = 'scale(1.5)'
+                    
                 }
                 else {
                     zoomFactor = 1
@@ -1466,6 +1603,17 @@ window.addEventListener('resize', () => {
                     fromTheLeftSize.style.fontSize = '6rem'
                     fromTheRightSize.style.fontSize = '6rem'
                     pressStartSize.style.fontSize = '4rem'
+                    projectsContentResize.style.fontSize = '4rem'
+                    projectsDivResize.style.fontSize = '4rem'
+                    projectsDivResize.style.width = '10vh'
+                    projectsTextDivResize.style.height = '10vh'
+                    projectsTextDivResize.style.transform = 'rotate(90deg) translateY(-10vh) translateX(-300vh)'
+                    projectsContentDivSubsResize.style.width = 'calc(100vw - 10vh)'
+                    projectsContentDivSubsResize.style.marginLeft = '10vh'
+                    stackTextResize.style.fontSize = '2rem'
+                    PressStartSmallerResize.style.fontSize = '1.5rem'
+                    doubleUpResize.style.transform = 'scale(1.5)'
+                    
                 }
                 camera.position.x = camera.position.x*zoomFactor
                 camera.position.z = camera.position.z*zoomFactor

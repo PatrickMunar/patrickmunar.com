@@ -825,6 +825,7 @@ body::-webkit-scrollbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    word-wrap: normal;
 }
 
 .projectsContentDivSubs {
@@ -832,10 +833,11 @@ body::-webkit-scrollbar {
     height: 100vh;
     /* border: 2px solid lime; */
     background-color: transparent;
-    margin-left: 20vh;
     font-family: 'Orbitron', sans-serif;
     display: flex;
     flex-direction: column;
+    margin-left: 20vh;
+
 }
 
 .projectsContentHeader {
@@ -914,4 +916,8 @@ body::-webkit-scrollbar {
 .PressStartSmaller {
     font-family: 'Press Start 2P', cursive;
     font-size: 3rem;
+}
+
+.breakDiv {
+    word-wrap: break-word;
 }
