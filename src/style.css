@@ -428,7 +428,7 @@ body {
 
 #up, #down, #right {
     color: red;
-    /* cursor: pointer; */
+    cursor: pointer;
 }
 
 #instructionsBar {
@@ -933,4 +933,8 @@ a::selection {
 
 .subColor {
     color: white;
+}
+
+.emailText {
+    font-size: 5.5rem;
 }

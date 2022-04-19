@@ -60,7 +60,10 @@ const textArray = [
     '...'],
     ['Hobbies & Interests<br><t class="subText">Gaming</t>',
     'Avid gamer interested in Game Development<br><br><t class="mainColor smallestText">|</t> <t class="smallestText">Fiddling with Unreal Engine 5</t>',
-    '<ul>Favorite Games <t class="mainColor">:</t><li class="smallestText">Monster Hunter (HH, SnS)</li><li class="smallestText">R6 Siege (Amaru, Kapkan)</li><li class="smallestText">DOTA 2 (Pudge, Rubick)</li></ul>']
+    '<ul>Favorite Games <t class="mainColor">:</t><li class="smallestText">Monster Hunter (HH, SnS)</li><li class="smallestText">R6 Siege (Amaru, Kapkan)</li><li class="smallestText">DOTA 2 (Pudge, Rubick)</li></ul>'],
+    ["3D<br>Printing",
+    '...',
+    '...']
 ]
 
 
@@ -440,6 +443,11 @@ let headphoneGroup = new THREE.Group
 let DBGroup = new THREE.Group
 let chair = new THREE.Group
 let kunai = new THREE.Group
+let spoolGroup = new THREE.Group
+let printerStatic = new THREE.Group
+let printerPlate = new THREE.Group
+let printerTip = new THREE.Group
+
 
 allObjects.add(bottomBedframeGroup)
 allObjects.add(topBedframeGroup)
@@ -464,6 +472,11 @@ allObjects.add(headphoneGroup)
 allObjects.add(DBGroup)
 allObjects.add(chair)
 allObjects.add(kunai)
+allObjects.add(spoolGroup)
+allObjects.add(printerStatic)
+allObjects.add(printerPlate)
+allObjects.add(printerTip)
+
 
 allObjects.position.set (0,-2,0)
 // allObjects.rotation.y = - Math.PI*90/180
@@ -477,6 +490,9 @@ chair.position.set(-35*0.05, 23*0.05, -20*0.05)
 chair.rotation.y = Math.PI*30/180
 
 kunai.position.set(2*0.05, -0.25*0.05, 0)
+
+spoolGroup.position.set(-38*0.05, 14.25*0.05, 49.3*0.05)
+
 // kunai.rotation.y = Math.PI*30/180
 
 // GLTF Loader for Phase 0
@@ -628,6 +644,81 @@ gltfLoader.load(
 
 
 // GLTF Loader for Phase 1
+gltfLoader.load(
+    'PrinterTip.glb',
+    (obj) => {
+       
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+
+        // console.log(obj)
+        printerTip.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'PrinterPlate.glb',
+    (obj) => {
+       
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+
+        // console.log(obj)
+        printerPlate.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'PrinterStatic.glb',
+    (obj) => {
+       
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+
+        // console.log(obj)
+        printerStatic.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'Fillament.glb',
+    (obj) => {
+       
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+
+        // console.log(obj)
+        spoolGroup.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'PLASpool.glb',
+    (obj) => {
+       
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+
+        // console.log(obj)
+        spoolGroup.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
 gltfLoader.load(
     'KunaiBase.glb',
     (obj) => {
@@ -1328,6 +1419,7 @@ const projectsContentDivSubsResize = document.styleSheets[5].cssRules[96]
 const stackTextResize = document.styleSheets[5].cssRules[109]
 const PressStartSmallerResize = document.styleSheets[5].cssRules[111]
 const doubleUpResize = document.styleSheets[5].cssRules[94]
+const emailTextResize = document.styleSheets[5].cssRules[116]
 
 
 if(window.innerHeight > window.innerWidth) {
@@ -1349,6 +1441,7 @@ if(window.innerHeight > window.innerWidth) {
         stackTextResize.style.fontSize = '2rem'
         PressStartSmallerResize.style.fontSize = '1.5rem'
         doubleUpResize.style.transform = 'scale(1.5)'
+        emailTextResize.style.fontSize = '3rem'
     }
     else if (window.innerWidth > 320 && window.innerWidth <= 375) {
         zoomFactor = 4.5
@@ -1368,6 +1461,7 @@ if(window.innerHeight > window.innerWidth) {
         stackTextResize.style.fontSize = '2rem'
         PressStartSmallerResize.style.fontSize = '1.5rem'
         doubleUpResize.style.transform = 'scale(1.5)'
+        emailTextResize.style.fontSize = '3rem'
         
 
     }
@@ -1389,6 +1483,8 @@ if(window.innerHeight > window.innerWidth) {
         stackTextResize.style.fontSize = '2rem'
         PressStartSmallerResize.style.fontSize = '1.5rem'
         doubleUpResize.style.transform = 'scale(1.5)'
+        emailTextResize.style.fontSize = '3rem'
+        
 
     }
     else if (window.innerWidth > 425 && window.innerWidth <= 750) {
@@ -1409,6 +1505,7 @@ if(window.innerHeight > window.innerWidth) {
         stackTextResize.style.fontSize = '2rem'
         PressStartSmallerResize.style.fontSize = '1.5rem'
         doubleUpResize.style.transform = 'scale(1.5)'
+        emailTextResize.style.fontSize = '3rem'
 
     }
     else if (window.innerWidth > 750 && window.innerWidth <= 950) {
@@ -1429,6 +1526,7 @@ if(window.innerHeight > window.innerWidth) {
         stackTextResize.style.fontSize = '2rem'
         PressStartSmallerResize.style.fontSize = '1.5rem'
         doubleUpResize.style.transform = 'scale(1.5)'
+        emailTextResize.style.fontSize = '3rem'
 
     }
     else {
@@ -1449,6 +1547,7 @@ if(window.innerHeight > window.innerWidth) {
         stackTextResize.style.fontSize = '2rem'
         PressStartSmallerResize.style.fontSize = '1.5rem'
         doubleUpResize.style.transform = 'scale(1.5)'
+        emailTextResize.style.fontSize = '3rem'
 
     }
     isPortrait = true
@@ -1488,6 +1587,8 @@ window.addEventListener('resize', () => {
                 stackTextResize.style.fontSize = '3.5rem'
                 PressStartSmallerResize.style.fontSize = '3rem'
                 doubleUpResize.style.transform = 'scale(3)'
+                emailTextResize.style.fontSize = '5.5rem'
+
             }
             isPortrait = false
         }
@@ -1512,6 +1613,7 @@ window.addEventListener('resize', () => {
                     stackTextResize.style.fontSize = '2rem'
                     PressStartSmallerResize.style.fontSize = '1.5rem'
                     doubleUpResize.style.transform = 'scale(1.5)'
+                    emailTextResize.style.fontSize = '3rem'
                     
                 }
                 else if (window.innerWidth > 320 && window.innerWidth <= 375) {
@@ -1532,6 +1634,7 @@ window.addEventListener('resize', () => {
                     stackTextResize.style.fontSize = '2rem'
                     PressStartSmallerResize.style.fontSize = '1.5rem'
                     doubleUpResize.style.transform = 'scale(1.5)'
+                    emailTextResize.style.fontSize = '3rem'
                     
                 }
                 else if (window.innerWidth > 375 && window.innerWidth <= 425) {
@@ -1552,6 +1655,7 @@ window.addEventListener('resize', () => {
                     stackTextResize.style.fontSize = '2rem'
                     PressStartSmallerResize.style.fontSize = '1.5rem'
                     doubleUpResize.style.transform = 'scale(1.5)'
+                    emailTextResize.style.fontSize = '3rem'
                     
                     
                 }
@@ -1573,6 +1677,7 @@ window.addEventListener('resize', () => {
                     stackTextResize.style.fontSize = '2rem'
                     PressStartSmallerResize.style.fontSize = '1.5rem'
                     doubleUpResize.style.transform = 'scale(1.5)'
+                    emailTextResize.style.fontSize = '3rem'
                     
                 }
                 else if (window.innerWidth > 750 && window.innerWidth <= 950) {
@@ -1593,6 +1698,7 @@ window.addEventListener('resize', () => {
                     stackTextResize.style.fontSize = '2rem'
                     PressStartSmallerResize.style.fontSize = '1.5rem'
                     doubleUpResize.style.transform = 'scale(1.5)'
+                    emailTextResize.style.fontSize = '3rem'
                     
                 }
                 else {
@@ -1613,6 +1719,7 @@ window.addEventListener('resize', () => {
                     stackTextResize.style.fontSize = '2rem'
                     PressStartSmallerResize.style.fontSize = '1.5rem'
                     doubleUpResize.style.transform = 'scale(1.5)'
+                    emailTextResize.style.fontSize = '3rem'
                     
                 }
                 camera.position.x = camera.position.x*zoomFactor
@@ -1856,11 +1963,9 @@ const tick = () =>
         // console.log(currentIntersect)
     }
 
-
-
     // Phase 1 RayCasting
     // if (phase == 1) {
-        const testBox = [topBedframeGroup, topDrawer, midDrawer, botDrawer, laptopGroup, footballGroup, skateboardGroup, sablayGroup, switchGroup, joyConGroup, switchDock, headphoneGroup]
+        const testBox = [topBedframeGroup, topDrawer, midDrawer, botDrawer, laptopGroup, footballGroup, skateboardGroup, sablayGroup, switchGroup, joyConGroup, switchDock, headphoneGroup, spoolGroup, printerStatic, printerPlate, printerTip]
         const intersects = raycaster.intersectObjects(testBox)
     
         for (const object of testBox) {
@@ -1888,6 +1993,9 @@ const tick = () =>
 
     scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
 
+    // Test Anims
+    // spoolGroup.rotation.x += elapsedTime * 0.005
+
     // Update controls
     if (controls.enabled == true) {
         controls.update()
@@ -1908,9 +2016,6 @@ const tick = () =>
 tick()
 
 // Phase initialization
-
-
-
 
 // GSAP Animations
 
@@ -2079,6 +2184,21 @@ const switchJump = () => {
         switchScreen.children[0].children[0].material.emissive.g = 0
         switchScreen.children[0].children[0].material.emissive.b = 0
     }, 1450)
+
+}
+
+const printerAnim = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
+    gsap.to(printerPlate.position, {ease: 'Power1.easeOut', duration: 1, delay: 0, x: 0.4})
+    gsap.to(printerPlate.position, {ease: 'Power1.easeIn', duration: 1, delay: 1, x: 0})
+    gsap.to(printerTip.position, {ease: 'Power1.easeOut', duration: 1, delay: 0, z: -0.6})
+    gsap.to(printerTip.position, {ease: 'Power1.easeIn', duration: 1, delay: 1, z: 0})
+    gsap.to(spoolGroup.rotation, {ease: 'Power1.easeOut', duration: 1, delay: 0, x: Math.PI*120/180})
+    gsap.to(spoolGroup.rotation, {ease: 'Power1.easeIn', duration: 1, delay: 1, x: 0})
 
 }
 
@@ -2427,11 +2547,25 @@ window.addEventListener('click', () => {
                         }
                         currentIntersect = null
                     }
+
+                    else if (currentIntersect.object == spoolGroup.children[0].children[0] || currentIntersect.object == spoolGroup.children[1].children[0]|| currentIntersect.object == printerStatic.children[0].children[0] || currentIntersect.object == printerStatic.children[0].children[1] || currentIntersect.object == printerPlate.children[0].children[0] || currentIntersect.object == printerTip.children[0].children[0]) {
+                        if (clickCounter%2 == 0) {
+                            console.log('printer')
+                            printerAnim()
+
+                            arrayIndex = 7
+                            insertModal(arrayIndex)
+                        }
+                        currentIntersect = null
+                    }
                 }
             }
         }
     }
 })
+
+// Test Logs
+
 
 // GSAP Animations for Phase 0
 let isPRotated = false
