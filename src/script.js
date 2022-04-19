@@ -2114,6 +2114,10 @@ const colorChangeRight = () => {
     document.styleSheets[5].cssRules[72].style.webkitTextStrokeColor = directionalLightColors[currentColor][3]
     document.styleSheets[5].cssRules[78].style.textShadow = '0 0 0.3rem black, -0.25rem 0.25rem 0.1rem '+ directionalLightColors[currentColor][3] +', -0.3rem 0.3rem 0.1rem black'
     document.styleSheets[5].cssRules[79].style.textShadow = '0 0 0.3rem black, 0.25rem 0.25rem 0.1rem '+ directionalLightColors[currentColor][2] +', 0.3rem 0.3rem 0.1rem black'
+    document.styleSheets[5].cssRules[114].style.backgroundColor = directionalLightColors[currentColor][2]
+    document.styleSheets[5].cssRules[114].style.color = directionalLightColors[currentColor][3]
+    document.styleSheets[5].cssRules[115].style.color = directionalLightColors[currentColor][3]
+
 
     leftDirectionalLight.color.setHex(directionalLightColors[currentColor][0])
     rightDirectionalLight.color.setHex(directionalLightColors[currentColor][1])  

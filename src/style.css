@@ -930,3 +930,7 @@ a::selection {
     background-color: red;
     color: white;
 }
+
+.subColor {
+    color: white;
+}
