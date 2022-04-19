@@ -3382,6 +3382,8 @@ const activateScrollTrigger = () => {
         // scale: 0.8,
         ease: 'none',
     }) 
+
+    // Form
 }
 
 // cursor change

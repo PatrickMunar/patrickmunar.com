@@ -921,3 +921,12 @@ body::-webkit-scrollbar {
 .breakDiv {
     word-wrap: break-word;
 }
+
+.Orbitron {
+    font-family: 'Orbitron', sans-serif;
+}
+
+a::selection {
+    background-color: red;
+    color: white;
+}
