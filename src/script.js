@@ -3407,3 +3407,6 @@ window.addEventListener('scroll', () => {
         }
     }
 })
+
+document.querySelector('#tryStart').innerText = '< >'
+document.querySelector('#tryEnd').innerText = '</>'
