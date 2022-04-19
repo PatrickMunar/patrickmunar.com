@@ -61,7 +61,7 @@ const textArray = [
     ['Hobbies & Interests<br><t class="subText">Gaming</t>',
     'Avid gamer interested in Game Development<br><br><t class="mainColor smallestText">|</t> <t class="smallestText">Fiddling with Unreal Engine 5</t>',
     '<ul>Favorite Games <t class="mainColor">:</t><li class="smallestText">Monster Hunter (HH, SnS)</li><li class="smallestText">R6 Siege (Amaru, Kapkan)</li><li class="smallestText">DOTA 2 (Pudge, Rubick)</li></ul>'],
-    ["3D<br>Printing",
+    ["3D<br>Modelling &<br>Printing",
     '...',
     '...']
 ]
@@ -677,7 +677,7 @@ gltfLoader.load(
 gltfLoader.load(
     'PrinterStatic.glb',
     (obj) => {
-       
+        
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
@@ -686,6 +686,8 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[1].castShadow = true
+        obj.scene.children[1].receiveShadow = true
     }
 )
 
@@ -2005,12 +2007,12 @@ const tick = () =>
     renderer.render(scene, camera)
 
     // Call tick again on the next frame
-    // window.requestAnimationFrame(tick)
+    window.requestAnimationFrame(tick)
 
     // fps from 70 to 130+ constant
-    setTimeout(() => {
-        window.requestAnimationFrame(tick)
-    }, 1)
+    // setTimeout(() => {
+    //     window.requestAnimationFrame(tick)
+    // }, 1)
 }
 
 tick()
@@ -2197,7 +2199,7 @@ const printerAnim = () => {
     gsap.to(printerPlate.position, {ease: 'Power1.easeIn', duration: 1, delay: 1, x: 0})
     gsap.to(printerTip.position, {ease: 'Power1.easeOut', duration: 1, delay: 0, z: -0.6})
     gsap.to(printerTip.position, {ease: 'Power1.easeIn', duration: 1, delay: 1, z: 0})
-    gsap.to(spoolGroup.rotation, {ease: 'Power1.easeOut', duration: 1, delay: 0, x: Math.PI*120/180})
+    gsap.to(spoolGroup.rotation, {ease: 'Power1.easeOut', duration: 1, delay: 0, x: - Math.PI*120/180})
     gsap.to(spoolGroup.rotation, {ease: 'Power1.easeIn', duration: 1, delay: 1, x: 0})
 
 }
