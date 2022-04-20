@@ -447,6 +447,10 @@ let spoolGroup = new THREE.Group
 let printerStatic = new THREE.Group
 let printerPlate = new THREE.Group
 let printerTip = new THREE.Group
+let staticBook = new THREE.Group
+let movingBook = new THREE.Group
+let cube = new THREE.Group
+
 
 
 allObjects.add(bottomBedframeGroup)
@@ -476,6 +480,9 @@ allObjects.add(spoolGroup)
 allObjects.add(printerStatic)
 allObjects.add(printerPlate)
 allObjects.add(printerTip)
+allObjects.add(staticBook)
+allObjects.add(movingBook)
+allObjects.add(cube)
 
 
 allObjects.position.set (0,-2,0)
@@ -493,10 +500,11 @@ kunai.position.set(2*0.05, -0.25*0.05, 0)
 
 spoolGroup.position.set(-38*0.05, 14.25*0.05, 49.3*0.05)
 
+// cube.position.set(0*0.05, 48.1*0.05, 49.0*0.05)
+
 // kunai.rotation.y = Math.PI*30/180
 
 // GLTF Loader for Phase 0
-
 
 
 gltfLoader.load(
@@ -644,6 +652,79 @@ gltfLoader.load(
 
 
 // GLTF Loader for Phase 1
+
+
+gltfLoader.load(
+    'CubeBlack.glb',
+    (obj) => {
+       
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+
+        // console.log(obj)
+        cube.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+        obj.scene.children[1].castShadow = true
+        obj.scene.children[1].receiveShadow = true
+        obj.scene.children[2].castShadow = true
+        obj.scene.children[2].receiveShadow = true
+        obj.scene.children[3].castShadow = true
+        obj.scene.children[3].receiveShadow = true
+        obj.scene.children[4].castShadow = true
+        obj.scene.children[4].receiveShadow = true
+        obj.scene.children[5].castShadow = true
+        obj.scene.children[5].receiveShadow = true
+        obj.scene.children[6].castShadow = true
+        obj.scene.children[6].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'MovingBook.glb',
+    (obj) => {
+       
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+
+        // console.log(obj)
+        movingBook.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+        obj.scene.children[1].castShadow = true
+        obj.scene.children[1].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'StaticBook.glb',
+    (obj) => {
+       
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+
+        // console.log(obj)
+        staticBook.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+        obj.scene.children[1].castShadow = true
+        obj.scene.children[1].receiveShadow = true
+        obj.scene.children[2].castShadow = true
+        obj.scene.children[2].receiveShadow = true
+        obj.scene.children[3].castShadow = true
+        obj.scene.children[3].receiveShadow = true
+        obj.scene.children[4].castShadow = true
+        obj.scene.children[4].receiveShadow = true
+        obj.scene.children[5].castShadow = true
+        obj.scene.children[5].receiveShadow = true
+        obj.scene.children[6].castShadow = true
+        obj.scene.children[6].receiveShadow = true
+    }
+)
+
 gltfLoader.load(
     'PrinterTip.glb',
     (obj) => {
@@ -1902,6 +1983,8 @@ const tick = () =>
     let parallaxTIme = elapsedTime - prevParallaxTime
     prevParallaxTime = elapsedTime
 
+    // Shooting Star
+
 
     // Phase 0 Animations
     if (phase == 0) {
@@ -2886,6 +2969,39 @@ const rotationChecker = () => {
         isKRotated = false
     }
 }
+
+// Shooting Stars
+
+const generateShootingStar = () => {
+    let line = null
+
+    const material = new THREE.LineBasicMaterial({
+        color: 'white' })
+    const points = []
+    const pointA = new THREE.Vector3(Math.random()*50-25,Math.random()*50-25+camera.position.y,Math.random()*50-25)
+    const pointB = new THREE.Vector3(Math.random()*50-25,Math.random()*50-25+camera.position.y,Math.random()*50-25)
+
+    points.push(pointA)
+    points.push(pointB)
+
+    const geometry = new THREE.BufferGeometry().setFromPoints(points)
+
+    line = new THREE.Line(geometry, material)
+    scene.add(line)
+
+    const directionVector = new THREE.Vector3(pointA.x - pointB.x, pointA.y - pointB.y, pointA.z - pointB.z)
+    console.log(directionVector)
+
+    gsap.to(line.position, {duration: 7, x: directionVector.x*20, y: directionVector.y*20, z: directionVector.z*20})
+
+    setTimeout(() => {
+        scene.remove(line)
+        generateShootingStar()
+    }, 7000)
+}
+
+generateShootingStar()
+
 
 // Phase Change Sequence
 const phaseChange0to1 = (left, right, zf) => {
