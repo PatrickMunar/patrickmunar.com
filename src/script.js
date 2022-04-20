@@ -450,8 +450,9 @@ let printerTip = new THREE.Group
 let staticBook = new THREE.Group
 let movingBook = new THREE.Group
 let cube = new THREE.Group
-
-
+let tvBase = new THREE.Group
+let tvScreen = new THREE.Group
+let curtains = new THREE.Group
 
 allObjects.add(bottomBedframeGroup)
 allObjects.add(topBedframeGroup)
@@ -483,6 +484,9 @@ allObjects.add(printerTip)
 allObjects.add(staticBook)
 allObjects.add(movingBook)
 allObjects.add(cube)
+allObjects.add(tvBase)
+allObjects.add(tvScreen)
+allObjects.add(curtains)
 
 
 allObjects.position.set (0,-2,0)
@@ -500,12 +504,17 @@ kunai.position.set(2*0.05, -0.25*0.05, 0)
 
 spoolGroup.position.set(-38*0.05, 14.25*0.05, 49.3*0.05)
 
-// cube.position.set(0*0.05, 48.1*0.05, 49.0*0.05)
+cube.position.set(6*0.05, 0, 0)
 
-// kunai.rotation.y = Math.PI*30/180
+chessboardGroup.position.set(-15*0.05,-28.5*0.05,70*0.05)
 
-// GLTF Loader for Phase 0
+switchGroup.position.set(12.5*0.05, 0, 10*0.05)
+switchDock.position.set(12.5*0.05, 0, 10*0.05)
+joyConGroup.position.set(12.5*0.05, 0, 10*0.05)
+switchScreen.position.set(12.5*0.05, 0, 10*0.05)
 
+tvBase.position.set(-2.5*0.05, 0, 0)
+tvScreen.position.set(-2.5*0.05, 0, 0)
 
 gltfLoader.load(
     'LeftNameWall.glb',
@@ -652,7 +661,52 @@ gltfLoader.load(
 
 
 // GLTF Loader for Phase 1
+gltfLoader.load(
+    'Curtains.glb',
+    (obj) => {
+       
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
 
+        // console.log(obj)
+        curtains.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'TVScreen.glb',
+    (obj) => {
+       
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+
+        // console.log(obj)
+        tvScreen.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'TVBase.glb',
+    (obj) => {
+       
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+
+        // console.log(obj)
+        tvBase.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+        obj.scene.children[1].castShadow = true
+        obj.scene.children[1].receiveShadow = true
+    }
+)
 
 gltfLoader.load(
     'CubeBlack.glb',
@@ -2992,12 +3046,12 @@ const generateShootingStar = () => {
     const directionVector = new THREE.Vector3(pointA.x - pointB.x, pointA.y - pointB.y, pointA.z - pointB.z)
     console.log(directionVector)
 
-    gsap.to(line.position, {duration: 7, x: directionVector.x*20, y: directionVector.y*20, z: directionVector.z*20})
+    gsap.to(line.position, {duration: 5, x: directionVector.x*15, y: directionVector.y*15, z: directionVector.z*15})
 
     setTimeout(() => {
         scene.remove(line)
         generateShootingStar()
-    }, 7000)
+    }, 5000)
 }
 
 generateShootingStar()
