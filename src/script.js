@@ -3046,12 +3046,12 @@ const generateShootingStar = () => {
     const directionVector = new THREE.Vector3(pointA.x - pointB.x, pointA.y - pointB.y, pointA.z - pointB.z)
     console.log(directionVector)
 
-    gsap.to(line.position, {duration: 5, x: directionVector.x*15, y: directionVector.y*15, z: directionVector.z*15})
+    gsap.to(line.position, {duration: 2, x: directionVector.x*6, y: directionVector.y*6, z: directionVector.z*6})
 
     setTimeout(() => {
         scene.remove(line)
         generateShootingStar()
-    }, 5000)
+    }, 2000)
 }
 
 generateShootingStar()
