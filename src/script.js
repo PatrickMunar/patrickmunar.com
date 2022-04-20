@@ -377,6 +377,7 @@ const loadingManager = new THREE.LoadingManager(
     // Loaded
     () => {
         gsap.to('#loadingPage' ,{duration: 1, opacity: 0})
+        isAnimationPlaying = true
         startSequence()
         setTimeout(() => {
             loadingPage.style.display = 'none'
