@@ -382,6 +382,9 @@ const loadingManager = new THREE.LoadingManager(
             loadingPage.style.display = 'none'
             // goStartSequence = true
         }, 1000)
+        setTimeout(() => {
+            spinLeftWall()
+        }, 2500)
     },
     // Progress
     (itemUrl, itemsLoaded, itemsTotal) => {
@@ -2376,7 +2379,9 @@ const colorChangeRight = () => {
     document.styleSheets[5].cssRules[114].style.backgroundColor = directionalLightColors[currentColor][2]
     document.styleSheets[5].cssRules[114].style.color = directionalLightColors[currentColor][3]
     document.styleSheets[5].cssRules[115].style.color = directionalLightColors[currentColor][3]
-
+    document.styleSheets[5].cssRules[110].style.textDecorationColor = directionalLightColors[currentColor][3]
+    document.styleSheets[5].cssRules[116].style.textDecorationColor = directionalLightColors[currentColor][3]
+    document.styleSheets[5].cssRules[119].style.textDecorationColor = directionalLightColors[currentColor][2]
 
     leftDirectionalLight.color.setHex(directionalLightColors[currentColor][0])
     rightDirectionalLight.color.setHex(directionalLightColors[currentColor][1])  
@@ -2915,7 +2920,6 @@ upArrow.addEventListener('click', () => {
         }
         else if (currentLink == 2 && scrollTop == 0) {
             // Temporary
-            currentLink = 1
             phaseChange2to1(zoomFactor)
 
             setTimeout(() => {
@@ -2941,6 +2945,7 @@ downArrow.addEventListener('click', () => {
             }, 500)
         }
         else if (currentLink == 1) {
+            isArrowClickAllowed = false
             phaseChange1to2(zoomFactor)
 
             setTimeout(() => {
@@ -2961,7 +2966,7 @@ const instructionsBar= document.getElementById('instructionsBar')
 
 const instructionsTextArray = [
     '<t class="smallText">Tap objects twice to interact.</t>',
-    '<t class="smallText">Rotate & Zoom to get a better look.</t>',
+    '<t class="smallText">Orbit & Zoom to get a better look.</t>',
     '<t class="smallText">Scroll down slowly.</t>'
 ]
 
@@ -3027,8 +3032,6 @@ const rotationChecker = () => {
 // Shooting Stars
 
 const generateShootingStar = () => {
-    let line = null
-
     const material = new THREE.LineBasicMaterial({
         color: 'white' })
     const points = []
@@ -3040,18 +3043,18 @@ const generateShootingStar = () => {
 
     const geometry = new THREE.BufferGeometry().setFromPoints(points)
 
-    line = new THREE.Line(geometry, material)
+    const line = new THREE.Line(geometry, material)
     scene.add(line)
 
     const directionVector = new THREE.Vector3(pointA.x - pointB.x, pointA.y - pointB.y, pointA.z - pointB.z)
     console.log(directionVector)
 
-    gsap.to(line.position, {duration: 2, x: directionVector.x*6, y: directionVector.y*6, z: directionVector.z*6})
+    gsap.to(line.position, {duration: 3, x: directionVector.x*15, y: directionVector.y*15, z: directionVector.z*15})
 
     setTimeout(() => {
         scene.remove(line)
         generateShootingStar()
-    }, 2000)
+    }, 3000)
 }
 
 generateShootingStar()
@@ -3354,6 +3357,7 @@ const phaseChange2to1 = (zf) => {
 
     isPhaseChanging = true
     clickCounter = 0
+    noClicks = true
 
     phase = 1
 
@@ -3395,6 +3399,8 @@ const phaseChange2to1 = (zf) => {
             isArrowClickAllowed = true
 
             isPhaseChanging = false
+            noClicks = false
+
 
             if (isItEverOn == false) {
                 turnLaptopOn.style.display = 'block'
@@ -3693,7 +3699,31 @@ const activateScrollTrigger = () => {
         ease: 'none',
     }) 
 
-    // Form
+    gsap.to('.fadeInFirst', {
+        scrollTrigger: {
+            trigger: '.scrollEnd',
+            start: 'top bottom',
+            // markers: true,
+        },
+        delay: 2,
+        duration: 2,
+        opacity: 1,
+        // scale: 0.8,
+        ease: 'none',
+    })
+    
+    gsap.to('.fadeInSecond', {
+        scrollTrigger: {
+            trigger: '.scrollEnd',
+            start: 'top bottom',
+            // markers: true,
+        },
+        delay: 3.5,
+        duration: 2,
+        opacity: 1,
+        // scale: 0.8,
+        ease: 'none',
+    }) 
 }
 
 // cursor change

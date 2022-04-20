@@ -578,10 +578,10 @@ ul li::before {
 .scrollEnd {
     /* display: none; */
     position: absolute;
-    top: calc(160vh + 500%);
+    top: 850vh;
     width: 100vw;
     height: 2vh;
-    background-color: transparent;
+    /* background-color: red; */
 }
 
 .scrollMainText {
@@ -911,6 +911,7 @@ body::-webkit-scrollbar {
     font-style: none;
     text-decoration: underline;
     cursor: pointer;
+    text-decoration-color: white;
 }
 
 .PressStartSmaller {
@@ -937,4 +938,17 @@ a::selection {
 
 .emailText {
     font-size: 5.5rem;
+    text-decoration-color: white;
+}
+
+.fadeInFirst, .fadeInSecond {
+    opacity: 0;
+}
+
+.otherSmallText {
+    font-size: 5rem;
+}
+
+.linkText:hover, .emailText:hover {
+    text-decoration-color: red;
 }
