@@ -458,6 +458,7 @@ let tvBase = new THREE.Group
 let tvScreen = new THREE.Group
 let curtains = new THREE.Group
 let curtainsScale = new THREE.Group
+let pokeball = new THREE.Group
 
 
 allObjects.add(bottomBedframeGroup)
@@ -494,6 +495,7 @@ allObjects.add(tvBase)
 allObjects.add(tvScreen)
 allObjects.add(curtains)
 allObjects.add(curtainsScale)
+allObjects.add(pokeball)
 
 
 allObjects.position.set (0,-2,0)
@@ -538,6 +540,7 @@ mousepad.position.set(2.5*0.05,0,0)
 sablayGroup.position.set(0,-4*0.025,0)
 hookbase.position.set(0,-4*0.025,0)
 
+pokeball.position.set(2.5*0.05,2*0.025,0)
 
 // Phase 0 GLTFLoader
 
@@ -686,6 +689,25 @@ gltfLoader.load(
 
 
 // GLTF Loader for Phase 1
+gltfLoader.load(
+    'PokeBall.glb',
+    (obj) => {
+       
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+
+        // console.log(obj)
+        pokeball.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+        obj.scene.children[1].castShadow = true
+        obj.scene.children[1].receiveShadow = true
+        obj.scene.children[2].castShadow = true
+        obj.scene.children[2].receiveShadow = true
+    }
+)
+
 gltfLoader.load(
     'CurtainsScale.glb',
     (obj) => {
