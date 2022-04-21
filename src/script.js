@@ -463,7 +463,6 @@ let caseGroup = new THREE.Group
 let container = new THREE.Group
 let cup = new THREE.Group
 
-
 allObjects.add(bottomBedframeGroup)
 allObjects.add(topBedframeGroup)
 allObjects.add(topDrawer)
@@ -502,7 +501,6 @@ allObjects.add(pokeball)
 allObjects.add(caseGroup)
 allObjects.add(container)
 allObjects.add(cup)
-
 
 allObjects.position.set (0,-2,0)
 // allObjects.rotation.y = - Math.PI*90/180
@@ -2088,17 +2086,13 @@ var clickCounter = 0
 let isLaptopOn = false
 let isAnimationDone = false
 
-
-
 // Raycaster
 const raycaster = new THREE.Raycaster()
-
 
 // Parallax Camera Group
 const cameraGroup = new THREE.Group
 cameraGroup.add(camera)
 scene.add(cameraGroup)
-
 
 // Object Positions
 
@@ -2110,7 +2104,6 @@ skateboardGroup.rotation.z = Math.PI
 skateboardGroup.position.y = 6.1*0.05
 skateboardGroup.position.z = 1.5
 skateboardGroup.position.x = 1.5
-
 
 // Mouse
 const cursor = {}
@@ -2242,7 +2235,7 @@ const tick = () =>
 
     // Phase 1 RayCasting
     // if (phase == 1) {
-        const testBox = [topBedframeGroup, topDrawer, midDrawer, botDrawer, laptopGroup, footballGroup, skateboardGroup, sablayGroup, switchGroup, joyConGroup, switchDock, headphoneGroup, spoolGroup, printerStatic, printerPlate, printerTip, curtainsScale, staticBook]
+        const testBox = [topBedframeGroup, topDrawer, midDrawer, botDrawer, laptopGroup, footballGroup, skateboardGroup, sablayGroup, switchGroup, joyConGroup, switchDock, headphoneGroup, spoolGroup, printerStatic, printerPlate, printerTip, curtainsScale, staticBook, tvBase, tvScreen]
         const intersects = raycaster.intersectObjects(testBox)
     
         for (const object of testBox) {
@@ -2508,6 +2501,25 @@ const moveBook = () => {
 
     gsap.to(movingBook.position, {ease: 'Power1.easeOut', duration: 1, delay: 0, z: 2*0.05})
     gsap.to(movingBook.position, {ease: 'Power1.easeOut', duration: 1, delay: 1, z: 0})
+}
+
+const tvOpen = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
+    tvScreen.children[0].children[0].material.emissive.r = 1
+    tvScreen.children[0].children[0].material.emissive.g = 1
+    tvScreen.children[0].children[0].material.emissive.b = 1
+
+    setTimeout(() => {
+        
+        tvScreen.children[0].children[0].material.emissive.r = 0
+        tvScreen.children[0].children[0].material.emissive.g = 0
+        tvScreen.children[0].children[0].material.emissive.b = 0
+    
+    }, 2000)
 }
 
 // Global Light Phase 0
@@ -2879,6 +2891,14 @@ window.addEventListener('click', () => {
                     else if (currentIntersect.object == staticBook.children[0].children[0] || currentIntersect.object == staticBook.children[0].children[1] || currentIntersect.object == staticBook.children[0].children[2] || currentIntersect.object == staticBook.children[0].children[3] || currentIntersect.object == staticBook.children[0].children[4] || currentIntersect.object == staticBook.children[0].children[5] || currentIntersect.object == staticBook.children[0].children[6]) {
                         if (clickCounter%2 == 0) {
                             moveBook()
+
+                        }
+                        currentIntersect = null
+                    }
+
+                    else if (currentIntersect.object == tvBase.children[0].children[0] || currentIntersect.object == tvScreen.children[0].children[0]) {
+                        if (clickCounter%2 == 0) {
+                            tvOpen()
 
                         }
                         currentIntersect = null
