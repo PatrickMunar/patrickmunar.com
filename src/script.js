@@ -457,6 +457,8 @@ let cube = new THREE.Group
 let tvBase = new THREE.Group
 let tvScreen = new THREE.Group
 let curtains = new THREE.Group
+let curtainsScale = new THREE.Group
+
 
 allObjects.add(bottomBedframeGroup)
 allObjects.add(topBedframeGroup)
@@ -491,10 +493,13 @@ allObjects.add(cube)
 allObjects.add(tvBase)
 allObjects.add(tvScreen)
 allObjects.add(curtains)
+allObjects.add(curtainsScale)
 
 
 allObjects.position.set (0,-2,0)
 // allObjects.rotation.y = - Math.PI*90/180
+// curtainsScale.scale.z = 0.5
+// curtainsScale.position.z = -17.5*0.05
 
 
 // Group Repositions for Phase 1
@@ -681,6 +686,21 @@ gltfLoader.load(
 
 
 // GLTF Loader for Phase 1
+gltfLoader.load(
+    'CurtainsScale.glb',
+    (obj) => {
+       
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+
+        // console.log(obj)
+        curtainsScale.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
 gltfLoader.load(
     'CurtainsLeft.glb',
     (obj) => {
@@ -2143,7 +2163,7 @@ const tick = () =>
 
     // Phase 1 RayCasting
     // if (phase == 1) {
-        const testBox = [topBedframeGroup, topDrawer, midDrawer, botDrawer, laptopGroup, footballGroup, skateboardGroup, sablayGroup, switchGroup, joyConGroup, switchDock, headphoneGroup, spoolGroup, printerStatic, printerPlate, printerTip]
+        const testBox = [topBedframeGroup, topDrawer, midDrawer, botDrawer, laptopGroup, footballGroup, skateboardGroup, sablayGroup, switchGroup, joyConGroup, switchDock, headphoneGroup, spoolGroup, printerStatic, printerPlate, printerTip, curtainsScale, staticBook]
         const intersects = raycaster.intersectObjects(testBox)
     
         for (const object of testBox) {
@@ -2378,6 +2398,37 @@ const printerAnim = () => {
     gsap.to(spoolGroup.rotation, {ease: 'Power1.easeOut', duration: 1, delay: 0, x: - Math.PI*120/180})
     gsap.to(spoolGroup.rotation, {ease: 'Power1.easeIn', duration: 1, delay: 1, x: 0})
 
+}
+
+let isCurtainOpen = false
+
+const scaleCurtains = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
+    if (isCurtainOpen == true) {
+        gsap.to(curtainsScale.children[0].children[0].scale, {ease: 'Power1.easeOut', duration: 1, delay: 0, x: 1})
+        gsap.to(curtainsScale.children[0].children[0].position, {ease: 'Power1.easeOut', duration: 1, delay: 0, z: 0})
+        isCurtainOpen = false
+    }
+
+    else if (isCurtainOpen == false) {
+        gsap.to(curtainsScale.children[0].children[0].scale, {ease: 'Power1.easeOut', duration: 1, delay: 0, x: 0.5})
+        gsap.to(curtainsScale.children[0].children[0].position, {ease: 'Power1.easeOut', duration: 1, delay: 0, z: -17.5})
+        isCurtainOpen = true
+    }
+}
+
+const moveBook = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
+    gsap.to(movingBook.position, {ease: 'Power1.easeOut', duration: 1, delay: 0, z: 2*0.05})
+    gsap.to(movingBook.position, {ease: 'Power1.easeOut', duration: 1, delay: 1, z: 0})
 }
 
 // Global Light Phase 0
@@ -2730,11 +2781,26 @@ window.addEventListener('click', () => {
 
                     else if (currentIntersect.object == spoolGroup.children[0].children[0] || currentIntersect.object == spoolGroup.children[1].children[0]|| currentIntersect.object == printerStatic.children[0].children[0] || currentIntersect.object == printerStatic.children[0].children[1] || currentIntersect.object == printerPlate.children[0].children[0] || currentIntersect.object == printerTip.children[0].children[0]) {
                         if (clickCounter%2 == 0) {
-                            console.log('printer')
                             printerAnim()
 
                             arrayIndex = 7
                             insertModal(arrayIndex)
+                        }
+                        currentIntersect = null
+                    }
+
+                    else if (currentIntersect.object == curtainsScale.children[0].children[0]) {
+                        if (clickCounter%2 == 0) {
+                            scaleCurtains()
+
+                        }
+                        currentIntersect = null
+                    }
+
+                    else if (currentIntersect.object == staticBook.children[0].children[0] || currentIntersect.object == staticBook.children[0].children[1] || currentIntersect.object == staticBook.children[0].children[2] || currentIntersect.object == staticBook.children[0].children[3] || currentIntersect.object == staticBook.children[0].children[4] || currentIntersect.object == staticBook.children[0].children[5] || currentIntersect.object == staticBook.children[0].children[6]) {
+                        if (clickCounter%2 == 0) {
+                            moveBook()
+
                         }
                         currentIntersect = null
                     }
@@ -2745,7 +2811,7 @@ window.addEventListener('click', () => {
 })
 
 // Test Logs
-
+console.log(staticBook)
 
 // GSAP Animations for Phase 0
 let isPRotated = false
