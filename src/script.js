@@ -1918,6 +1918,12 @@ controls.enableDamping = true
 controls.maxPolarAngle = Math.PI/2
 controls.minAzimuthAngle = Math.PI*0/180
 controls.maxAzimuthAngle = Math.PI*90/180
+controls.minDistance = 10  
+controls.maxDistance = 80
+
+console.log(controls)
+
+
 
 
 // Axes Helper
@@ -2148,12 +2154,12 @@ const tick = () =>
     renderer.render(scene, camera)
 
     // Call tick again on the next frame
-    window.requestAnimationFrame(tick)
+    // window.requestAnimationFrame(tick)
 
     // fps from 70 to 130+ constant
-    // setTimeout(() => {
-    //     window.requestAnimationFrame(tick)
-    // }, 1)
+    setTimeout(() => {
+        window.requestAnimationFrame(tick)
+    }, 1000/200)
 }
 
 tick()
