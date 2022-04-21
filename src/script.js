@@ -1511,7 +1511,6 @@ pointLight.shadow.mapSize.y = 1024*4
 pointLight.shadow.camera.near = 5
 pointLight.shadow.camera.far = 30
 pointLight.shadow.normalBias = 0.05
-// pointLight.shadow.radius = 5
 
 offPointLight.position.set(0,12,12)
 offPointLight.castShadow = true
@@ -1520,7 +1519,6 @@ offPointLight.shadow.mapSize.y = 1024*4
 offPointLight.shadow.camera.near = 5
 offPointLight.shadow.camera.far = 30
 offPointLight.shadow.normalBias = 0.05
-// offPointLight.shadow.radius = 5
 
 // scene.add(pointLight)
 
