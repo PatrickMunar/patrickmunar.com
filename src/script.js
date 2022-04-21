@@ -498,27 +498,43 @@ allObjects.position.set (0,-2,0)
 
 
 // Group Repositions for Phase 1
-DBGroup.position.set(-2.25,2.65,-1.75)
+DBGroup.position.set(-2.25+2.5*0.05,2.65,-1.75)
 DBGroup.rotation.y = Math.PI*90/180
 
-chair.position.set(-35*0.05, 23*0.05, -20*0.05)
+chair.position.set(-32.5*0.05, 23*0.05, -20*0.05)
 chair.rotation.y = Math.PI*30/180
 
-kunai.position.set(2*0.05, -0.25*0.05, 0)
+kunai.position.set(4.5*0.05, -0.25*0.05, 0)
 
 spoolGroup.position.set(-38*0.05, 14.25*0.05, 49.3*0.05)
 
-cube.position.set(6*0.05, 0, 0)
+cube.position.set(8.5*0.05, 0, 0)
 
 chessboardGroup.position.set(-15*0.05,-28.5*0.05,70*0.05)
 
-switchGroup.position.set(12.5*0.05, 0, 10*0.05)
-switchDock.position.set(12.5*0.05, 0, 10*0.05)
-joyConGroup.position.set(12.5*0.05, 0, 10*0.05)
-switchScreen.position.set(12.5*0.05, 0, 10*0.05)
+switchGroup.position.set(15*0.05, 0, 10*0.05)
+switchDock.position.set(15*0.05, 0, 10*0.05)
+joyConGroup.position.set(15*0.05, 0, 10*0.05)
+switchScreen.position.set(15*0.05, 0, 10*0.05)
 
-tvBase.position.set(-2.5*0.05, 0, 0)
-tvScreen.position.set(-2.5*0.05, 0, 0)
+tvBase.position.set(0*0.05, 0, 0)
+tvScreen.position.set(0*0.05, 0, 0)
+
+bottomBedframeGroup.position.set(2.5*0.05, 0, 0)
+topBedframeGroup.position.set(2.5*0.05, 0, 0)
+
+movingBook.position.set(2.5*0.05,0,0)
+staticBook.position.set(2.5*0.05,0,0)
+headphoneGroup.position.set(2.5*0.05,0,0)
+laptopGroup.position.set(2.5*0.05,0,0)
+screenGroup.position.set(2.5*0.05,0,0)
+mousepad.position.set(2.5*0.05,0,0)
+
+sablayGroup.position.set(0,-4*0.025,0)
+hookbase.position.set(0,-4*0.025,0)
+
+
+// Phase 0 GLTFLoader
 
 gltfLoader.load(
     'LeftNameWall.glb',
@@ -665,6 +681,21 @@ gltfLoader.load(
 
 
 // GLTF Loader for Phase 1
+gltfLoader.load(
+    'CurtainsLeft.glb',
+    (obj) => {
+       
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+
+        // console.log(obj)
+        curtains.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
 gltfLoader.load(
     'Curtains.glb',
     (obj) => {
@@ -1523,7 +1554,7 @@ offPointLight.shadow.normalBias = 0.05
 // scene.add(pointLight)
 
 const rectAreaLight = new THREE.RectAreaLight(0x2222ff, 2000, 0.15, 0.1)
-rectAreaLight.position.set(-1.25,0,-1.75)
+rectAreaLight.position.set(-1.25+2.5*0.05,0,-1.75)
 rectAreaLight.lookAt(new THREE.Vector3(0,0,100))
 
 // Position Checker
