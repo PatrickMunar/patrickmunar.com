@@ -54,8 +54,8 @@ const textArray = [
     'University of the Philippines - Diliman<br><t class="smallestText mainColor">2021</t><br><t class="smallestText italic">BS Mechanical Engineering</t>',
     'Philippine Science High School - Central Luzon Campus<br><t class="smallestText mainColor">2015</t>'],
     ["What's<br>Playin'",
-    '...',
-    '...'],
+    'Music is a constant',
+    '<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2WXfuQ8aTNRd7rfOvlTQqb?utm_source=generator&theme=0" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>'],
     ['Hobbies & Interests<br><t class="subText">Gaming</t>',
     'Avid gamer interested in Game Development<br><br><t class="mainColor smallestText">|</t> <t class="smallestText">Fiddling with Unreal Engine 5</t>',
     '<ul>Favorite Games <t class="mainColor">:</t><li class="smallestText">Monster Hunter (HH, SnS)</li><li class="smallestText">R6 Siege (Amaru, Kapkan)</li><li class="smallestText">DOTA 2 (Pudge, Rubick)</li></ul>'],
@@ -70,6 +70,9 @@ const insertModal = (index) => {
     // console.log('index: ', index)
     const infoModal = document.getElementById('infoModal')
     const contentGrey = document.getElementById('contentGrey')
+
+    const topGrey = document.getElementById('topGrey')
+
     const contentRed = document.getElementById('contentRed')
     const stay = document.getElementById('stay')
     const newCanvas = document.getElementById('newCanvas')
@@ -77,28 +80,34 @@ const insertModal = (index) => {
     if (isModalOn == false) {
     
         contentGrey.classList.remove('displayGreyx')
+        topGrey.classList.remove('displayGreyx')
+
         contentRed.classList.remove('displayRedx')
         stay.classList.remove('stayx')
         newCanvas.classList.remove('canvasStayx')
         infoModal.classList.remove('displayx')
     
         const h1Grey = document.getElementById('h1Grey')
+        const h1Grey2 = document.getElementById('h1Grey2')
+
         const h1Red = document.getElementById('h1Red')
         const h3Grey = document.getElementById('h3Grey')
-        const h3Red = document.getElementById('h3Red')
         const h3Grey2 = document.getElementById('h3Grey2')
-        const h3Red2 = document.getElementById('h3Red2')
     
         h1Grey.innerHTML = textArray[index][0]
+        h1Grey2.innerHTML = textArray[index][0]
+
         h1Red.innerHTML = textArray[index][0]
         h3Grey.innerHTML = textArray[index][1]
-        h3Red.innerHTML = textArray[index][1]
         h3Grey2.innerHTML = textArray[index][2]
-        h3Red2.innerHTML = textArray[index][2]
+
+
 
     
         infoModal.classList.add('display')
         contentGrey.classList.add('displayGrey')
+        topGrey.classList.add('displayGrey')
+
         contentRed.classList.add('displayRed')
         stay.classList.add('stay')
         newCanvas.classList.add('canvasStay')
@@ -109,6 +118,8 @@ const insertModal = (index) => {
     else if (isModalOn == true && index !== prevIndex) {
         // infoModalx.classList.add('displayx')
         contentGrey.classList.add('displayGreyx')
+        topGrey.classList.add('displayGreyx')
+
         contentRed.classList.add('displayRedx')
         stay.classList.add('stayx')
         newCanvas.classList.add('canvasStayx')
@@ -127,12 +138,16 @@ closer.addEventListener('click', () => {
 
     const infoModalx = document.getElementById('infoModal')
     const contentGreyx = document.getElementById('contentGrey')
+    const topGreyx = document.getElementById('topGrey')
+
     const contentRedx = document.getElementById('contentRed')
     const stayx = document.getElementById('stay')
     const newCanvas = document.getElementById('newCanvas')
 
     // infoModalx.classList.remove('display')
     contentGreyx.classList.remove('displayGrey')
+    topGreyx.classList.remove('displayGrey')
+
     contentRedx.classList.remove('displayRed')
     stayx.classList.remove('stay')
     newCanvas.classList.remove('canvasStay')
@@ -140,6 +155,8 @@ closer.addEventListener('click', () => {
 
     // infoModalx.classList.add('displayx')
     contentGreyx.classList.add('displayGreyx')
+    topGreyx.classList.add('displayGreyx')
+
     contentRedx.classList.add('displayRedx')
     stayx.classList.add('stayx')
     newCanvas.classList.add('canvasStayx')
@@ -2239,7 +2256,7 @@ const particlesMaterial = new THREE.PointsMaterial({
     color: '#ffffff',
     size: 0.03,
     sizeAttenuation: true,
-    depthWrite: false,
+    depthWrite: true,
     blending: THREE.AdditiveBlending
 })
 
