@@ -7,7 +7,7 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
 import gsap from 'gsap'
 
-console.log(document.styleSheets)
+// console.log(document.styleSheets)
 
 // Clear Scroll Memory
 window.history.scrollRestoration = 'manual'
@@ -462,7 +462,9 @@ let container = new THREE.Group
 let cup = new THREE.Group
 let drawingPad = new THREE.Group
 let pencil = new THREE.Group
-
+let wallet = new THREE.Group
+let whiteChess = new THREE.Group
+let blackChess = new THREE.Group
 
 allObjects.add(bottomBedframeGroup)
 allObjects.add(topBedframeGroup)
@@ -504,8 +506,9 @@ allObjects.add(container)
 allObjects.add(cup)
 allObjects.add(drawingPad)
 allObjects.add(pencil)
-
-
+allObjects.add(wallet)
+allObjects.add(whiteChess)
+allObjects.add(blackChess)
 
 allObjects.position.set (0,-2,0)
 // allObjects.rotation.y = - Math.PI*90/180
@@ -524,9 +527,11 @@ kunai.position.set(4.5*0.05, -0.25*0.05, 4*0.05)
 
 spoolGroup.position.set(-38*0.05, 14.25*0.05, 49.3*0.05)
 
-cube.position.set(8.5*0.05, 0, 0)
+cube.position.set(-1,2.7,-2.15)
 
 chessboardGroup.position.set(-15*0.05,-28.5*0.05,70*0.05)
+whiteChess.position.set(-15*0.05,-28.5*0.05,70*0.05)
+blackChess.position.set(-15*0.05,-28.5*0.05,70*0.05)
 
 switchGroup.position.set(15*0.05, 0, 10*0.05)
 switchDock.position.set(15*0.05, 0, 10*0.05)
@@ -555,7 +560,7 @@ pokeball.position.set(2.5*0.05,2*0.025,0)
 container.position.set(2.5*0.05,0,0)
 cup.position.set(2.5*0.05,0,0)
 
-console.log(drawingPad)
+wallet.position.set(2.5*0.05,0,0)
 
 // Phase 0 GLTFLoader
 
@@ -704,6 +709,20 @@ gltfLoader.load(
 
 
 // GLTF Loader for Phase 1
+gltfLoader.load(
+    'Wallet.glb',
+    (obj) => {
+       
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+
+        // console.log(obj)
+        wallet.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
 
 gltfLoader.load(
     'Pencil.glb',
@@ -744,6 +763,21 @@ gltfLoader.load(
 
         // console.log(obj)
         cup.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'RandomBox.glb',
+    (obj) => {
+       
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+
+        // console.log(obj)
+        container.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1247,6 +1281,36 @@ gltfLoader.load(
 
         // console.log(obj)
         hookbase.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'BlackChess.glb',
+    (obj) => {
+       
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+
+        // console.log(obj)
+        blackChess.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'WhiteChess.glb',
+    (obj) => {
+       
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+
+        // console.log(obj)
+        whiteChess.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -2085,7 +2149,7 @@ controls.maxAzimuthAngle = Math.PI*90/180
 controls.minDistance = 10  
 controls.maxDistance = 80
 
-console.log(controls)
+// console.log(controls)
 
 
 
@@ -2273,7 +2337,7 @@ const tick = () =>
 
     // Phase 1 RayCasting
     // if (phase == 1) {
-        const testBox = [topBedframeGroup, topDrawer, midDrawer, botDrawer, laptopGroup, footballGroup, skateboardGroup, sablayGroup, switchGroup, joyConGroup, switchDock, headphoneGroup, spoolGroup, printerStatic, printerPlate, printerTip, curtainsScale, staticBook, tvBase, tvScreen]
+        const testBox = [topBedframeGroup, topDrawer, midDrawer, botDrawer, laptopGroup, screenGroup, footballGroup, skateboardGroup, sablayGroup, switchGroup, joyConGroup, switchDock, headphoneGroup, spoolGroup, printerStatic, printerPlate, printerTip, curtainsScale, staticBook, tvBase, tvScreen, whiteChess, blackChess, chessboardGroup, drawingPad, pencil, kunai, pokeball, DBGroup, cube]
         const intersects = raycaster.intersectObjects(testBox)
     
         for (const object of testBox) {
@@ -2560,6 +2624,87 @@ const tvOpen = () => {
     }, 2000)
 }
 
+
+const chessJump = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
+    gsap.to(whiteChess.position, {ease: 'Power1.easeOut', duration: 0.5, delay: 0, y: -28.5*0.05 + 0.5})
+    gsap.to(whiteChess.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 0.5, y: -28.5*0.05})
+
+    setTimeout(() => {
+        
+        gsap.to(blackChess.position, {ease: 'Power1.easeOut', duration: 0.5, delay: 0, y: -28.5*0.05 + 0.5})
+        gsap.to(blackChess.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 0.5, y: -28.5*0.05})
+    
+    }, 500)
+}
+
+const pencilJump = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
+    gsap.to(drawingPad.position, {ease: 'Power1.easeOut', duration: 0.5, delay: 0, y: 0.5})
+    gsap.to(drawingPad.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 0.5, y: 0})
+
+    gsap.to(pencil.position, {ease: 'Power1.easeOut', duration: 0.5, delay: 0, y: 0.5, x: 0.1})
+    gsap.to(pencil.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 0.5, y: 0, x: 0})
+}
+
+const objectsJump = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
+    gsap.to(pokeball.position, {ease: 'Power1.easeOut', duration: 0.5, delay: 0, y: 2*0.025 + 0.5})
+    gsap.to(pokeball.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 0.5, y: 2*0.025})
+
+    gsap.to(kunai.position, {ease: 'Power1.easeOut', duration: 0.5, delay: 0.5, y: 0.5, y: -0.25*0.05 + 0.5})
+    gsap.to(kunai.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 1, y: 0, y: -0.25*0.05})
+
+    gsap.to(DBGroup.position, {ease: 'Power1.easeOut', duration: 0.5, delay: 1, y: 0.5, y: 2.65 + 0.5})
+    gsap.to(DBGroup.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 1.5, y: 0, y: 2.65})
+}
+
+const spinBed = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
+    gsap.to(topBedframeGroup.rotation, {ease: 'Power1.easeOut', duration: 1, delay: 0, y: topBedframeGroup.rotation.y + Math.PI*2})
+}
+
+const sablaySqueeze = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
+    gsap.to(sablayGroup.scale, {ease: 'Power1.easeOut', duration: 0.5, delay: 0, y: 0.8})
+    gsap.to(sablayGroup.position, {ease: 'Power1.easeOut', duration: 0.5, delay: 0, y: 0.75})
+
+    gsap.to(sablayGroup.scale, {ease: 'Power1.easeIn', duration: 0.5, delay: 0.5, y: 1})
+    gsap.to(sablayGroup.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 0.5, y: -4*0.025})
+
+}
+
+const cubeJump = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
+    gsap.to(cube.position, {ease: 'Power1.easeOut', duration: 0.5, delay: 0, y: 2.7 + 0.5})
+    gsap.to(cube.rotation, {ease: 'Power1.easeOut', duration: 0.75, delay: 0, x: cube.rotation.x + Math.PI*2, y: cube.rotation.y + Math.PI*2})
+    gsap.to(cube.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 0.5, y: 2.7})
+
+}
 // Global Light Phase 0
 const leftDirectionalLight = new THREE.DirectionalLight(0xff0000, 0)
 const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0)
@@ -2785,7 +2930,7 @@ window.addEventListener('click', () => {
     
         if (phase == 1) {
             if (currentIntersect) {
-                console.log('click')
+                // console.log('click')
                     if (currentIntersect.object == laptopGroup.children[0].children[0] || currentIntersect.object == laptopGroup.children[1].children[0] || currentIntersect.object == screenGroup.children[0].children[0]) {
                         if (clickCounter%2 == 0) {
                             if (isLaptopOn == false) {
@@ -2819,12 +2964,13 @@ window.addEventListener('click', () => {
                                 insertModal(arrayIndex)
                             }
                         }
-                        currentIntersect = null
+                        // currentIntersect = null
                     }
                 if (isLaptopOn == true) {
                     if (currentIntersect.object == topBedframeGroup.children[0].children[0] || currentIntersect.object == topBedframeGroup.children[1].children[0] || currentIntersect.object == topBedframeGroup.children[2].children[0] || currentIntersect.object == topBedframeGroup.children[3].children[0]) {
                         if (clickCounter%2 == 0) {
-                            // hoverTopBedframeGroup()
+                            spinBed()
+
                         }
                         currentIntersect = null
                     }
@@ -2873,10 +3019,7 @@ window.addEventListener('click', () => {
                     }
                     else if (currentIntersect.object == sablayGroup.children[0].children[0] || currentIntersect.object == sablayGroup.children[0].children[1] || currentIntersect.object == sablayGroup.children[0].children[2] || currentIntersect.object == sablayGroup.children[0].children[3] || currentIntersect.object == sablayGroup.children[0].children[4] || currentIntersect.object == sablayGroup.children[0].children[5] || currentIntersect.object == sablayGroup.children[0].children[6] || currentIntersect.object == sablayGroup.children[0].children[7] ) {
                         if (clickCounter%2 == 0) {
-                            // openLaptop()
-                            // console.log('animate laptop')
-                            // console.log('change screen texture')
-                            // !!! sunflowers()
+                            sablaySqueeze()
         
                             arrayIndex = 4
                             insertModal(arrayIndex)
@@ -2941,6 +3084,38 @@ window.addEventListener('click', () => {
                         }
                         currentIntersect = null
                     }
+
+                    else if (currentIntersect.object == whiteChess.children[0].children[0] || currentIntersect.object == blackChess.children[0].children[0] || currentIntersect.object == chessboardGroup.children[0].children[0] || currentIntersect.object == chessboardGroup.children[1].children[0] || currentIntersect.object == chessboardGroup.children[2].children[0] || currentIntersect.object == chessboardGroup.children[3].children[0]) {
+                        if (clickCounter%2 == 0) {
+                            chessJump()
+
+                        }
+                        currentIntersect = null
+                    }
+
+                    else if (currentIntersect.object == drawingPad.children[0].children[0] || currentIntersect.object == drawingPad.children[0].children[1] || currentIntersect.object == drawingPad.children[0].children[2] || currentIntersect.object == pencil.children[0].children[0]) {
+                        if (clickCounter%2 == 0) {
+                            pencilJump()
+
+                        }
+                        currentIntersect = null
+                    }
+
+                    else if (currentIntersect.object == kunai.children[0].children[0] || currentIntersect.object == kunai.children[1].children[0] || currentIntersect.object == pokeball.children[0].children[0] || currentIntersect.object == pokeball.children[0].children[1] || currentIntersect.object == pokeball.children[0].children[2] || currentIntersect.object == DBGroup.children[0].children[0]  || currentIntersect.object == DBGroup.children[1].children[0] ) {
+                        if (clickCounter%2 == 0) {
+                            objectsJump()
+
+                        }
+                        currentIntersect = null
+                    }
+
+                    else if (currentIntersect.object == cube.children[0].children[0] || currentIntersect.object == cube.children[0].children[1] || currentIntersect.object == cube.children[0].children[2] || currentIntersect.object == cube.children[0].children[3] || currentIntersect.object == cube.children[0].children[4] || currentIntersect.object == cube.children[0].children[5] || currentIntersect.object == cube.children[0].children[6] ) {
+                        if (clickCounter%2 == 0) {
+                            cubeJump()
+
+                        }
+                        currentIntersect = null
+                    }
                 }
             }
         }
@@ -2948,7 +3123,7 @@ window.addEventListener('click', () => {
 })
 
 // Test Logs
-console.log(staticBook)
+// console.log(cube)
 
 // GSAP Animations for Phase 0
 let isPRotated = false
@@ -3286,7 +3461,7 @@ const generateShootingStar = () => {
     scene.add(line)
 
     const directionVector = new THREE.Vector3(pointA.x - pointB.x, pointA.y - pointB.y, pointA.z - pointB.z)
-    console.log(directionVector)
+    // console.log(directionVector)
 
     gsap.to(line.position, {duration: 3, x: directionVector.x*15, y: directionVector.y*15, z: directionVector.z*15})
 
