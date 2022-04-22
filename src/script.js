@@ -61,6 +61,15 @@ const textArray = [
     '<ul>Favorite Games <t class="mainColor">:</t><li class="smallestText">Monster Hunter (HH, SnS)</li><li class="smallestText">R6 Siege (Amaru, Kapkan)</li><li class="smallestText">DOTA 2 (Pudge, Rubick)</li></ul>'],
     ["3D<br>Modelling &<br>Printing",
     '...',
+    '...'],
+    ['Hobbies & Interests<br><t class="subText">Chess</t>',
+    '...',
+    '...'],
+    ['Hobbies & Interests<br><t class="subText">Drawing</t>',
+    '...',
+    '...'],
+    ['Hobbies & Interests<br><t class="subText">Movies & Series</t>',
+    '...',
     '...']
 ]
 
@@ -100,9 +109,6 @@ const insertModal = (index) => {
         h1Red.innerHTML = textArray[index][0]
         h3Grey.innerHTML = textArray[index][1]
         h3Grey2.innerHTML = textArray[index][2]
-
-
-
     
         infoModal.classList.add('display')
         contentGrey.classList.add('displayGrey')
@@ -3098,6 +3104,8 @@ window.addEventListener('click', () => {
                         if (clickCounter%2 == 0) {
                             tvOpen()
 
+                            arrayIndex = 10
+                            insertModal(arrayIndex)
                         }
                         currentIntersect = null
                     }
@@ -3106,6 +3114,8 @@ window.addEventListener('click', () => {
                         if (clickCounter%2 == 0) {
                             chessJump()
 
+                            arrayIndex = 8
+                            insertModal(arrayIndex)
                         }
                         currentIntersect = null
                     }
@@ -3114,6 +3124,8 @@ window.addEventListener('click', () => {
                         if (clickCounter%2 == 0) {
                             pencilJump()
 
+                            arrayIndex = 9
+                            insertModal(arrayIndex)
                         }
                         currentIntersect = null
                     }
