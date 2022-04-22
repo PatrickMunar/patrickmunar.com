@@ -4,10 +4,8 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
-// import { sRGBEncoding } from 'three'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
 import gsap from 'gsap'
-import { RedFormat } from 'three'
 
 console.log(document.styleSheets)
 
@@ -462,6 +460,9 @@ let pokeball = new THREE.Group
 let caseGroup = new THREE.Group
 let container = new THREE.Group
 let cup = new THREE.Group
+let drawingPad = new THREE.Group
+let pencil = new THREE.Group
+
 
 allObjects.add(bottomBedframeGroup)
 allObjects.add(topBedframeGroup)
@@ -501,6 +502,10 @@ allObjects.add(pokeball)
 allObjects.add(caseGroup)
 allObjects.add(container)
 allObjects.add(cup)
+allObjects.add(drawingPad)
+allObjects.add(pencil)
+
+
 
 allObjects.position.set (0,-2,0)
 // allObjects.rotation.y = - Math.PI*90/180
@@ -549,6 +554,8 @@ pokeball.position.set(2.5*0.05,2*0.025,0)
 
 container.position.set(2.5*0.05,0,0)
 cup.position.set(2.5*0.05,0,0)
+
+console.log(drawingPad)
 
 // Phase 0 GLTFLoader
 
@@ -697,6 +704,37 @@ gltfLoader.load(
 
 
 // GLTF Loader for Phase 1
+
+gltfLoader.load(
+    'Pencil.glb',
+    (obj) => {
+       
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+
+        // console.log(obj)
+        pencil.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
+gltfLoader.load(
+    'DrawingPad.glb',
+    (obj) => {
+       
+        scene.add(obj.scene)
+        obj.scene.scale.set(0.05,0.05,0.05)
+
+        // console.log(obj)
+        drawingPad.add(obj.scene)
+        // obj.scene.castShadow = true
+        obj.scene.children[0].castShadow = true
+        obj.scene.children[0].receiveShadow = true
+    }
+)
+
 gltfLoader.load(
     'Cup.glb',
     (obj) => {
