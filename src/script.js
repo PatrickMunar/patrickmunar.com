@@ -3742,7 +3742,6 @@ const phaseChange1to2 = (zf) => {
 
         camera.lookAt(0,0,0)
 
-        // )
         gsap.to(camera.position, {duration: 2, delay: 0.5, x: 5*zf, y: -25, z: 5*zf})
     
         setTimeout(() => {
@@ -3852,6 +3851,21 @@ const closeChecker = (index) => {
 gsap.registerPlugin(ScrollTrigger)
 
 const activateScrollTrigger = () => {
+    gsap.to(particles.position, {
+        scrollTrigger: {
+            trigger: '.scrollBlanks',
+            start: 'top top',
+            end: '900%',
+            // pin: true,
+            scrub: true,
+            markers: false
+        },
+        y: 10,
+        // scale: 0.95,
+        ease: 'none',
+        
+    })
+
     // hide side and instructions
     gsap.to('.sidebarMain', {
         scrollTrigger: {
