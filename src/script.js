@@ -39,14 +39,14 @@ let phase = 0
 // h1, h3
 const textArray = [
     ['Hello',
-    'Get to know me better through this room.',
-    "Explore the scene and interact with objects."],
+    "<t class='smallText'> I'm <t class='mainColor'>Patrick Munar</t><br>a <t class='Lobster'>Creative Developer</t> & <t class='Roboto'>Engineer</t> from the Philippines.</t></t>",
+    "<t class='smallText'>Get to know me better through this room.<br><br>Explore the scene and interact with objects.</t>"],
     ['Tech Stack',
-    'Coding <t class="mainColor">:</t><br><t class="smallestText">HTML</t> <t class="mainColor smallestText">+</t> <t class="smallestText">CSS</t> <t class="mainColor smallestText">+</t> <t class="smallestText">JavaScript</t> <t class="mainColor smallestText">+</t> <t class="smallestText">WebGL</t> <t class="mainColor smallestText">+</t> <t class="smallestText">Three.js</t> <t class="mainColor smallestText">+</t> <t class="smallestText">GSAP</t><br><br><t class="mainColor smallestText">|</t> <t class="smallestText">Currently unlocking ReactJS, react-three-fiber, PixiJS </t>',
+    'Coding <t class="mainColor">:</t><br><t class="smallestText">HTML</t> <t class="mainColor smallestText">+</t> <t class="smallestText">CSS</t> <t class="mainColor smallestText">+</t> <t class="smallestText">JavaScript</t> <t class="mainColor smallestText">+</t> <t class="smallestText">WebGL</t> <t class="mainColor smallestText">+</t> <t class="smallestText">Three.js</t> <t class="mainColor smallestText">+</t> <t class="smallestText">GSAP</t><br><br><t class="mainColor smallestText">|</t> <t class="smallestText">Currently unlocking ReactJS, R3F, and working on shaders and other techniques </t>',
     'Other Tools <t class="mainColor">:</t><br><t class="smallestText">Fusion 360</t> <t class="mainColor smallestText">+</t> <t class="smallestText">Blender</t> <t class="mainColor smallestText">+</t> <t class="smallestText">Inkscape</t>'],
     ['Flag<br>Football',
     "<t class='smallText'>I've always had the knack for sports,<br><br>but this was</t> <b class='smallText mainColor'>the sport.</b>",
-    '...'],
+    '<ul>Usual Positions <t class="mainColor">:</t><li class="smallestText">MLB</li><li class="smallestText">Slot Receiver</li>'],
     ['Hobbies & Interests<br><t class="subText">Skateboarding</t>',
     '<t class="smallText">Hopped back on after more than 10 years.</t>',
     '<ul>Favorite Skaters <t class="mainColor">:</t><li class="smallestText">Jonny Giger</li><li class="smallestText">P-Rod</li><li class="smallestText">Chris Joslin</li><li class="smallestText">Milton Martinez</li></ul>'],
@@ -69,8 +69,8 @@ const textArray = [
     "I draw stuff when I can.",
     '<div class="imageScroller"><img class="shrinkImage" src="./images/Ears.jpg"><img class="shrinkImage" src="./images/Pig.jpg"><img class="shrinkImage" src="./images/Pug.jpg"></div>'],
     ['Hobbies & Interests<br><t class="subText">Movies & Series</t>',
-    "There's always something playing on the background.",
-    '<ul>Top Movies <t class="mainColor">:</t><li class="smallestText">Shawshank Redemption</li><li class="smallestText">Inglourious Basterds</li><li class="smallestText"></li>']
+    "<t class='smallText'>There's always something playing on the background.</t>",
+    "<ul>Top Movies <t class='mainColor'>:</t><li class='smallestText'>Shawshank Redemption</li><li class='smallestText'>Inglourious Basterds</li><li class='smallestText'>Saving Private Ryan</li><br><ul>Top Series <t class='mainColor'>:</t><li class='smallestText'>Better Call Saul</li><li class='smallestText'>Queen's Gambit</li>"]
 ]
 
 
@@ -2169,13 +2169,8 @@ controls.enableDamping = true
 controls.maxPolarAngle = Math.PI/2
 controls.minAzimuthAngle = Math.PI*0/180
 controls.maxAzimuthAngle = Math.PI*90/180
-controls.minDistance = 10  
+controls.minDistance = 12  
 controls.maxDistance = 80
-
-// console.log(controls)
-
-
-
 
 // Axes Helper
 // const axesHelper = new THREE.AxesHelper()
@@ -2731,6 +2726,17 @@ const cubeJump = () => {
     gsap.to(cube.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 0.5, y: 2.7})
 
 }
+
+const headphoneJump = () => {
+    isAnimationPlaying = true
+    setTimeout(() => {
+        isAnimationPlaying = false
+    }, 1000)
+
+    gsap.to(headphoneGroup.position, {ease: 'Power1.easeOut', duration: 0.5, delay: 0, y: 0.5})
+    gsap.to(headphoneGroup.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 0.5, y: 0})
+
+}
 // Global Light Phase 0
 const leftDirectionalLight = new THREE.DirectionalLight(0xff0000, 0)
 const rightDirectionalLight = new THREE.DirectionalLight(0xffffff, 0)
@@ -3068,10 +3074,7 @@ window.addEventListener('click', () => {
                     }
                     else if (currentIntersect.object == headphoneGroup.children[0].children[0] || currentIntersect.object == headphoneGroup.children[1].children[0]) {
                         if (clickCounter%2 == 0) {
-                            // openLaptop()
-                            // console.log('animate laptop')
-                            // console.log('change screen texture')
-                            // !!! notesPlaying()
+                            headphoneJump()
         
                             arrayIndex = 5
                             insertModal(arrayIndex)
@@ -4166,7 +4169,7 @@ const activateScrollTrigger = () => {
             start: 'top bottom',
             // markers: true,
         },
-        delay: 2.5,
+        delay: 3,
         duration: 1,
         opacity: 1,
         // scale: 0.8,
