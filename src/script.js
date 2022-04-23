@@ -60,17 +60,17 @@ const textArray = [
     'Avid gamer interested in Game Development<br><br><t class="mainColor smallestText">|</t> <t class="smallestText">Fiddling with Unreal Engine 5</t>',
     '<ul>Mostly Played Games <t class="mainColor">:</t><li class="smallestText">Monster Hunter (HH, SnS)</li><li class="smallestText">R6 Siege (Amaru, Kapkan)</li><li class="smallestText">DOTA 2 (Pudge, Rubick)</li></ul>'],
     ["3D<br>Modelling &<br>Printing",
-    '...',
-    '...'],
+    '<t class="smallText">Translated my CAD skills to creating models and assets.</t><br><br><t class="mainColor smallestText">|</t> <t class="smallestText">Fusion 360 + Blender</t>',
+    '<t class="smallText">Designing things to print, prototype and use.</t>'],
     ['Hobbies & Interests<br><t class="subText">Chess</t>',
-    'Average at best,<br><br>but I do appreciate the beauty of the game.',
+    'Average at best,<t class="smallText"><br><br>but I do appreciate the beauty of the game.</t>',
     '<ul>Go-to Openings (W) <t class="mainColor">:</t><li class="smallestText">Italian</li><li class="smallestText">Vienna</li><br><ul>Go-to Openings (B) <t class="mainColor">:</t><li class="smallestText">Grunfeld</li><li class="smallestText">Caro-Kann</li>'],
     ['Hobbies & Interests<br><t class="subText">Drawing</t>',
     "I draw stuff when I can.",
     '<div class="imageScroller"><img class="shrinkImage" src="./images/Ears.jpg"><img class="shrinkImage" src="./images/Pig.jpg"><img class="shrinkImage" src="./images/Pug.jpg"></div>'],
     ['Hobbies & Interests<br><t class="subText">Movies & Series</t>',
-    '...',
-    '...']
+    "There's always something playing on the background.",
+    '<ul>Top Movies <t class="mainColor">:</t><li class="smallestText">Shawshank Redemption</li><li class="smallestText">Inglourious Basterds</li><li class="smallestText"></li>']
 ]
 
 
