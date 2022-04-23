@@ -7,8 +7,6 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
 import gsap from 'gsap'
 
-// console.log(document.styleSheets)
-
 // Clear Scroll Memory
 window.history.scrollRestoration = 'manual'
 
@@ -76,7 +74,6 @@ const textArray = [
 
 // Inserts Appropriate Topic info
 const insertModal = (index) => {
-    // console.log('index: ', index)
     const infoModal = document.getElementById('infoModal')
     const contentGrey = document.getElementById('contentGrey')
 
@@ -594,7 +591,6 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.025,0.025,0.025)
 
-        // console.log(obj)
         leftNameWall.add(obj.scene)
         // obj.scene.castShadow = true
         // obj.scene.children[0].castShadow = true
@@ -609,7 +605,6 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.025,0.025,0.025)
 
-        // console.log(obj)
         rightNameWall.add(obj.scene)
         // obj.scene.castShadow = true
         // obj.scene.children[0].castShadow = true
@@ -624,7 +619,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.025,0.025,0.025)
 
-        // console.log(obj)
+        // 
         P.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -640,7 +635,7 @@ gltfLoader.load(
         obj.scene.scale.set(0.025,0.025,0.025)
 
 
-        // console.log(obj)
+        // 
         A.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -656,7 +651,7 @@ gltfLoader.load(
         obj.scene.scale.set(0.025,0.025,0.025)
 
 
-        // console.log(obj)
+        // 
         T.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -672,7 +667,7 @@ gltfLoader.load(
         obj.scene.scale.set(0.025,0.025,0.025)
 
 
-        // console.log(obj)
+        // 
         R.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -688,7 +683,7 @@ gltfLoader.load(
         obj.scene.scale.set(0.025,0.025,0.025)
 
 
-        // console.log(obj)
+        // 
         I.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -704,7 +699,7 @@ gltfLoader.load(
         obj.scene.scale.set(0.025,0.025,0.025)
 
 
-        // console.log(obj)
+        // 
         C.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -720,7 +715,7 @@ gltfLoader.load(
         obj.scene.scale.set(0.025,0.025,0.025)
 
 
-        // console.log(obj)
+        // 
         K.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -739,7 +734,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         wallet.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -754,7 +749,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         pencil.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -769,7 +764,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         drawingPad.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -784,7 +779,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         cup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -799,7 +794,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         container.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -814,7 +809,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         container.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -829,7 +824,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         caseGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -846,7 +841,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         pokeball.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -865,7 +860,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         curtainsScale.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -880,7 +875,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         curtains.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -895,7 +890,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         curtains.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -910,7 +905,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         tvScreen.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -925,7 +920,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         tvBase.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -942,7 +937,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         cube.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -969,7 +964,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         movingBook.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -986,7 +981,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         staticBook.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1013,7 +1008,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         printerTip.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1028,7 +1023,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         printerPlate.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1043,7 +1038,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         printerStatic.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1060,7 +1055,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         spoolGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1075,7 +1070,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         spoolGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1090,7 +1085,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         kunai.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1105,7 +1100,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         kunai.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1120,7 +1115,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         chair.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1135,7 +1130,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         DBGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1150,7 +1145,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         DBGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1165,7 +1160,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         headphoneGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1180,7 +1175,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         headphoneGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1195,7 +1190,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         switchDock.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1210,7 +1205,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         joyConGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1225,7 +1220,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         joyConGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1240,7 +1235,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         joyConGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1256,7 +1251,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         switchScreen.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1272,7 +1267,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         switchGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1287,7 +1282,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         sablayGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1302,7 +1297,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         hookbase.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1317,7 +1312,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         blackChess.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1332,7 +1327,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         whiteChess.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1347,7 +1342,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         chessboardGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1362,7 +1357,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         chessboardGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1377,7 +1372,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         chessboardGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1392,7 +1387,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         chessboardGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1407,7 +1402,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         skateboardGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1422,7 +1417,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         skateboardGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1437,7 +1432,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         skateboardGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1452,7 +1447,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         skateboardGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1467,7 +1462,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         footballGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1482,7 +1477,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         footballGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1497,7 +1492,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         mousepad.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1512,7 +1507,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1527,7 +1522,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         laptopGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
@@ -1547,7 +1542,7 @@ gltfLoader.load(
         obj.scene.scale.set(0.05,0.05,0.05)
         
 
-        // console.log(obj)
+        // 
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1563,7 +1558,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         wallsandfloor.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1578,7 +1573,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         staticStairsGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1592,7 +1587,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         topDrawer.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1606,7 +1601,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         midDrawer.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1620,7 +1615,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         botDrawer.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1634,7 +1629,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         topBedframeGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1649,7 +1644,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         topBedframeGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1664,7 +1659,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         wallsandfloor.add(obj.scene)
         obj.scene.castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1678,7 +1673,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         topBedframeGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1692,7 +1687,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         bottomBedframeGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1706,7 +1701,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         bottomBedframeGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1721,7 +1716,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         staticStairsGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -1736,7 +1731,7 @@ gltfLoader.load(
         scene.add(obj.scene)
         obj.scene.scale.set(0.05,0.05,0.05)
 
-        // console.log(obj)
+        // 
         topBedframeGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
@@ -2335,13 +2330,11 @@ const tick = () =>
     const firstIntersects = raycaster.intersectObjects(firstTestBox)
 
     for (const firstIntersect of firstIntersects) {
-        // console.log('hovering')  
     }
 
     if (firstIntersects.length) {
         if (firstCurrentIntersect === null) {
             firstCurrentIntersect = firstIntersects[0]
-            // console.log(firstCurrentIntersect.object)
 
         }
     }
@@ -2350,7 +2343,6 @@ const tick = () =>
             firstCurrentIntersect = null
         }
         firstCurrentIntersect = null
-        // console.log(currentIntersect)
     }
 
     // Phase 1 RayCasting
@@ -2359,16 +2351,13 @@ const tick = () =>
         const intersects = raycaster.intersectObjects(testBox)
     
         for (const object of testBox) {
-            // console.log('none')
         }
     
         for (const intersect of intersects) {
-            // console.log('hovering')  
         }
     
         if (intersects.length) {
             if (currentIntersect === null) {
-                // console.log(intersects)
                 currentIntersect = intersects[0]
             }
         }
@@ -2377,7 +2366,6 @@ const tick = () =>
                 currentIntersect = null
             }
             currentIntersect = null
-            // console.log(currentIntersect)
         }
     // }
 
@@ -2780,9 +2768,7 @@ const colorChangeRight = () => {
 
     leftDirectionalLight.color.setHex(directionalLightColors[currentColor][0])
     rightDirectionalLight.color.setHex(directionalLightColors[currentColor][1])  
-} 
-
-// console.log(leftDirectionalLight)
+}
 
 // Light Up Animation
 const lightUp = () => {
@@ -2900,10 +2886,8 @@ let isItEverOn = false
 window.addEventListener('click', () => {
     if (isAnimationPlaying == false && noClicks == false) {
         clickCounter += 1
-        // console.log(clickCounter)
         if (phase == 0) {
             if (firstCurrentIntersect) {
-                // console.log('click')
                 if (firstCurrentIntersect.object == P.children[0].children[0]) {
                     if (clickCounter%2 == 0) {
                         animateP()
@@ -2964,7 +2948,6 @@ window.addEventListener('click', () => {
     
         if (phase == 1) {
             if (currentIntersect) {
-                // console.log('click')
                     if (currentIntersect.object == laptopGroup.children[0].children[0] || currentIntersect.object == laptopGroup.children[1].children[0] || currentIntersect.object == screenGroup.children[0].children[0]) {
                         if (clickCounter%2 == 0) {
                             if (isLaptopOn == false) {
@@ -3028,9 +3011,6 @@ window.addEventListener('click', () => {
                     }
                     else if (currentIntersect.object == footballGroup.children[0].children[0] || currentIntersect.object == footballGroup.children[1].children[0]) {
                         if (clickCounter%2 == 0) {
-                            // openLaptop()
-                            // console.log('animate laptop')
-                            // console.log('change screen texture')
             
                             floatFootball()
         
@@ -3041,9 +3021,6 @@ window.addEventListener('click', () => {
                     }
                     else if (currentIntersect.object == skateboardGroup.children[0].children[0] || currentIntersect.object == skateboardGroup.children[1].children[0] || currentIntersect.object == skateboardGroup.children[2].children[0] ||currentIntersect.object == skateboardGroup.children[3].children[0]) {
                         if (clickCounter%2 == 0) {
-                            // openLaptop()
-                            // console.log('animate laptop')
-                            // console.log('change screen texture')
                             flipBoard()
         
                             arrayIndex = 3
@@ -3062,9 +3039,6 @@ window.addEventListener('click', () => {
                     }
                     else if (currentIntersect.object == switchGroup.children[0].children[0] || currentIntersect.object == switchScreen.children[0].children[0] || currentIntersect.object == joyConGroup.children[0].children[0] || currentIntersect.object == joyConGroup.children[1].children[0] || currentIntersect.object == joyConGroup.children[2].children[0] || currentIntersect.object == switchDock.children[0].children[0]) {
                         if (clickCounter%2 == 0) {
-                            // openLaptop()
-                            // console.log('animate laptop')
-                            // console.log('change screen texture')
                             switchJump()
         
                             arrayIndex = 6
@@ -3160,8 +3134,6 @@ window.addEventListener('click', () => {
 })
 
 // Test Logs
-// console.log(cube)
-
 // GSAP Animations for Phase 0
 let isPRotated = false
 let isARotated = false
@@ -3498,7 +3470,6 @@ const generateShootingStar = () => {
     scene.add(line)
 
     const directionVector = new THREE.Vector3(pointA.x - pointB.x, pointA.y - pointB.y, pointA.z - pointB.z)
-    // console.log(directionVector)
 
     gsap.to(line.position, {duration: 3, x: directionVector.x*15, y: directionVector.y*15, z: directionVector.z*15})
 
@@ -3662,7 +3633,7 @@ const phaseChange1to0 = (left, right, zf) => {
         
         camera.lookAt(0,0,0)
 
-        // console.log(zf)
+        // )
         gsap.to(camera.position, {duration: 2, delay: 0.5, x: 5*zf, y: 35, z: 5*zf})
     
         setTimeout(() => {
@@ -3771,7 +3742,7 @@ const phaseChange1to2 = (zf) => {
 
         camera.lookAt(0,0,0)
 
-        // console.log(zf)
+        // )
         gsap.to(camera.position, {duration: 2, delay: 0.5, x: 5*zf, y: -25, z: 5*zf})
     
         setTimeout(() => {
