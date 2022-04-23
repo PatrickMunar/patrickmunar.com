@@ -45,7 +45,7 @@ const textArray = [
     'Coding <t class="mainColor">:</t><br><t class="smallestText">HTML</t> <t class="mainColor smallestText">+</t> <t class="smallestText">CSS</t> <t class="mainColor smallestText">+</t> <t class="smallestText">JavaScript</t> <t class="mainColor smallestText">+</t> <t class="smallestText">WebGL</t> <t class="mainColor smallestText">+</t> <t class="smallestText">Three.js</t> <t class="mainColor smallestText">+</t> <t class="smallestText">GSAP</t><br><br><t class="mainColor smallestText">|</t> <t class="smallestText">Currently unlocking ReactJS, react-three-fiber, PixiJS </t>',
     'Other Tools <t class="mainColor">:</t><br><t class="smallestText">Fusion 360</t> <t class="mainColor smallestText">+</t> <t class="smallestText">Blender</t> <t class="mainColor smallestText">+</t> <t class="smallestText">Inkscape</t>'],
     ['Flag<br>Football',
-    "<t class='smallText'>I've always had the knack for sports, but flag football was</t> <b class='smallText mainColor'>the sport.</b>",
+    "<t class='smallText'>I've always had the knack for sports,<br><br>but this was</t> <b class='smallText mainColor'>the sport.</b>",
     '...'],
     ['Hobbies & Interests<br><t class="subText">Skateboarding</t>',
     '<t class="smallText">Hopped back on after more than 10 years.</t>',
@@ -54,20 +54,20 @@ const textArray = [
     'University of the Philippines - Diliman<br><t class="smallestText mainColor">2021</t><br><t class="smallestText italic">BS Mechanical Engineering</t>',
     'Philippine Science High School - Central Luzon Campus<br><t class="smallestText mainColor">2015</t>'],
     ["What's<br>Playin'",
-    'Music is a constant',
+    'Music is a constant.',
     '<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2WXfuQ8aTNRd7rfOvlTQqb?utm_source=generator&theme=0" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>'],
     ['Hobbies & Interests<br><t class="subText">Gaming</t>',
     'Avid gamer interested in Game Development<br><br><t class="mainColor smallestText">|</t> <t class="smallestText">Fiddling with Unreal Engine 5</t>',
-    '<ul>Favorite Games <t class="mainColor">:</t><li class="smallestText">Monster Hunter (HH, SnS)</li><li class="smallestText">R6 Siege (Amaru, Kapkan)</li><li class="smallestText">DOTA 2 (Pudge, Rubick)</li></ul>'],
+    '<ul>Mostly Played Games <t class="mainColor">:</t><li class="smallestText">Monster Hunter (HH, SnS)</li><li class="smallestText">R6 Siege (Amaru, Kapkan)</li><li class="smallestText">DOTA 2 (Pudge, Rubick)</li></ul>'],
     ["3D<br>Modelling &<br>Printing",
     '...',
     '...'],
     ['Hobbies & Interests<br><t class="subText">Chess</t>',
-    '...',
-    '...'],
+    'Average at best,<br><br>but I do appreciate the beauty of the game.',
+    '<ul>Go-to Openings (W) <t class="mainColor">:</t><li class="smallestText">Italian</li><li class="smallestText">Vienna</li><br><ul>Go-to Openings (B) <t class="mainColor">:</t><li class="smallestText">Grunfeld</li><li class="smallestText">Caro-Kann</li>'],
     ['Hobbies & Interests<br><t class="subText">Drawing</t>',
-    '...',
-    '...'],
+    "I draw stuff when I can.",
+    '<div class="imageScroller"><img class="shrinkImage" src="./images/Ears.jpg"><img class="shrinkImage" src="./images/Pig.jpg"><img class="shrinkImage" src="./images/Pug.jpg"></div>'],
     ['Hobbies & Interests<br><t class="subText">Movies & Series</t>',
     '...',
     '...']
@@ -2709,11 +2709,14 @@ const sablaySqueeze = () => {
         isAnimationPlaying = false
     }, 1000)
 
-    gsap.to(sablayGroup.scale, {ease: 'Power1.easeOut', duration: 0.5, delay: 0, y: 0.8})
-    gsap.to(sablayGroup.position, {ease: 'Power1.easeOut', duration: 0.5, delay: 0, y: 0.75})
+    gsap.to(sablayGroup.scale, {ease: 'Power1.easeOut', duration: 0.15, delay: 0, y: 1.25})
+    gsap.to(sablayGroup.position, {ease: 'Power1.easeOut', duration: 0.15, delay: 0, y: -4*0.025 - 1.05})
 
-    gsap.to(sablayGroup.scale, {ease: 'Power1.easeIn', duration: 0.5, delay: 0.5, y: 1})
-    gsap.to(sablayGroup.position, {ease: 'Power1.easeIn', duration: 0.5, delay: 0.5, y: -4*0.025})
+    gsap.to(sablayGroup.scale, {ease: 'Power1.easeOut', duration: 0.5, delay: 0.15, y: 0.8})
+    gsap.to(sablayGroup.position, {ease: 'Power1.easeOut', duration: 0.5, delay: 0.15, y: 0.75})
+
+    gsap.to(sablayGroup.scale, {ease: 'Power1.easeIn', duration: 0.35, delay: 0.65, y: 1})
+    gsap.to(sablayGroup.position, {ease: 'Power1.easeIn', duration: 0.35, delay: 0.65, y: -4*0.025})
 
 }
 
@@ -2766,6 +2769,8 @@ const colorChangeRight = () => {
     document.styleSheets[5].cssRules[110].style.textDecorationColor = directionalLightColors[currentColor][3]
     document.styleSheets[5].cssRules[116].style.textDecorationColor = directionalLightColors[currentColor][3]
     document.styleSheets[5].cssRules[119].style.textDecorationColor = directionalLightColors[currentColor][2]
+    document.styleSheets[5].cssRules[125].style.backgroundColor = directionalLightColors[currentColor][2]
+
 
     leftDirectionalLight.color.setHex(directionalLightColors[currentColor][0])
     rightDirectionalLight.color.setHex(directionalLightColors[currentColor][1])  
@@ -4149,7 +4154,7 @@ const activateScrollTrigger = () => {
             // markers: true,
         },
         delay: 2,
-        duration: 2,
+        duration: 1,
         opacity: 1,
         // scale: 0.8,
         ease: 'none',
@@ -4161,8 +4166,8 @@ const activateScrollTrigger = () => {
             start: 'top bottom',
             // markers: true,
         },
-        delay: 3.5,
-        duration: 2,
+        delay: 2.5,
+        duration: 1,
         opacity: 1,
         // scale: 0.8,
         ease: 'none',
