@@ -58,7 +58,7 @@ const textArray = [
     'Avid gamer interested in Game Development<br><br><t class="mainColor smallestText">|</t> <t class="smallestText">Fiddling with Unreal Engine 5</t>',
     '<ul>Mostly Played Games <t class="mainColor">:</t><li class="smallestText">Monster Hunter (HH, SnS)</li><li class="smallestText">R6 Siege (Amaru, Kapkan)</li><li class="smallestText">DOTA 2 (Pudge, Rubick)</li></ul>'],
     ["3D<br>Modelling &<br>Printing",
-    '<t class="smallText">Translated my CAD skills to creating models and assets.</t><br><br><t class="mainColor smallestText">|</t> <t class="smallestText">Fusion 360 + Blender</t>',
+    '<t class="smallText">Translated my CAD skills to creating 3D assets.</t><br><br><t class="mainColor smallestText">|</t> <t class="smallestText">Fusion 360 + Blender</t>',
     '<t class="smallText">I design a bunch of things to print, prototype and use.</t>'],
     ['Hobbies & Interests<br><t class="subText">Chess</t>',
     'Average at best,<t class="smallText"><br><br>but I do appreciate the beauty of the game.</t>',
@@ -2371,8 +2371,19 @@ const tick = () =>
 
     scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
 
-    // Test Anims
-    // spoolGroup.rotation.x += elapsedTime * 0.005
+    // Drawer Anims
+    cubeDrawer.rotation.x += 0.02
+    cubeDrawer.rotation.y += 0.01
+    cubeDrawer.rotation.z += 0.015
+
+    sphereDrawer.rotation.x += 0.02
+    sphereDrawer.rotation.y += 0.01
+    sphereDrawer.rotation.z += 0.015
+
+    torusDrawer.rotation.x += 0.02
+    torusDrawer.rotation.y += 0.01
+    torusDrawer.rotation.z += 0.015
+
 
     // Update controls
     if (controls.enabled == true) {
@@ -2391,8 +2402,6 @@ const tick = () =>
     // }, 1000/100)
 }
 
-tick()
-
 // Phase initialization
 
 // GSAP Animations
@@ -2408,15 +2417,27 @@ const hoverTopBedframeGroup = () => {
     // moveObjects()
 }
 
+let isTopDrawerOut = false
+let isMidDrawerOut = false
+let isBotDrawerOut = false
+
 const topDrawerOut = () => {
     isAnimationPlaying = true
     setTimeout(() => {
         isAnimationPlaying = false
     }, 1000)
 
-    
-    gsap.to(topDrawer.position, {duration: 1, delay: 0, z: 13*0.05})
-    gsap.to(topDrawer.position, {duration: 1, delay: 2, z: 0})
+    if (isTopDrawerOut == false) {
+        gsap.to(topDrawer.position, {duration: 1, delay: 0, z: 13*0.05})
+        gsap.to(cubeDrawer.position, {duration: 1, delay: 0, z: 13*0.05 - 1.9})
+        isTopDrawerOut = true
+    }
+
+    else if (isTopDrawerOut == true) {
+        gsap.to(topDrawer.position, {duration: 1, delay: 0, z: 0})
+        gsap.to(cubeDrawer.position, {duration: 1, delay: 0, z: -1.9})
+        isTopDrawerOut = false
+    }
 }
 
 const midDrawerOut = () => {
@@ -2426,8 +2447,17 @@ const midDrawerOut = () => {
     }, 1000)
 
     
-    gsap.to(midDrawer.position, {duration: 1, delay: 0, z: 13*0.05})
-    gsap.to(midDrawer.position, {duration: 1, delay: 2, z: 0})
+    if (isMidDrawerOut == false) {
+        gsap.to(midDrawer.position, {duration: 1, delay: 0, z: 13*0.05})
+        gsap.to(sphereDrawer.position, {duration: 1, delay: 0, z: 13*0.05 - 1.25})
+        isMidDrawerOut = true
+    }
+
+    else if (isMidDrawerOut == true) {
+        gsap.to(midDrawer.position, {duration: 1, delay: 0, z: 0})
+        gsap.to(sphereDrawer.position, {duration: 1, delay: 0, z: -1.25})
+        isMidDrawerOut = false
+    }
 }
 
 const botDrawerOut = () => {
@@ -2437,8 +2467,17 @@ const botDrawerOut = () => {
     }, 1000)
 
     
-    gsap.to(botDrawer.position, {duration: 1, delay: 0, z: 13*0.05})
-    gsap.to(botDrawer.position, {duration: 1, delay: 2, z: 0})
+    if (isBotDrawerOut == false) {
+        gsap.to(botDrawer.position, {duration: 1, delay: 0, z: 13*0.05})
+        gsap.to(torusDrawer.position, {duration: 1, delay: 0, z: 13*0.05 - 0.65})
+        isBotDrawerOut = true
+    }
+
+    else if (isBotDrawerOut == true) {
+        gsap.to(botDrawer.position, {duration: 1, delay: 0, z: 0})
+        gsap.to(torusDrawer.position, {duration: 1, delay: 0, z: -0.65})
+        isBotDrawerOut = false
+    }
 }
 
 const lightLaptop = () => {
@@ -2446,8 +2485,6 @@ const lightLaptop = () => {
     setTimeout(() => {
         isAnimationPlaying = false
     }, 1000)
-
-    
     
     scene.add(rectAreaLight)
 
@@ -3849,13 +3886,16 @@ const closeChecker = (index) => {
 // Scroll Animations
 
 gsap.registerPlugin(ScrollTrigger)
+const vhValue = (coef) => {
+    window.innerHeight*(coef/100)
+}
 
 const activateScrollTrigger = () => {
     gsap.to(particles.position, {
         scrollTrigger: {
             trigger: '.scrollBlanks',
             start: 'top top',
-            end: '900%',
+            end: vhValue(900),
             // pin: true,
             scrub: true,
             markers: false
@@ -4182,3 +4222,39 @@ window.addEventListener('scroll', () => {
 
 document.querySelector('#tryStart').innerText = '< >'
 document.querySelector('#tryEnd').innerText = '</>'
+
+// Boxes
+
+let cubeDrawer = null
+let sphereDrawer = null
+let torusDrawer = null
+
+const generateNewFO = () => {
+    const cubeGeometry = new THREE.BoxBufferGeometry(0.3, 0.3, 0.3)
+    const cubeMaterial = new THREE.MeshNormalMaterial({
+        
+    })
+    cubeDrawer = new THREE.Mesh(cubeGeometry, cubeMaterial)
+    cubeDrawer.position.set(1.9, 0.25, -1.9)
+    scene.add(cubeDrawer)
+
+    const sphereGeometry = new THREE.TetrahedronGeometry(0.3)
+    const sphereMaterial = new THREE.MeshNormalMaterial({
+        
+    })
+    sphereDrawer = new THREE.Mesh(sphereGeometry, sphereMaterial)
+    sphereDrawer.position.set(1.9, -0.5, -1.25)
+    scene.add(sphereDrawer)
+
+    const torusGeometry = new THREE.TorusGeometry(0.15, 0.1, 16, 100)
+    const torusMaterial = new THREE.MeshNormalMaterial({
+        
+    })
+    torusDrawer = new THREE.Mesh(torusGeometry, torusMaterial)
+    torusDrawer.position.set(1.9, -1.25, -0.65)
+    scene.add(torusDrawer)
+}
+
+generateNewFO()
+
+tick()

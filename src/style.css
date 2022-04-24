@@ -430,6 +430,8 @@ body {
 
 #h1Grey {
     color: red;
+    text-shadow: 0.1rem 0.1rem 0.15rem black, 0.1rem 0.1rem 0.15rem black, 0.1rem 0.1rem 0.15rem black;
+
 }
 
 #h1Red {
@@ -1011,6 +1013,7 @@ a::selection {
   /* Track */
 .imageScroller::-webkit-scrollbar-track {
     background-color: #121617; 
+    /* border: 2px solid white; */
 }
 
 /* Handle */
