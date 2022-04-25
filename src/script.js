@@ -3791,14 +3791,14 @@ generateNewFO()
     count: 1000,
     size: 0.02,
     spread: 1,
-    radius: 0.001,
+    radius: 0.1,
     branches: 5,
-    spin: 1,
+    spin: 1.75,
     randomness: 0.2,
     rpower: 7,
     insideColor: '#ff0000',
     outsideColor: '#0000ff',
-    spreadFactor: 0.05
+    spreadFactor: 0.0
 }
 
 let geometry = null
@@ -3898,7 +3898,7 @@ const activateScrollTrigger = () => {
             scrub: true,
             markers: false
         },
-        radius: 10,
+        radius: 8,
         count: 50000,
         // spreadFactor: 0.1,
         // scale: 0.95,
@@ -4232,13 +4232,13 @@ const tick = () =>
 
 
     // Phase 0 Animations
-    if (phase == 0) {
+    if (phase !== 1) {
         // Parallax
         if (isParallaxOn == true) {
             const parallaxX = cursor.x * 0.1
             const parallaxY = - cursor.y * 0.1
             cameraGroup.position.x += ( parallaxX - cameraGroup.position.x ) * 2 * parallaxTIme
-            cameraGroup.position.y += ( parallaxY - cameraGroup.position.y ) * 2 * parallaxTIme
+            cameraGroup.position.y += ( parallaxY - cameraGroup.position.y ) * 6 * parallaxTIme
             cameraGroup.position.z += ( - parallaxX - cameraGroup.position.z ) * 2 * parallaxTIme
         }
 
@@ -4248,7 +4248,7 @@ const tick = () =>
     }
 
     //Particles following cursor 
-    if (phase !== 0) {
+    if (phase == 1) {
         const parallaxX = cursor.x * 0.1
         const parallaxY = - cursor.y * 0.1
         particles.position.x += - ( parallaxX - cameraGroup.position.x ) * parallaxTIme
@@ -4335,12 +4335,12 @@ const tick = () =>
     // }
     generateGalaxy()
 
-    galaxy.rotation.y += 0.001
+    galaxy.rotation.y += 0.01
 
     for (let p = 0; p < points.geometry.attributes.position.array.length; p++) {
         if (p%3 == 1) {
             pRadius = (points.geometry.attributes.position.array[p-1]**2 + points.geometry.attributes.position.array[p+1]**2)**0.5
-            points.geometry.attributes.position.array[p] = points.geometry.attributes.position.array[p]  + Math.sin(elapsedTime + pRadius*3)*pRadius*0.5
+            points.geometry.attributes.position.array[p] = points.geometry.attributes.position.array[p]  + Math.sin(elapsedTime + pRadius*3)*pRadius*Math.sin(elapsedTime)*0.5
         }
     }
 
