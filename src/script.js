@@ -3941,7 +3941,7 @@ const activateScrollTrigger = () => {
         scrollTrigger: {
             trigger: '.stayDiv',
             start: 'center center',
-            end: '+=400%',
+            end: '+=200%',
             pin: true,
             scrub: true,
             markers: false
@@ -3956,7 +3956,7 @@ const activateScrollTrigger = () => {
         scrollTrigger: {
             trigger: '.stayDiv',
             start: 'center center',
-            end: '+=400%',
+            end: '+=200%',
             pin: true,
             scrub: true,
             markers: false
@@ -3971,7 +3971,7 @@ const activateScrollTrigger = () => {
         scrollTrigger: {
             trigger: '.stayDiv',
             start: 'center center',
-            end: '+=400%',
+            end: '+=200%',
             pin: true,
             scrub: true,
             markers: false
@@ -3986,7 +3986,7 @@ const activateScrollTrigger = () => {
         scrollTrigger: {
             trigger: '.stayDiv',
             start: 'center center',
-            end: '+=400%',
+            end: '+=200%',
             pin: true,
             scrub: true,
             markers: false
@@ -4001,7 +4001,7 @@ const activateScrollTrigger = () => {
         scrollTrigger: {
             trigger: '.stayDiv',
             start: 'center center',
-            end: '+=400%',
+            end: '+=200%',
             pin: true,
             scrub: true,
             markers: false
@@ -4016,7 +4016,7 @@ const activateScrollTrigger = () => {
         scrollTrigger: {
             trigger: '.stayDiv',
             start: 'center center',
-            end: '+=400%',
+            end: '+=200%',
             pin: true,
             scrub: true,
             markers: false
@@ -4031,7 +4031,7 @@ const activateScrollTrigger = () => {
         scrollTrigger: {
             trigger: '.stayDiv',
             start: 'center center',
-            end: '+=400%',
+            end: '+=200%',
             pin: true,
             scrub: true,
             markers: false
@@ -4046,7 +4046,7 @@ const activateScrollTrigger = () => {
         scrollTrigger: {
             trigger: '.stayDiv',
             start: 'center center',
-            end: '+=400%',
+            end: '+=200%',
             pin: true,
             scrub: true,
             markers: false
@@ -4061,7 +4061,7 @@ const activateScrollTrigger = () => {
         scrollTrigger: {
             trigger: '.stayDiv',
             start: 'center center',
-            end: '+=400%',
+            end: '+=200%',
             pin: true,
             scrub: true,
             markers: false
@@ -4076,7 +4076,7 @@ const activateScrollTrigger = () => {
         scrollTrigger: {
             trigger: '.stayDiv',
             start: 'center center',
-            end: '+=400%',
+            end: '+=200%',
             pin: true,
             scrub: true,
             markers: false
