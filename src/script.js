@@ -2259,148 +2259,6 @@ const particlesMaterial = new THREE.PointsMaterial({
 const particles = new THREE.Points(particlesGeometry, particlesMaterial)
 scene.add(particles)
 
-/**
- * Animate
- */
- let prevTime = 0
- let isTopHalfFloating = false
-let currentIntersect = null
-
-
-let prevParallaxTime = 0
-let firstCurrentIntersect = null
-let isParallaxOn = false
-
-let scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop
-
-const clock = new THREE.Clock()
-
-const tick = () =>
-{
-    const elapsedTime = clock.getElapsedTime()
-    let deltaTime = elapsedTime - prevTime
-    // prevTime = elapsedTime
-    let parallaxTIme = elapsedTime - prevParallaxTime
-    prevParallaxTime = elapsedTime
-
-    // Shooting Star
-
-
-    // Phase 0 Animations
-    if (phase == 0) {
-        // Parallax
-        if (isParallaxOn == true) {
-            const parallaxX = cursor.x * 0.1
-            const parallaxY = - cursor.y * 0.1
-            cameraGroup.position.x += ( parallaxX - cameraGroup.position.x ) * 2 * parallaxTIme
-            cameraGroup.position.y += ( parallaxY - cameraGroup.position.y ) * 2 * parallaxTIme
-            cameraGroup.position.z += ( - parallaxX - cameraGroup.position.z ) * 2 * parallaxTIme
-        }
-
-        // Arrow bobbles
-        P.position.z = - Math.sin(elapsedTime*2) * 0.05 - 105*0.025
-        K.position.z = Math.sin(elapsedTime*2) * 0.05 + 105*0.025
-    }
-
-    //Particles following cursor 
-    if (phase !== 0) {
-        const parallaxX = cursor.x * 0.1
-        const parallaxY = - cursor.y * 0.1
-        particles.position.x += - ( parallaxX - cameraGroup.position.x ) * parallaxTIme
-        particles.position.y += - ( parallaxY - cameraGroup.position.y ) * parallaxTIme
-        particles.position.z += - ( - parallaxX - cameraGroup.position.z ) * parallaxTIme
-    }
-
-    // Animations
-    if (topBedframeGroup.position.y == 4 && isTopHalfFloating == false) {
-        isTopHalfFloating = true
-        prevTime = elapsedTime
-        deltaTime = 0
-    } 
-
-    if (isTopHalfFloating == true) {
-        topBedframeGroup.position.y = Math.cos(deltaTime)*0.2 + 3.8
-    } 
-
-    //Raycaster 
-    raycaster.setFromCamera(mouse, camera)
-
-    // Phase 0 RayCasting
-    const firstTestBox = [P, A, T, R, I, C, K, rightNameWall, leftNameWall]
-    const firstIntersects = raycaster.intersectObjects(firstTestBox)
-
-    for (const firstIntersect of firstIntersects) {
-    }
-
-    if (firstIntersects.length) {
-        if (firstCurrentIntersect === null) {
-            firstCurrentIntersect = firstIntersects[0]
-
-        }
-    }
-    else {
-        if (firstCurrentIntersect) {
-            firstCurrentIntersect = null
-        }
-        firstCurrentIntersect = null
-    }
-
-    // Phase 1 RayCasting
-    // if (phase == 1) {
-        const testBox = [topBedframeGroup, topDrawer, midDrawer, botDrawer, laptopGroup, screenGroup, footballGroup, skateboardGroup, sablayGroup, switchGroup, joyConGroup, switchDock, headphoneGroup, spoolGroup, printerStatic, printerPlate, printerTip, curtainsScale, staticBook, tvBase, tvScreen, whiteChess, blackChess, chessboardGroup, drawingPad, pencil, kunai, pokeball, DBGroup, cube]
-        const intersects = raycaster.intersectObjects(testBox)
-    
-        for (const object of testBox) {
-        }
-    
-        for (const intersect of intersects) {
-        }
-    
-        if (intersects.length) {
-            if (currentIntersect === null) {
-                currentIntersect = intersects[0]
-            }
-        }
-        else {
-            if (currentIntersect) {
-                currentIntersect = null
-            }
-            currentIntersect = null
-        }
-    // }
-
-    scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-
-    // Drawer Anims
-    cubeDrawer.rotation.x += 0.02
-    cubeDrawer.rotation.y += 0.01
-    cubeDrawer.rotation.z += 0.015
-
-    sphereDrawer.rotation.x += 0.02
-    sphereDrawer.rotation.y += 0.01
-    sphereDrawer.rotation.z += 0.015
-
-    torusDrawer.rotation.x += 0.02
-    torusDrawer.rotation.y += 0.01
-    torusDrawer.rotation.z += 0.015
-
-
-    // Update controls
-    if (controls.enabled == true) {
-        controls.update()
-    }
-
-    // Render
-    renderer.render(scene, camera)
-
-    // Call tick again on the next frame
-    window.requestAnimationFrame(tick)
-
-    // fps from 70 to 130+ constant
-    // setTimeout(() => {
-    //     window.requestAnimationFrame(tick)
-    // }, 1000/100)
-}
 
 // Phase initialization
 
@@ -2498,8 +2356,6 @@ const lightLaptop = () => {
     screenGroup.children[0].children[0].material.emissive.g = 1
     screenGroup.children[0].children[0].material.emissive.b = 1
 
-    // allObjects.add(galaxy)
-
     setTimeout(() => {
         scene.remove(rectAreaLight)
 
@@ -2512,8 +2368,6 @@ const lightLaptop = () => {
         screenGroup.children[0].children[0].material.emissive.r = 0
         screenGroup.children[0].children[0].material.emissive.g = 0
         screenGroup.children[0].children[0].material.emissive.b = 0
-    
-        // allObjects.remove(galaxy) 
     }, 450)
 
     setTimeout(() => {
@@ -2529,8 +2383,6 @@ const lightLaptop = () => {
         screenGroup.children[0].children[0].material.emissive.g = 1
         screenGroup.children[0].children[0].material.emissive.b = 1
 
-        // allObjects.add(galaxy)
-
         isAnimationDone = true
     }, 1000)
 
@@ -2543,8 +2395,6 @@ const floatFootball = () => {
         isAnimationPlaying = false
     }, 1000)
 
-    
-
     gsap.set(footballGroup.rotation, {z: - Math.PI*40/180, x: 0})
     gsap.to(footballGroup.position, {ease: 'Power3.easeOut', duration: 0.75, delay: 0, y: 4})
     gsap.to(footballGroup.position, {ease: 'Power3.easeIn', duration: 0.75, delay: 0.75, y: 2.8})
@@ -2555,8 +2405,6 @@ const floatFootball = () => {
  
     
     gsap.to(footballGroup.rotation, {ease: 'Power1.easeInOut', duration: 0.25, delay: 1.4, x: 0})
-
-    // moveObjects()
 }
 
 const flipBoard = () => {
@@ -2570,8 +2418,6 @@ const flipBoard = () => {
     gsap.to(skateboardGroup.position, {ease: 'Power1.easeOut', duration: 0.6, delay: 0, y: 1})
     gsap.to(skateboardGroup.rotation, {ease: 'Power0.easeNone', duration: 1, delay: 0.05, z: Math.PI*2 + Math.PI, y: Math.PI*2})
     gsap.to(skateboardGroup.position, {ease: 'Power1.easeIn', duration: 0.45, delay: 0.5, y: 6.1*0.05})
-
-    // moveObjects()
 }
 
 const switchJump = () => {
@@ -3883,6 +3729,158 @@ const closeChecker = (index) => {
     }
 }
 
+// cursor change
+const sidebarMainCursor = document.querySelector('.sidebarMain')
+const pointers = document.querySelectorAll('.pointers')
+window.addEventListener('scroll', () => {
+    if (phase == 2) {
+        if (sidebarMainCursor.style.opacity < 0.9) {
+            pointers.forEach((p) => {
+                p.style.cursor = 'default'
+            })
+        }
+        else {
+            pointers.forEach((p) => {
+                p.style.cursor = 'pointer'
+            })
+        }
+    }
+})
+
+document.querySelector('#tryStart').innerText = '< >'
+document.querySelector('#tryEnd').innerText = '</>'
+
+// Boxes
+
+let cubeDrawer = null
+let sphereDrawer = null
+let torusDrawer = null
+
+const generateNewFO = () => {
+    const cubeGeometry = new THREE.BoxBufferGeometry(0.3, 0.3, 0.3)
+    const cubeMaterial = new THREE.MeshNormalMaterial({
+        
+    })
+    cubeDrawer = new THREE.Mesh(cubeGeometry, cubeMaterial)
+    cubeDrawer.position.set(1.9, 0.25, -1.9)
+    scene.add(cubeDrawer)
+
+    const sphereGeometry = new THREE.TetrahedronGeometry(0.3)
+    const sphereMaterial = new THREE.MeshNormalMaterial({
+        
+    })
+    sphereDrawer = new THREE.Mesh(sphereGeometry, sphereMaterial)
+    sphereDrawer.position.set(1.9, -0.5, -1.25)
+    scene.add(sphereDrawer)
+
+    const torusGeometry = new THREE.TorusGeometry(0.15, 0.1, 16, 100)
+    const torusMaterial = new THREE.MeshNormalMaterial({
+        
+    })
+    torusDrawer = new THREE.Mesh(torusGeometry, torusMaterial)
+    torusDrawer.position.set(1.9, -1.25, -0.65)
+    scene.add(torusDrawer)
+}
+
+generateNewFO()
+
+/**
+ * Galaxy
+ */
+ const parameters = {
+    count: 1000,
+    size: 0.02,
+    spread: 1,
+    radius: 0.001,
+    branches: 5,
+    spin: 1,
+    randomness: 0.2,
+    rpower: 7,
+    insideColor: '#ff0000',
+    outsideColor: '#0000ff',
+    spreadFactor: 0.05
+}
+
+let geometry = null
+let material = null
+let points = null
+let galaxy = new THREE.Group()
+
+const generateGalaxy = () => {
+    // Destroy
+    if ( points !== null)  {
+        geometry.dispose()
+        material.dispose()
+        galaxy.remove(points)
+        scene.remove(points)
+        scene.remove(galaxy)
+    }
+
+
+
+    geometry = new THREE.BufferGeometry()
+    const positions = new Float32Array(parameters.count*3)
+    const colors = new Float32Array(parameters.count*3)
+
+    const colorInside = new THREE.Color(parameters.insideColor)
+    const colorOutside = new THREE.Color(parameters.outsideColor)
+
+    for (let i=0; i<parameters.count; i++) {
+        const i3 = i*3
+
+        // Position
+        const radius = Math.random()*parameters.radius
+        const spinAngle = radius * parameters.spin
+        const branchAngle = ( i % parameters.branches ) / parameters.branches * Math.PI * 2
+
+        // randomness
+        const randomX = Math.pow(Math.random(), parameters.rpower) * (Math.random() < 0.5 ? 1 : -1) * parameters.spreadFactor
+        const randomY = Math.pow(Math.random(), parameters.rpower) * (Math.random() < 0.5 ? 1 : -1) * parameters.spreadFactor
+        const randomZ = Math.pow(Math.random(), parameters.rpower) * (Math.random() < 0.5 ? 1 : -1) * parameters.spreadFactor
+
+        positions[i3+0] = Math.cos(branchAngle + spinAngle) * radius + randomX
+        positions[i3+1] = -30 + randomY
+        positions[i3+2] = Math.sin(branchAngle + spinAngle) * radius + randomZ
+
+        // Color
+        const mixedColor = colorInside.clone()
+        mixedColor.lerp(colorOutside, radius / parameters.radius)
+
+        colors[i3+0] = mixedColor.r
+        colors[i3+1] = mixedColor.g
+        colors[i3+2] = mixedColor.b
+
+    }
+
+    geometry.setAttribute(
+        'position',
+        new THREE.BufferAttribute(positions, 3)
+    )
+
+    geometry.setAttribute(
+        'color',
+        new THREE.BufferAttribute(colors, 3)
+    )
+    
+    // Material
+    material = new THREE.PointsMaterial({
+    size: parameters.size,
+    sizeAttenuation: true,
+    // depthWrite: false,
+    blending: THREE.AdditiveBlending,
+    vertexColors: true
+    // color: '#ff5588'
+    })
+
+    // Points
+    points = new THREE.Points(geometry, material)
+    galaxy.add(points)
+    
+    scene.add(galaxy)
+}
+
+generateGalaxy()
+
 // Scroll Animations
 
 gsap.registerPlugin(ScrollTrigger)
@@ -3891,7 +3889,7 @@ const vhValue = (coef) => {
 }
 
 const activateScrollTrigger = () => {
-    gsap.to(particles.position, {
+    gsap.to(parameters , {
         scrollTrigger: {
             trigger: '.scrollBlanks',
             start: 'top top',
@@ -3900,10 +3898,11 @@ const activateScrollTrigger = () => {
             scrub: true,
             markers: false
         },
-        y: 10,
+        radius: 10,
+        count: 50000,
+        // spreadFactor: 0.1,
         // scale: 0.95,
         ease: 'none',
-        
     })
 
     // hide side and instructions
@@ -4202,59 +4201,161 @@ const activateScrollTrigger = () => {
     }) 
 }
 
-// cursor change
-const sidebarMainCursor = document.querySelector('.sidebarMain')
-const pointers = document.querySelectorAll('.pointers')
-window.addEventListener('scroll', () => {
-    if (phase == 2) {
-        if (sidebarMainCursor.style.opacity < 0.9) {
-            pointers.forEach((p) => {
-                p.style.cursor = 'default'
-            })
+/**
+ * Animate
+ */
+let prevTime = 0
+let isTopHalfFloating = false
+let currentIntersect = null
+
+let prevParallaxTime = 0
+let firstCurrentIntersect = null
+let isParallaxOn = false
+
+let prevRadius = parameters.radius
+
+let pRadius = 0
+
+let scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop
+
+const clock = new THREE.Clock()
+
+const tick = () =>
+{
+    const elapsedTime = clock.getElapsedTime()
+    let deltaTime = elapsedTime - prevTime
+    // prevTime = elapsedTime
+    let parallaxTIme = elapsedTime - prevParallaxTime
+    prevParallaxTime = elapsedTime
+
+    // Shooting Star
+
+
+    // Phase 0 Animations
+    if (phase == 0) {
+        // Parallax
+        if (isParallaxOn == true) {
+            const parallaxX = cursor.x * 0.1
+            const parallaxY = - cursor.y * 0.1
+            cameraGroup.position.x += ( parallaxX - cameraGroup.position.x ) * 2 * parallaxTIme
+            cameraGroup.position.y += ( parallaxY - cameraGroup.position.y ) * 2 * parallaxTIme
+            cameraGroup.position.z += ( - parallaxX - cameraGroup.position.z ) * 2 * parallaxTIme
         }
-        else {
-            pointers.forEach((p) => {
-                p.style.cursor = 'pointer'
-            })
+
+        // Arrow bobbles
+        P.position.z = - Math.sin(elapsedTime*2) * 0.05 - 105*0.025
+        K.position.z = Math.sin(elapsedTime*2) * 0.05 + 105*0.025
+    }
+
+    //Particles following cursor 
+    if (phase !== 0) {
+        const parallaxX = cursor.x * 0.1
+        const parallaxY = - cursor.y * 0.1
+        particles.position.x += - ( parallaxX - cameraGroup.position.x ) * parallaxTIme
+        particles.position.y += - ( parallaxY - cameraGroup.position.y ) * parallaxTIme
+        particles.position.z += - ( - parallaxX - cameraGroup.position.z ) * parallaxTIme
+    }
+
+    // Animations
+    if (topBedframeGroup.position.y == 4 && isTopHalfFloating == false) {
+        isTopHalfFloating = true
+        prevTime = elapsedTime
+        deltaTime = 0
+    } 
+
+    if (isTopHalfFloating == true) {
+        topBedframeGroup.position.y = Math.cos(deltaTime)*0.2 + 3.8
+    } 
+
+    //Raycaster 
+    raycaster.setFromCamera(mouse, camera)
+
+    // Phase 0 RayCasting
+    const firstTestBox = [P, A, T, R, I, C, K, rightNameWall, leftNameWall]
+    const firstIntersects = raycaster.intersectObjects(firstTestBox)
+
+    for (const firstIntersect of firstIntersects) {
+    }
+
+    if (firstIntersects.length) {
+        if (firstCurrentIntersect === null) {
+            firstCurrentIntersect = firstIntersects[0]
+
         }
     }
-})
+    else {
+        if (firstCurrentIntersect) {
+            firstCurrentIntersect = null
+        }
+        firstCurrentIntersect = null
+    }
 
-document.querySelector('#tryStart').innerText = '< >'
-document.querySelector('#tryEnd').innerText = '</>'
+    // Phase 1 RayCasting
+    // if (phase == 1) {
+        const testBox = [topBedframeGroup, topDrawer, midDrawer, botDrawer, laptopGroup, screenGroup, footballGroup, skateboardGroup, sablayGroup, switchGroup, joyConGroup, switchDock, headphoneGroup, spoolGroup, printerStatic, printerPlate, printerTip, curtainsScale, staticBook, tvBase, tvScreen, whiteChess, blackChess, chessboardGroup, drawingPad, pencil, kunai, pokeball, DBGroup, cube]
+        const intersects = raycaster.intersectObjects(testBox)
+    
+        for (const object of testBox) {
+        }
+    
+        for (const intersect of intersects) {
+        }
+    
+        if (intersects.length) {
+            if (currentIntersect === null) {
+                currentIntersect = intersects[0]
+            }
+        }
+        else {
+            if (currentIntersect) {
+                currentIntersect = null
+            }
+            currentIntersect = null
+        }
+    // }
 
-// Boxes
+    scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
 
-let cubeDrawer = null
-let sphereDrawer = null
-let torusDrawer = null
+    // Drawer Anims
+    cubeDrawer.rotation.x += 0.02
+    cubeDrawer.rotation.y += 0.01
+    cubeDrawer.rotation.z += 0.015
 
-const generateNewFO = () => {
-    const cubeGeometry = new THREE.BoxBufferGeometry(0.3, 0.3, 0.3)
-    const cubeMaterial = new THREE.MeshNormalMaterial({
-        
-    })
-    cubeDrawer = new THREE.Mesh(cubeGeometry, cubeMaterial)
-    cubeDrawer.position.set(1.9, 0.25, -1.9)
-    scene.add(cubeDrawer)
+    sphereDrawer.rotation.x += 0.02
+    sphereDrawer.rotation.y += 0.01
+    sphereDrawer.rotation.z += 0.015
 
-    const sphereGeometry = new THREE.TetrahedronGeometry(0.3)
-    const sphereMaterial = new THREE.MeshNormalMaterial({
-        
-    })
-    sphereDrawer = new THREE.Mesh(sphereGeometry, sphereMaterial)
-    sphereDrawer.position.set(1.9, -0.5, -1.25)
-    scene.add(sphereDrawer)
+    torusDrawer.rotation.x += 0.02
+    torusDrawer.rotation.y += 0.01
+    torusDrawer.rotation.z += 0.015
 
-    const torusGeometry = new THREE.TorusGeometry(0.15, 0.1, 16, 100)
-    const torusMaterial = new THREE.MeshNormalMaterial({
-        
-    })
-    torusDrawer = new THREE.Mesh(torusGeometry, torusMaterial)
-    torusDrawer.position.set(1.9, -1.25, -0.65)
-    scene.add(torusDrawer)
+    // if (prevRadius !== parameters.radius) {
+    //     generateGalaxy()
+    //     prevRadius = parameters.radius
+    // }
+    generateGalaxy()
+
+    galaxy.rotation.y += 0.001
+
+    for (let p = 0; p < points.geometry.attributes.position.array.length; p++) {
+        if (p%3 == 1) {
+            pRadius = (points.geometry.attributes.position.array[p-1]**2 + points.geometry.attributes.position.array[p+1]**2)**0.5
+            points.geometry.attributes.position.array[p] = points.geometry.attributes.position.array[p]  + Math.sin(elapsedTime + pRadius*3)*pRadius*0.5
+        }
+    }
+
+    // Update controls
+    if (controls.enabled == true) {
+        controls.update()
+    }
+
+    // Render
+    renderer.render(scene, camera)
+
+    // Call tick again on the next frame
+    window.requestAnimationFrame(tick)
 }
 
-generateNewFO()
+
 
 tick()
