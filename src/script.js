@@ -3798,7 +3798,7 @@ generateNewFO()
     rpower: 3,
     insideColor: '#ff0000',
     outsideColor: '#0000ff',
-    spreadFactor: 0.0
+    spreadFactor: 0.01
 }
 
 let geometry = null
