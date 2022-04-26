@@ -3798,7 +3798,7 @@ generateNewFO()
     rpower: 3,
     insideColor: '#ff0000',
     outsideColor: '#0000ff',
-    spreadFactor: 0.01
+    spreadFactor: 0.0
 }
 
 let geometry = null
@@ -3899,7 +3899,7 @@ const activateScrollTrigger = () => {
             markers: false
         },
         radius: 6,
-        count: 50000,
+        count: 30000,
         spin: 3,
         // spreadFactor: 0.1,
         // scale: 0.95,
@@ -4336,7 +4336,7 @@ const tick = () =>
     // }
     generateGalaxy()
 
-    galaxy.rotation.y += 0.0025
+    galaxy.rotation.y += 0.001
 
 
     for (let p = 0; p < points.geometry.attributes.position.array.length; p++) {
