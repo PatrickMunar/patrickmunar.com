@@ -52,7 +52,7 @@ const textArray = [
     'University of the Philippines - Diliman<br><t class="smallestText mainColor">2021</t><br><t class="smallestText italic">BS Mechanical Engineering</t>',
     'Philippine Science High School - Central Luzon Campus<br><t class="smallestText mainColor">2015</t>'],
     ["What's<br>Playin'",
-    'Music is a constant.',
+    "Music is a constant.<br><br><t class='mainColor smallestText'>|</t> <t class='smallestText'>If you'd like to play a song, you might wanna <t class='mainColor'>lower your volume</t></t>",
     '<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2WXfuQ8aTNRd7rfOvlTQqb?utm_source=generator&theme=0" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>'],
     ['Hobbies & Interests<br><t class="subText">Gaming</t>',
     'Avid gamer interested in Game Development<br><br><t class="mainColor smallestText">|</t> <t class="smallestText">Fiddling with Unreal Engine 5</t>',
@@ -739,6 +739,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        console.log(obj)
     }
 )
 
@@ -4342,7 +4343,7 @@ const tick = () =>
     for (let p = 0; p < points.geometry.attributes.position.array.length; p++) {
         if (p%3 == 1) {
             pRadius = (points.geometry.attributes.position.array[p-1]**2 + points.geometry.attributes.position.array[p+1]**2)**0.5
-            points.geometry.attributes.position.array[p] = points.geometry.attributes.position.array[p]  + Math.sin(elapsedTime + pRadius*10) + Math.sin(pRadius*2)*0.5
+            points.geometry.attributes.position.array[p] = points.geometry.attributes.position.array[p]  + Math.sin(elapsedTime + pRadius*10)*Math.random() + Math.sin(pRadius*2)*0.5
         }
     }
 
