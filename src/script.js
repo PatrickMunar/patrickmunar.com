@@ -739,7 +739,6 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
-        console.log(obj)
     }
 )
 
@@ -3799,7 +3798,8 @@ generateNewFO()
     rpower: 3,
     insideColor: '#ff0000',
     outsideColor: '#0000ff',
-    spreadFactor: 0.0
+    spreadFactor: 0.0,
+    growFactor: 0
 }
 
 let geometry = null
@@ -3862,7 +3862,7 @@ const generateGalaxy = () => {
         'color',
         new THREE.BufferAttribute(colors, 3)
     )
-    
+
     // Material
     material = new THREE.PointsMaterial({
     size: parameters.size,
@@ -3902,6 +3902,7 @@ const activateScrollTrigger = () => {
         radius: 6,
         count: 30000,
         spin: 3,
+        growFactor: 1,
         // spreadFactor: 0.1,
         // scale: 0.95,
         ease: 'none',
@@ -4214,8 +4215,6 @@ let prevParallaxTime = 0
 let firstCurrentIntersect = null
 let isParallaxOn = false
 
-let prevRadius = parameters.radius
-
 let pRadius = 0
 
 let scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop
@@ -4343,7 +4342,7 @@ const tick = () =>
     for (let p = 0; p < points.geometry.attributes.position.array.length; p++) {
         if (p%3 == 1) {
             pRadius = (points.geometry.attributes.position.array[p-1]**2 + points.geometry.attributes.position.array[p+1]**2)**0.5
-            points.geometry.attributes.position.array[p] = points.geometry.attributes.position.array[p]  + Math.sin(elapsedTime + pRadius*10)*Math.random() + Math.sin(pRadius*2)*0.5
+            points.geometry.attributes.position.array[p] = points.geometry.attributes.position.array[p]  + (Math.sin(elapsedTime + pRadius*10)*Math.random() + Math.sin(pRadius*2)*0.5)*parameters.growFactor
         }
     }
 
