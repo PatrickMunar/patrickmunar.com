@@ -3793,9 +3793,9 @@ generateNewFO()
     spread: 1,
     radius: 0.1,
     branches: 5,
-    spin: 1.75,
+    spin: 2,
     randomness: 0.2,
-    rpower: 7,
+    rpower: 3,
     insideColor: '#ff0000',
     outsideColor: '#0000ff',
     spreadFactor: 0.0
@@ -3898,8 +3898,9 @@ const activateScrollTrigger = () => {
             scrub: true,
             markers: false
         },
-        radius: 8,
+        radius: 6,
         count: 50000,
+        spin: 3,
         // spreadFactor: 0.1,
         // scale: 0.95,
         ease: 'none',
@@ -4335,12 +4336,13 @@ const tick = () =>
     // }
     generateGalaxy()
 
-    galaxy.rotation.y += 0.01
+    galaxy.rotation.y += 0.0025
+
 
     for (let p = 0; p < points.geometry.attributes.position.array.length; p++) {
         if (p%3 == 1) {
             pRadius = (points.geometry.attributes.position.array[p-1]**2 + points.geometry.attributes.position.array[p+1]**2)**0.5
-            points.geometry.attributes.position.array[p] = points.geometry.attributes.position.array[p]  + Math.sin(elapsedTime + pRadius*3)*pRadius*Math.sin(elapsedTime)*0.5
+            points.geometry.attributes.position.array[p] = points.geometry.attributes.position.array[p]  + Math.sin(elapsedTime + pRadius*10) + Math.sin(pRadius*2)*0.5
         }
     }
 
@@ -4355,7 +4357,5 @@ const tick = () =>
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
 }
-
-
 
 tick()
