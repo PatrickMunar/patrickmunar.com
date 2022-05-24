@@ -6,6 +6,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
 import gsap from 'gsap'
+import { BufferGeometry } from 'three'
 
 // Clear Scroll Memory
 window.history.scrollRestoration = 'manual'
@@ -739,6 +740,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -754,6 +756,8 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
+
     }
 )
 
@@ -769,6 +773,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -784,6 +789,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -799,6 +805,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -814,6 +821,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -829,8 +837,10 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
         obj.scene.children[1].castShadow = true
         obj.scene.children[1].receiveShadow = true
+        obj.scene.children[1].frustumCulled = false
     }
 )
 
@@ -846,10 +856,13 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
         obj.scene.children[1].castShadow = true
         obj.scene.children[1].receiveShadow = true
+        obj.scene.children[1].frustumCulled = false
         obj.scene.children[2].castShadow = true
         obj.scene.children[2].receiveShadow = true
+        obj.scene.children[2].frustumCulled = false
     }
 )
 
@@ -865,6 +878,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -880,6 +894,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -895,6 +910,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -910,6 +926,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -925,8 +942,10 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
         obj.scene.children[1].castShadow = true
         obj.scene.children[1].receiveShadow = true
+        obj.scene.children[1].frustumCulled = false
     }
 )
 
@@ -942,18 +961,25 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
         obj.scene.children[1].castShadow = true
         obj.scene.children[1].receiveShadow = true
+        obj.scene.children[1].frustumCulled = false
         obj.scene.children[2].castShadow = true
         obj.scene.children[2].receiveShadow = true
+        obj.scene.children[2].frustumCulled = false
         obj.scene.children[3].castShadow = true
         obj.scene.children[3].receiveShadow = true
+        obj.scene.children[3].frustumCulled = false
         obj.scene.children[4].castShadow = true
         obj.scene.children[4].receiveShadow = true
+        obj.scene.children[4].frustumCulled = false
         obj.scene.children[5].castShadow = true
         obj.scene.children[5].receiveShadow = true
+        obj.scene.children[5].frustumCulled = false
         obj.scene.children[6].castShadow = true
         obj.scene.children[6].receiveShadow = true
+        obj.scene.children[6].frustumCulled = false
     }
 )
 
@@ -969,8 +995,10 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
         obj.scene.children[1].castShadow = true
         obj.scene.children[1].receiveShadow = true
+        obj.scene.children[1].frustumCulled = false
     }
 )
 
@@ -986,18 +1014,25 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
         obj.scene.children[1].castShadow = true
         obj.scene.children[1].receiveShadow = true
+        obj.scene.children[1].frustumCulled = false
         obj.scene.children[2].castShadow = true
         obj.scene.children[2].receiveShadow = true
+        obj.scene.children[2].frustumCulled = false
         obj.scene.children[3].castShadow = true
         obj.scene.children[3].receiveShadow = true
+        obj.scene.children[3].frustumCulled = false
         obj.scene.children[4].castShadow = true
         obj.scene.children[4].receiveShadow = true
+        obj.scene.children[4].frustumCulled = false
         obj.scene.children[5].castShadow = true
         obj.scene.children[5].receiveShadow = true
+        obj.scene.children[5].frustumCulled = false
         obj.scene.children[6].castShadow = true
         obj.scene.children[6].receiveShadow = true
+        obj.scene.children[6].frustumCulled = false
     }
 )
 
@@ -1013,6 +1048,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1028,6 +1064,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1043,8 +1080,10 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
         obj.scene.children[1].castShadow = true
         obj.scene.children[1].receiveShadow = true
+        obj.scene.children[1].frustumCulled = false
     }
 )
 
@@ -1060,6 +1099,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1075,6 +1115,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1090,6 +1131,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1105,6 +1147,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1120,6 +1163,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1135,6 +1179,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1150,6 +1195,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1165,6 +1211,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1180,6 +1227,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1195,6 +1243,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1210,6 +1259,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1225,6 +1275,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1240,6 +1291,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1256,6 +1308,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1272,6 +1325,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1287,6 +1341,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1302,6 +1357,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1317,6 +1373,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1332,6 +1389,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1347,6 +1405,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1362,6 +1421,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1377,6 +1437,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1392,6 +1453,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1407,6 +1469,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1421,6 +1484,7 @@ gltfLoader.load(
         skateboardGroup.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
+        obj.scene.children[0].frustumCulled = false
         // obj.scene.children[0].receiveShadow = true
     }
 )
@@ -1437,6 +1501,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1452,6 +1517,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1467,6 +1533,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1482,6 +1549,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1497,6 +1565,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1511,6 +1580,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
         laptopGroup.add(obj.scene)
     }
 )
@@ -1527,6 +1597,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1546,6 +1617,7 @@ gltfLoader.load(
         // obj.scene.castShadow = true
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
         screenGroup.add(obj.scene)
 
     }
@@ -1562,6 +1634,7 @@ gltfLoader.load(
         wallsandfloor.add(obj.scene)
         // obj.scene.castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1577,6 +1650,7 @@ gltfLoader.load(
         staticStairsGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1591,6 +1665,7 @@ gltfLoader.load(
         topDrawer.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1605,6 +1680,7 @@ gltfLoader.load(
         midDrawer.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1619,6 +1695,7 @@ gltfLoader.load(
         botDrawer.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1633,7 +1710,7 @@ gltfLoader.load(
         topBedframeGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
-
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1648,6 +1725,7 @@ gltfLoader.load(
         topBedframeGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
 
     }
 )
@@ -1663,6 +1741,7 @@ gltfLoader.load(
         wallsandfloor.add(obj.scene)
         obj.scene.castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1677,6 +1756,7 @@ gltfLoader.load(
         topBedframeGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1691,6 +1771,7 @@ gltfLoader.load(
         bottomBedframeGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1705,6 +1786,7 @@ gltfLoader.load(
         bottomBedframeGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
 
     }
 )
@@ -1720,6 +1802,7 @@ gltfLoader.load(
         staticStairsGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
+        obj.scene.children[0].frustumCulled = false
     }
 )
 
@@ -1735,7 +1818,7 @@ gltfLoader.load(
         topBedframeGroup.add(obj.scene)
         obj.scene.children[0].castShadow = true
         obj.scene.children[0].receiveShadow = true
-
+        obj.scene.children[0].frustumCulled = false
 
     }
 )
@@ -3807,6 +3890,7 @@ let material = null
 let points = null
 let galaxy = new THREE.Group()
 
+
 const generateGalaxy = () => {
     // Destroy
     if ( points !== null)  {
@@ -3816,7 +3900,6 @@ const generateGalaxy = () => {
         scene.remove(points)
         scene.remove(galaxy)
     }
-
 
 
     geometry = new THREE.BufferGeometry()
@@ -3881,6 +3964,7 @@ const generateGalaxy = () => {
 }
 
 generateGalaxy()
+
 
 // Scroll Animations
 
@@ -4330,14 +4414,9 @@ const tick = () =>
     torusDrawer.rotation.y += 0.01
     torusDrawer.rotation.z += 0.015
 
-    // if (prevRadius !== parameters.radius) {
-    //     generateGalaxy()
-    //     prevRadius = parameters.radius
-    // }
     generateGalaxy()
 
     galaxy.rotation.y += 0.001
-
 
     for (let p = 0; p < points.geometry.attributes.position.array.length; p++) {
         if (p%3 == 1) {
